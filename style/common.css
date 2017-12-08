@@ -1,0 +1,79 @@
+
+body {
+	background: #231b19;
+	color: white;
+	font-size: 12pt;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+header {
+	text-align: center;
+	padding: 20px 0;
+}
+
+header img{
+	width: 50%;
+}
+
+footer {
+	font-size: 8pt;
+	text-align: right;
+	padding: 0 1em;
+	color: #c3bbb9;
+}
+
+footer ul.dev-info {
+	text-transform: uppercase;
+}
+
+footer ul.dev-info > li {
+	display: inline-block;
+	margin: 0 1em;
+}
+
+footer ul.dev-info > li a {
+	color: #c3bbb9;
+}
+
+#root {
+	min-height: 400px;
+}
+
+.inline-message {
+	text-align: center;
+	line-height: 1.5em;
+	height: 1.5em;
+}
+
+.simple-form {
+	font-size: 15pt;
+}
+
+.simple-form input[type="text"],
+.simple-form input[type="number"],
+.simple-form button {
+	box-sizing: content-box;
+	border: 0 solid;
+	padding: 0.5em;
+	display: block;
+	width: 50%;
+	margin: 40px auto;
+	font-size: 15pt;
+}
+
+.simple-form button {
+	background: #e3ad58;
+	color: white;
+}
+
+.toast{
+	background: darkolivegreen;
+	color: white;
+	position: fixed;
+	padding: 20px;
+	width: 55%;
+}
