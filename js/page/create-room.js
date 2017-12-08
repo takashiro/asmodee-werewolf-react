@@ -5,6 +5,7 @@ DeclareModule('page/create-room', () => {
 
 	function create_option(role_id){
 		let li = $('<li></li>');
+		li.data('role-id', role_id);
 		let icon = Role.createImage(role_id);
 		li.append(icon);
 		let name = $('<span class="name"></span>');
@@ -13,8 +14,48 @@ DeclareModule('page/create-room', () => {
 		return li;
 	}
 
+	function create_number_input(role_id){
+		let box = $('<div class="role-selector number-selector"></div>');
+
+		let icon = $('<div class="icon"></div>');
+		let image = Role.createImage(role_id);
+		icon.append(image);
+		let name = $('<span class="name"></span>');
+		name.text(Role.convertToName(role_id));
+		icon.append(name);
+		box.append(icon);
+
+		let number_input = $('<div class="number-input"></div>');
+		let decrease = $('<button type="button" class="decrease"></button>');
+		number_input.append(decrease);
+		let input = $('<input type="number"></input>');
+		input.val('0');
+		number_input.append(input);
+		let increase = $('<button type="button" class="increase"></button>');
+		number_input.append(increase);
+
+		decrease.click(() => {
+			let num = parseInt(input.val(), 10);
+			num--;
+			if (num >= 0) {
+				input.val(num);
+			}
+		});
+
+		increase.click(() => {
+			let num = parseInt(input.val(), 10);
+			num++;
+			input.val(num);
+		});
+
+		box.append(number_input);
+		return box;
+	}
+
 	// Construct Team Werewolf
 	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
+
+	werewolf_team.append(create_number_input(Role.Werewolf));
 
 	let werewolf_specials = [
 		Role.WolfKing,
@@ -33,6 +74,8 @@ DeclareModule('page/create-room', () => {
 
 	// Construct Team Villager
 	let villager_team = $('<div class="box"><h3>神民阵营</h3></div>');
+
+	villager_team.append(create_number_input(Role.Villager));
 
 	let gods = [
 		Role.Seer,

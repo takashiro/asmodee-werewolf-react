@@ -2,6 +2,11 @@
 body {
 	background: #231b19;
 	color: white;
+}
+
+body,
+button,
+input {
 	font-size: 12pt;
 }
 
@@ -102,7 +107,7 @@ ul.role-selector > li{
 	margin: 5px;
 }
 
-ul.role-selector .role{
+.role-selector .role{
     width: 80px;
     height: 80px;
     background-size: 95px;
@@ -110,9 +115,50 @@ ul.role-selector .role{
 	border-radius: 40px;
 }
 
-ul.role-selector .name {
+.role-selector .name {
 	display: block;
 	text-align: center;
+}
+
+.number-selector {
+	display: flex;
+}
+
+.number-selector > .icon{
+	width: 80px;
+	margin: 5px;
+}
+
+.number-selector > .number-input {
+	margin: auto 0 auto 23px;
+}
+
+.number-input > button.decrease,
+.number-input > button.increase {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border: 0px solid;
+    background: white;
+    color: black;
+    font-size: 15pt;
+    border-radius: 1em;
+}
+
+.number-input > input {
+	width: 4em;
+    height: 2.5em;
+    box-sizing: content-box;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.number-input > .decrease::before {
+	content: 'ー';
+}
+
+.number-input > .increase::before {
+	content: '＋';
 }
 
 .box {
