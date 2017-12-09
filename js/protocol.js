@@ -48,6 +48,7 @@ $client.bind(net.EnterRoom, info => {
 	if (!info) {
 		ShowMessage('');
 		MakeToast('房间不存在。');
+		$('.lobby').trigger('room-not-exist');
 		return;
 	}
 

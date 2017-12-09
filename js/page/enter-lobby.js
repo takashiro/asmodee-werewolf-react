@@ -8,13 +8,18 @@ DeclareModule('page/enter-lobby', () => {
 	create_form.append(create_button);
 	root.append(create_form);
 
-	let enter_form = $('<div class="simple-form"></div>');
+	let enter_form = $('<div class="simple-form lobby"></div>');
 	let enter_input = $('<input type="number"></input>');
 	enter_input.prop('placeholder', '房间号');
 	enter_form.append(enter_input);
 	let enter_button = $('<button type="button">加入房间</button>');
 	enter_form.append(enter_button);
 	root.append(enter_form);
+
+	enter_form.on('room-not-exist', () => {
+		enter_input.val('');
+		enter_input.focus();
+	});
 
 	create_button.click(() => {
 		LoadPage('create-room');
