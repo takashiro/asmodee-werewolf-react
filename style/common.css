@@ -112,6 +112,23 @@ ul.role-selector > li{
 	margin: 5px;
 }
 
+ul.role-selector > li .role {
+	opacity: 0.65;
+}
+
+ul.role-selector > li .name {
+	opacity: 0.45;
+}
+
+ul.role-selector > li.selected .role {
+	box-shadow: white 0 0 15px;
+	opacity: 1;
+}
+
+ul.role-selector > li.selected .name {
+	opacity: 1;
+}
+
 .role-selector .role{
     width: 80px;
     height: 80px;
@@ -123,6 +140,7 @@ ul.role-selector > li{
 .role-selector .name {
 	display: block;
 	text-align: center;
+	margin-top: 5px;
 }
 
 .number-selector {

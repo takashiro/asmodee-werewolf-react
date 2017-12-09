@@ -3,6 +3,11 @@ DeclareModule('page/create-room', () => {
 	let root = $('#root');
 	root.html('');
 
+	let multi_selector_click = e => {
+		let li = $(e.currentTarget);
+		li.toggleClass('selected');
+	};
+
 	function create_option(role_id){
 		let li = $('<li></li>');
 		li.data('role-id', role_id);
@@ -68,6 +73,7 @@ DeclareModule('page/create-room', () => {
 		werewolf_special_selector.append(create_option(role_id));
 	}
 	werewolf_team.append(werewolf_special_selector);
+	werewolf_special_selector.on('click', 'li', multi_selector_click);
 
 	root.append(werewolf_team);
 
@@ -95,6 +101,7 @@ DeclareModule('page/create-room', () => {
 		god_selector.append(create_option(role_id));
 	}
 	villager_team.append(god_selector);
+	god_selector.on('click', 'li', multi_selector_click);
 
 	root.append(villager_team);
 
@@ -112,6 +119,7 @@ DeclareModule('page/create-room', () => {
 		other_selector.append(create_option(role_id));
 	}
 	other_roles.append(other_selector);
+	other_selector.on('click', 'li', multi_selector_click);
 
 	root.append(other_roles);
 
