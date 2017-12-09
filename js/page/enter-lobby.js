@@ -19,4 +19,19 @@ DeclareModule('page/enter-lobby', () => {
 	create_button.click(() => {
 		LoadPage('create-room');
 	});
+
+	enter_button.click(()=>{
+		let room_id = parseInt(enter_input.val(), 10);
+		if (isNaN(room_id)) {
+			MakeToast('请输入一个数字。');
+			room_input.val('');
+			room_input.focus();
+			return;
+		}
+
+		$client.request(net.EnterRoom, {
+			id: room_id,
+			game: 'werewolf'
+		});
+	});
 });
