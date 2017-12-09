@@ -65,10 +65,17 @@ $client.bind(net.EnterRoom, info => {
 		$client.request(net.UpdateRoom, {
 			roles: $room.roles
 		});
+	}
+	LoadPage('enter-room');
+});
 
-		LoadPage('enter-god-view');
-	} else {
-		LoadPage('enter-room');
+$client.bind(net.UpdateRoom, args => {
+	if (args.roles instanceof Array) {
+		$room.roles = [];
+		args.roles.forEach(num => {
+			$room.roles.push(num);
+		});
+		$('.role-table').trigger('update-role');
 	}
 });
 
