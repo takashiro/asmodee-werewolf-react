@@ -114,4 +114,10 @@ DeclareModule('page/create-room', () => {
 	other_roles.append(other_selector);
 
 	root.append(other_roles);
+
+	let button_area = $('<div class="button-area"></div>');
+	let create_button = $('<button type="button"></button>');
+	create_button.html('创建房间');
+	button_area.append(create_button);
+	root.append(button_area);
 });

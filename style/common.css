@@ -15,6 +15,17 @@ a {
 	text-decoration: none;
 }
 
+button {
+	background: #e3ad58;
+	color: white;
+}
+
+input[type="text"],
+input[type="number"],
+button {
+	border: 0 solid;
+}
+
 ul {
 	margin: 0;
 	padding: 0;
@@ -73,17 +84,11 @@ footer ul.dev-info > li a {
 .simple-form input[type="number"],
 .simple-form button {
 	box-sizing: content-box;
-	border: 0 solid;
 	padding: 0.5em;
 	display: block;
 	width: 50%;
 	margin: 40px auto;
 	font-size: 15pt;
-}
-
-.simple-form button {
-	background: #e3ad58;
-	color: white;
 }
 
 .toast{
@@ -168,4 +173,14 @@ ul.role-selector > li{
 .box h3 {
 	text-align: center;
 	margin: 20px 0 8px 0;
+}
+
+.button-area {
+	text-align: center;
+	margin: 20px 15px 5px 15px;
+}
+
+.button-area button {
+	font-size: 15pt;
+	padding: 0.5em 0.8em;
 }
