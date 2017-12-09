@@ -3,6 +3,10 @@ DeclareModule('page/enter-room', () => {
 	let root = $('#root');
 	root.html('');
 
+	let room_info = $('<div class="inline-message"></div>');
+	room_info.html('房间号是 ' + $room.id);
+	root.append(room_info);
+
 	function create_icon(role_id){
 		let li = $('<li></li>');
 		li.data('role-id', role_id);
@@ -26,8 +30,8 @@ DeclareModule('page/enter-room', () => {
 	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
 	let werewolf_list = $('<ul class="role-list"></ul>');
 	werewolf_team.append(werewolf_list);
-	let werewolf_special_list = $('<ul class="role-list"></ul>');
-	werewolf_team.append(werewolf_special_list);
+	let special_werewolf_list = $('<ul class="role-list"></ul>');
+	werewolf_team.append(special_werewolf_list);
 	role_table.append(werewolf_team);
 
 	let villager_team = $('<div class="box"><h3>神民阵营</h3></div>');
@@ -40,18 +44,53 @@ DeclareModule('page/enter-room', () => {
 	root.append(role_table);
 
 	let update_roles = () => {
-		role_table.find('.role-list').html('');
+		let werewolves = [];
+		let special_werewolves = [];
+		let villagers = [];
+		let gods = [];
 		$room.roles.forEach(role => {
 			if (role == Role.Werewolf) {
-				werewolf_list.append(create_icon(role));
+				werewolves.push(role);
 			} else if (role == Role.Villager) {
-				villager_list.append(create_icon(role));
+				villagers.push(role);
 			} else if (werewolf_roles.indexOf(role) != -1) {
-				werewolf_special_list.append(create_icon(role));
+				special_werewolves.push(role);
 			} else {
-				god_list.append(create_icon(role));
+				gods.push(role);
 			}
 		});
+
+		werewolf_list.html('');
+		werewolves.forEach(role => {
+			werewolf_list.append(create_icon(role));
+		});
+
+		special_werewolf_list.html('');
+		if (werewolves.length < 4 && special_werewolves.length < 4) {
+			special_werewolves.forEach(role => {
+				werewolf_list.append(create_icon(role));
+			});
+		} else {
+			special_werewolves.forEach(role => {
+				special_werewolf_list.append(create_icon(role));
+			});
+		}
+
+		villager_list.html('');
+		villagers.forEach(role => {
+			villager_list.append(create_icon(role));
+		});
+
+		god_list.html('');
+		if (villager_list.length < 4 && gods.length < 4) {
+			gods.forEach(role => {
+				villager_list.append(create_icon(role));
+			});
+		} else {
+			gods.forEach(role => {
+				god_list.append(create_icon(role));
+			});
+		}
 	};
 	role_table.on('update-role', update_roles);
 	update_roles();
