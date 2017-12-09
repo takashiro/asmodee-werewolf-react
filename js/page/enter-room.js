@@ -94,4 +94,23 @@ DeclareModule('page/enter-room', () => {
 	};
 	role_table.on('update-role', update_roles);
 	update_roles();
+
+	if ($room.owner.id != $user.id) {
+		let my_role_box = $('<div class="box"><h3>你的身份</h3></div>');
+		let my_role = $('<div id="my-role" class="role-area"></div>');
+		my_role_box.append(my_role);
+		root.append(my_role_box);
+
+		my_role.on('update-role', () => {
+			if ($user.role) {
+				let name = Role.convertToName($user.role);
+				let name_box = `<div class="name">${name}</div>`;
+				my_role.html(name_box + Role.createImage($user.role));
+			} else {
+				my_role.html('该房间人数已满。');
+			}
+		});
+
+		$client.request(net.FetchRole);
+	}
 });

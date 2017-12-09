@@ -205,3 +205,15 @@ ul.role-list .name,
 	font-size: 15pt;
 	padding: 0.5em 0.8em;
 }
+
+.role-area {
+	text-align: center;
+}
+
+.role-area > .name {
+	margin-bottom: 10px;
+}
+
+.role-area > .role {
+	margin: auto;
+}

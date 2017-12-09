@@ -1,10 +1,8 @@
 
 const net = DeclareCommand(
-	'ArrangeRole',
 	'FetchRole',
-	'UpdateRole',
 
-	'WerewolfCommandCount'
+	'CommandCount'
 );
 
 $client = new Client;
@@ -65,7 +63,14 @@ $client.bind(net.EnterRoom, info => {
 		$client.request(net.UpdateRoom, {
 			roles: $room.roles
 		});
+
+		$client.request(net.StartGame);
+	} else {
+		LoadPage('enter-room');
 	}
+});
+
+$client.bind(net.StartGame, () => {
 	LoadPage('enter-room');
 });
 
@@ -79,14 +84,7 @@ $client.bind(net.UpdateRoom, args => {
 	}
 });
 
-$client.bind(net.ArrangeRole, roles => {
-
-});
-
-$client.bind(net.UpdateRole, info => {
-
-});
-
 $client.bind(net.FetchRole, role => {
-
+	$user.role = role;
+	$('#my-role').trigger('update-role');
 });
