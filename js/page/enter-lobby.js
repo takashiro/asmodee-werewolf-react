@@ -15,4 +15,8 @@ DeclareModule('page/enter-lobby', () => {
 	let enter_button = $('<button type="button">加入房间</button>');
 	enter_form.append(enter_button);
 	root.append(enter_form);
+
+	create_button.click(() => {
+		LoadPage('create-room');
+	});
 });

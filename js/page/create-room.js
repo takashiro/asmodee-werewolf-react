@@ -34,6 +34,7 @@ DeclareModule('page/create-room', () => {
 		let decrease = $('<button type="button" class="decrease"></button>');
 		number_input.append(decrease);
 		let input = $('<input type="number"></input>');
+		input.data('role-id', role_id);
 		input.val('0');
 		number_input.append(input);
 		let increase = $('<button type="button" class="increase"></button>');
@@ -128,4 +129,32 @@ DeclareModule('page/create-room', () => {
 	create_button.html('创建房间');
 	button_area.append(create_button);
 	root.append(button_area);
+
+	create_button.click(e => {
+		let roles = [];
+
+		$('.role-selector.number-selector input').each(function () {
+			let input = $(this);
+			let role_id = input.data('role-id');
+			let num = parseInt(input.val(), 10);
+			if (!isNaN(num)) {
+				for (let i = 0; i < num; i++) {
+					roles.push(role_id);
+				}
+			}
+		});
+
+		$('ul.role-selector > li').each(function () {
+			let li = $(this);
+			if (li.hasClass('selected')) {
+				let role_id = li.data('role-id');
+				if (role_id) {
+					roles.push(role_id);
+				}
+			}
+		});
+
+		$room.roles = roles;
+		$client.request(net.RequestRoomId);
+	});
 });

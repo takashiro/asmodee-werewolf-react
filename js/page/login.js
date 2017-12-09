@@ -55,6 +55,10 @@ DeclareModule('page/login', () => {
 	let login_form = $('<div class="simple-form"></div>');
 	let name_input = $('<input type="text"></input>');
 	name_input.prop('placeholder', '您的昵称');
+	let nickname = localStorage.getItem('nickname');
+	if (nickname) {
+		name_input.val(nickname.substr(0, 15));
+	}
 	login_form.append(name_input);
 	let login_button = $('<button type="button"></button>');
 	login_button.html('登录');
@@ -73,6 +77,7 @@ DeclareModule('page/login', () => {
 
 		nickname = nickname.substr(0, 15);
 		$user.name = nickname;
+		localStorage.setItem('nickname', $user.name);
 		ConnectServer();
 	});
 });

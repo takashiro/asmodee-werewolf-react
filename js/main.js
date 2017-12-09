@@ -6,6 +6,9 @@ const $user = {
 
 const $room = {
 	id: 0,
+	owner: {
+		id: 0
+	},
 	roles: [],
 	players: {}
 };
