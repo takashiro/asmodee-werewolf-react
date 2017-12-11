@@ -61,7 +61,8 @@ DeclareModule('page/create-room', () => {
 	// Construct Team Werewolf
 	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
 
-	werewolf_team.append(create_number_input(Role.Werewolf));
+	let werewolf_selector = create_number_input(Role.Werewolf);
+	werewolf_team.append(werewolf_selector);
 
 	let werewolf_specials = [
 		Role.WolfKing,
@@ -82,7 +83,8 @@ DeclareModule('page/create-room', () => {
 	// Construct Team Villager
 	let villager_team = $('<div class="box"><h3>神民阵营</h3></div>');
 
-	villager_team.append(create_number_input(Role.Villager));
+	let villager_selector = create_number_input(Role.Villager);
+	villager_team.append(villager_selector);
 
 	let gods = [
 		Role.Seer,
@@ -124,6 +126,49 @@ DeclareModule('page/create-room', () => {
 
 	root.append(other_roles);
 
+	let pref_roles = localStorage.getItem('setting.roles');
+	if (pref_roles) {
+		try {
+			let roles = JSON.parse(pref_roles);
+
+			let werewolf_input = werewolf_selector.find('input');
+			werewolf_input.val('0');
+			let werewolf_num = 0;
+
+			let villager_input = villager_selector.find('input');
+			villager_input.val('0');
+			let villager_num = 0;
+
+			roles.forEach(role => {
+				switch (role) {
+				case Role.Werewolf:
+					werewolf_num++;
+					break;
+				case Role.Villager:
+					villager_num++;
+					break;
+				}
+			});
+			werewolf_input.val(werewolf_num);
+			villager_input.val(villager_num);
+
+			$('ul.role-selector > li').each(function(){
+				let li = $(this);
+				let role_id = parseInt(li.data('role-id'), 10);
+				if (!isNaN(role_id)) {
+					if (roles.indexOf(role_id) != -1) {
+						li.addClass('selected');
+					} else {
+						li.removeClass('selected');
+					}
+				}
+			});
+
+		} catch (e) {
+			ShowMessage(e.toString());
+		}
+	}
+
 	let button_area = $('<div class="button-area"></div>');
 	let create_button = $('<button type="button"></button>');
 	create_button.html('创建房间');
@@ -153,14 +198,15 @@ DeclareModule('page/create-room', () => {
 		$('ul.role-selector > li').each(function () {
 			let li = $(this);
 			if (li.hasClass('selected')) {
-				let role_id = li.data('role-id');
-				if (role_id) {
+				let role_id = parseInt(li.data('role-id'), 10);
+				if (!isNaN(role_id)) {
 					roles.push(role_id);
 				}
 			}
 		});
 
 		$room.roles = roles;
+		localStorage.setItem('setting.roles', JSON.stringify(roles));
 		$client.request(net.RequestRoomId);
 	});
 });
