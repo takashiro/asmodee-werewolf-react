@@ -131,6 +131,12 @@ DeclareModule('page/create-room', () => {
 	root.append(button_area);
 
 	create_button.click(e => {
+		create_button.hide();
+
+		let message = $('<div class="inline-message"></div>');
+		message.html('创建中...');
+		button_area.append(message);
+
 		let roles = [];
 
 		$('.role-selector.number-selector input').each(function () {
