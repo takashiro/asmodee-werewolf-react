@@ -114,6 +114,31 @@ DeclareModule('page/enter-room', () => {
 		$client.request(net.FetchRole);
 	}
 
+	let current_site_url = () => {
+		let match = location.href.match(/^\w+\:\/\/[^/]+\/(?:compat\/)?/i);
+		if (match && match[0]) {
+			return match[0];
+		} else {
+			return '';
+		}
+	};
+
+	let share_link_area = $('<div class="box share-link-area"></div>');
+	let share_label = $('<span class="label"></span>');
+	share_label.html('邀请链接');
+	share_link_area.append(share_label);
+	let link_input = $('<a target="_blank"></a>');
+	let share_url = current_site_url() + '?room_id=' + $room.id;
+	link_input.prop('href', share_url);
+	link_input.html(share_url);
+	share_link_area.append(link_input);
+	root.append(share_link_area);
+
+	link_input.click(e => {
+		e.preventDefault();
+		MakeToast('请长按复制该链接，然后分享给好友。');
+	});
+
 	let button_area = $('<div class="button-area"></div>');
 	let return_button = $('<button type="button"></button>');
 	return_button.html('返回');

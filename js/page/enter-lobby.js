@@ -39,4 +39,14 @@ DeclareModule('page/enter-lobby', () => {
 			game: 'werewolf'
 		});
 	});
+
+	if ($_GET['room_id']) {
+		let room_id = parseInt($_GET['room_id'], 10);
+		if (!isNaN(room_id) && room_id > 0) {
+			enter_input.val(room_id);
+			enter_button.click();
+		}
+
+		delete $_GET['room_id'];
+	}
 });

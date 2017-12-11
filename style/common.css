@@ -227,3 +227,26 @@ ul.role-list .name,
 .role-area > .role {
 	margin: auto;
 }
+
+.share-link-area {
+	line-height: 2em;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.share-link-area > .label {
+	display: block;
+}
+
+.share-link-area > a {
+	width: 85%;
+	margin: 0 auto;
+	height: 2em;
+	border: 0 solid;
+	border-radius: 0;
+	color: black;
+	background: white;
+	display: block;
+	overflow: hidden;
+	padding: 0 0.5em;
+}
