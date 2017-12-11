@@ -213,6 +213,7 @@ ul.role-list .name,
 .button-area button {
 	font-size: 15pt;
 	padding: 0.5em 0.8em;
+	min-width: 5em;
 }
 
 .role-area {

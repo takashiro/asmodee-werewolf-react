@@ -113,4 +113,18 @@ DeclareModule('page/enter-room', () => {
 
 		$client.request(net.FetchRole);
 	}
+
+	let button_area = $('<div class="button-area"></div>');
+	let return_button = $('<button type="button"></button>');
+	return_button.html('返回');
+	button_area.append(return_button);
+	root.append(button_area);
+
+	return_button.click(() => {
+		if ($client.connected) {
+			LoadPage('enter-lobby');
+		} else {
+			LoadPage('login');
+		}
+	});
 });
