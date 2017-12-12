@@ -5,7 +5,7 @@ const net = DeclareCommand(
 	'CommandCount'
 );
 
-$client = new Client;
+const $client = new Client;
 
 $client.bind(net.RequestUserId, user_id => {
 	$user.id = user_id;
