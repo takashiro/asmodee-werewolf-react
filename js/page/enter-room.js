@@ -2,6 +2,57 @@
 DeclareModule('page/enter-room', () => {
 	ShowMessage('');
 
+	function ReadSession() {
+		let sessions = localStorage.getItem('room-session');
+		if (sessions) {
+			try {
+				sessions = JSON.parse(sessions);
+			} catch (e) {
+				alert(e.toString());
+				sessions = {};
+			}
+			sessions = sessions;
+		} else {
+			sessions = {};
+		}
+		return sessions;
+	}
+
+	function FetchRole() {
+		let sessions = ReadSession();
+
+		// Find current session
+		if (sessions[$room.salt]) {
+			let session = sessions[$room.salt];
+			if (session.expiry >= new Date().getTime()) {
+				$user.role = session.role;
+				$('#my-role').trigger('update-role');
+				return;
+			}
+		}
+
+		$client.request(net.FetchRole);
+	}
+
+	function SaveRole() {
+		let sessions = ReadSession();
+
+		// Clear expired sessions
+		let now = new Date().getTime();
+		for (let salt in sessions) {
+			let session = sessions[salt];
+			if (!session.expiry || session.expiry <= now) {
+				delete sessions[salt];
+			}
+		}
+
+		sessions[$room.salt] = {
+			role: $user.role,
+			expiry: new Date().getTime() + 30 * 60 * 1000
+		};
+		localStorage.setItem('room-session', JSON.stringify(sessions));
+	}
+
 	let root = $('#root');
 	root.html('');
 
@@ -108,12 +159,13 @@ DeclareModule('page/enter-room', () => {
 				let name = Role.convertToName($user.role);
 				let name_box = `<div class="name">${name}</div>`;
 				my_role.html(name_box + Role.createImage($user.role));
+				SaveRole();
 			} else {
 				my_role.html('该房间人数已满。');
 			}
 		});
 
-		$client.request(net.FetchRole);
+		FetchRole();
 	}
 
 	let current_site_url = () => {

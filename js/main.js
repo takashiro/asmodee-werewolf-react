@@ -7,6 +7,7 @@ const $user = {
 
 const $room = {
 	id: 0,
+	salt: 0,
 	owner: {
 		id: 0
 	},

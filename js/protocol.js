@@ -83,6 +83,10 @@ $client.bind(net.UpdateRoom, args => {
 		});
 		$('.role-table').trigger('update-role');
 	}
+
+	if (args.salt) {
+		$room.salt = args.salt;
+	}
 });
 
 $client.bind(net.FetchRole, role => {
