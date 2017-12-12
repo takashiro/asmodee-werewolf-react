@@ -176,17 +176,21 @@ ul.role-list .name,
 	margin: auto 0 auto 23px;
 }
 
-.number-input > button.decrease,
-.number-input > button.increase {
+.number-input > .decrease,
+.number-input > .increase {
 	display: inline-block;
 	width: 2em;
 	height: 2em;
+	line-height: 2.2em;
+	text-align: center;
 	border: 0px solid;
 	padding: 0;
 	background: white;
 	color: black;
 	font-size: 15pt;
 	border-radius: 1em;
+	cursor: pointer;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 .number-input > input {

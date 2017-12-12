@@ -33,13 +33,13 @@ DeclareModule('page/create-room', () => {
 		box.append(icon);
 
 		let number_input = $('<div class="number-input"></div>');
-		let decrease = $('<button type="button" class="decrease"></button>');
+		let decrease = $('<div class="decrease"></div>');
 		number_input.append(decrease);
 		let input = $('<input type="number"></input>');
 		input.data('role-id', role_id);
 		input.val('0');
 		number_input.append(input);
-		let increase = $('<button type="button" class="increase"></button>');
+		let increase = $('<div class="increase"></div>');
 		number_input.append(increase);
 
 		decrease.click(() => {
