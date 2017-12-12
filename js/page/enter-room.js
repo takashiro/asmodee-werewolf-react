@@ -27,11 +27,11 @@ DeclareModule('page/enter-room', () => {
 			if (session.expiry >= new Date().getTime()) {
 				$user.role = session.role;
 				$('#my-role').trigger('update-role');
-				return;
+				return true;
 			}
 		}
 
-		$client.request(net.FetchRole);
+		return false;
 	}
 
 	function SaveRole() {
@@ -165,7 +165,17 @@ DeclareModule('page/enter-room', () => {
 			}
 		});
 
-		FetchRole();
+		if (!FetchRole()) {
+			let role_area = $('<div class="button-area"></div>');
+			let fetch_role_button = $('<button type="button"></button>');
+			fetch_role_button.html('查看身份');
+			fetch_role_button.click(() => {
+				my_role.html('你的身份是...');
+				$client.request(net.FetchRole);
+			});
+			role_area.append(fetch_role_button);
+			my_role.append(role_area);
+		}
 	}
 
 	let current_site_url = () => {
