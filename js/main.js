@@ -22,9 +22,13 @@ ScriptLoader = document.getElementById('script-loader');
 
 function LoadPage(page) {
 	ShowMessage('加载中...');
-	LoadScript('page/' + page, () => {
-		ShowMessage('');
-	});
+	try {
+		LoadScript('page/' + page, () => {
+			ShowMessage('');
+		});
+	} catch (e) {
+		ShowMessage(e.toString());
+	}
 }
 
 LoadPage('login');
