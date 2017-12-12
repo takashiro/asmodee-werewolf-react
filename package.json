@@ -1,0 +1,30 @@
+{
+	"name": "Werewolf Game Assistant",
+	"version": "1.0.0",
+	"license": "AGPL v3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/takashiro/Werewolf.git"
+	},
+	"scripts": {
+		"build": "sh ./sh/build.sh"
+	},
+	"babel": {
+		"presets": [
+			"env"
+		],
+		"env": {
+			"production": {
+				"presets": [
+					"minify"
+				]
+			}
+		}
+	},
+	"dependencies": {
+		"babel-preset-env": "^1.6.1"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0"
+	}
+}
