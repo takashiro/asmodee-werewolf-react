@@ -1,5 +1,7 @@
 
 DeclareModule('page/enter-room', () => {
+	ShowMessage('');
+
 	let root = $('#root');
 	root.html('');
 

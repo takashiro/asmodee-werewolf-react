@@ -1,5 +1,7 @@
 
 DeclareModule('page/create-room', () => {
+	ShowMessage('');
+
 	let root = $('#root');
 	root.html('');
 

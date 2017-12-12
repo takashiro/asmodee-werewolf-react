@@ -1,5 +1,7 @@
 
 DeclareModule('page/enter-lobby', () => {
+	ShowMessage('');
+
 	let root = $('#root');
 	root.html('');
 

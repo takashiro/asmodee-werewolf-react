@@ -23,9 +23,7 @@ ScriptLoader = document.getElementById('script-loader');
 function LoadPage(page) {
 	ShowMessage('加载中...');
 	try {
-		LoadScript('page/' + page, () => {
-			ShowMessage('');
-		});
+		LoadScript('page/' + page);
 	} catch (e) {
 		ShowMessage(e.toString());
 	}
