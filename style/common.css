@@ -2,6 +2,8 @@
 body {
 	background: #231b19;
 	color: white;
+	margin: 0;
+	padding: 0;
 }
 
 body,
@@ -118,7 +120,14 @@ ul.role-list > li,
 ul.role-selector > li{
 	list-style: none;
 	display: inline-block;
-	margin: 5px;
+	margin: 7px;
+}
+
+@media screen and (max-width: 375px) {
+	ul.role-list > li,
+	ul.role-selector > li {
+		margin: 3px;
+	}
 }
 
 ul.role-selector > li .role {
