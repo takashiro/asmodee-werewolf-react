@@ -37,20 +37,12 @@ ul {
 }
 
 header {
-	position: relative;
 	text-align: center;
 	padding: 20px 0 2px 0;
 }
 
 header img{
 	width: 50%;
-}
-
-header #message-box {
-	width: 100%;
-	position: absolute;
-	bottom: -24px;
-	left: 0;
 }
 
 footer {

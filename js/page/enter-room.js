@@ -57,7 +57,7 @@ DeclareModule('page/enter-room', () => {
 	root.html('');
 
 	let room_info = $('<div class="inline-message"></div>');
-	room_info.html('房间号是 ' + $room.id);
+	room_info.html(`房间号 ${$room.id}`);
 	root.append(room_info);
 
 	function create_icon(role_id){
