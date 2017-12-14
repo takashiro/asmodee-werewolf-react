@@ -24,6 +24,8 @@ button {
 	background: #e3ad58;
 	color: #130502;
 	font-weight: bold;
+	border-radius: 4px;
+	box-shadow:#160804 2px 2px 6px 0;
 }
 
 input[type="text"],
@@ -92,7 +94,8 @@ footer ul.dev-info > li a {
 	margin: 40px auto;
 	font-size: 15pt;
 	text-align: center;
-	border-radius: 0;
+	border-radius: 4px;
+	box-shadow:#160804 2px 2px 6px 0;
 }
 
 .toast{
