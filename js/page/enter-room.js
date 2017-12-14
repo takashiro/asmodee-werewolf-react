@@ -191,16 +191,39 @@ DeclareModule('page/enter-room', () => {
 	let share_label = $('<span class="label"></span>');
 	share_label.html('邀请链接');
 	share_link_area.append(share_label);
-	let link_input = $('<a target="_blank"></a>');
 	let share_url = current_site_url() + '?room_id=' + $room.id;
-	link_input.prop('href', share_url);
-	link_input.html(share_url);
-	share_link_area.append(link_input);
+	let link_anchor = $('<a target="_blank"></a>');
+	let link_input = $('<input type="text">');
+	link_input.prop('readonly', true);
+	link_input.val(share_url);
+	link_anchor.prop('href', share_url);
+	link_anchor.append(link_input);
+	share_link_area.append(link_anchor);
 	root.append(share_link_area);
 
-	link_input.click(e => {
+	link_input.mouseup(e => {
 		e.preventDefault();
-		MakeToast('请长按复制该链接，然后分享给好友。');
+		link_input.prop('contentEditable', true);
+		link_input.prop('readonly', false);
+		link_input.focus();
+		link_input.select();
+		let range = document.createRange();
+		range.selectNodeContents(link_input.get(0));
+		let selection = window.getSelection();
+		selection.removeAllRanges();
+		selection.addRange(range);
+		link_input.get(0).setSelectionRange(0, link_input.val().length);
+		let result = document.execCommand('copy');
+		link_input.prop('readonly', true);
+		if (result) {
+			MakeToast('成功复制该链接。');
+		} else {
+			MakeToast('复制失败。请手动长按该链接，然后分享给好友。');
+		}
+	});
+
+	link_anchor.click(e => {
+		e.preventDefault();
 	});
 
 	let button_area = $('<div class="button-area"></div>');
