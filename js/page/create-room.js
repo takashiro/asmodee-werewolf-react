@@ -172,17 +172,16 @@ DeclareModule('page/create-room', () => {
 	}
 
 	let button_area = $('<div class="button-area"></div>');
+	let return_button = $('<button type="button"></button>');
+	return_button.html('返回');
+	button_area.append(return_button);
 	let create_button = $('<button type="button"></button>');
 	create_button.html('创建房间');
 	button_area.append(create_button);
 	root.append(button_area);
 
-	create_button.click(e => {
-		create_button.hide();
-
-		let message = $('<div class="inline-message"></div>');
-		message.html('创建中...');
-		button_area.append(message);
+	create_button.click(() => {
+		button_area.html('创建中...');
 
 		let roles = [];
 
@@ -210,5 +209,15 @@ DeclareModule('page/create-room', () => {
 		$room.roles = roles;
 		localStorage.setItem('setting.roles', JSON.stringify(roles));
 		$client.request(net.RequestRoomId);
+	});
+
+	return_button.click(() => {
+		button_area.html('加载中...');
+
+		if ($client.connected) {
+			LoadPage('enter-lobby');
+		} else {
+			LoadPage('login');
+		}
 	});
 });

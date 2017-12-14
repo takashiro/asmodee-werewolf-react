@@ -210,6 +210,7 @@ DeclareModule('page/enter-room', () => {
 	root.append(button_area);
 
 	return_button.click(() => {
+		button_area.html('加载中...');
 		if ($client.connected) {
 			LoadPage('enter-lobby');
 		} else {
