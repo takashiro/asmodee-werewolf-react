@@ -1,6 +1,7 @@
 
 body {
-	background: #231b19;
+	background: #231b19 url(bg.jpg) no-repeat;
+	background-size: 100% auto;
 	color: white;
 	margin: 0;
 	padding: 0;
