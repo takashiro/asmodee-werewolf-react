@@ -39,6 +39,8 @@ DeclareModule('page/enter-lobby', () => {
 		$client.request(net.EnterRoom, {id: room_id}, args => {
 			if (args.id <= 0) {
 				MakeToast('房间不存在。');
+				enter_input.val('');
+				enter_input.focus();
 				return;
 			}
 
