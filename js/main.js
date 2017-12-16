@@ -1,6 +1,6 @@
 
 const $user = {
-	id: 0,
+	id: Math.floor(Math.random() * 0x7FFFFFFF),
 	role: 0,
 	name: ''
 };

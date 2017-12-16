@@ -36,9 +36,14 @@ DeclareModule('page/enter-lobby', () => {
 			return;
 		}
 
-		$client.request(net.EnterRoom, {
-			id: room_id,
-			game: 'werewolf'
+		$client.request(net.EnterRoom, {id: room_id}, args => {
+			if (args.id <= 0) {
+				MakeToast('房间不存在。');
+				return;
+			}
+
+			Object.assign($room, args);
+			LoadPage('enter-room');
 		});
 	});
 

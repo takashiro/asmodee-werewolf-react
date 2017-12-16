@@ -208,16 +208,20 @@ DeclareModule('page/create-room', () => {
 
 		$room.roles = roles;
 		localStorage.setItem('setting.roles', JSON.stringify(roles));
-		$client.request(net.RequestRoomId);
+		$client.request(net.CreateRoom, {'roles': roles}, result => {
+			if (!result.id) {
+				MakeToast('创建房间失败。');
+				return;
+			}
+
+			Object.assign($room, result);
+			$room.owner.id = $user.id;
+			LoadPage('enter-room');
+		});
 	});
 
 	return_button.click(() => {
 		button_area.html('加载中...');
-
-		if ($client.connected) {
-			LoadPage('enter-lobby');
-		} else {
-			LoadPage('login');
-		}
+		LoadPage('enter-lobby');
 	});
 });

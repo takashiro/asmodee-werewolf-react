@@ -171,7 +171,10 @@ DeclareModule('page/enter-room', () => {
 			fetch_role_button.html('查看身份');
 			fetch_role_button.click(() => {
 				my_role.html('你的身份是...');
-				$client.request(net.FetchRole);
+				$client.request(net.FetchRole, {id: $room.id}, result => {
+					$user.role = result.role;
+					my_role.trigger('update-role');
+				});
 			});
 			role_area.append(fetch_role_button);
 			my_role.append(role_area);
@@ -237,10 +240,6 @@ DeclareModule('page/enter-room', () => {
 
 	return_button.click(() => {
 		button_area.html('加载中...');
-		if ($client.connected) {
-			LoadPage('enter-lobby');
-		} else {
-			LoadPage('login');
-		}
+		LoadPage('enter-lobby');
 	});
 });
