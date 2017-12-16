@@ -131,6 +131,10 @@ footer .copyright p{
 	background-size: 100%;
 }
 
+ul.role-selector {
+	-webkit-tap-highlight-color: transparent;
+}
+
 ul.role-list > li,
 ul.role-selector > li{
 	list-style: none;
