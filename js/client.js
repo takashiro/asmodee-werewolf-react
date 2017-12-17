@@ -7,16 +7,32 @@ class Client {
 
 	request(api, data, callback) {
 		let param = data ? JSON.stringify(data) : '';
-		$.post(this.serverUrl + api, param, result => {
-			if (!result) {
-				MakeToast('服务器异常。');
-				return;
-			}
+		$.ajax(this.serverUrl + api, {
+			type: 'POST',
+			data: param,
+			dataType: 'json',
+			success: result => {
+				if (!result) {
+					MakeToast('服务器异常。');
+					return;
+				}
 
-			if (callback) {
-				callback(result);
+				if (callback) {
+					callback(result);
+				}
+			},
+			error: (xhr, status, message) => {
+				if (status == 'timeout') {
+					MakeToast('服务器繁忙，请稍后重试。');
+				} else if (status == 'abort') {
+					MakeToast('网络连接中断，请稍后重试。');
+				} else if (status == 'parsererror') {
+					MakeToast('解析错误。');
+				} else {
+					MakeToast('未知错误。' + xhr.statusCode);
+				}
 			}
-		}, 'json');
+		});
 	}
 
 }
