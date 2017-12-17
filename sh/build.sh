@@ -86,7 +86,7 @@ for file in $(find style -type f); do
 done
 
 # Copy other files
-OTHER_FILES="LICENSE README.md $JQUERY_LIB"
+OTHER_FILES="LICENSE README.md favicon.ico $JQUERY_LIB"
 for file in $OTHER_FILES; do
 	deploy_file $file
 done
