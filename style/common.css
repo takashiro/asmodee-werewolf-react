@@ -116,6 +116,10 @@ footer .copyright p{
 	box-shadow:#160804 2px 2px 6px 0;
 }
 
+.simple-form.lobby:not(:first-child) {
+	margin-top: 75px;
+}
+
 .toast{
 	background: #8f2818;
 	color: white;

@@ -5,7 +5,7 @@ DeclareModule('page/enter-lobby', () => {
 	let root = $('#root');
 	root.html('');
 
-	let create_form = $('<div class="simple-form"></div>');
+	let create_form = $('<div class="simple-form lobby"></div>');
 	let create_button = $('<button type="button">创建房间</button>');
 	create_form.append(create_button);
 	root.append(create_form);
