@@ -47,8 +47,8 @@ let $client = new Client();
 (() => {
 	let match = location.href.match(/(^\w+)\:\/\/([^/]+)/i);
 	if (match && match[1] && match[2]) {
-		$client.serverUrl = match[1] + '://' + match[2] + '/server/?mod=werewolf:';
+		$client.serverUrl = match[1] + '://' + match[2] + '/api/';
 	} else {
-		$client.serverUrl = 'server/?mod=werewolf:';
+		$client.serverUrl = 'http://localhost:2620/';
 	}
 })();
