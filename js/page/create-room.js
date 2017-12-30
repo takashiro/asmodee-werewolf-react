@@ -60,25 +60,28 @@ DeclareModule('page/create-room', () => {
 		return box;
 	}
 
+	function create_role_selector(roles) {
+		let selector = $('<ul class="role-selector"></ul>');
+		for (let role_id of roles) {
+			selector.append(create_option(role_id));
+		}
+		selector.on('click', 'li', multi_selector_click);
+		return selector;
+	}
+
 	// Construct Team Werewolf
 	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
 
 	let werewolf_selector = create_number_input(Role.Werewolf);
 	werewolf_team.append(werewolf_selector);
 
-	let werewolf_specials = [
+	werewolf_team.append(create_role_selector([
 		Role.WolfKing,
 		Role.WhiteWolfKing,
 		Role.WolfBeauty,
 		Role.SecretWolf,
 		Role.Demon
-	];
-	let werewolf_special_selector = $('<ul class="role-selector"></ul>');
-	for (let role_id of werewolf_specials) {
-		werewolf_special_selector.append(create_option(role_id));
-	}
-	werewolf_team.append(werewolf_special_selector);
-	werewolf_special_selector.on('click', 'li', multi_selector_click);
+	]));
 
 	root.append(werewolf_team);
 
@@ -88,8 +91,7 @@ DeclareModule('page/create-room', () => {
 
 	let villager_selector = create_number_input(Role.Villager);
 	villager_team.append(villager_selector);
-
-	let gods = [
+	villager_team.append(create_role_selector([
 		Role.Seer,
 		Role.Tamer,
 		Role.Witch,
@@ -101,31 +103,18 @@ DeclareModule('page/create-room', () => {
 		Role.Knight,
 		Role.Dementor,
 		Role.Rogue
-	];
-	let god_selector = $('<ul class="role-selector"></ul>');
-	for (let role_id of gods) {
-		god_selector.append(create_option(role_id));
-	}
-	villager_team.append(god_selector);
-	god_selector.on('click', 'li', multi_selector_click);
+	]));
 
 	root.append(villager_team);
 
 	// Other roles
 	let other_roles = $('<div class="box"><h3>其他角色</h3></div>');
-	let others = [
+	other_roles.append(create_role_selector([
 		Role.Jupiter,
 		Role.FeralChild,
 		Role.Thief,
 		Role.Bombman,
-	];
-
-	let other_selector = $('<ul class="role-selector"></ul>');
-	for (let role_id of others) {
-		other_selector.append(create_option(role_id));
-	}
-	other_roles.append(other_selector);
-	other_selector.on('click', 'li', multi_selector_click);
+	]));
 
 	root.append(other_roles);
 
