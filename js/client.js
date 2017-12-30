@@ -29,7 +29,7 @@ class Client {
 				} else if (status == 'parsererror') {
 					MakeToast('解析错误。');
 				} else {
-					MakeToast('未知错误。' + xhr.statusCode);
+					MakeToast('未知错误。');
 				}
 			}
 		});

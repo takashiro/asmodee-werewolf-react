@@ -171,8 +171,6 @@ DeclareModule('page/create-room', () => {
 	root.append(button_area);
 
 	create_button.click(() => {
-		button_area.html('创建中...');
-
 		let roles = [];
 
 		$('.role-selector.number-selector input').each(function () {
@@ -196,6 +194,12 @@ DeclareModule('page/create-room', () => {
 			}
 		});
 
+		if (roles.length <= 0) {
+			MakeToast('请选择角色。 ');
+			return;
+		}
+
+		button_area.html('创建中...');
 		$room.roles = roles;
 		localStorage.setItem('setting.roles', JSON.stringify(roles));
 		$client.request(net.CreateRoom, {'roles': roles}, result => {
