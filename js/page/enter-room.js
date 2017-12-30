@@ -75,7 +75,8 @@ DeclareModule('page/enter-room', () => {
 		Role.WolfKing,
 		Role.WhiteWolfKing,
 		Role.WolfBeauty,
-		Role.SecretWolf
+		Role.SecretWolf,
+		Role.Demon
 	];
 
 	let role_table = $('<div class="role-table"></div>');

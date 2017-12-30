@@ -8,6 +8,7 @@ const Role = DeclareEnum(
 	'WhiteWolfKing',
 	'WolfBeauty',
 	'SecretWolf',
+	'Demon',
 
 	// Team Villager
 	'Villager',
@@ -40,6 +41,7 @@ const Role = DeclareEnum(
 	num2name[Role.WhiteWolfKing] = '白狼王';
 	num2name[Role.WolfBeauty] = '狼美人';
 	num2name[Role.SecretWolf] = '隐狼';
+	num2name[Role.Demon] = '恶魔';
 
 	// Team Villager
 	num2name[Role.Villager] = '村民';

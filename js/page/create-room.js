@@ -70,7 +70,8 @@ DeclareModule('page/create-room', () => {
 		Role.WolfKing,
 		Role.WhiteWolfKing,
 		Role.WolfBeauty,
-		Role.SecretWolf
+		Role.SecretWolf,
+		Role.Demon
 	];
 	let werewolf_special_selector = $('<ul class="role-selector"></ul>');
 	for (let role_id of werewolf_specials) {
