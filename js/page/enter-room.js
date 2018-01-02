@@ -234,13 +234,21 @@ DeclareModule('page/enter-room', () => {
 	});
 
 	let button_area = $('<div class="button-area"></div>');
+
+	let god_note_button = $('<button type="button"></button>');
+	god_note_button.html('上帝助手');
+	button_area.append(god_note_button);
+	god_note_button.click(() => {
+		LoadPage('open-god-note');
+	});
+
 	let return_button = $('<button type="button"></button>');
 	return_button.html('返回');
 	button_area.append(return_button);
-	root.append(button_area);
-
 	return_button.click(() => {
 		button_area.html('加载中...');
 		LoadPage('enter-lobby');
 	});
+
+	root.append(button_area);
 });
