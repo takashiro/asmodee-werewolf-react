@@ -42,7 +42,7 @@ ul.player-round li > .number {
 }
 
 ol.game-flow {
-	margin: 0 100px;
+	margin: 0 120px;
 	padding: 0;
 	min-height: 65vh;
 	text-align: center;
@@ -60,8 +60,9 @@ ol.game-flow ol.action {
 
 ol.game-flow ol.action > li {
 	position: relative;
-	height: 100px;
-	padding-left: 64px;
+	height: 75px;
+	padding-left: 48px;
+	font-size: 10pt;
 }
 
 ol.game-flow ol.action > li.current .role {
@@ -70,17 +71,26 @@ ol.game-flow ol.action > li.current .role {
 
 ol.game-flow ol.action > li h5 {
 	position: absolute;
-	width: 64px;
+	width: 48px;
 	top: 0;
 	left: 0;
 	margin: 0;
+	font-size: 8pt;
 }
 
 ol.game-flow ol.action > li .content {
 	line-height: 64px;
 }
 
-ol.game-flow .role,
+
+ol.game-flow .role {
+	width: 48px;
+	height: 48px;
+	background-size: 65px;
+	background-position: -9px -14px;
+	border-radius: 24px;
+}
+
 ul.player-round .role {
 	width: 64px;
 	height: 64px;
