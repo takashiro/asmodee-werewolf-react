@@ -6,6 +6,7 @@ ul.player-round {
 	width: 64px;
 	justify-content: space-between;
     height: 80vh;
+	-webkit-tap-highlight-color: transparent;
 }
 
 ul.player-round.left {
@@ -47,6 +48,7 @@ ol.game-flow {
 	min-height: 65vh;
 	text-align: center;
 	list-style: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 ol.game-flow > li h4 {
@@ -56,6 +58,7 @@ ol.game-flow > li h4 {
 ol.game-flow ol.action {
 	list-style: none;
 	padding: 0;
+	-webkit-tap-highlight-color: transparent;
 }
 
 ol.game-flow ol.action > li {
