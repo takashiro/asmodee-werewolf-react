@@ -110,7 +110,7 @@ DeclareModule('page/create-room', () => {
 	// Other roles
 	let other_roles = $('<div class="box"><h3>其他角色</h3></div>');
 	other_roles.append(create_role_selector([
-		Role.Jupiter,
+		Role.Cupid,
 		Role.FeralChild,
 		Role.Thief,
 		Role.Bombman,

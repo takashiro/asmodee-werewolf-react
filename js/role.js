@@ -25,7 +25,7 @@ const Role = DeclareEnum(
 	'Rogue',
 
 	// Others
-	'Jupiter',
+	'Cupid',
 	'FeralChild',
 	'Thief',
 	'Bombman',
@@ -58,7 +58,7 @@ const Role = DeclareEnum(
 	num2name[Role.Rogue] = '老流氓';
 
 	// Others
-	num2name[Role.Jupiter] = '丘比特';
+	num2name[Role.Cupid] = '丘比特';
 	num2name[Role.FeralChild] = '野孩子';
 	num2name[Role.Thief] = '盗贼';
 	num2name[Role.Bombman] = '炸弹人';
