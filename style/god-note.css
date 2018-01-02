@@ -2,7 +2,7 @@
 ul.player-round {
 	display: flex;
 	position: fixed;
-	top: 120px;
+	top: 60px;
 	width: 64px;
 	justify-content: space-between;
     height: 80vh;
