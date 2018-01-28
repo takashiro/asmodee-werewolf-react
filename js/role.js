@@ -23,6 +23,7 @@ const Role = DeclareEnum(
 	'Knight',
 	'Dementor',
 	'Rogue',
+	'Crow',
 
 	// Others
 	'Cupid',
@@ -56,6 +57,7 @@ const Role = DeclareEnum(
 	num2name[Role.Knight] = '骑士';
 	num2name[Role.Dementor] = '摄梦者';
 	num2name[Role.Rogue] = '老流氓';
+	num2name[Role.Crow] = '乌鸦';
 
 	// Others
 	num2name[Role.Cupid] = '丘比特';

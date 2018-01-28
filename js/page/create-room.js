@@ -102,7 +102,8 @@ DeclareModule('page/create-room', () => {
 		Role.Elder,
 		Role.Knight,
 		Role.Dementor,
-		Role.Rogue
+		Role.Rogue,
+		Role.Crow
 	]));
 
 	root.append(villager_team);
