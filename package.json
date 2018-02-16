@@ -4,7 +4,7 @@
 	"license": "AGPL v3.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/takashiro/Werewolf.git"
+		"url": "https://github.com/takashiro/asmodee-werewolf.git"
 	},
 	"scripts": {
 		"build": "sh ./sh/build.sh"

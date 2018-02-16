@@ -1,4 +1,4 @@
-Werewolf
+Werewolves of Miller's Hollow
 ==========
 
 | Example Page |    http://werewolf.takashiro.me       |
@@ -24,12 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 Introduction
 ------------
 
-It's a small online app to arrange role cards of One Night Ultimate Werewolf
-and help players to take actions.
-
+It's a small online app to arrange role cards of the board game Werewolves of Miller's Hollow.
 
 Running Environment
 -------------------
 1. Nginx Apache Or IIS
-2. [karuta-server](https://github.com/takashiro/karuta-server)
-3. [werewolf server extension](https://github.com/takashiro/werewolf-server)
+2. [Node.js Server](https://github.com/takashiro/asmodee-werewolf-server)
