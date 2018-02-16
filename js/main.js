@@ -2,6 +2,7 @@
 const $user = {
 	id: Math.floor(Math.random() * 0x7FFFFFFF),
 	role: 0,
+	cards: [],
 	name: ''
 };
 

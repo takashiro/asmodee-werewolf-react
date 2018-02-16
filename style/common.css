@@ -254,6 +254,7 @@ ul.role-list .name,
 
 .role-area {
 	text-align: center;
+	position: relative;
 }
 
 .role-area > .name {
@@ -262,6 +263,31 @@ ul.role-list .name,
 
 .role-area > .role {
 	margin: auto;
+}
+
+.role-area ul.extra-cards {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.role-area ul.extra-cards li {
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+}
+
+.role-area ul.extra-cards li:nth-child(0) {
+	top: 0;
+	left: 0;
+}
+
+.role-area ul.extra-cards li:nth-child(1) {
+	top: 0;
+	right: 0;
 }
 
 .share-link-area {

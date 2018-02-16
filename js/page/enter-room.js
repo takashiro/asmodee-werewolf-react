@@ -26,6 +26,7 @@ DeclareModule('page/enter-room', () => {
 			let session = sessions[$room.salt];
 			if (session.expiry >= new Date().getTime()) {
 				$user.role = session.role;
+				$user.cards = session.cards ? session.cards : [];
 				$('#my-role').trigger('update-role');
 				return true;
 			}
@@ -48,6 +49,7 @@ DeclareModule('page/enter-room', () => {
 
 		sessions[$room.salt] = {
 			role: $user.role,
+			cards: $user.cards,
 			expiry: new Date().getTime() + 30 * 60 * 1000
 		};
 		localStorage.setItem('room-session', JSON.stringify(sessions));
@@ -160,6 +162,18 @@ DeclareModule('page/enter-room', () => {
 				let name = Role.convertToName($user.role);
 				let name_box = `<div class="name">${name}</div>`;
 				my_role.html(name_box + Role.createImage($user.role));
+
+				if ($user.cards) {
+					let ul = $('<ul class="role-list extra-cards"></ul>');
+					for (let role of $user.cards) {
+						if (role) {
+							let icon = create_icon(role);
+							ul.append(icon);
+						}
+					}
+					my_role.append(ul);
+				}
+
 				SaveRole();
 			} else {
 				my_role.html('该房间人数已满。');
@@ -174,6 +188,7 @@ DeclareModule('page/enter-room', () => {
 				my_role.html('你的身份是...');
 				$client.request(net.FetchRole, {id: $room.id}, result => {
 					$user.role = result.role;
+					$user.cards = result.cards ? result.cards : [];
 					my_role.trigger('update-role');
 				});
 			});
