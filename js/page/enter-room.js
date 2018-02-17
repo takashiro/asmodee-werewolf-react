@@ -74,8 +74,8 @@ DeclareModule('page/enter-room', () => {
 	}
 
 	let werewolf_roles = [
-		Role.WolfKing,
-		Role.WhiteWolfKing,
+		Role.AlphaWolf,
+		Role.WhiteAlphaWolf,
 		Role.WolfBeauty,
 		Role.SecretWolf,
 		Role.Demon

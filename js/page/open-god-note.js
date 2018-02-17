@@ -67,7 +67,7 @@ DeclareModule('page/open-god-note', () => {
 		new RolePrompt(Role.Idiot, false),
 		new RolePrompt(Role.Knight, false),
 		new RolePrompt(Role.Rogue, false),
-		new RolePrompt(Role.WhiteWolfKing, false),
+		new RolePrompt(Role.WhiteAlphaWolf, false),
 		new RolePrompt(Role.SecretWolf, false),
 
 		// Repeated
@@ -79,7 +79,7 @@ DeclareModule('page/open-god-note', () => {
 		new RolePrompt(Role.Guard),
 		new RolePrompt(Role.Dementor),
 		new RolePrompt(Role.Elder),
-		new RolePrompt(Role.WolfKing),
+		new RolePrompt(Role.AlphaWolf),
 		new RolePrompt(Role.Hunter),
 		new RolePrompt(Role.Demon)
 	];

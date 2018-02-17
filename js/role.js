@@ -4,8 +4,8 @@ const Role = DeclareEnum(
 
 	// Team Werewolf
 	'Werewolf',
-	'WolfKing',
-	'WhiteWolfKing',
+	'AlphaWolf',
+	'WhiteAlphaWolf',
 	'WolfBeauty',
 	'SecretWolf',
 	'Demon',
@@ -38,8 +38,8 @@ const Role = DeclareEnum(
 	// Team Werewolf
 	let num2name = {};
 	num2name[Role.Werewolf] = '狼人';
-	num2name[Role.WolfKing] = '狼王';
-	num2name[Role.WhiteWolfKing] = '白狼王';
+	num2name[Role.AlphaWolf] = '狼王';
+	num2name[Role.WhiteAlphaWolf] = '白狼王';
 	num2name[Role.WolfBeauty] = '狼美人';
 	num2name[Role.SecretWolf] = '隐狼';
 	num2name[Role.Demon] = '恶灵';

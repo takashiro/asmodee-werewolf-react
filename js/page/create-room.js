@@ -76,8 +76,8 @@ DeclareModule('page/create-room', () => {
 	werewolf_team.append(werewolf_selector);
 
 	werewolf_team.append(create_role_selector([
-		Role.WolfKing,
-		Role.WhiteWolfKing,
+		Role.AlphaWolf,
+		Role.WhiteAlphaWolf,
 		Role.WolfBeauty,
 		Role.SecretWolf,
 		Role.Demon
