@@ -25,8 +25,11 @@ DeclareModule('page/enter-room', () => {
 		if (sessions[$room.salt]) {
 			let session = sessions[$room.salt];
 			if (session.expiry >= new Date().getTime()) {
-				$user.role = session.role;
-				$user.cards = session.cards ? session.cards : [];
+				$user.role = Role.fromNum(session.role);
+				$user.cards = [];
+				if (session.cards && session.cards instanceof Array) {
+					$user.cards = session.cards.map(card => Role.fromNum(card));
+				}
 				$('#my-role').trigger('update-role');
 				return true;
 			}
@@ -48,8 +51,8 @@ DeclareModule('page/enter-room', () => {
 		}
 
 		sessions[$room.salt] = {
-			role: $user.role,
-			cards: $user.cards,
+			role: $user.role.toNum(),
+			cards: $user.cards.map(card => card.toNum()),
 			expiry: new Date().getTime() + 30 * 60 * 1000
 		};
 		localStorage.setItem('room-session', JSON.stringify(sessions));
@@ -62,94 +65,61 @@ DeclareModule('page/enter-room', () => {
 	room_info.html(`房间号 ${$room.id}`);
 	root.append(room_info);
 
-	function create_icon(role_id){
+	function create_icon(role){
 		let li = $('<li></li>');
-		li.data('role-id', role_id);
-		let icon = Role.createImage(role_id);
+		li.data('role-id', role.toNum());
+		let icon = role.toImage();
 		li.append(icon);
 		let name = $('<span class="name"></span>');
-		name.text(Role.convertToName(role_id));
+		name.text(role.name);
 		li.append(name);
 		return li;
 	}
 
-	let werewolf_roles = [
-		Role.AlphaWolf,
-		Role.WhiteAlphaWolf,
-		Role.WolfBeauty,
-		Role.SecretWolf,
-		Role.Demon
-	];
+	function create_role_list(roles) {
+		let list = $('<ul class="role-list"></ul>');
+		for (let role of roles) {
+			list.append(create_icon(role));
+		}
+		return list;
+	}
 
 	let role_table = $('<div class="role-table"></div>');
 
-	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
-	let werewolf_list = $('<ul class="role-list"></ul>');
-	werewolf_team.append(werewolf_list);
-	let special_werewolf_list = $('<ul class="role-list"></ul>');
-	werewolf_team.append(special_werewolf_list);
-	role_table.append(werewolf_team);
+	let teams = [
+		[Team.Werewolf, Role.Werewolf],
+		[Team.Villager, Role.Villager],
+		[Team.Other]
+	];
 
-	let villager_team = $('<div class="box"><h3>神民阵营</h3></div>');
-	let villager_list = $('<ul class="role-list"></ul>');
-	villager_team.append(villager_list);
-	let god_list = $('<ul class="role-list"></ul>');
-	villager_team.append(god_list);
-	role_table.append(villager_team);
+	for (let team of teams) {
+		let team_box = $('<div class="box"></div>');
+
+		let title = $('<h3></h3>');
+		title.html(team[0].name);
+		team_box.append(title);
+
+		let basic_roles = $room.roles.filter(role => role == team[1]);
+		let special_roles = $room.roles.filter(role => role.team == team[0] && role != team[1]);
+
+		if (basic_roles.length < 4 && special_roles.length < 4) {
+			basic_roles.push(...special_roles);
+			if (basic_roles.length <= 0) {
+				continue;
+			}
+			team_box.append(create_role_list(basic_roles));
+		} else {
+			if (basic_roles.length > 0) {
+				team_box.append(create_role_list(basic_roles));
+			}
+			if (special_roles.length > 0) {
+				team_box.append(create_role_list(special_roles));
+			}
+		}
+		role_table.append(team_box);
+	}
 
 	root.append(role_table);
-
-	let update_roles = () => {
-		let werewolves = [];
-		let special_werewolves = [];
-		let villagers = [];
-		let gods = [];
-		$room.roles.forEach(role => {
-			if (role == Role.Werewolf) {
-				werewolves.push(role);
-			} else if (role == Role.Villager) {
-				villagers.push(role);
-			} else if (werewolf_roles.indexOf(role) != -1) {
-				special_werewolves.push(role);
-			} else {
-				gods.push(role);
-			}
-		});
-
-		werewolf_list.html('');
-		werewolves.forEach(role => {
-			werewolf_list.append(create_icon(role));
-		});
-
-		special_werewolf_list.html('');
-		if (werewolves.length < 4 && special_werewolves.length < 4) {
-			special_werewolves.forEach(role => {
-				werewolf_list.append(create_icon(role));
-			});
-		} else {
-			special_werewolves.forEach(role => {
-				special_werewolf_list.append(create_icon(role));
-			});
-		}
-
-		villager_list.html('');
-		villagers.forEach(role => {
-			villager_list.append(create_icon(role));
-		});
-
-		god_list.html('');
-		if (villager_list.length < 4 && gods.length < 4) {
-			gods.forEach(role => {
-				villager_list.append(create_icon(role));
-			});
-		} else {
-			gods.forEach(role => {
-				god_list.append(create_icon(role));
-			});
-		}
-	};
-	role_table.on('update-role', update_roles);
-	update_roles();
 
 	if ($room.owner.id != $user.id) {
 		let my_role_box = $('<div class="box"><h3>你的身份</h3></div>');
@@ -158,10 +128,10 @@ DeclareModule('page/enter-room', () => {
 		root.append(my_role_box);
 
 		my_role.on('update-role', () => {
-			if ($user.role) {
-				let name = Role.convertToName($user.role);
+			if ($user.role && $user.role != Role.Unknown) {
+				let name = $user.role.name;
 				let name_box = `<div class="name">${name}</div>`;
-				my_role.html(name_box + Role.createImage($user.role));
+				my_role.html(name_box + $user.role.toImage());
 
 				if ($user.cards) {
 					let ul = $('<ul class="role-list extra-cards"></ul>');
@@ -187,8 +157,11 @@ DeclareModule('page/enter-room', () => {
 			fetch_role_button.click(() => {
 				my_role.html('你的身份是...');
 				$client.request(net.FetchRole, {id: $room.id}, result => {
-					$user.role = result.role;
-					$user.cards = result.cards ? result.cards : [];
+					$user.role = Role.fromNum(result.role);
+					$user.cards = [];
+					if (result.cards && result.cards instanceof Array) {
+						$user.cards = result.cards.map(card => Role.fromNum(card));
+					}
 					my_role.trigger('update-role');
 				});
 			});

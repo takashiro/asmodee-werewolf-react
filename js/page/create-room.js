@@ -10,25 +10,23 @@ DeclareModule('page/create-room', () => {
 		li.toggleClass('selected');
 	};
 
-	function create_option(role_id){
+	function create_option(role){
 		let li = $('<li></li>');
-		li.data('role-id', role_id);
-		let icon = Role.createImage(role_id);
-		li.append(icon);
+		li.data('role-id', role.toNum());
+		li.append(role.toImage());
 		let name = $('<span class="name"></span>');
-		name.text(Role.convertToName(role_id));
+		name.text(role.name);
 		li.append(name);
 		return li;
 	}
 
-	function create_number_input(role_id){
+	function create_number_input(role){
 		let box = $('<div class="role-selector number-selector"></div>');
 
 		let icon = $('<div class="icon"></div>');
-		let image = Role.createImage(role_id);
-		icon.append(image);
+		icon.append(role.toImage());
 		let name = $('<span class="name"></span>');
-		name.text(Role.convertToName(role_id));
+		name.text(role.name);
 		icon.append(name);
 		box.append(icon);
 
@@ -36,7 +34,7 @@ DeclareModule('page/create-room', () => {
 		let decrease = $('<div class="decrease"></div>');
 		number_input.append(decrease);
 		let input = $('<input type="number"></input>');
-		input.data('role-id', role_id);
+		input.data('role-id', role.toNum());
 		input.val('0');
 		number_input.append(input);
 		let increase = $('<div class="increase"></div>');
@@ -62,88 +60,77 @@ DeclareModule('page/create-room', () => {
 
 	function create_role_selector(roles) {
 		let selector = $('<ul class="role-selector"></ul>');
-		for (let role_id of roles) {
-			selector.append(create_option(role_id));
+		for (let role of roles) {
+			selector.append(create_option(role));
 		}
 		selector.on('click', 'li', multi_selector_click);
 		return selector;
 	}
 
-	// Construct Team Werewolf
-	let werewolf_team = $('<div class="box"><h3>狼人阵营</h3></div>');
+	// Construct Teams
+	let teams = [
+		[Team.Werewolf, Role.Werewolf],
+		[Team.Villager, Role.Villager],
+		[Team.Other]
+	];
 
-	let werewolf_selector = create_number_input(Role.Werewolf);
-	werewolf_team.append(werewolf_selector);
+	let team_selector = new Map;
 
-	werewolf_team.append(create_role_selector([
-		Role.AlphaWolf,
-		Role.WhiteAlphaWolf,
-		Role.WolfBeauty,
-		Role.SecretWolf,
-		Role.Demon
-	]));
+	for (let team of teams) {
+		let team_box = $('<div class="box"></div>');
 
-	root.append(werewolf_team);
+		let title = $('<h3></h3>');
+		title.html(team[0].name);
+		team_box.append(title);
 
+		let selector = {};
 
-	// Construct Team Villager
-	let villager_team = $('<div class="box"><h3>神民阵营</h3></div>');
+		if (team[1]) {
+			selector.basic = create_number_input(team[1]);
+			team_box.append(selector.basic);
+		}
 
-	let villager_selector = create_number_input(Role.Villager);
-	villager_team.append(villager_selector);
-	villager_team.append(create_role_selector([
-		Role.Seer,
-		Role.Tamer,
-		Role.Witch,
-		Role.Hunter,
-		Role.Guard,
-		Role.Magician,
-		Role.Idiot,
-		Role.Elder,
-		Role.Knight,
-		Role.Dementor,
-		Role.Rogue,
-		Role.Crow
-	]));
+		let roles = Role.List.filter(role => role != team[1] && role.team == team[0]);
+		if (roles.length <= 0 && !team[1]) {
+			continue;
+		}
 
-	root.append(villager_team);
+		selector.extra = create_role_selector(roles);
+		team_box.append(selector.extra);
 
-	// Other roles
-	let other_roles = $('<div class="box"><h3>其他角色</h3></div>');
-	other_roles.append(create_role_selector([
-		Role.Cupid,
-		Role.FeralChild,
-		Role.Thief,
-		Role.Bombman,
-	]));
-
-	root.append(other_roles);
+		team_selector.set(team[0], selector);
+		root.append(team_box);
+	}
 
 	let pref_roles = localStorage.getItem('setting.roles');
 	if (pref_roles) {
 		try {
 			let roles = JSON.parse(pref_roles);
+			if (!(roles instanceof Array)) {
+				roles = [];
+			}
 
-			let werewolf_input = werewolf_selector.find('input');
-			werewolf_input.val('0');
+			team_selector.forEach(selector => {
+				if (selector.basic) {
+					selector.basic.val('0');
+				}
+			});
+
 			let werewolf_num = 0;
-
-			let villager_input = villager_selector.find('input');
-			villager_input.val('0');
 			let villager_num = 0;
-
 			roles.forEach(role => {
 				switch (role) {
-				case Role.Werewolf:
+				case Role.Werewolf.value:
 					werewolf_num++;
 					break;
-				case Role.Villager:
+				case Role.Villager.value:
 					villager_num++;
 					break;
 				}
 			});
-			werewolf_input.val(werewolf_num);
-			villager_input.val(villager_num);
+
+			team_selector.get(Team.Werewolf).basic.find('input').val(werewolf_num);
+			team_selector.get(Team.Villager).basic.find('input').val(villager_num);
 
 			$('ul.role-selector > li').each(function(){
 				let li = $(this);
@@ -201,7 +188,7 @@ DeclareModule('page/create-room', () => {
 		}
 
 		button_area.html('创建中...');
-		$room.roles = roles;
+		$room.roles = roles.map(role => Role.fromNum(role));
 		localStorage.setItem('setting.roles', JSON.stringify(roles));
 		$client.request(net.CreateRoom, {'roles': roles}, result => {
 			if (!result.id) {
@@ -209,7 +196,7 @@ DeclareModule('page/create-room', () => {
 				return;
 			}
 
-			Object.assign($room, result);
+			$room.restoreState(result);
 			$room.owner.id = $user.id;
 			LoadPage('enter-room');
 		});

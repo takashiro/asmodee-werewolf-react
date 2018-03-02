@@ -1,7 +1,7 @@
 
 const $user = {
 	id: Math.floor(Math.random() * 0x7FFFFFFF),
-	role: 0,
+	role: Role.Unknown,
 	cards: [],
 	name: ''
 };
@@ -14,6 +14,18 @@ const $room = {
 	},
 	roles: [],
 	players: {}
+};
+
+$room.restoreState = result => {
+	if (result.id) {
+		$room.id = result.id;
+	}
+	if (result.salt) {
+		$room.salt = result.salt;
+	}
+	if (result.roles && result.roles instanceof Array) {
+		$room.roles = result.roles.map(num => Role.fromNum(num));
+	}
 };
 
 function ShowMessage(message) {

@@ -44,7 +44,7 @@ DeclareModule('page/enter-lobby', () => {
 				return;
 			}
 
-			Object.assign($room, args);
+			$room.restoreState(args);
 			LoadPage('enter-room');
 		});
 	});
