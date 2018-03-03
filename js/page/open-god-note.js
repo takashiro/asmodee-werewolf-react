@@ -216,4 +216,13 @@ DeclareModule('page/open-god-note', () => {
 		day++;
 	};
 	create_day();
+
+	let button_area = $('<div class="button-area"></div>');
+	let return_button = $('<button type="button"></button>');
+	return_button.html('返回');
+	return_button.click(e => {
+		LoadPage('enter-room');
+	});
+	button_area.append(return_button);
+	root.append(button_area);
 });
