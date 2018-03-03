@@ -16,15 +16,25 @@ const $room = {
 	players: {}
 };
 
-$room.restoreState = result => {
+$room.session = new Session('room-session');
+
+$room.readSession = function () {
+	return this.session.read(this.salt);
+}
+
+$room.writeSession = function (value, expiry) {
+	this.session.write(this.salt, value, expiry);
+};
+
+$room.restoreState = function (result) {
 	if (result.id) {
-		$room.id = result.id;
+		this.id = result.id;
 	}
 	if (result.salt) {
-		$room.salt = result.salt;
+		this.salt = result.salt;
 	}
 	if (result.roles && result.roles instanceof Array) {
-		$room.roles = result.roles.map(num => Role.fromNum(num));
+		this.roles = result.roles.map(num => Role.fromNum(num));
 	}
 };
 

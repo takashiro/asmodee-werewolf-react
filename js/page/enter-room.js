@@ -2,69 +2,19 @@
 DeclareModule('page/enter-room', () => {
 	ShowMessage('');
 
-	function ReadSession() {
-		let sessions = localStorage.getItem('room-session');
-		if (sessions) {
-			try {
-				sessions = JSON.parse(sessions);
-			} catch (e) {
-				alert(e.toString());
-				sessions = {};
-			}
-		} else {
-			sessions = {};
-		}
+	// Read session information
+	let session = $room.readSession();
 
-		// Clear expired sessions
-		let now = new Date().getTime();
-		for (let salt in sessions) {
-			let session = sessions[salt];
-			if (!session.expiry || session.expiry <= now) {
-				delete sessions[salt];
-			}
-		}
-
-		return sessions;
-	}
-
-	function FetchRole() {
-		let sessions = ReadSession();
-
-		// Find current session
-		if (sessions[$room.salt]) {
-			let session = sessions[$room.salt];
-			if (session.expiry >= new Date().getTime()) {
-				$user.role = Role.fromNum(session.role);
-				$user.cards = [];
-				if (session.cards && session.cards instanceof Array) {
-					$user.cards = session.cards.map(card => Role.fromNum(card));
-				}
-				$('#my-role').trigger('update-role');
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	function SaveRole() {
-		let sessions = ReadSession();
-
-		sessions[$room.salt] = {
-			role: $user.role.toNum(),
-			cards: $user.cards.map(card => card.toNum()),
-			expiry: new Date().getTime() + 60 * 60 * 1000
-		};
-		localStorage.setItem('room-session', JSON.stringify(sessions));
-	}
-
+	// Clear web page
 	let root = $('#root');
 	root.html('');
 
+	// Display room number
 	let room_info = $('<div class="inline-message"></div>');
 	room_info.html(`房间号 ${$room.id}`);
 	root.append(room_info);
 
+	// Add functions to create role table
 	function create_icon(role){
 		let li = $('<li></li>');
 		li.data('role-id', role.toNum());
@@ -84,14 +34,13 @@ DeclareModule('page/enter-room', () => {
 		return list;
 	}
 
+	// Display role table
 	let role_table = $('<div class="role-table"></div>');
-
 	let teams = [
 		[Team.Werewolf, Role.Werewolf],
 		[Team.Villager, Role.Villager],
 		[Team.Other]
 	];
-
 	for (let team of teams) {
 		let team_box = $('<div class="box"></div>');
 
@@ -103,12 +52,14 @@ DeclareModule('page/enter-room', () => {
 		let special_roles = $room.roles.filter(role => role.team == team[0] && role != team[1]);
 
 		if (basic_roles.length < 4 && special_roles.length < 4) {
+			// Display all roles in the same line
 			basic_roles.push(...special_roles);
 			if (basic_roles.length <= 0) {
 				continue;
 			}
 			team_box.append(create_role_list(basic_roles));
 		} else {
+			// Split normal roles and special roles
 			if (basic_roles.length > 0) {
 				team_box.append(create_role_list(basic_roles));
 			}
@@ -118,10 +69,10 @@ DeclareModule('page/enter-room', () => {
 		}
 		role_table.append(team_box);
 	}
-
 	root.append(role_table);
 
-	if ($room.owner.id != $user.id) {
+	if (!session || !session.ownerKey) {
+		// Display UI to fetch a role card
 		let my_role_box = $('<div class="box"><h3>你的身份</h3></div>');
 		let my_role = $('<div id="my-role" class="role-area"></div>');
 		my_role_box.append(my_role);
@@ -144,13 +95,17 @@ DeclareModule('page/enter-room', () => {
 					my_role.append(ul);
 				}
 
-				SaveRole();
+				$room.writeSession({
+					role: $user.role.toNum(),
+					cards: $user.cards.map(card => card.toNum())
+				});
 			} else {
 				my_role.html('该房间人数已满。');
 			}
 		});
 
-		if (!FetchRole()) {
+		if (!session) {
+			// Pure new user. Add input and buttons.
 			const ERROR_MESSAGE = {
 				ROOM_EXPIRED: '房间不存在，可能已过期。',
 				INVALID_SEAT: '座位号错误，请重新输入。',
@@ -188,6 +143,14 @@ DeclareModule('page/enter-room', () => {
 			});
 
 			my_role.append(role_area);
+		} else if (session.role) {
+			// Display role cards from session
+			$user.role = Role.fromNum(session.role);
+			$user.cards = [];
+			if (session.cards && session.cards instanceof Array) {
+				$user.cards = session.cards.map(card => Role.fromNum(card));
+			}
+			$('#my-role').trigger('update-role');
 		}
 	}
 
@@ -244,12 +207,14 @@ DeclareModule('page/enter-room', () => {
 
 	let button_area = $('<div class="button-area"></div>');
 
-	let god_note_button = $('<button type="button"></button>');
-	god_note_button.html('上帝助手');
-	button_area.append(god_note_button);
-	god_note_button.click(() => {
-		LoadPage('open-god-note');
-	});
+	if (session && session.ownerKey) {
+		let god_note_button = $('<button type="button"></button>');
+		god_note_button.html('上帝助手');
+		button_area.append(god_note_button);
+		god_note_button.click(() => {
+			LoadPage('open-god-note');
+		});
+	}
 
 	let return_button = $('<button type="button"></button>');
 	return_button.html('返回');

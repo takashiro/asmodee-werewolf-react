@@ -197,7 +197,14 @@ DeclareModule('page/create-room', () => {
 			}
 
 			$room.restoreState(result);
+
 			$room.owner.id = $user.id;
+			$room.owner.key = result.ownerKey;
+			$room.writeSession({
+				ownerId: $user.id,
+				ownerKey: result.ownerKey
+			});
+
 			LoadPage('enter-room');
 		});
 	});
