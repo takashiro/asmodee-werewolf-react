@@ -247,6 +247,11 @@ DeclareModule('page/open-god-note', () => {
 				return;
 			}
 
+			if (!(result instanceof Array)) {
+				MakeToast('房间已失效，无法刷新。');
+				return;
+			}
+
 			for (let record of result) {
 				let i = record.seat - 1;
 				if (i >= 0 && i < players.length) {
