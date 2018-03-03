@@ -53,7 +53,7 @@ DeclareModule('page/enter-room', () => {
 		sessions[$room.salt] = {
 			role: $user.role.toNum(),
 			cards: $user.cards.map(card => card.toNum()),
-			expiry: new Date().getTime() + 30 * 60 * 1000
+			expiry: new Date().getTime() + 60 * 60 * 1000
 		};
 		localStorage.setItem('room-session', JSON.stringify(sessions));
 	}
