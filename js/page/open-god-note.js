@@ -9,9 +9,9 @@ DeclareModule('page/open-god-note', () => {
 	style.html('@import url(style/god-note.css);');
 	root.append(style);
 
-	const DeathReason = (() => {
+	const Marker = (() => {
 		let id = 0;
-		class DeathReason {
+		class Marker {
 			constructor(key, name) {
 				this.id = id++;
 				this.key = key;
@@ -20,23 +20,39 @@ DeclareModule('page/open-god-note', () => {
 		}
 
 		const list = [
-			new DeathReason('Killed', '狼刀'),
-			new DeathReason('Executed', '公投'),
-			new DeathReason('Poisoned', '毒杀'),
-			new DeathReason('Shot', '枪杀'),
-			new DeathReason('Love', '殉情'),
-			new DeathReason('Demented', '摄梦')
+			new Marker('Lover', '情侣'),
+			new Marker('Thief', '盗贼'),
+
+			new Marker('Killed', '狼刀'),
+			new Marker('Reflected', '反伤'),
+			new Marker('Executed', '公投'),
+			new Marker('Poisoned', '毒杀'),
+			new Marker('Shot', '枪杀'),
+			new Marker('Guarded', '守护'),
+			new Marker('Exchanged', '交换'),
+			new Marker('Muted', '禁言'),
+			new Marker('Duel', '决斗'),
+			new Marker('Demented', '摄梦'),
+			new Marker('Struggling', '强撑'),
+			new Marker('Cursed', '诅咒'),
+			new Marker('DieForLove', '殉情')
 		];
 
-		return DeathReason;
+		for (let marker of list) {
+			Marker[marker.key] = marker;
+		}
+		return Marker;
 	})();
 
 	class Player {
 
 		constructor(node) {
-			this.node = node;
+			this.node = {
+				icon: node.children('.icon'),
+				markers: node.children('ul.marker')
+			};
 			this.deathDay = 0;
-			this.deathReason = null;
+			this.markers = new Map;
 
 			this._role = 0;
 		}
@@ -49,9 +65,9 @@ DeclareModule('page/open-god-note', () => {
 			this._role = role;
 
 			if (role && role != Role.Unknown) {
-				this.node.html(role.toImage());
+				this.node.icon.html(role.toImage());
 			} else {
-				this.node.html('');
+				this.node.icon.html('');
 			}
 		}
 
@@ -61,6 +77,32 @@ DeclareModule('page/open-god-note', () => {
 
 		get alive() {
 			return this.deathDay <= 0;
+		}
+
+		addMark(marker) {
+			let li = $('<li></li>');
+			li.html(marker.name);
+			this.node.markers.append(li);
+			this.markers.set(marker, li);
+		}
+
+		removeMark(marker) {
+			let li = this.markers.get(marker);
+			if (li) {
+				li.remove();
+			}
+			this.markers.delete(marker);
+		}
+
+		clearMarkers() {
+			this.markers.forEach(node => {
+				node.remove();
+			});
+			this.markers.clear();
+		}
+
+		hasMark(marker) {
+			return this.markers.has(marker);
 		}
 
 	};
@@ -134,7 +176,10 @@ DeclareModule('page/open-god-note', () => {
 			let icon = $('<div class="icon"></div>');
 			li.append(icon);
 
-			players.push(new Player(icon));
+			let markers = $('<ul class="marker"></ul>');
+			li.append(markers);
+
+			players.push(new Player(li));
 			return li;
 		}
 
@@ -168,6 +213,9 @@ DeclareModule('page/open-god-note', () => {
 		let role = Role.fromNum(li.data('role-id'));
 		$note_action = player => {
 			if (player.role != role) {
+				if (player.role == Role.Thief) {
+					player.addMark(Marker.Thief);
+				}
 				player.role = role;
 			} else {
 				player.role = Role.Unknown;
@@ -183,6 +231,7 @@ DeclareModule('page/open-god-note', () => {
 		for (let player of players) {
 			player.role = Role.Unknown;
 			delete player.cards;
+			player.clearMarkers();
 		}
 		$client.request(net.FetchRoles, {id: $room.id, ownerKey: session.ownerKey}, result => {
 			if (typeof result == 'string') {

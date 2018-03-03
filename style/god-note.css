@@ -19,7 +19,7 @@ ul.player-round.right {
 	flex-direction: column-reverse;
 }
 
-ul.player-round li {
+ul.player-round > li {
 	width: 64px;
 	height: 64px;
 	border-radius: 64px;
@@ -29,17 +29,41 @@ ul.player-round li {
 	margin: 10px 0;
 }
 
-ul.player-round li > .number {
+ul.player-round > li .number {
 	width: 16px;
 	height: 16px;
 	font-size: 12px;
 	position: absolute;
 	top: 0;
-	left: 0;
 	border: white 1px solid;
     border-radius: 8px;
     text-align: center;
     line-height: 16px;
+}
+
+ul.player-round.left > li .number {
+	left: 0;
+}
+
+ul.player-round.right > li .number {
+	right: 0;
+}
+
+ul.player-round > li ul.marker {
+	list-style: none;
+	font-size: 9pt;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+}
+
+ul.player-round.left > li ul.marker {
+	right: -1.8em;
+}
+
+ul.player-round.right > li ul.marker {
+	left: -1.8em;
 }
 
 ol.game-flow {
