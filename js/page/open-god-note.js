@@ -115,40 +115,44 @@ DeclareModule('page/open-god-note', () => {
 		}
 	};
 
-	const RolePromptList = [
-		// First Night Only
-		new RolePrompt(Role.Thief, false),
-		new RolePrompt(Role.Cupid, false),
-		new RolePrompt(Role.FeralChild, false),
-		new RolePrompt(Role.Bombman, false),
-		new RolePrompt(Role.Tamer, false),
-		new RolePrompt(Role.Idiot, false),
-		new RolePrompt(Role.Knight, false),
-		new RolePrompt(Role.Rogue, false),
-		new RolePrompt(Role.WhiteAlphaWolf, false),
-		new RolePrompt(Role.SecretWolf, false),
+	const PromptList = (() => {
+		let prompt_list = [
+			// First Night Only
+			new RolePrompt(Role.Thief, false),
+			new RolePrompt(Role.Cupid, false),
+			new RolePrompt(Role.FeralChild, false),
+			new RolePrompt(Role.Bombman, false),
+			new RolePrompt(Role.Tamer, false),
+			new RolePrompt(Role.Idiot, false),
+			new RolePrompt(Role.Knight, false),
+			new RolePrompt(Role.Rogue, false),
+			new RolePrompt(Role.WhiteAlphaWolf, false),
+			new RolePrompt(Role.SecretWolf, false),
 
-		// Repeated
-		new RolePrompt(Role.Magician),
-		new RolePrompt(Role.Werewolf),
-		new RolePrompt(Role.WolfBeauty),
-		new RolePrompt(Role.Seer),
-		new RolePrompt(Role.Witch),
-		new RolePrompt(Role.Guard),
-		new RolePrompt(Role.Dementor),
-		new RolePrompt(Role.Elder),
-		new RolePrompt(Role.AlphaWolf),
-		new RolePrompt(Role.Hunter),
-		new RolePrompt(Role.Demon)
-	];
+			// Repeated
+			new RolePrompt(Role.Magician),
+			new RolePrompt(Role.Werewolf),
+			new RolePrompt(Role.WolfBeauty),
+			new RolePrompt(Role.Seer),
+			new RolePrompt(Role.Witch),
+			new RolePrompt(Role.Guard),
+			new RolePrompt(Role.Dementor),
+			new RolePrompt(Role.Elder),
+			new RolePrompt(Role.AlphaWolf),
+			new RolePrompt(Role.Hunter),
+			new RolePrompt(Role.Demon)
+		];
 
-	let prompts = [];
-	for (let prompt of RolePromptList) {
-		if ($room.roles.indexOf(prompt.role) >= 0) {
-			prompts.push(prompt);
+		let prompts = [];
+		for (let prompt of prompt_list) {
+			if ($room.roles.indexOf(prompt.role) >= 0) {
+				prompts.push(prompt);
+			}
 		}
-	}
+		return prompts;
+	})();
 
+	// Calculate player number
 	let player_num = $room.roles.length;
 	$room.roles.forEach(role => {
 		if (role == Role.Thief) {
@@ -158,10 +162,11 @@ DeclareModule('page/open-god-note', () => {
 			}
 		}
 	});
-	let players = [];
 
+	let players = [];
 	let $note_action = null;
 
+	// Display players
 	let player_round_left = $('<ul class="player-round left"></ul>');
 	let player_round_right = $('<ul class="player-round right"></ul>');
 	(() => {
@@ -194,6 +199,7 @@ DeclareModule('page/open-god-note', () => {
 	root.append(player_round_left);
 	root.append(player_round_right);
 
+	// Click one role to take $note_action
 	$('.player-round').on('click', 'li', function () {
 		let li = $(this);
 		let seat = parseInt(li.data('seat'), 10);
@@ -205,9 +211,11 @@ DeclareModule('page/open-god-note', () => {
 		$note_action && $note_action(player);
 	});
 
+	// Display game flow
 	let flow = $('<ol class="game-flow"></ol>');
 	root.append(flow);
 
+	// Click one phase to set player role
 	flow.on('click', 'ol.action > li', function () {
 		let li = $(this);
 		let role = Role.fromNum(li.data('role-id'));
@@ -263,6 +271,7 @@ DeclareModule('page/open-god-note', () => {
 		refresh_all_roles();
 	}
 
+	// Display game flow for each day
 	let day = 1;
 	function create_day() {
 		let li = $('<li></li>');
@@ -274,7 +283,7 @@ DeclareModule('page/open-god-note', () => {
 		let action_list = $('<ol class="action"></ol>');
 		li.append(action_list);
 
-		for (let prompt of prompts) {
+		for (let prompt of PromptList) {
 			if (day > 1 && !prompt.repeat) {
 				continue;
 			}
