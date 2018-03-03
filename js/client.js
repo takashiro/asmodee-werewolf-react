@@ -40,6 +40,7 @@ class Client {
 const net = {
 	CreateRoom: 'createroom',
 	EnterRoom: 'enterroom',
+	FetchRoles: 'fetchroles',
 	FetchRole: 'fetchrole'
 };
 

@@ -178,6 +178,34 @@ DeclareModule('page/open-god-note', () => {
 		li.addClass('current');
 	});
 
+	// Check if it's opened by room owner
+	let session = $room.readSession();
+	if (session && session.ownerKey) {
+		// Fetch and display all roles
+		$client.request(net.FetchRoles, {id: $room.id, ownerKey: session.ownerKey}, result => {
+			if (typeof result == 'string') {
+				MakeToast(result);
+				return;
+			}
+
+			for (let record of result) {
+				let i = record.seat - 1;
+				if (i >= 0 && i < players.length) {
+					let player = players[i];
+					if (record.card) {
+						let card = record.card;
+						if (card.role) {
+							player.role = Role.fromNum(card.role);
+						}
+						if (card.cards) {
+							player.cards = card.cards.map(role => Role.fromNum(role));
+						}
+					}
+				}
+			}
+		});
+	}
+
 	let day = 1;
 	function create_day() {
 		let li = $('<li></li>');
