@@ -9,12 +9,27 @@ DeclareModule('page/open-god-note', () => {
 	style.html('@import url(style/god-note.css);');
 	root.append(style);
 
-	const DeathReason = DeclareEnum(
-		'Killed',
-		'Poisoned',
-		'Executed',
-		'Demented'
-	);
+	const DeathReason = (() => {
+		let id = 0;
+		class DeathReason {
+			constructor(key, name) {
+				this.id = id++;
+				this.key = key;
+				this.name = name;
+			}
+		}
+
+		const list = [
+			new DeathReason('Killed', '狼刀'),
+			new DeathReason('Executed', '公投'),
+			new DeathReason('Poisoned', '毒杀'),
+			new DeathReason('Shot', '枪杀'),
+			new DeathReason('Love', '殉情'),
+			new DeathReason('Demented', '摄梦')
+		];
+
+		return DeathReason;
+	})();
 
 	class Player {
 
@@ -93,6 +108,14 @@ DeclareModule('page/open-god-note', () => {
 	}
 
 	let player_num = $room.roles.length;
+	$room.roles.forEach(role => {
+		if (role == Role.Thief) {
+			player_num -= 2;
+			if (player_num < 1) {
+				player_num == 1;
+			}
+		}
+	});
 	let players = [];
 
 	let $note_action = null;
@@ -156,7 +179,7 @@ DeclareModule('page/open-god-note', () => {
 	});
 
 	let day = 1;
-	let create_day = () => {
+	function create_day() {
 		let li = $('<li></li>');
 
 		let h4 = $('<h4></h4>');

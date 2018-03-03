@@ -4,7 +4,7 @@ ul.player-round {
 	position: fixed;
 	top: 60px;
 	width: 64px;
-	justify-content: space-between;
+	justify-content: space-evenly;
     height: 80vh;
 	-webkit-tap-highlight-color: transparent;
 }
