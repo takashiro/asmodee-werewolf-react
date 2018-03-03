@@ -178,10 +178,12 @@ DeclareModule('page/open-god-note', () => {
 		li.addClass('current');
 	});
 
-	// Check if it's opened by room owner
-	let session = $room.readSession();
-	if (session && session.ownerKey) {
-		// Fetch and display all roles
+	// Fetch and display all roles
+	function refresh_all_roles() {
+		for (let player of players) {
+			player.role = Role.Unknown;
+			delete player.cards;
+		}
 		$client.request(net.FetchRoles, {id: $room.id, ownerKey: session.ownerKey}, result => {
 			if (typeof result == 'string') {
 				MakeToast(result);
@@ -204,6 +206,12 @@ DeclareModule('page/open-god-note', () => {
 				}
 			}
 		});
+	}
+
+	// Check if it's opened by room owner
+	let session = $room.readSession();
+	if (session && session.ownerKey) {
+		refresh_all_roles();
 	}
 
 	let day = 1;
@@ -245,12 +253,20 @@ DeclareModule('page/open-god-note', () => {
 	};
 	create_day();
 
+	// Display button area
 	let button_area = $('<div class="button-area"></div>');
+
+	let refresh_button = $('<button type="button"></button>');
+	refresh_button.html('刷新');
+	refresh_button.click(refresh_all_roles);
+	button_area.append(refresh_button);
+
 	let return_button = $('<button type="button"></button>');
 	return_button.html('返回');
 	return_button.click(e => {
 		LoadPage('enter-room');
 	});
 	button_area.append(return_button);
+
 	root.append(button_area);
 });
