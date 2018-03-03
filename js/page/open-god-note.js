@@ -21,26 +21,27 @@ DeclareModule('page/open-god-note', () => {
 		constructor(node) {
 			this.node = node;
 			this.deathDay = 0;
-			this.roleId = 0;
 			this.deathReason = null;
+
+			this._role = 0;
 		}
 
-		set role(role_id) {
-			if (this.roleId === role_id) {
+		set role(role) {
+			if (this.role === role) {
 				return;
 			}
 
-			this.roleId = role_id;
+			this._role = role;
 
-			if (role_id > 0) {
-				this.node.html(Role.createImage(role_id));
+			if (role && role != Role.Unknown) {
+				this.node.html(role.toImage());
 			} else {
 				this.node.html('');
 			}
 		}
 
 		get role() {
-			return this.roleId;
+			return this._role;
 		}
 
 		get alive() {
@@ -50,8 +51,8 @@ DeclareModule('page/open-god-note', () => {
 	};
 
 	class RolePrompt {
-		constructor(role_id, repeat = true, action = null) {
-			this.roleId = role_id;
+		constructor(role, repeat = true, action = null) {
+			this.role = role;
 			this.repeat = repeat;
 			this.action = action;
 		}
@@ -59,8 +60,8 @@ DeclareModule('page/open-god-note', () => {
 
 	const RolePromptList = [
 		// First Night Only
-		new RolePrompt(Role.Cupid, false),
 		new RolePrompt(Role.Thief, false),
+		new RolePrompt(Role.Cupid, false),
 		new RolePrompt(Role.FeralChild, false),
 		new RolePrompt(Role.Bombman, false),
 		new RolePrompt(Role.Tamer, false),
@@ -86,7 +87,7 @@ DeclareModule('page/open-god-note', () => {
 
 	let prompts = [];
 	for (let prompt of RolePromptList) {
-		if ($room.roles.indexOf(prompt.roleId) >= 0) {
+		if ($room.roles.indexOf(prompt.role) >= 0) {
 			prompts.push(prompt);
 		}
 	}
@@ -141,12 +142,12 @@ DeclareModule('page/open-god-note', () => {
 
 	flow.on('click', 'ol.action > li', function () {
 		let li = $(this);
-		let role_id = li.data('role-id');
+		let role = Role.fromNum(li.data('role-id'));
 		$note_action = player => {
-			if (player.role === 0) {
-				player.role = role_id;
-			} else if (player.role === role_id) {
-				player.role = 0;
+			if (player.role != role) {
+				player.role = role;
+			} else {
+				player.role = Role.Unknown;
 			}
 		};
 
@@ -171,12 +172,12 @@ DeclareModule('page/open-god-note', () => {
 			}
 
 			let item = $('<li></li>');
-			item.data('role-id', prompt.roleId);
+			item.data('role-id', prompt.role.toNum());
 
 			let h5 = $('<h5></h5>');
-			h5.html(Role.createImage(prompt.roleId));
+			h5.html(prompt.role.toImage());
 			let name = $('<span class="name"></span>');
-			name.html(Role.convertToName(prompt.roleId));
+			name.html(prompt.role.name);
 			h5.append(name);
 			item.append(h5);
 
