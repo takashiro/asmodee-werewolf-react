@@ -252,6 +252,13 @@ ul.role-list .name,
 	margin: 5px 10px;
 }
 
+.button-area input[type="number"] {
+	text-align: center;
+	line-height: 2em;
+	border-radius: 5px;
+	margin: 10px 0;
+}
+
 .role-area {
 	text-align: center;
 	position: relative;

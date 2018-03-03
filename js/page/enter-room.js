@@ -151,12 +151,33 @@ DeclareModule('page/enter-room', () => {
 		});
 
 		if (!FetchRole()) {
+			const ERROR_MESSAGE = {
+				ROOM_EXPIRED: '房间不存在，可能已过期。',
+				INVALID_SEAT: '座位号错误，请重新输入。',
+				SEAT_TAKEN: '该座位已使用，请重新输入。',
+				ROOM_FULL: '房间人数已满。'
+			};
+
 			let role_area = $('<div class="button-area"></div>');
+			let input = $('<input type="number" placeholder="座位号">');
+			role_area.append(input);
+
 			let fetch_role_button = $('<button type="button"></button>');
 			fetch_role_button.html('查看身份');
+			role_area.append(fetch_role_button);
+
+			let fetch_message = $('<div class="inline-message"></div>');
+			role_area.append(fetch_message);
+
 			fetch_role_button.click(() => {
-				my_role.html('你的身份是...');
-				$client.request(net.FetchRole, {id: $room.id}, result => {
+				fetch_message.html('你的身份是...');
+				$client.request(net.FetchRole, {id: $room.id, seat: input.val()}, result => {
+					if (result.error) {
+						result = ERROR_MESSAGE[result.error] ? ERROR_MESSAGE[result.error] : result.error;
+						fetch_message.html(result);
+						return;
+					}
+
 					$user.role = Role.fromNum(result.role);
 					$user.cards = [];
 					if (result.cards && result.cards instanceof Array) {
@@ -165,7 +186,7 @@ DeclareModule('page/enter-room', () => {
 					my_role.trigger('update-role');
 				});
 			});
-			role_area.append(fetch_role_button);
+
 			my_role.append(role_area);
 		}
 	}
