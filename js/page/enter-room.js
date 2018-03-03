@@ -11,10 +11,19 @@ DeclareModule('page/enter-room', () => {
 				alert(e.toString());
 				sessions = {};
 			}
-			sessions = sessions;
 		} else {
 			sessions = {};
 		}
+
+		// Clear expired sessions
+		let now = new Date().getTime();
+		for (let salt in sessions) {
+			let session = sessions[salt];
+			if (!session.expiry || session.expiry <= now) {
+				delete sessions[salt];
+			}
+		}
+
 		return sessions;
 	}
 
@@ -40,15 +49,6 @@ DeclareModule('page/enter-room', () => {
 
 	function SaveRole() {
 		let sessions = ReadSession();
-
-		// Clear expired sessions
-		let now = new Date().getTime();
-		for (let salt in sessions) {
-			let session = sessions[salt];
-			if (!session.expiry || session.expiry <= now) {
-				delete sessions[salt];
-			}
-		}
 
 		sessions[$room.salt] = {
 			role: $user.role.toNum(),
