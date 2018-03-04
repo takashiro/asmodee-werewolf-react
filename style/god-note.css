@@ -5,7 +5,7 @@ ul.player-round {
 	top: 60px;
 	width: 64px;
 	justify-content: space-evenly;
-    height: 80vh;
+	height: 80vh;
 	-webkit-tap-highlight-color: transparent;
 }
 
@@ -36,9 +36,11 @@ ul.player-round > li .number {
 	position: absolute;
 	top: 0;
 	border: white 1px solid;
-    border-radius: 8px;
-    text-align: center;
-    line-height: 16px;
+	border-radius: 8px;
+	text-align: center;
+	line-height: 16px;
+	text-shadow: rgb(39, 32, 32) 0 0 3px;
+	background: rgba(85, 34, 23, 0.3);
 }
 
 ul.player-round.left > li .number {
@@ -106,6 +108,7 @@ ol.game-flow ol.action > li h5 {
 }
 
 ol.game-flow ol.action > li .content {
+	height: 64px;
 	line-height: 64px;
 }
 
@@ -116,6 +119,12 @@ ol.game-flow .role {
 	background-size: 65px;
 	background-position: -9px -14px;
 	border-radius: 24px;
+}
+
+ol.game-flow button {
+	font-size: 12pt;
+	padding: 0.5em 0.7em;
+	font-weight: normal;
 }
 
 ul.player-round .role {

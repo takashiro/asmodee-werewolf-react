@@ -22,10 +22,13 @@ DeclareModule('page/open-god-note', () => {
 		const list = [
 			new Marker('Lover', '情侣'),
 			new Marker('Thief', '盗贼'),
+			new Marker('RoleModel', '榜样'),
 
 			new Marker('Killed', '狼刀'),
+			new Marker('Charmed', '魅惑'),
 			new Marker('Reflected', '反伤'),
 			new Marker('Executed', '公投'),
+			new Marker('Saved', '解救'),
 			new Marker('Poisoned', '毒杀'),
 			new Marker('Shot', '枪杀'),
 			new Marker('Guarded', '守护'),
@@ -79,19 +82,27 @@ DeclareModule('page/open-god-note', () => {
 			return this.deathDay <= 0;
 		}
 
-		addMark(marker) {
+		addMarker(marker) {
 			let li = $('<li></li>');
 			li.html(marker.name);
 			this.node.markers.append(li);
 			this.markers.set(marker, li);
 		}
 
-		removeMark(marker) {
+		removeMarker(marker) {
 			let li = this.markers.get(marker);
 			if (li) {
 				li.remove();
 			}
 			this.markers.delete(marker);
+		}
+
+		toggleMarker(marker) {
+			if (this.hasMarker(marker)) {
+				this.removeMarker(marker);
+			} else {
+				this.addMarker(marker);
+			}
 		}
 
 		clearMarkers() {
@@ -101,26 +112,47 @@ DeclareModule('page/open-god-note', () => {
 			this.markers.clear();
 		}
 
-		hasMark(marker) {
+		hasMarker(marker) {
 			return this.markers.has(marker);
 		}
 
 	};
 
+	let $note_action = null;
+
 	class RolePrompt {
-		constructor(role, repeat = true, action = null) {
+		constructor(role, repeat = true, marker = null, extra_action = null) {
 			this.role = role;
 			this.repeat = repeat;
-			this.action = action;
+			this.actions = [];
+
+			if (marker) {
+				let markers = marker instanceof Array ? marker : [marker];
+				markers.forEach(marker => {
+					let func = () => {
+						$note_action = player => {
+							player.toggleMarker(marker);
+						};
+					};
+
+					this.actions.push({
+						name: marker.name,
+						func: func
+					})
+				});
+			}
+
+			if (extra_action) {
+				this.actions.push(...extra_action);
+			}
 		}
 	};
 
 	const PromptList = (() => {
 		let prompt_list = [
-			// First Night Only
 			new RolePrompt(Role.Thief, false),
-			new RolePrompt(Role.Cupid, false),
-			new RolePrompt(Role.FeralChild, false),
+			new RolePrompt(Role.Cupid, false, Marker.Lover),
+			new RolePrompt(Role.FeralChild, false, Marker.RoleModel),
 			new RolePrompt(Role.Bombman, false),
 			new RolePrompt(Role.Tamer, false),
 			new RolePrompt(Role.Idiot, false),
@@ -129,18 +161,31 @@ DeclareModule('page/open-god-note', () => {
 			new RolePrompt(Role.WhiteAlphaWolf, false),
 			new RolePrompt(Role.SecretWolf, false),
 
-			// Repeated
-			new RolePrompt(Role.Magician),
-			new RolePrompt(Role.Werewolf),
-			new RolePrompt(Role.WolfBeauty),
+			new RolePrompt(Role.Magician, true, Marker.Exchanged),
+			new RolePrompt(Role.Werewolf, true, Marker.Killed),
+			new RolePrompt(Role.WolfBeauty, true, Marker.Charmed),
 			new RolePrompt(Role.Seer),
-			new RolePrompt(Role.Witch),
-			new RolePrompt(Role.Guard),
-			new RolePrompt(Role.Dementor),
-			new RolePrompt(Role.Elder),
+			new RolePrompt(Role.Witch, true, Marker.Saved),
+			new RolePrompt(Role.Witch, true, Marker.Poisoned),
+			new RolePrompt(Role.Guard, true, Marker.Guarded),
+			new RolePrompt(Role.Dementor, true, Marker.Demented),
+			new RolePrompt(Role.Elder, true, Marker.Muted),
 			new RolePrompt(Role.AlphaWolf),
 			new RolePrompt(Role.Hunter),
-			new RolePrompt(Role.Demon)
+			new RolePrompt(Role.Demon),
+
+			new RolePrompt(Role.Villager, false, null, [
+				{
+					name: '补齐',
+					func: () => {
+						for (let player of players) {
+							if (player.role == Role.Unknown) {
+								player.role = Role.Villager;
+							}
+						}
+					}
+				}
+			])
 		];
 
 		let prompts = [];
@@ -164,7 +209,6 @@ DeclareModule('page/open-god-note', () => {
 	});
 
 	let players = [];
-	let $note_action = null;
 
 	// Display players
 	let player_round_left = $('<ul class="player-round left"></ul>');
@@ -216,20 +260,23 @@ DeclareModule('page/open-god-note', () => {
 	root.append(flow);
 
 	// Click one phase to set player role
-	flow.on('click', 'ol.action > li', function () {
-		let li = $(this);
+	flow.on('click', 'ol.action > li h5', function () {
+		let li = $(this).parent();
 		let role = Role.fromNum(li.data('role-id'));
 		$note_action = player => {
 			if (player.role != role) {
 				if (player.role == Role.Thief) {
-					player.addMark(Marker.Thief);
+					player.addMarker(Marker.Thief);
 				}
 				player.role = role;
 			} else {
 				player.role = Role.Unknown;
 			}
 		};
+	});
 
+	flow.on('click', 'ol.action > li', function () {
+		let li = $(this);
 		flow.find('ol.action > li.current').removeClass('current');
 		li.addClass('current');
 	});
@@ -304,7 +351,12 @@ DeclareModule('page/open-god-note', () => {
 			item.append(h5);
 
 			let content = $('<div class="content"></div>');
-			content.html('点此标记身份');
+			for (let action of prompt.actions) {
+				let button = $('<button type="button"></button>');
+				button.html(action.name);
+				button.click(action.func);
+				content.append(button);
+			}
 			item.append(content);
 
 			action_list.append(item);
