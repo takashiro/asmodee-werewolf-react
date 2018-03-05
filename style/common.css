@@ -255,8 +255,10 @@ ul.role-list .name,
 .button-area input[type="number"] {
 	text-align: center;
 	line-height: 2em;
-	border-radius: 5px;
+	border-radius: 6px;
 	margin: 10px 0;
+	display: block;
+	margin: 10px auto;
 }
 
 .role-area {
@@ -331,4 +333,14 @@ ul.role-list .name,
     padding: 0;
 	margin: 0;
 	user-select: none;
+}
+
+#my-role .button-area input {
+	width: 7em;
+	box-sizing: content-box;
+	padding: 0.5em 0.8em;
+}
+
+#my-role .button-area button {
+	width: 7em;
 }
