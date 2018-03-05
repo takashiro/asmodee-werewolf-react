@@ -51,6 +51,11 @@ ul.player-round.right > li .number {
 	right: 0;
 }
 
+ul.player-round > li .icon.dead {
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+}
+
 ul.player-round > li ul.marker {
 	list-style: none;
 	font-size: 9pt;
@@ -125,6 +130,32 @@ ol.game-flow button {
 	font-size: 12pt;
 	padding: 0.5em 0.7em;
 	font-weight: normal;
+}
+
+ol.game-flow .day-message {
+	font-size: 11pt;
+}
+
+ol.game-flow .day-message h3 {
+	margin: 5px 0 5px 0;
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+ol.game-flow .day-message h3::before {
+	content: ' - ';
+}
+
+ol.game-flow .day-message h3::after {
+	content: ' - ';
+}
+
+ol.game-flow .day-message p {
+	margin: 2px 0;
+}
+
+ol.game-flow .button-area button {
+	margin: 7px 0;
 }
 
 ul.player-round .role {
