@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import RoomCreator from './RoomCreator';
+
 function createRoom() {
+	ReactDOM.render(
+		<RoomCreator />,
+		document.getElementById('root')
+	);
 }
 
 function enterRoom() {
