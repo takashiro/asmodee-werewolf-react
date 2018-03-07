@@ -16,9 +16,9 @@ class RoleOption extends React.Component {
 	}
 
 	handleClick() {
-		this.setState(prev => {
+		this.setState(prev => ({
 			selected: !prev.selected
-		});
+		}));
 	}
 
 	render() {

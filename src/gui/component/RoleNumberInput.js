@@ -18,15 +18,15 @@ class RoleNumberInput extends React.Component {
 	}
 
 	handleDecrease() {
-		this.setState(prev => {
+		this.setState(prev => ({
 			value: Math.max(0, prev.value - 1)
-		});
+		}));
 	}
 
 	handleIncrease() {
-		this.setState(prev => {
+		this.setState(prev => ({
 			value: prev.value + 1
-		});
+		}));
 	}
 
 	handleChange(e) {
