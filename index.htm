@@ -8,11 +8,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="author" content="Kazuichi Takashiro">
 <link rel="shortcut icon" href="style/favicon.png">
-<script src="js/lib/jquery-3.2.1.min.js"></script>
-<script src="js/lib/common.js"></script>
-<script src="js/session.js"></script>
-<script src="js/client.js"></script>
-<script src="js/role.js"></script>
 <link href="style/common.css" rel="stylesheet">
 </head>
 
@@ -20,12 +15,12 @@
 	<section class="container">
 		<header>
 			<img src="style/logo.png">
-			<div id="message-box" class="inline-message">加载资源...</div>
 		</header>
-		<div id="root"></div>
+		<div id="root">
+			<div id="message-box" class="inline-message">加载资源...</div>
+		</div>
 	</section>
-	<div id="script-loader"></div>
-	<script src="js/main.js"></script>
+	<script src="js/app.js"></script>
 	<footer>
 		<ul class="dev-info">
 			<li><a href="https://github.com/takashiro/Werewolf">About</a></li>
