@@ -8,8 +8,12 @@ import Lobby from './Lobby';
 import TeamSelector from './component/TeamSelector';
 
 import RoleIcon from './component/RoleIcon';
-//import Room from './Room';
-let Room = React.Component;
+import Toast from './component/Toast';
+import Room from './Room';
+
+import RoomConfig from '../net/RoomConfig';
+import $client from '../net/Client';
+const net = $client.API;
 
 export default class RoomCreator extends React.Component {
 
@@ -93,6 +97,39 @@ export default class RoomCreator extends React.Component {
 
 	handleConfirm() {
 		this.saveConfig();
+
+		let roles = [];
+		this.roleConfig.forEach((value, role) => {
+			if (typeof value == 'number') {
+				for (let i = 0; i < value; i++) {
+					roles.push(role);
+				}
+			} else if (value) {
+				roles.push(role);
+			}
+		});
+
+		if (roles.length <= 0) {
+			Toast.makeToast('请选择角色。 ');
+			return;
+		}
+
+		$client.request(net.CreateRoom, {roles: roles}, result => {
+			if (!result.id) {
+				Toast.makeToast('创建房间失败。');
+				return;
+			}
+
+			let config = new RoomConfig(result);
+			config.writeSession({
+				ownerKey: result.ownerKey
+			});
+
+			ReactDOM.render(
+				<Room config={config} />,
+				document.getElementById('root')
+			);
+		});
 	}
 
 	render() {
