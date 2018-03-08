@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import RoomCreator from './RoomCreator';
+import Room from './Room';
+import Toast from './component/Toast';
+
+import RoomConfig from '../net/RoomConfig';
+import $client from '../net/Client';
+const net = $client.API;
 
 function createRoom() {
 	ReactDOM.render(
@@ -11,6 +17,29 @@ function createRoom() {
 }
 
 function enterRoom() {
+	let enter_input = document.getElementById('room-number');
+	let room_id = parseInt(enter_input.value, 10);
+	if (isNaN(room_id)) {
+		Toast.makeToast('请输入一个数字。');
+		enter_input.value = '';
+		enter_input.focus();
+		return;
+	}
+
+	$client.request(net.EnterRoom, {id: room_id}, state => {
+		if (state.id <= 0) {
+			Toast.makeToast('房间不存在。');
+			enter_input.value = '';
+			enter_input.focus();
+			return;
+		}
+
+		let config = new RoomConfig(state);
+		ReactDOM.render(
+			<Room config={config} />,
+			document.getElementById('root')
+		);
+	});
 }
 
 export default function Lobby() {
