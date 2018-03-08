@@ -11,6 +11,9 @@ class RoleNumberInput extends React.Component {
 		this.state = {
 			value: 0
 		};
+		if (typeof props.value == 'number' && props.value > 0) {
+			this.state.value = props.value;
+		}
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDecrease = this.handleDecrease.bind(this);
@@ -18,19 +21,33 @@ class RoleNumberInput extends React.Component {
 	}
 
 	handleDecrease() {
-		this.setState(prev => ({
-			value: Math.max(0, prev.value - 1)
-		}));
+		this.setState(prev => {
+			let state = {value: Math.max(0, prev.value - 1)};
+			this.emitChange(state.value);
+			return state;
+		});
 	}
 
 	handleIncrease() {
-		this.setState(prev => ({
-			value: prev.value + 1
-		}));
+		this.setState(prev => {
+			let state = {value: prev.value + 1};
+			this.emitChange(state.value);
+			return state;
+		});
 	}
 
 	handleChange(e) {
 		this.setState({value: e.target.value});
+		this.emitChange(e.target.value);
+	}
+
+	emitChange(value) {
+		if (this.props.onChange) {
+			this.props.onChange({
+				role: this.props.role,
+				value: value
+			});
+		}
 	}
 
 	render() {

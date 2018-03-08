@@ -9,16 +9,23 @@ class RoleOption extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: false
+			selected: !!props.selected
 		};
 
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick() {
-		this.setState(prev => ({
-			selected: !prev.selected
-		}));
+		this.setState(prev => {
+			let state = { selected: !prev.selected };
+			if (this.props.onChange) {
+				this.props.onChange({
+					role: this.props.role,
+					selected: state.selected
+				});
+			}
+			return state;
+		});
 	}
 
 	render() {
