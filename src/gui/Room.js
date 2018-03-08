@@ -5,6 +5,7 @@ import Team from '../core/Team';
 import Role from '../core/Role';
 
 import RoleIcon from './component/RoleIcon';
+import RoleViewer from './component/RoleViewer';
 
 function TeamTable(props) {
 	let key = 0;
@@ -47,6 +48,7 @@ class Room extends React.Component {
 		return <div>
 			<div className="inline-message">房间号：{this.config.id}</div>
 			<div className="role-table">{this.teams}</div>
+			<RoleViewer config={this.config} />
 		</div>;
 	}
 

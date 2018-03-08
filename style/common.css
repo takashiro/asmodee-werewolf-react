@@ -314,6 +314,18 @@ ul.role-list .name,
 	right: 0;
 }
 
+
+.role-area.button-area input {
+	width: 7em;
+	box-sizing: content-box;
+	padding: 0.5em 0.8em;
+}
+
+.role-area.button-area button {
+	width: 7em;
+}
+
+
 .share-link-area {
 	line-height: 2em;
     margin: 20px auto;
@@ -348,14 +360,4 @@ ul.role-list .name,
     padding: 0;
 	margin: 0;
 	user-select: none;
-}
-
-#my-role .button-area input {
-	width: 7em;
-	box-sizing: content-box;
-	padding: 0.5em 0.8em;
-}
-
-#my-role .button-area button {
-	width: 7em;
 }
