@@ -124,7 +124,22 @@ footer .copyright p{
 	color: white;
 	position: fixed;
 	padding: 20px;
-	width: 55%;
+	box-sizing: border-box;
+	width: 70vw;
+	top: 50vh;
+	left: 15vw;
+	opacity: 0;
+	transition: top 0.3s, opacity 0.3s;
+}
+
+.toast.in {
+	opacity: 1;
+	top: 45vh;
+}
+
+.toast.out {
+	opacity: 0;
+	top: 45vh;
 }
 
 .role{
