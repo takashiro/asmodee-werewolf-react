@@ -1,9 +1,11 @@
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import Team from '../core/Team';
 import Role from '../core/Role';
 
+import Lobby from './Lobby';
 import RoleIcon from './component/RoleIcon';
 import RoleViewer from './component/RoleViewer';
 import Toast from './component/Toast';
@@ -55,6 +57,7 @@ class Room extends React.Component {
 		this.share_url = current_site_url + '?room_id=' + this.config.id;
 
 		this.copyShareLink = this.copyShareLink.bind(this);
+		this.handleReturn = this.handleReturn.bind(this);
 	}
 
 	copyShareLink(e) {
@@ -89,6 +92,13 @@ class Room extends React.Component {
 		}
 	}
 
+	handleReturn() {
+		ReactDOM.render(
+			<Lobby />,
+			document.getElementById('root')
+		);
+	}
+
 	render() {
 		return <div>
 			<div className="inline-message">房间号：{this.config.id}</div>
@@ -97,6 +107,9 @@ class Room extends React.Component {
 			<div className="box share-link-area">
 				<span className="label">邀请链接</span>
 				<a href={this.share_url} onClick={this.copyShareLink} ref={a => {this.link_anchor = a;}}>{this.share_url}</a>
+			</div>
+			<div className="button-area">
+				<button type="button" onClick={this.handleReturn}>返回</button>
 			</div>
 		</div>;
 	}
