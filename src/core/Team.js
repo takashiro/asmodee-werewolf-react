@@ -34,4 +34,6 @@ Team.fromNum = num => {
 	}
 };
 
+Team.List = TeamList;
+
 export default Team;
