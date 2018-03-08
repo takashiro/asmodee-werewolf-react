@@ -51,10 +51,10 @@ class RoleNumberInput extends React.Component {
 	}
 
 	render() {
-		let role = Role.fromNum(this.props.role);
+		let role = this.props.role;
 		return <div className="role-selector number-selector">
 			<div className="icon">
-				<RoleIcon role={role.toNum()} />
+				<RoleIcon role={role} />
 				<span className="name">{role.name}</span>
 			</div>
 			<div className="number-input">

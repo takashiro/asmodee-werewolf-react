@@ -29,10 +29,10 @@ class RoleOption extends React.Component {
 	}
 
 	render() {
-		let role = Role.fromNum(this.props.role);
+		let role = this.props.role;
 		let className = this.state.selected ? 'selected' : '';
 		return <li className={className} onClick={this.handleClick}>
-			<RoleIcon role={role.toNum()} />
+			<RoleIcon role={role} />
 			<span className="name">{role.name}</span>
 		</li>;
 	}

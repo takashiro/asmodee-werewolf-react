@@ -7,12 +7,10 @@ class RoleIcon extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.role = Role.fromNum(props.role);
 	}
 
 	render() {
-		let key = this.role.key.toLowerCase();
+		let key = this.props.role.key.toLowerCase();
 		let style = {
 			backgroundImage: `url(style/role/${key}.jpg)`
 		};

@@ -11,23 +11,27 @@ class TeamSelector extends React.Component {
 
 	constructor(props) {
 		super(props);
+		let config = this.props.config;
 
-		this.team = Team.fromNum(this.props.team);
+		this.team = this.props.team;
 		this.handleChange = this.handleChange.bind(this);
 
 		if (this.props.basic) {
 			this.basicNum = 0;
-			if (this.props.config && this.props.config.has(this.props.basic)) {
-				this.basicNum = this.props.config.get(this.props.basic);
+			if (config) {
+				let basic = this.props.basic.toNum();
+				if (config.has(basic)) {
+					this.basicNum =  config.get(basic);
+				}
 			}
 		}
 
 		let roles = Role.List.filter(role => role != Role.Unknown
-			&& role.toNum() != props.basic
-			&& role.team.toNum() == props.team);
+			&& role != props.basic
+			&& role.team == props.team);
 		this.roles = roles.map(role => <RoleOption
 			key={role.key}
-			role={role.toNum()}
+			role={role}
 			selected={this.props.config && this.props.config.get(role.toNum())}
 			onChange={this.handleChange}
 		/>);

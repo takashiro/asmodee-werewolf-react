@@ -82,9 +82,9 @@ export default class RoomCreator extends React.Component {
 			return;
 		}
 		if (typeof data.selected == 'boolean') {
-			this.roleConfig.set(data.role, data.selected);
+			this.roleConfig.set(data.role.toNum(), data.selected);
 		} else if (typeof data.value == 'number') {
-			this.roleConfig.set(data.role, Math.max(0, data.value));
+			this.roleConfig.set(data.role.toNum(), Math.max(0, data.value));
 		}
 	}
 
@@ -135,19 +135,19 @@ export default class RoomCreator extends React.Component {
 	render() {
 		return <div className="room-creator">
 			<TeamSelector
-				team={Team.Werewolf.toNum()}
-				basic={Role.Werewolf.toNum()}
+				team={Team.Werewolf}
+				basic={Role.Werewolf}
 				config={this.roleConfig}
 				onChange={this.handleChange}
 			/>
 			<TeamSelector
-				team={Team.Villager.toNum()}
-				basic={Role.Villager.toNum()}
+				team={Team.Villager}
+				basic={Role.Villager}
 				config={this.roleConfig}
 				onChange={this.handleChange}
 			/>
 			<TeamSelector
-				team={Team.Other.toNum()}
+				team={Team.Other}
 				config={this.roleConfig}
 				onChange={this.handleChange}
 			/>
