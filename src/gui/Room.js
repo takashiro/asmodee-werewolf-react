@@ -6,6 +6,8 @@ import Team from '../core/Team';
 import Role from '../core/Role';
 
 import Lobby from './Lobby';
+import GodNote from './GodNote';
+
 import RoleIcon from './component/RoleIcon';
 import RoleViewer from './component/RoleViewer';
 import Toast from './component/Toast';
@@ -58,6 +60,7 @@ class Room extends React.Component {
 
 		this.copyShareLink = this.copyShareLink.bind(this);
 		this.handleReturn = this.handleReturn.bind(this);
+		this.openGodNote = this.openGodNote.bind(this);
 	}
 
 	copyShareLink(e) {
@@ -92,7 +95,16 @@ class Room extends React.Component {
 		}
 	}
 
-	handleReturn() {
+	openGodNote(e) {
+		e.preventDefault();
+		ReactDOM.render(
+			<GodNote config={this.config} />,
+			document.getElementById('root')
+		);
+	}
+
+	handleReturn(e) {
+		e.preventDefault();
 		ReactDOM.render(
 			<Lobby />,
 			document.getElementById('root')
@@ -100,6 +112,7 @@ class Room extends React.Component {
 	}
 
 	render() {
+		let session = this.config.readSession();
 		return <div>
 			<div className="inline-message">房间号：{this.config.id}</div>
 			<div className="role-table">{this.teams}</div>
@@ -109,7 +122,8 @@ class Room extends React.Component {
 				<a href={this.share_url} onClick={this.copyShareLink} ref={a => {this.link_anchor = a;}}>{this.share_url}</a>
 			</div>
 			<div className="button-area">
-				<button type="button" onClick={this.handleReturn}>返回</button>
+				{(session.ownerKey ? <button onClick={this.openGodNote}>上帝助手</button> : null)}
+				<button onClick={this.handleReturn}>返回</button>
 			</div>
 		</div>;
 	}

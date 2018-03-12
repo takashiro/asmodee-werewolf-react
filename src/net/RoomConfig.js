@@ -7,7 +7,6 @@ class RoomConfig {
 	constructor(state = null) {
 		this.id = 0;
 		this.salt = 0;
-		this.ownerKey = '';
 		this.roles = [];
 		this.session = new Session('room-session');
 
@@ -33,9 +32,6 @@ class RoomConfig {
 		}
 		if (result.roles && result.roles instanceof Array) {
 			this.roles = result.roles.map(num => Role.fromNum(num));
-		}
-		if (result.ownerKey) {
-			this.ownerKey = result.ownerKey;
 		}
 	}
 }
