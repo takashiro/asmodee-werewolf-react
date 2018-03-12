@@ -111,8 +111,12 @@ class Room extends React.Component {
 		);
 	}
 
-	render() {
+	isOwner() {
 		let session = this.config.readSession();
+		return session && !!session.ownerKey;
+	}
+
+	render() {
 		return <div>
 			<div className="inline-message">房间号：{this.config.id}</div>
 			<div className="role-table">{this.teams}</div>
@@ -122,7 +126,7 @@ class Room extends React.Component {
 				<a href={this.share_url} onClick={this.copyShareLink} ref={a => {this.link_anchor = a;}}>{this.share_url}</a>
 			</div>
 			<div className="button-area">
-				{(session.ownerKey ? <button onClick={this.openGodNote}>上帝助手</button> : null)}
+				{(this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null)}
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
 		</div>;
