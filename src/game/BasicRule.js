@@ -66,8 +66,28 @@ class DeathGod extends PassiveSkill {
 
 }
 
+// 进入下一天
+class BrandNewDay extends PassiveSkill {
+
+	constructor() {
+		super(null, GameEvent.Dusk);
+	}
+
+	triggerable(target) {
+		return !target;
+	}
+
+	effect(room) {
+		room.setState(prev => ({
+			day: prev.day + 1
+		}));
+	}
+
+}
+
 export default [
 	Execution,
 	AfterExecution,
 	DeathGod,
+	BrandNewDay,
 ];

@@ -8,7 +8,7 @@ import Role from '../core/Role';
 
 import Toast from './component/Toast';
 import PlayerIcon from './component/PlayerIcon';
-import GameFlow from './component/GameFlow';
+import GameDailyFlow from './component/GameDailyFlow';
 
 import BasicRule from '../game/BasicRule';
 import SkillList from '../game/SkillList';
@@ -200,6 +200,20 @@ class GodNote extends React.Component {
 		let right_round = players.slice(0, half);
 		let left_round = players.slice(half);
 
+		let gameflow = [];
+		for (let i = 0; i < this.state.day; i++) {
+			let day = i + 1;
+			gameflow.push(<li key={day}>
+				<GameDailyFlow
+					day={day}
+					room={this}
+					onPhaseChange={this.handlePhaseChange}
+					onSkill={this.handleSkill}
+					onGameEvent={this.trigger}
+				/>
+			</li>);
+		}
+
 		return <div className="god-note">
 			<style>@import url(style/god-note.css);</style>
 			<ul className="player-round left">
@@ -208,12 +222,7 @@ class GodNote extends React.Component {
 			<ul className="player-round right">
 				{right_round}
 			</ul>
-			<GameFlow
-				room={this}
-				onPhaseChange={this.handlePhaseChange}
-				onSkill={this.handleSkill}
-				onGameEvent={this.trigger}
-			/>
+			<ol className="game-flow">{gameflow}</ol>
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
