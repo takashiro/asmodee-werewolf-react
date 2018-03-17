@@ -53,9 +53,9 @@ class GameDailyFlow extends React.Component {
 		});
 	}
 
-	renderNight() {
+	findSkills(timing) {
 		const room = this.props.room;
-		const skills = room.skills.proactive.filter(skill => skill.timing == GameEvent.Night);
+		const skills = room.skills.proactive.filter(skill => skill.timing == timing);
 		let actions = skills.map((skill, key) => <li key={key}>
 			<SkillButton
 				skill={skill}
@@ -63,6 +63,11 @@ class GameDailyFlow extends React.Component {
 				onClick={this.handleSkill}
 			/>
 		</li>);
+		return actions;
+	}
+
+	renderNight() {
+		let actions = this.findSkills(GameEvent.Night);
 		return <div className="night">
 			<ol className="action">{actions}</ol>
 			<button type="button" onClick={this.handleDawn}>天亮了</button>
@@ -81,14 +86,17 @@ class GameDailyFlow extends React.Component {
 			messages.push(message);
 		}
 
+		const actions = this.findSkills(GameEvent.Day);
+
 		messages = messages.map((text, i) => <p key={i}>{text}</p>);
 		return <div className="day">
 			<div className="day-message">
 				<h3>夜间信息</h3>
 				{messages}
 			</div>
+			<ol className="action">{actions}</ol>
 			<div className="button-area">
-				<button type="button" onClick={this.handleDusk}>确认公投</button>
+				<button type="button" onClick={this.handleDusk}>天黑了</button>
 			</div>
 		</div>;
 	}
