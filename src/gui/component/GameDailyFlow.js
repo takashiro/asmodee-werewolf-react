@@ -35,6 +35,7 @@ class GameDailyFlow extends React.Component {
 
 	handleDawn() {
 		if (this.props.onGameEvent) {
+			this.props.onGameEvent(GameEvent.Night);
 			this.props.onGameEvent(GameEvent.Dawn);
 		}
 		this.setState({
@@ -44,6 +45,7 @@ class GameDailyFlow extends React.Component {
 
 	handleDusk() {
 		if (this.props.onGameEvent) {
+			this.props.onGameEvent(GameEvent.Day);
 			this.props.onGameEvent(GameEvent.Dusk);
 		}
 		this.setState({

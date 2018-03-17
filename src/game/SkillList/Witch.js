@@ -31,7 +31,7 @@ class UseCure extends ProactiveSkill {
 class CureEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Witch, GameEvent.Dawn);
+		super(Role.Witch, GameEvent.Night);
 	}
 
 	triggerable(target) {
@@ -73,7 +73,7 @@ class UsePoison extends ProactiveSkill {
 class PoisonEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Witch, GameEvent.Dawn);
+		super(Role.Witch, GameEvent.Night);
 	}
 
 	triggerable(target) {

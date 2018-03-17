@@ -27,7 +27,7 @@ class WerewolfAttack extends ProactiveSkill {
 class WerewolfAttackEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Werewolf, GameEvent.Dawn);
+		super(Role.Werewolf, GameEvent.Night);
 	}
 
 	triggerable(target) {

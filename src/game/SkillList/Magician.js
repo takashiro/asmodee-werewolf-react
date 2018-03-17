@@ -41,7 +41,7 @@ class ExchangeUser extends ProactiveSkill {
 class ExchangeEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Magician, GameEvent.Dawn);
+		super(Role.Magician, GameEvent.Night);
 	}
 
 	triggerable(target) {

@@ -39,7 +39,7 @@ class UseArmor extends ProactiveSkill {
 class ArmorEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Guard, GameEvent.Dawn);
+		super(Role.Guard, GameEvent.Night);
 	}
 
 	triggerable(target) {
