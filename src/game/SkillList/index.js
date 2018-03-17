@@ -5,6 +5,7 @@ import Werewolf from './Werewolf';
 import Seer from './Seer';
 import Witch from './Witch';
 import Guard from './Guard';
+import Demon from './Demon';
 import Villager from './Villager';
 
 export default [
@@ -14,5 +15,6 @@ export default [
 	Seer,
 	Witch,
 	Guard,
+	Demon,
 	Villager,
 ];
