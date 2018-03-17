@@ -44,7 +44,7 @@ class DieForLove extends PassiveSkill {
 	}
 
 	triggerable(target) {
-		return super.triggerable(target) && !target.isAlive();
+		return super.triggerable(target) && !target.isAlive() && !target.purified;
 	}
 
 	effect(room, target) {

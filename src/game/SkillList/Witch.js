@@ -82,7 +82,7 @@ class PoisonEffect extends PassiveSkill {
 
 	effect(room, target) {
 		target.setAlive(false);
-		// TODO: all skills will be lost
+		target.purified = true;
 	}
 
 }
