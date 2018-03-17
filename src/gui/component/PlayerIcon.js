@@ -93,10 +93,15 @@ class PlayerIcon extends React.Component {
 			markers.push(value);
 		});
 
+		let iconStyle = 'icon';
+		if (!this.state.alive) {
+			iconStyle += ' dead';
+		}
+
 		markers = markers.map((marker, i) => <li key={i}>{marker.name}</li>);
 		return <li onClick={this.handleClick}>
 			<div className="number">{this.state.seat}</div>
-			<div className="icon"><RoleIcon role={this.state.role} /></div>
+			<div className={iconStyle}><RoleIcon role={this.state.role} /></div>
 			<ul className="marker">{markers}</ul>
 		</li>;
 	}

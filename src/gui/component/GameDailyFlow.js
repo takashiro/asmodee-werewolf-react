@@ -17,6 +17,7 @@ class GameDailyFlow extends React.Component {
 
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
+		this.handleDawn = this.handleDawn.bind(this);
 	}
 
 	handlePhaseChange(role) {
@@ -31,6 +32,15 @@ class GameDailyFlow extends React.Component {
 		}
 	}
 
+	handleDawn() {
+		if (this.props.onGameEvent) {
+			this.props.onGameEvent(GameEvent.Dawn);
+		}
+		this.setState({
+			time: GameEvent.Day
+		});
+	}
+
 	renderNight() {
 		const room = this.props.room;
 		const skills = room.skills.proactive.filter(skill => skill.timing == GameEvent.Night);
@@ -41,7 +51,10 @@ class GameDailyFlow extends React.Component {
 				onClick={this.handleSkill}
 			/>
 		</li>);
-		return <ol className="action">{actions}</ol>;
+		return <div className="night">
+			<ol className="action">{actions}</ol>
+			<button type="button" onClick={this.handleDawn}>天亮了</button>
+		</div>;
 	}
 
 	renderDay() {

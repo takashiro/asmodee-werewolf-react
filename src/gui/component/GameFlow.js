@@ -14,7 +14,7 @@ class GameFlow extends React.Component {
 
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
-		this.handleDusk = this.handleDusk.bind(this);
+		this.handleGameEvent = this.handleGameEvent.bind(this);
 	}
 
 	handlePhaseChange(role) {
@@ -29,11 +29,10 @@ class GameFlow extends React.Component {
 		}
 	}
 
-	handleDusk() {
-		this.setState(prev => ({
-			day: prev.day + 1
-		}));
-		this.room.day++;
+	handleGameEvent(event) {
+		if (this.props.onGameEvent) {
+			this.props.onGameEvent(event);
+		}
 	}
 
 	render() {
@@ -48,7 +47,7 @@ class GameFlow extends React.Component {
 					room={room}
 					onPhaseChange={this.handlePhaseChange}
 					onSkill={this.handleSkill}
-					onDusk={this.handleDusk}
+					onGameEvent={this.handleGameEvent}
 				/>
 			</li>);
 		}

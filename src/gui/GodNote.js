@@ -15,6 +15,7 @@ import PassiveSkill from '../game/PassiveSkill';
 import ProactiveSkill from '../game/ProactiveSkill';
 
 import $client from '../net/Client';
+import GameEvent from '../game/GameEvent';
 const net = $client.API;
 
 function markRole(target) {
@@ -48,6 +49,7 @@ class GodNote extends React.Component {
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handlePlayerClick = this.handlePlayerClick.bind(this);
+		this.trigger = this.trigger.bind(this);
 
 		// Read Configuration
 		const config = props.config;
@@ -60,12 +62,14 @@ class GodNote extends React.Component {
 		// Add all players
 		this.playerNum = config.roles.length;
 		this.players = [];
+		this.playerIcons = [];
 		for (let i = 0; i < this.playerNum; i++) {
-			this.players.push(<PlayerIcon
+			this.playerIcons.push(<PlayerIcon
 				key={i}
 				seat={i + 1}
 				role={Role.Unknown}
 				onClick={this.handlePlayerClick}
+				ref={instance => {this.players.push(instance);}}
 			/>);
 		}
 
@@ -115,6 +119,21 @@ class GodNote extends React.Component {
 	handlePlayerClick(player) {
 		if (this.action) {
 			this.action.call(this, player);
+		}
+	}
+
+	trigger(event) {
+		for (let skill of this.skills.passive) {
+			if (skill.event != event) {
+				continue;
+			}
+
+			skill.effect(this, null);
+			for (let player of this.players) {
+				if (skill.triggerable(player)) {
+					skill.effect(this, player);
+				}
+			}
 		}
 	}
 
@@ -171,7 +190,7 @@ class GodNote extends React.Component {
 	}
 
 	render() {
-		let players = this.players;
+		let players = this.playerIcons;
 		let half = Math.ceil(players.length / 2);
 		let right_round = players.slice(0, half);
 		let left_round = players.slice(half);
@@ -188,6 +207,7 @@ class GodNote extends React.Component {
 				room={this}
 				onPhaseChange={this.handlePhaseChange}
 				onSkill={this.handleSkill}
+				onGameEvent={this.trigger}
 			/>
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
