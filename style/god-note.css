@@ -165,3 +165,23 @@ ul.player-round .role {
 	background-position: -9px -14px;
 	border-radius: 32px;
 }
+
+ul.player-round .button-area {
+	position: absolute;
+	top: 0;
+	left: 8px;
+	margin: 0;
+	padding: 0;
+	width: 48px;
+	height: 64px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+ul.player-round .button-area button {
+	font-size: 9pt;
+	margin: 0;
+	padding: 0.5em 0.6em;
+	min-width: 2em;
+}

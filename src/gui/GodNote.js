@@ -75,8 +75,10 @@ class GodNote extends React.Component {
 				key={i}
 				seat={i + 1}
 				role={Role.Unknown}
+				skills={this.skills.proactive}
 				onClick={this.handlePlayerClick}
 				onDeath={this.handleDeath}
+				onSkill={this.handleSkill}
 				ref={instance => {this.players.push(instance);}}
 			/>);
 		}
