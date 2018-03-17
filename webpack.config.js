@@ -12,10 +12,14 @@ module.exports = {
 		filename: 'app.js',
 		path: path.resolve(__dirname, 'js')
 	},
+	resolveLoader: {
+		modules: [path.resolve(__dirname, 'node_modules')]
+	},
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
+				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
 					options: mode === 'production' ? {

@@ -4,7 +4,8 @@
   "description": "Game Assistant for Werewolves of Miller's Hollow",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "node test.js"
+    "build": "webpack",
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,14 +24,15 @@
     "url": "https://github.com/takashiro/asmodee-werewolf/issues"
   },
   "homepage": "https://github.com/takashiro/asmodee-werewolf#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1"
-  },
-  "dependencies": {
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   }
 }

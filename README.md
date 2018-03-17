@@ -28,5 +28,5 @@ It's a small online app to arrange role cards of the board game Werewolves of Mi
 
 Running Environment
 -------------------
-1. Nginx Apache Or IIS
+1. Nginx
 2. [Node.js Server](https://github.com/takashiro/asmodee-werewolf-server)
