@@ -50,6 +50,7 @@ class GodNote extends React.Component {
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handlePlayerClick = this.handlePlayerClick.bind(this);
+		this.handleDeath = this.handleDeath.bind(this);
 		this.trigger = this.trigger.bind(this);
 
 		// Read Configuration
@@ -70,6 +71,7 @@ class GodNote extends React.Component {
 				seat={i + 1}
 				role={Role.Unknown}
 				onClick={this.handlePlayerClick}
+				onDeath={this.handleDeath}
 				ref={instance => {this.players.push(instance);}}
 			/>);
 		}
@@ -94,10 +96,6 @@ class GodNote extends React.Component {
 		this.skills.passive.push(...BasicRule.map(Rule => new Rule));
 
 		this.refreshRoles();
-	}
-
-	findPlayer(condition) {
-		return this.state.players.find(condition);
 	}
 
 	handleReturn(e) {
@@ -129,19 +127,29 @@ class GodNote extends React.Component {
 		}
 	}
 
-	trigger(event) {
+	handleDeath(victim) {
+		this.trigger(GameEvent.Death, victim);
+	}
+
+	trigger(event, target = null) {
 		for (let skill of this.skills.passive) {
 			if (skill.event != event) {
 				continue;
 			}
 
-			if (skill.triggerable()) {
-				skill.effect(this);
-			}
+			if (!target) {
+				if (skill.triggerable()) {
+					skill.effect(this);
+				}
 
-			for (let player of this.players) {
-				if (skill.triggerable(player)) {
-					skill.effect(this, player);
+				for (let player of this.players) {
+					if (skill.triggerable(player)) {
+						skill.effect(this, player);
+					}
+				}
+			} else {
+				if (skill.triggerable(target)) {
+					skill.effect(this, target);
 				}
 			}
 		}
