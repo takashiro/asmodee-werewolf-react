@@ -7,7 +7,7 @@ class PassiveSkill {
 	}
 
 	triggerable(target) {
-		return target && target.role == this.role;
+		return target && target.state.role == this.role;
 	}
 
 	effect(room, target) {
