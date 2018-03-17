@@ -6,6 +6,7 @@ class ProactiveSkill {
 		this.name = name;
 		this.timing = timing;
 		this.clickable = true;
+		this.targetFixed = false;
 	}
 
 	effect(room, target) {

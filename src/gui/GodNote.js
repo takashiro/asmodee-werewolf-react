@@ -115,7 +115,12 @@ class GodNote extends React.Component {
 
 	handleSkill(skill) {
 		this.currentSkill = skill;
-		this.action = useSkill;
+		if (skill.targetFixed) {
+			this.action = null;
+			skill.effect(this);
+		} else {
+			this.action = useSkill;
+		}
 	}
 
 	handlePlayerClick(player) {
