@@ -13,12 +13,19 @@ class GameFlow extends React.Component {
 		};
 
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
+		this.handleSkill = this.handleSkill.bind(this);
 		this.handleDusk = this.handleDusk.bind(this);
 	}
 
 	handlePhaseChange(role) {
 		if (this.props.onPhaseChange) {
 			this.props.onPhaseChange(role);
+		}
+	}
+
+	handleSkill(skill) {
+		if (this.props.onSkill) {
+			this.props.onSkill(skill);
 		}
 	}
 
@@ -40,6 +47,7 @@ class GameFlow extends React.Component {
 					day={day}
 					room={room}
 					onPhaseChange={this.handlePhaseChange}
+					onSkill={this.handleSkill}
 					onDusk={this.handleDusk}
 				/>
 			</li>);

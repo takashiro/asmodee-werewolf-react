@@ -10,15 +10,29 @@ import Toast from './component/Toast';
 import PlayerIcon from './component/PlayerIcon';
 import GameFlow from './component/GameFlow';
 
-import GameRoom from '../game/Room';
+import SkillList from '../game/SkillList';
+import PassiveSkill from '../game/PassiveSkill';
+import ProactiveSkill from '../game/ProactiveSkill';
 
 import $client from '../net/Client';
 const net = $client.API;
 
 function markRole(target) {
+	if (!this.currentPhase || this.currentPhase == Role.Unknown) {
+		return;
+	}
+
 	target.setState(prev => ({
 		role: prev.role === this.currentPhase ? Role.Unknown : this.currentPhase
 	}));
+}
+
+function useSkill(target) {
+	if (!this.currentSkill) {
+		return;
+	}
+
+	this.currentSkill.effect(this, target);
 }
 
 class GodNote extends React.Component {
@@ -27,14 +41,57 @@ class GodNote extends React.Component {
 		super(props);
 
 		this.action = null;
+		this.currentSkill = null;
 		this.currentPhase = null;
 
 		this.handleReturn = this.handleReturn.bind(this);
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
+		this.handleSkill = this.handleSkill.bind(this);
 		this.handlePlayerClick = this.handlePlayerClick.bind(this);
 
-		this.room = new GameRoom(props.config);
+		// Read Configuration
+		const config = props.config;
+
+		// Initialize state
+		this.state = {
+			day: 1
+		};
+
+		// Add all players
+		this.playerNum = config.roles.length;
+		this.players = [];
+		for (let i = 0; i < this.playerNum; i++) {
+			this.players.push(<PlayerIcon
+				key={i}
+				seat={i + 1}
+				role={Role.Unknown}
+				onClick={this.handlePlayerClick}
+			/>);
+		}
+
+		// Load skills
+		this.skills = {
+			proactive: [],
+			passive: []
+		};
+		for (let skills of SkillList) {
+			for (let Skill of skills) {
+				let skill = new Skill;
+				if (config.roles.indexOf(skill.role) >= 0) {
+					if (skill instanceof ProactiveSkill) {
+						this.skills.proactive.push(skill);
+					} else if (skill instanceof PassiveSkill) {
+						this.skills.passive.push(skill);
+					}
+				}
+			}
+		}
+
 		this.refreshRoles();
+	}
+
+	findPlayer(condition) {
+		return this.state.players.find(condition);
 	}
 
 	handleReturn(e) {
@@ -50,6 +107,11 @@ class GodNote extends React.Component {
 		this.action = markRole;
 	}
 
+	handleSkill(skill) {
+		this.currentSkill = skill;
+		this.action = useSkill;
+	}
+
 	handlePlayerClick(player) {
 		if (this.action) {
 			this.action.call(this, player);
@@ -57,7 +119,7 @@ class GodNote extends React.Component {
 	}
 
 	refreshRoles() {
-		// Check if it's opened by room owner
+		/*// Check if it's opened by room owner
 		const config = this.props.config;
 		let session = config.readSession();
 		if (!session || !session.ownerKey) {
@@ -65,12 +127,17 @@ class GodNote extends React.Component {
 		}
 
 		// Clear current state
-		const room = this.room;
-		const players = room.players;
+		const players = this.players;
 		for (let player of players) {
-			player.role = Role.Unknown;
-			player.tags.clear();
-			player.markers.clear();
+			player.setState(prev => {
+				prev.tags.clear();
+				prev.markers.clear();
+				return {
+					role: Role.Unknown,
+					tags: prev.tags,
+					markers: prev.markers,
+				};
+			});
 		}
 
 		// Send request to server
@@ -100,26 +167,14 @@ class GodNote extends React.Component {
 					}
 				}
 			}
-		});
+		});*/
 	}
 
 	render() {
-		let players = this.room.players;
+		let players = this.players;
 		let half = Math.ceil(players.length / 2);
-		let right_round = players.slice(0, half).map(
-			player => <PlayerIcon
-				key={player.seat}
-				player={player}
-				onClick={this.handlePlayerClick}
-			/>
-		);
-		let left_round = players.slice(half).map(
-			player => <PlayerIcon
-				key={player.seat}
-				player={player}
-				onClick={this.handlePlayerClick}
-			/>
-		);
+		let right_round = players.slice(0, half);
+		let left_round = players.slice(half);
 
 		return <div className="god-note">
 			<style>@import url(style/god-note.css);</style>
@@ -130,8 +185,9 @@ class GodNote extends React.Component {
 				{right_round}
 			</ul>
 			<GameFlow
-				room={this.room}
+				room={this}
 				onPhaseChange={this.handlePhaseChange}
+				onSkill={this.handleSkill}
 			/>
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>

@@ -16,11 +16,18 @@ class GameDailyFlow extends React.Component {
 		};
 
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
+		this.handleSkill = this.handleSkill.bind(this);
 	}
 
 	handlePhaseChange(role) {
 		if (this.props.onPhaseChange) {
 			this.props.onPhaseChange(role);
+		}
+	}
+
+	handleSkill(skill) {
+		if (this.props.onSkill) {
+			this.props.onSkill(skill);
 		}
 	}
 
@@ -31,6 +38,7 @@ class GameDailyFlow extends React.Component {
 			<SkillButton
 				skill={skill}
 				onPhaseChange={this.handlePhaseChange}
+				onClick={this.handleSkill}
 			/>
 		</li>);
 		return <ol className="action">{actions}</ol>;
