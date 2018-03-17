@@ -1,4 +1,5 @@
 
+import Thief from './Thief';
 import Cupid from './Cupid';
 import Magician from './Magician';
 import Werewolf from './Werewolf';
@@ -10,6 +11,7 @@ import Demon from './Demon';
 import Villager from './Villager';
 
 export default [
+	Thief,
 	Cupid,
 	Magician,
 	Werewolf,
