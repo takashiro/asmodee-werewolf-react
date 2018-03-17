@@ -33,7 +33,7 @@ class SkillButton extends React.Component {
 				<span className="name">{skill.role.name}</span>
 			</h5>
 			<div className="content">
-				<button type="button" onClick={this.handleClick}>{skill.name}</button>
+				{skill.clickable ? <button onClick={this.handleClick}>{skill.name}</button> : skill.name}
 			</div>
 		</div>;
 	}

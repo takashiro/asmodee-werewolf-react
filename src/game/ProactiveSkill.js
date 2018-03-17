@@ -5,6 +5,7 @@ class ProactiveSkill {
 		this.role = role;
 		this.name = name;
 		this.timing = timing;
+		this.clickable = true;
 	}
 
 	effect(room, target) {
