@@ -22,6 +22,8 @@ export default {
 	Day: new GameEvent('Day'),
 	// 公投前
 	BeforeExecution: new GameEvent('BeforeExecution'),
+	// 黄昏
+	Dusk: new GameEvent('Dusk'),
 	// 死亡时
 	Death: new GameEvent('Death')
 };

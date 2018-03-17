@@ -10,6 +10,7 @@ import Toast from './component/Toast';
 import PlayerIcon from './component/PlayerIcon';
 import GameFlow from './component/GameFlow';
 
+import BasicRule from '../game/BasicRule';
 import SkillList from '../game/SkillList';
 import PassiveSkill from '../game/PassiveSkill';
 import ProactiveSkill from '../game/ProactiveSkill';
@@ -90,6 +91,7 @@ class GodNote extends React.Component {
 				}
 			}
 		}
+		this.skills.passive.push(...BasicRule.map(Rule => new Rule));
 
 		this.refreshRoles();
 	}
@@ -128,7 +130,10 @@ class GodNote extends React.Component {
 				continue;
 			}
 
-			skill.effect(this, null);
+			if (skill.triggerable()) {
+				skill.effect(this);
+			}
+
 			for (let player of this.players) {
 				if (skill.triggerable(player)) {
 					skill.effect(this, player);

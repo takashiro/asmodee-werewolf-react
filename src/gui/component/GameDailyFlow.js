@@ -18,6 +18,7 @@ class GameDailyFlow extends React.Component {
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handleDawn = this.handleDawn.bind(this);
+		this.handleDusk = this.handleDusk.bind(this);
 	}
 
 	handlePhaseChange(role) {
@@ -38,6 +39,15 @@ class GameDailyFlow extends React.Component {
 		}
 		this.setState({
 			time: GameEvent.Day
+		});
+	}
+
+	handleDusk() {
+		if (this.props.onGameEvent) {
+			this.props.onGameEvent(GameEvent.Dusk);
+		}
+		this.setState({
+			time: null
 		});
 	}
 
@@ -74,6 +84,9 @@ class GameDailyFlow extends React.Component {
 			<div className="day-message">
 				<h3>夜间信息</h3>
 				{messages}
+			</div>
+			<div className="button-area">
+				<button type="button" onClick={this.handleDusk}>确认公投</button>
 			</div>
 		</div>;
 	}
