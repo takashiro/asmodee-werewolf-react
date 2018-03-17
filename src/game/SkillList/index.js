@@ -1,4 +1,6 @@
 
-export default [
+import Werewolf from './Werewolf';
 
+export default [
+	Werewolf,
 ];
