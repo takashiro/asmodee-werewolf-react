@@ -15,11 +15,24 @@ import GameRoom from '../game/Room';
 import $client from '../net/Client';
 const net = $client.API;
 
+function markRole(target) {
+	target.setState(prev => ({
+		role: prev.role === this.currentPhase ? Role.Unknown : this.currentPhase
+	}));
+}
+
 class GodNote extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		this.action = null;
+		this.currentPhase = null;
+
 		this.handleReturn = this.handleReturn.bind(this);
+		this.handlePhaseChange = this.handlePhaseChange.bind(this);
+		this.handlePlayerClick = this.handlePlayerClick.bind(this);
+
 		this.room = new GameRoom(props.config);
 		this.refreshRoles();
 	}
@@ -30,6 +43,17 @@ class GodNote extends React.Component {
 			<Room config={this.props.config} />,
 			document.getElementById('root')
 		);
+	}
+
+	handlePhaseChange(role) {
+		this.currentPhase = role;
+		this.action = markRole;
+	}
+
+	handlePlayerClick(player) {
+		if (this.action) {
+			this.action.call(this, player);
+		}
 	}
 
 	refreshRoles() {
@@ -82,8 +106,20 @@ class GodNote extends React.Component {
 	render() {
 		let players = this.room.players;
 		let half = Math.ceil(players.length / 2);
-		let right_round = players.slice(0, half).map(player => <PlayerIcon key={player.seat} player={player} />);
-		let left_round = players.slice(half).map(player => <PlayerIcon key={player.seat} player={player} />);
+		let right_round = players.slice(0, half).map(
+			player => <PlayerIcon
+				key={player.seat}
+				player={player}
+				onClick={this.handlePlayerClick}
+			/>
+		);
+		let left_round = players.slice(half).map(
+			player => <PlayerIcon
+				key={player.seat}
+				player={player}
+				onClick={this.handlePlayerClick}
+			/>
+		);
 
 		return <div className="god-note">
 			<style>@import url(style/god-note.css);</style>
@@ -93,7 +129,10 @@ class GodNote extends React.Component {
 			<ul className="player-round right">
 				{right_round}
 			</ul>
-			<GameFlow room={this.room} />
+			<GameFlow
+				room={this.room}
+				onPhaseChange={this.handlePhaseChange}
+			/>
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
 			</div>

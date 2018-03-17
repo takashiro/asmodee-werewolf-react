@@ -14,12 +14,25 @@ class GameDailyFlow extends React.Component {
 		this.state = {
 			time: GameEvent.Night
 		};
+
+		this.handlePhaseChange = this.handlePhaseChange.bind(this);
+	}
+
+	handlePhaseChange(role) {
+		if (this.props.onPhaseChange) {
+			this.props.onPhaseChange(role);
+		}
 	}
 
 	renderNight() {
 		const room = this.props.room;
 		const skills = room.skills.proactive.filter(skill => skill.timing == GameEvent.Night);
-		let actions = skills.map((skill, key) => <li key={key}><SkillButton skill={skill} /></li>);
+		let actions = skills.map((skill, key) => <li key={key}>
+			<SkillButton
+				skill={skill}
+				onPhaseChange={this.handlePhaseChange}
+			/>
+		</li>);
 		return <ol className="action">{actions}</ol>;
 	}
 

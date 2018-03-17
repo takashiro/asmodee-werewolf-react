@@ -13,7 +13,7 @@ class PlayerIcon extends React.Component {
 
 	handleClick() {
 		if (this.props.onClick) {
-			this.props.onClick();
+			this.props.onClick(this);
 		}
 	}
 

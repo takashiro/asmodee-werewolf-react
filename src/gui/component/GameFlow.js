@@ -11,7 +11,15 @@ class GameFlow extends React.Component {
 		this.state = {
 			day: 1
 		};
+
+		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleDusk = this.handleDusk.bind(this);
+	}
+
+	handlePhaseChange(role) {
+		if (this.props.onPhaseChange) {
+			this.props.onPhaseChange(role);
+		}
 	}
 
 	handleDusk() {
@@ -28,7 +36,12 @@ class GameFlow extends React.Component {
 		for (let i = 0; i < this.state.day; i++) {
 			let day = i + 1;
 			days.push(<li key={day}>
-				<GameDailyFlow day={day} room={room} onDusk={this.handleDusk} />
+				<GameDailyFlow
+					day={day}
+					room={room}
+					onPhaseChange={this.handlePhaseChange}
+					onDusk={this.handleDusk}
+				/>
 			</li>);
 		}
 
