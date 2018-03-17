@@ -93,7 +93,7 @@ class GodNote extends React.Component {
 			<ul className="player-round right">
 				{right_round}
 			</ul>
-			<GameFlow />
+			<GameFlow room={this.room} />
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
