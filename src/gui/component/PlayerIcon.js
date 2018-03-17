@@ -16,20 +16,25 @@ class PlayerIcon extends React.Component {
 			markers: new Set,
 			tags: new Set,
 		};
+		this.markers = new Set;
+		this.tags = new Set;
+		this.alive = true;
 		this.deathDay = 0;
 		this.deathReason = null;
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	setAlive(alive) {
+		this.alive = alive;
 		this.setState({alive: alive});
 	}
 
 	isAlive() {
-		return this.state.alive;
+		return this.alive;
 	}
 
 	addMarker(marker) {
+		this.markers.add(marker);
 		this.setState(prev => {
 			prev.markers.add(marker);
 			return {markers: prev.markers};
@@ -37,6 +42,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	removeMarker(marker) {
+		this.markers.delete(marker);
 		this.setState(prev => {
 			prev.markers.delete(marker);
 			return {markers: prev.markers};
@@ -44,7 +50,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	hasMarker(marker) {
-		return this.state.markers.has(marker);
+		return this.markers.has(marker);
 	}
 
 	toggleMarker(marker) {
@@ -56,6 +62,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	clearMarkers() {
+		this.markers.clear();
 		this.setState(prev => {
 			prev.markers.clear();
 			return {markers: prev.markers};
@@ -63,6 +70,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	addTag(marker) {
+		this.tags.add(marker);
 		this.setState(prev => {
 			prev.tags.add(marker);
 			return {tags: prev.tags};
@@ -70,6 +78,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	removeTag(marker) {
+		this.tags.delete(marker);
 		this.setState(prev => {
 			prev.tags.delete(marker);
 			return {tags: prev.tags};
@@ -77,7 +86,7 @@ class PlayerIcon extends React.Component {
 	}
 
 	hasTag(marker) {
-		return this.state.tags.has(marker);
+		return this.tags.has(marker);
 	}
 
 	handleClick() {
