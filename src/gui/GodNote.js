@@ -101,7 +101,16 @@ class GodNote extends React.Component {
 				}
 			}
 		}
-		result.passive.push(...BasicRule.map(Rule => new Rule));
+
+		for (let Rule of BasicRule) {
+			let rule = new Rule;
+			if (rule instanceof PassiveSkill) {
+				result.passive.push(rule);
+			} else if (rule instanceof ProactiveSkill) {
+				result.proactive.push(rule);
+			}
+		}
+
 		return result;
 	}
 
