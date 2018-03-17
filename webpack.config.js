@@ -18,9 +18,9 @@ module.exports = {
 				test: /\.js$/,
 				use: {
 					loader: 'babel-loader',
-					options: {
+					options: mode === 'production' ? {
 						presets: ['babel-preset-env']
-					}
+					} : {}
 				},
 			}
 		]
