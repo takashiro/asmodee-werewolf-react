@@ -42,7 +42,44 @@ class WerewolfAttackEffect extends PassiveSkill {
 
 }
 
+// 白天，狼人可以自爆
+const SelfExpose = new Marker('SelfExpose', '自爆');
+
+class WerewolfExpose extends ProactiveSkill {
+
+	constructor() {
+		super(Role.Werewolf, '自爆', GameEvent.Day);
+	}
+
+	effect(room, target) {
+		if (target && target.state.role == Role.Werewolf) {
+			target.toggleMarker(SelfExpose);
+		}
+	}
+
+}
+
+class WerewolfExposeEffect extends PassiveSkill {
+
+	constructor() {
+		super(Role.Werewolf, GameEvent.Day);
+	}
+
+	triggerable(target) {
+		return super.triggerable(target) && target.hasMarker(SelfExpose);
+	}
+
+	effect(room, target) {
+		if (target.isAlive()) {
+			target.setAlive(false);
+		}
+	}
+
+}
+
 export default [
 	WerewolfAttack,
-	WerewolfAttackEffect
+	WerewolfAttackEffect,
+	WerewolfExpose,
+	WerewolfExposeEffect,
 ];
