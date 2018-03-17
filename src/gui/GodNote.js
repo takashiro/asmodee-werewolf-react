@@ -60,11 +60,16 @@ class GodNote extends React.Component {
 		this.state = {
 			day: 1
 		};
-
-		// Add all players
 		this.playerNum = config.roles.length;
 		this.players = [];
 		this.playerIcons = [];
+
+		// Load skills
+		this.skills = this.loadSkills();
+
+		this.trigger(GameEvent.Start, null);
+
+		// Add all players
 		for (let i = 0; i < this.playerNum; i++) {
 			this.playerIcons.push(<PlayerIcon
 				key={i}
@@ -76,26 +81,28 @@ class GodNote extends React.Component {
 			/>);
 		}
 
-		// Load skills
-		this.skills = {
+		this.refreshRoles();
+	}
+
+	loadSkills() {
+		let result = {
 			proactive: [],
 			passive: []
 		};
 		for (let skills of SkillList) {
 			for (let Skill of skills) {
 				let skill = new Skill;
-				if (config.roles.indexOf(skill.role) >= 0) {
+				if (this.props.config.roles.indexOf(skill.role) >= 0) {
 					if (skill instanceof ProactiveSkill) {
-						this.skills.proactive.push(skill);
+						result.proactive.push(skill);
 					} else if (skill instanceof PassiveSkill) {
-						this.skills.passive.push(skill);
+						result.passive.push(skill);
 					}
 				}
 			}
 		}
-		this.skills.passive.push(...BasicRule.map(Rule => new Rule));
-
-		this.refreshRoles();
+		result.passive.push(...BasicRule.map(Rule => new Rule));
+		return result;
 	}
 
 	handleReturn(e) {
@@ -131,13 +138,13 @@ class GodNote extends React.Component {
 		this.trigger(GameEvent.Death, victim);
 	}
 
-	trigger(event, target = null) {
+	trigger(event, target) {
 		for (let skill of this.skills.passive) {
 			if (skill.event != event) {
 				continue;
 			}
 
-			if (!target) {
+			if (target === undefined) {
 				if (skill.triggerable()) {
 					skill.effect(this);
 				}
