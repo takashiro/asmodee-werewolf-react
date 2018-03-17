@@ -143,7 +143,7 @@ class GodNote extends React.Component {
 	}
 
 	refreshRoles() {
-		/*// Check if it's opened by room owner
+		// Check if it's opened by room owner
 		const config = this.props.config;
 		let session = config.readSession();
 		if (!session || !session.ownerKey) {
@@ -178,20 +178,22 @@ class GodNote extends React.Component {
 
 			for (let record of result) {
 				let i = record.seat - 1;
-				if (i >= 0 && i < players.length) {
-					let player = players[i];
+				if (i >= 0 && i < this.players.length) {
+					let player = this.players[i];
 					if (record.card) {
 						let card = record.card;
+						let state = {};
 						if (card.role) {
-							player.role = Role.fromNum(card.role);
+							state.role = Role.fromNum(card.role);
 						}
 						if (card.cards) {
-							player.cards = card.cards.map(role => Role.fromNum(role));
+							state.cards = card.cards.map(role => Role.fromNum(role));
 						}
+						player.setState(state);
 					}
 				}
 			}
-		});*/
+		});
 	}
 
 	render() {
