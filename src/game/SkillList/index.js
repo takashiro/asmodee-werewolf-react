@@ -9,6 +9,7 @@ import Witch from './Witch';
 import Guard from './Guard';
 import Demon from './Demon';
 import Villager from './Villager';
+import WhiteAlphaWolf from './WhiteAlphaWolf';
 
 export default [
 	Thief,
@@ -21,4 +22,5 @@ export default [
 	Guard,
 	Demon,
 	Villager,
+	WhiteAlphaWolf,
 ];
