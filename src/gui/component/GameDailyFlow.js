@@ -92,7 +92,25 @@ class GameDailyFlow extends React.Component {
 	}
 
 	renderLog() {
+		const logs = [];
+		const room = this.props.room;
 
+		let victims = room.players.filter(player => player.deathDay == this.props.day);
+		if (victims && victims.length > 0) {
+			let victim_logs = victims.map(victim => {
+				let reason = victim.deathReason.map(marker => marker.name);
+				return reason.join(',') + ' ' + victim.state.seat;
+			});
+			logs.push(...victim_logs);
+		} else {
+			logs.push('平安夜');
+		}
+
+		return <div className="log">
+			<div className="day-message">
+				{logs.map((text, i) => <p key={i}>{text}</p>)}
+			</div>
+		</div>;
 	}
 
 	renderToday() {

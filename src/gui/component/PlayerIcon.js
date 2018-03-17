@@ -17,6 +17,7 @@ class PlayerIcon extends React.Component {
 			tags: new Set,
 		};
 		this.deathDay = 0;
+		this.deathReason = null;
 		this.handleClick = this.handleClick.bind(this);
 	}
 

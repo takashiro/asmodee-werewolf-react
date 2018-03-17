@@ -39,6 +39,8 @@ class AfterExecution extends PassiveSkill {
 
 	effect(room, player) {
 		player.setAlive(false);
+		player.deathDay = room.state.day;
+		player.deathReason = Array.from(player.state.markers);
 	}
 
 }
@@ -57,6 +59,7 @@ class DeathGod extends PassiveSkill {
 	effect(room, target) {
 		if (!target.isAlive() && !target.deathDay) {
 			target.deathDay = room.state.day;
+			target.deathReason = Array.from(target.state.markers);
 		}
 		target.clearMarkers();
 	}
