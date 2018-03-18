@@ -61,8 +61,6 @@ class GodNote extends React.Component {
 			day: 1
 		};
 		this.playerNum = config.roles.length;
-		this.players = [];
-		this.playerIcons = [];
 
 		// Load skills
 		this.skills = this.loadSkills();
@@ -70,8 +68,10 @@ class GodNote extends React.Component {
 		this.trigger(GameEvent.Start, null);
 
 		// Add all players
+		this.players = new Array(this.playerNum);
+		this.playerIcons = new Array(this.playerNum);
 		for (let i = 0; i < this.playerNum; i++) {
-			this.playerIcons.push(<PlayerIcon
+			this.playerIcons[i] = <PlayerIcon
 				key={i}
 				seat={i + 1}
 				role={Role.Unknown}
@@ -79,10 +79,12 @@ class GodNote extends React.Component {
 				onClick={this.handlePlayerClick}
 				onDeath={this.handleDeath}
 				onSkill={this.handleSkill}
-				ref={instance => {this.players.push(instance);}}
-			/>);
+				ref={p => {this.players[i] = p;}}
+			/>;
 		}
+	}
 
+	componentDidMount() {
 		this.refreshRoles();
 	}
 
