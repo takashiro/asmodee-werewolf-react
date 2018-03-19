@@ -11,6 +11,10 @@ class MarkRole extends ProactiveSkill {
 		this.clickable = false;
 	}
 
+	isAvailable(room) {
+		return room.day == 1;
+	}
+
 }
 
 class RoleCount extends PassiveSkill {

@@ -16,6 +16,10 @@ class DecideCouple extends ProactiveSkill {
 		super(Role.Cupid, '情侣', GameEvent.Night);
 	}
 
+	isAvailable(room) {
+		return room.day == 1;
+	}
+
 	effect(room, target) {
 		if (!target) {
 			return;

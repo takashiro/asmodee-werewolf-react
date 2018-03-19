@@ -11,6 +11,10 @@ class FillRoles extends ProactiveSkill {
 		this.targetFixed = true;
 	}
 
+	isAvailable(room) {
+		return room.day == 1;
+	}
+
 	effect(room) {
 		for (let player of room.players) {
 			if (!player.state.role || player.state.role == Role.Unknown) {
