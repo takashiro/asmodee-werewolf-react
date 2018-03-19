@@ -28,7 +28,7 @@ class SkillButton extends React.Component {
 	render() {
 		let skill = this.props.skill;
 		return <div>
-			<h5 onClick={this.handlePhaseChange}>
+			<h5 onDoubleClick={this.handlePhaseChange}>
 				<RoleIcon role={skill.role} />
 				<span className="name">{skill.role.name}</span>
 			</h5>
