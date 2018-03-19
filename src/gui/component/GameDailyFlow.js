@@ -55,14 +55,18 @@ class GameDailyFlow extends React.Component {
 
 	findSkills(timing) {
 		const room = this.props.room;
-		const skills = room.skills.proactive.filter(skill => skill.timing == timing);
-		let actions = skills.map((skill, key) => <li key={key}>
-			<SkillButton
-				skill={skill}
-				onPhaseChange={this.handlePhaseChange}
-				onClick={this.handleSkill}
-			/>
-		</li>);
+		const skills = room.skills.proactive.filter(skill => (
+			skill.timing == timing && skill.isAvailable(room)
+		));
+		let actions = skills.map((skill, key) => (
+			<li key={key}>
+				<SkillButton
+					skill={skill}
+					onPhaseChange={this.handlePhaseChange}
+					onClick={this.handleSkill}
+				/>
+			</li>
+		));
 		return actions;
 	}
 

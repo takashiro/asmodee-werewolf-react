@@ -9,6 +9,10 @@ class ProactiveSkill {
 		this.targetFixed = false;
 	}
 
+	isAvailable(room) {
+		return true;
+	}
+
 	effect(room, target) {
 	}
 }
