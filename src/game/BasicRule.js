@@ -40,13 +40,13 @@ class AfterExecution extends PassiveSkill {
 		super(null, GameEvent.Dusk);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Marker.Executed);
 	}
 
 	effect(room, player) {
 		player.setAlive(false);
-		player.deathDay = room.state.day;
+		player.deathDay = room.day;
 		player.deathReason = Array.from(player.markers);
 	}
 
@@ -59,13 +59,13 @@ class DeathGod extends PassiveSkill {
 		super(null, GameEvent.Dusk);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return !!target;
 	}
 
 	effect(room, target) {
 		if (!target.isAlive() && !target.deathDay) {
-			target.deathDay = room.state.day;
+			target.deathDay = room.day;
 			target.deathReason = Array.from(target.state.markers);
 		}
 		target.clearMarkers();
@@ -80,7 +80,7 @@ class BrandNewDay extends PassiveSkill {
 		super(null, GameEvent.Dusk);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return !target;
 	}
 

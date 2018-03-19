@@ -43,8 +43,8 @@ class DieForLove extends PassiveSkill {
 		super(Role.WolfBeauty, GameEvent.Death);
 	}
 
-	triggerable(target) {
-		return super.triggerable(target) && !target.isAlive() && !target.purified;
+	triggerable(room, target) {
+		return super.triggerable(room, target) && !target.isAlive() && !target.purified;
 	}
 
 	effect(room, target) {

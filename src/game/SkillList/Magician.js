@@ -44,7 +44,7 @@ class ExchangeEffect extends PassiveSkill {
 		super(Role.Magician, GameEvent.Night);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return !target;
 	}
 

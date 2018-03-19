@@ -6,7 +6,7 @@ class PassiveSkill {
 		this.event = event;
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.state.role == this.role;
 	}
 

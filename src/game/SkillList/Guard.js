@@ -42,7 +42,7 @@ class ArmorEffect extends PassiveSkill {
 		super(Role.Guard, GameEvent.Night);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Guarded);
 	}
 

@@ -166,17 +166,17 @@ class GodNote extends React.Component {
 			}
 
 			if (target === undefined) {
-				if (skill.triggerable()) {
+				if (skill.triggerable(this)) {
 					skill.effect(this);
 				}
 
 				for (let player of this.players) {
-					if (skill.triggerable(player)) {
+					if (skill.triggerable(this, player)) {
 						skill.effect(this, player);
 					}
 				}
 			} else {
-				if (skill.triggerable(target)) {
+				if (skill.triggerable(this, target)) {
 					skill.effect(this, target);
 				}
 			}

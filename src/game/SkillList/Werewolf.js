@@ -30,7 +30,7 @@ class WerewolfAttackEffect extends PassiveSkill {
 		super(Role.Werewolf, GameEvent.Night);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Attacked);
 	}
 
@@ -65,8 +65,8 @@ class WerewolfExposeEffect extends PassiveSkill {
 		super(Role.Werewolf, GameEvent.Day);
 	}
 
-	triggerable(target) {
-		return super.triggerable(target) && target.hasMarker(SelfExpose);
+	triggerable(room, target) {
+		return super.triggerable(room, target) && target.hasMarker(SelfExpose);
 	}
 
 	effect(room, target) {

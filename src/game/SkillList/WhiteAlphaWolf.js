@@ -35,7 +35,7 @@ class ShotEffect extends PassiveSkill {
 		super(Role.WhiteAlphaWolf, GameEvent.Day);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Shot);
 	}
 

@@ -23,7 +23,7 @@ class RoleCount extends PassiveSkill {
 		super(Role.Thief, GameEvent.Start);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return !target;
 	}
 

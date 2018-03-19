@@ -49,7 +49,7 @@ class DieForLove extends PassiveSkill {
 		super(Role.Cupid, GameEvent.Death);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasTag(Couple) && !target.isAlive();
 	}
 

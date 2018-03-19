@@ -34,7 +34,7 @@ class CureEffect extends PassiveSkill {
 		super(Role.Witch, GameEvent.Night);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Saved);
 	}
 
@@ -76,7 +76,7 @@ class PoisonEffect extends PassiveSkill {
 		super(Role.Witch, GameEvent.Night);
 	}
 
-	triggerable(target) {
+	triggerable(room, target) {
 		return target && target.hasMarker(Poisoned);
 	}
 
