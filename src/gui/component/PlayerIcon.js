@@ -132,7 +132,7 @@ class PlayerIcon extends React.Component {
 
 		if (!this.state.alive) {
 			icon_style += ' dead';
-			if (!this.purified && this.deathSkills.length > 0) {
+			if (!this.purified && this.deathSkills && this.deathSkills.length > 0) {
 				for (let i = 0; i < this.deathSkills.length; i++) {
 					let skill = this.deathSkills[i];
 					if (skill.role != this.state.role) {
