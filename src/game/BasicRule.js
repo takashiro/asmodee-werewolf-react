@@ -85,9 +85,7 @@ class BrandNewDay extends PassiveSkill {
 	}
 
 	effect(room) {
-		room.setState(prev => ({
-			day: prev.day + 1
-		}));
+		room.tickDay();
 	}
 
 }

@@ -60,6 +60,7 @@ class GodNote extends React.Component {
 		this.state = {
 			day: 1
 		};
+		this.day = 1;
 		this.playerNum = config.roles.length;
 
 		// Load skills
@@ -116,6 +117,13 @@ class GodNote extends React.Component {
 		}
 
 		return result;
+	}
+
+	tickDay() {
+		this.day++;
+		this.setState({
+			day: this.day
+		});
 	}
 
 	handleReturn(e) {
