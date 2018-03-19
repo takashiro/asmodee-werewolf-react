@@ -15,10 +15,20 @@ class GameDailyFlow extends React.Component {
 			time: GameEvent.Night
 		};
 
+		this.handleFocus = this.handleFocus.bind(this);
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handleDawn = this.handleDawn.bind(this);
 		this.handleDusk = this.handleDusk.bind(this);
+	}
+
+	handleFocus(e) {
+		let current = e.currentTarget;
+		let parent = current.parentElement;
+		for (let sibling of parent.children) {
+			sibling.classList.remove('current');
+		}
+		current.classList.add('current');
 	}
 
 	handlePhaseChange(role) {
@@ -59,7 +69,7 @@ class GameDailyFlow extends React.Component {
 			skill.timing == timing && skill.isAvailable(room)
 		));
 		let actions = skills.map((skill, key) => (
-			<li key={key}>
+			<li key={key} onClick={this.handleFocus}>
 				<SkillButton
 					skill={skill}
 					onPhaseChange={this.handlePhaseChange}
