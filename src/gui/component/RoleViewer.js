@@ -5,6 +5,7 @@ import Role from '../../core/Role';
 
 import $client from '../../net/Client';
 import RoleIcon from './RoleIcon';
+import Toast from './Toast';
 const net = $client.API;
 
 // Pure new user. Add input and buttons.
@@ -52,6 +53,20 @@ class RoleViewer extends React.Component {
 	}
 
 	fetchCard() {
+		if (!this.seat) {
+			Toast.makeToast('请输入座位号。');
+			this.seatNumberInput.focus();
+			return;
+		}
+
+		let seat = parseInt(this.seat, 10);
+		if (isNaN(seat) || seat <= 0) {
+			Toast.makeToast('请输入正确的数字。');
+			this.seatNumberInput.value = '';
+			this.seatNumberInput.focus();
+			return;
+		}
+
 		this.showMessage('你的身份是...');
 		$client.request(net.FetchRole, {id: this.roomId, seat: this.seat}, result => {
 			if (result.error) {
@@ -86,7 +101,12 @@ class RoleViewer extends React.Component {
 	renderCard() {
 		if (!this.state.role) {
 			return <div className="role-area button-area">
-				<input type="number" placeholder="座位号" onChange={this.handleSeatInput} />
+				<input
+					type="number"
+					placeholder="座位号"
+					onChange={this.handleSeatInput}
+					ref={input => {this.seatNumberInput = input;}}
+				/>
 				<button type="button" onClick={this.fetchCard}>查看身份</button>
 				<div className="inline-message" ref={message => {this.message = message;}}></div>
 			</div>;
