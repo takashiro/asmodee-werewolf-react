@@ -12,6 +12,7 @@ class PlayerIcon extends React.Component {
 		this.state = {
 			seat: props.seat,
 			role: props.role,
+			cards: [],
 			alive: true,
 			selected: false,
 			markers: new Set,
@@ -29,6 +30,14 @@ class PlayerIcon extends React.Component {
 		this.deathSkills = props.skills && props.skills.filter(
 			skill => skill.timing == GameEvent.Death
 		);
+	}
+
+	get cards() {
+		return this.state.cards;
+	}
+
+	get role() {
+		return this.state.role;
 	}
 
 	setAlive(alive) {
