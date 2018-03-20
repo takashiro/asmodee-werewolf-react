@@ -3,36 +3,18 @@ import Role from '../../core/Role';
 
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
-import ProactiveSkill from '../ProactiveSkill';
+import MarkerSkill from '../MarkerSkill';
 import PassiveSkill from '../PassiveSkill';
 
 const Exchanged = new Marker('Exchanged', '交换');
 
 //魔术师每晚可以交换两名玩家的号码牌
-class ExchangeUser extends ProactiveSkill {
+class ExchangeUser extends MarkerSkill {
 
 	constructor() {
 		super(Role.Magician, '交换', GameEvent.Night);
-	}
-
-	effect(room, target) {
-		if (!target) {
-			return;
-		}
-
-		if (target.hasMarker(Exchanged)) {
-			target.removeMarker(Exchanged);
-			return;
-		}
-
-		let prev = room.players.filter(target => target.hasMarker(Exchanged));
-		if (prev.length >= 2) {
-			prev.shift();
-			prev.forEach(player => {
-				player.removeMarker(Exchanged);
-			});
-		}
-		target.addMarker(Exchanged);
+		this.marker = Exchanged;
+		this.maxMarkerNum = 2;
 	}
 
 }
