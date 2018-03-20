@@ -1,13 +1,13 @@
 
 class PassiveSkill {
 
-	constructor(role, event) {
+	constructor(role, timing) {
 		this.role = role;
-		this.event = event;
+		this.timing = timing;
 	}
 
 	triggerable(room, target) {
-		return target && target.state.role == this.role;
+		return target && target.role == this.role;
 	}
 
 	effect(room, target) {

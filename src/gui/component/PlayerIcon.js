@@ -27,9 +27,7 @@ class PlayerIcon extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 
-		this.deathSkills = props.skills && props.skills.filter(
-			skill => skill.timing == GameEvent.Death
-		);
+		this.deathSkills = props.skills && props.skills.get(GameEvent.Death);
 	}
 
 	get cards() {

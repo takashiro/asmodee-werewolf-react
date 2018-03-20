@@ -89,33 +89,46 @@ class GodNote extends React.Component {
 	}
 
 	loadSkills() {
-		let result = {
-			proactive: [],
-			passive: []
-		};
+		let proactive = new Map;
+		let passive = new Map;
+
+		function add(skill) {
+			let result = null;
+			if (skill instanceof ProactiveSkill) {
+				result = proactive;
+			} else if (skill instanceof PassiveSkill) {
+				result = passive;
+			} else {
+				return;
+			}
+
+			let list = null;
+			if (!result.has(skill.timing)) {
+				list = [];
+				result.set(skill.timing, list);
+			} else {
+				list = result.get(skill.timing);
+			}
+			list.push(skill);
+		}
+
 		for (let skills of SkillList) {
 			for (let Skill of skills) {
 				let skill = new Skill;
 				if (this.props.config.roles.indexOf(skill.role) >= 0) {
-					if (skill instanceof ProactiveSkill) {
-						result.proactive.push(skill);
-					} else if (skill instanceof PassiveSkill) {
-						result.passive.push(skill);
-					}
+					add(skill);
 				}
 			}
 		}
 
 		for (let Rule of BasicRule) {
-			let rule = new Rule;
-			if (rule instanceof PassiveSkill) {
-				result.passive.push(rule);
-			} else if (rule instanceof ProactiveSkill) {
-				result.proactive.push(rule);
-			}
+			add(new Rule);
 		}
 
-		return result;
+		return {
+			proactive,
+			passive,
+		};
 	}
 
 	tickDay() {
@@ -159,11 +172,12 @@ class GodNote extends React.Component {
 	}
 
 	trigger(event, target) {
-		for (let skill of this.skills.passive) {
-			if (skill.event != event) {
-				continue;
-			}
+		let skills = this.skills.passive.get(event);
+		if (!skills || skills.length <= 0) {
+			return;
+		}
 
+		for (let skill of skills) {
 			if (target === undefined) {
 				if (skill.triggerable(this)) {
 					skill.effect(this);
