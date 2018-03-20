@@ -11,6 +11,7 @@ import Hunter from './Hunter';
 import AlphaWolf from './AlphaWolf';
 import Demon from './Demon';
 import Villager from './Villager';
+import Knight from './Knight';
 import WhiteAlphaWolf from './WhiteAlphaWolf';
 
 export default [
@@ -26,5 +27,6 @@ export default [
 	AlphaWolf,
 	Demon,
 	Villager,
+	Knight,
 	WhiteAlphaWolf,
 ];
