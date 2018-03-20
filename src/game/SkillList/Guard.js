@@ -43,7 +43,7 @@ class ArmorEffect extends PassiveSkill {
 	}
 
 	triggerable(room, target) {
-		return target && target.hasMarker(Guarded);
+		return target && target.hasMarker(Guarded) && target.hasMarker(Marker.Attacked);
 	}
 
 	effect(room, target) {
