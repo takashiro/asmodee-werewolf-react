@@ -4,31 +4,16 @@ import Role from '../core/Role';
 import Marker from './Marker';
 import GameEvent from './GameEvent';
 import PassiveSkill from './PassiveSkill';
-import ProactiveSkill from './ProactiveSkill';
+import MarkerSkill from './MarkerSkill';
 
 const Executed = new Marker('Executed', '公投');
 
 // 公投
-class Execution extends ProactiveSkill {
+class Execution extends MarkerSkill {
 
 	constructor() {
 		super(Role.Villager, '公投', GameEvent.Day);
-	}
-
-	effect(room, target) {
-		if (!target || !target.isAlive()) {
-			return;
-		}
-
-		if (target.hasMarker(Executed)) {
-			target.removeMarker(Executed);
-		} else {
-			let prev = room.players.find(player => player.hasMarker(Executed));
-			if (prev) {
-				prev.removeMarker(Executed);
-			}
-			target.addMarker(Executed);
-		}
+		this.marker = Executed;
 	}
 
 }
