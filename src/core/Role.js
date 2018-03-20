@@ -40,7 +40,7 @@ const List = [
 	new Role('Idiot', '白痴', Team.Villager),
 	new Role('Elder', '长老', Team.Villager),
 	new Role('Knight', '骑士', Team.Villager),
-	new Role('Dementor', '摄梦人', Team.Villager),
+	new Role('DreamWeaver', '摄梦人', Team.Villager),
 	new Role('Rogue', '老流氓', Team.Villager),
 	new Role('Crow', '乌鸦', Team.Villager),
 

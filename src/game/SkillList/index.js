@@ -7,6 +7,7 @@ import WolfBeauty from './WolfBeauty';
 import Seer from './Seer';
 import Witch from './Witch';
 import Guard from './Guard';
+import DreamWeaver from './DreamWeaver';
 import Hunter from './Hunter';
 import AlphaWolf from './AlphaWolf';
 import Demon from './Demon';
@@ -23,6 +24,7 @@ export default [
 	Seer,
 	Witch,
 	Guard,
+	DreamWeaver,
 	Hunter,
 	AlphaWolf,
 	Demon,
