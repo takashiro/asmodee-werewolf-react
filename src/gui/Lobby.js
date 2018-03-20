@@ -6,8 +6,7 @@ import Room from './Room';
 import Toast from './component/Toast';
 
 import RoomConfig from '../net/RoomConfig';
-import $client from '../net/Client';
-const net = $client.API;
+import {$client, net} from '../net/Client';
 
 function createRoom() {
 	ReactDOM.render(

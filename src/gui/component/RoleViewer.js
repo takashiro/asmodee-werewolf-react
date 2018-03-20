@@ -2,11 +2,10 @@
 import React from 'react';
 
 import Role from '../../core/Role';
+import {$client, net} from '../../net/Client';
 
-import $client from '../../net/Client';
 import RoleIcon from './RoleIcon';
 import Toast from './Toast';
-const net = $client.API;
 
 // Pure new user. Add input and buttons.
 const ERROR_MESSAGE = {

@@ -1,5 +1,5 @@
 
-import API from './api';
+import net from './api';
 
 class Client {
 
@@ -44,7 +44,6 @@ class Client {
 }
 
 let $client = new Client();
-$client.API = API;
 
 let match = location.href.match(/(^\w+)\:\/\/([^/]+)/i);
 if (match && match[1] && match[2]) {
@@ -53,4 +52,7 @@ if (match && match[1] && match[2]) {
 	$client.serverUrl = 'http://localhost:2620/';
 }
 
-export default $client;
+export {
+	$client,
+	net
+};

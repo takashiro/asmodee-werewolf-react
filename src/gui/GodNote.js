@@ -15,9 +15,8 @@ import SkillList from '../game/SkillList';
 import PassiveSkill from '../game/PassiveSkill';
 import ProactiveSkill from '../game/ProactiveSkill';
 
-import $client from '../net/Client';
+import {$client, net} from '../net/Client';
 import GameEvent from '../game/GameEvent';
-const net = $client.API;
 
 function markRole(target) {
 	if (!this.currentPhase || this.currentPhase == Role.Unknown) {

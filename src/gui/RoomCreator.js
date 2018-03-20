@@ -12,8 +12,7 @@ import Toast from './component/Toast';
 import Room from './Room';
 
 import RoomConfig from '../net/RoomConfig';
-import $client from '../net/Client';
-const net = $client.API;
+import {$client, net} from '../net/Client';
 
 export default class RoomCreator extends React.Component {
 
