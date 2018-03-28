@@ -6,6 +6,23 @@ import GameEvent from './GameEvent';
 import PassiveSkill from './PassiveSkill';
 import MarkerSkill from './MarkerSkill';
 
+// 夜间倒牌结算
+class NightDeath extends PassiveSkill {
+
+	constructor() {
+		super(null, GameEvent.Dawn);
+	}
+
+	triggerable(room, target) {
+		return target && !target.isAlive();
+	}
+
+	effect(room, player) {
+		room.trigger(GameEvent.Death, player);
+	}
+
+}
+
 const Executed = new Marker('Executed', '公投');
 
 // 公投

@@ -49,7 +49,6 @@ class GodNote extends React.Component {
 		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handlePlayerClick = this.handlePlayerClick.bind(this);
-		this.handleDeath = this.handleDeath.bind(this);
 		this.trigger = this.trigger.bind(this);
 
 		// Read Configuration
@@ -77,7 +76,6 @@ class GodNote extends React.Component {
 				role={Role.Unknown}
 				skills={this.skills.proactive}
 				onClick={this.handlePlayerClick}
-				onDeath={this.handleDeath}
 				onSkill={this.handleSkill}
 				ref={p => {this.players[i] = p;}}
 			/>;
@@ -165,10 +163,6 @@ class GodNote extends React.Component {
 		if (this.action) {
 			this.action.call(this, player);
 		}
-	}
-
-	handleDeath(victim) {
-		this.trigger(GameEvent.Death, victim);
 	}
 
 	trigger(event, target) {

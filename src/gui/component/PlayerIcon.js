@@ -41,9 +41,6 @@ class PlayerIcon extends React.Component {
 	setAlive(alive) {
 		this.alive = alive;
 		this.setState({alive: alive});
-		if (this.props.onDeath) {
-			this.props.onDeath(this);
-		}
 	}
 
 	isAlive() {
