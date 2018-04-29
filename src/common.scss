@@ -1,0 +1,127 @@
+
+body {
+	background: #26221d url(../style/bg.jpg) no-repeat;
+	background-size: 100% auto;
+	color: white;
+	margin: 0;
+	padding: 0;
+	user-select: none;
+}
+
+body,
+button,
+input {
+	font-size: 12pt;
+	font-family: Arial, 'Microsoft YaHei', Helvetica, sans-serif;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+button {
+	background: #e3ad58;
+	color: #130502;
+	font-weight: bold;
+	border-radius: 4px;
+	box-shadow:#160804 2px 2px 6px 0;
+}
+
+input[type="text"],
+input[type="number"],
+button {
+	border: 0 solid;
+	-moz-appearance: textfield;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	text-align: center;
+	padding: 20px 0 2px 0;
+
+	img{
+		width: 50%;
+	}
+}
+
+footer {
+	font-size: 8pt;
+	text-align: right;
+	color: #c3bbb9;
+	padding: 50px 20px 10px 20px;
+
+	ul.dev-info {
+		text-transform: uppercase;
+		margin-bottom: 0.5em;
+
+		> li {
+			display: inline-block;
+			padding: 0 1em;
+
+			& :first-child {
+				padding-left: 0;
+			}
+
+			& :last-child {
+				padding-right: 0;
+			}
+
+			& :not(:last-child) {
+				border-right: #c3bbb9 1px solid;
+			}
+
+			a {
+				color: #c3bbb9;
+			}
+		}
+	}
+
+	.copyright {
+		font-size: 7.5pt;
+
+		p {
+			margin: 0.3em 0;
+		}
+	}
+}
+
+.inline-message {
+	text-align: center;
+	line-height: 1.5em;
+	height: 1.5em;
+}
+
+.box {
+	margin: 0 10px;
+
+	> h3 {
+		text-align: center;
+		margin: 20px 0 8px 0;
+	}
+}
+
+.button-area {
+	text-align: center;
+	margin: 20px 15px 5px 15px;
+
+	button {
+		font-size: 15pt;
+		padding: 0.5em 0.8em;
+		min-width: 6em;
+		margin: 5px 10px;
+	}
+
+	input[type="number"] {
+		text-align: center;
+		line-height: 2em;
+		border-radius: 6px;
+		margin: 10px 0;
+		display: block;
+		margin: 10px auto;
+	}
+}

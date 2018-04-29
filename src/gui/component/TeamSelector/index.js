@@ -1,11 +1,13 @@
 
 import React from 'react';
 
-import Team from '../../core/Team';
-import Role from '../../core/Role';
+import Team from '../../../core/Team';
+import Role from '../../../core/Role';
 
-import RoleOption from './RoleOption';
-import RoleNumberInput from './RoleNumberInput';
+import RoleOption from '../RoleOption';
+import RoleNumberInput from '../RoleNumberInput';
+
+import './index.scss';
 
 class TeamSelector extends React.Component {
 

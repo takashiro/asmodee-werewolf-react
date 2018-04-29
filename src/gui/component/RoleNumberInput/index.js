@@ -1,9 +1,11 @@
 
 import React from 'react';
 
-import Role from '../../core/Role';
+import Role from '../../../core/Role';
 
-import RoleIcon from './RoleIcon';
+import RoleIcon from '../RoleIcon';
+
+import './index.scss';
 
 class RoleNumberInput extends React.Component {
 	constructor(props) {

@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import GameEvent from '../../game/GameEvent';
+import GameEvent from '../../../game/GameEvent';
 
-import RoleIcon from './RoleIcon';
+import RoleIcon from '../RoleIcon';
 
 class PlayerIcon extends React.Component {
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Team from '../core/Team';
-import Role from '../core/Role';
+import Team from '../../core/Team';
+import Role from '../../core/Role';
 
-import Lobby from './Lobby';
-import TeamSelector from './component/TeamSelector';
+import Lobby from '../Lobby';
+import TeamSelector from '../component/TeamSelector';
 
-import RoleIcon from './component/RoleIcon';
-import Toast from './component/Toast';
-import Room from './Room';
+import RoleIcon from '../component/RoleIcon';
+import Toast from '../component/Toast';
+import Room from '../Room';
 
-import RoomConfig from '../net/RoomConfig';
-import {$client, net} from '../net/Client';
+import RoomConfig from '../../net/RoomConfig';
+import {$client, net} from '../../net/Client';
 
 export default class RoomCreator extends React.Component {
 

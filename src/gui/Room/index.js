@@ -2,15 +2,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Team from '../core/Team';
-import Role from '../core/Role';
+import Team from '../../core/Team';
+import Role from '../../core/Role';
 
-import Lobby from './Lobby';
-import GodNote from './GodNote';
+import Lobby from '../Lobby';
+import GodNote from '../GodNote';
 
-import RoleIcon from './component/RoleIcon';
-import RoleViewer from './component/RoleViewer';
-import Toast from './component/Toast';
+import RoleIcon from '../component/RoleIcon';
+import RoleViewer from '../component/RoleViewer';
+import Toast from '../component/Toast';
+
+import './index.scss';
 
 function TeamTable(props) {
 	let key = 0;

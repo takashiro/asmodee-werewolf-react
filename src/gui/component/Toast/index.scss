@@ -1,0 +1,23 @@
+
+.toast{
+	background: #8f2818;
+	color: white;
+	position: fixed;
+	padding: 20px;
+	box-sizing: border-box;
+	width: 70vw;
+	top: 50vh;
+	left: 15vw;
+	opacity: 0;
+	transition: top 0.3s, opacity 0.3s;
+
+	&.in {
+		opacity: 1;
+		top: 45vh;
+	}
+
+	&.out {
+		opacity: 0;
+		top: 45vh;
+	}
+}

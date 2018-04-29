@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import RoomCreator from './RoomCreator';
-import Room from './Room';
-import Toast from './component/Toast';
+import RoomCreator from '../RoomCreator';
+import Room from '../Room';
+import Toast from '../component/Toast';
 
-import RoomConfig from '../net/RoomConfig';
-import {$client, net} from '../net/Client';
+import RoomConfig from '../../net/RoomConfig';
+import {$client, net} from '../../net/Client';
+
+import './index.scss';
 
 function createRoom() {
 	ReactDOM.render(

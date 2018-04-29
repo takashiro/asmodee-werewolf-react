@@ -1,0 +1,194 @@
+
+ul.player-round {
+	display: flex;
+	position: fixed;
+	top: 60px;
+	width: 64px;
+	justify-content: space-evenly;
+	height: 80vh;
+	-webkit-tap-highlight-color: transparent;
+
+	&.left {
+		left: 15px;
+		flex-direction: column;
+
+		> li {
+			.number {
+				left: 0;
+			}
+
+			ul.marker {
+				right: -1.8em;
+			}
+		}
+	}
+
+	&.right {
+		right: 15px;
+		flex-direction: column-reverse;
+
+		> li {
+			.number {
+				right: 0;
+			}
+
+			ul.marker {
+				left: -1.8em;
+			}
+		}
+	}
+
+	> li {
+		width: 64px;
+		height: 64px;
+		border-radius: 64px;
+		display: inline-block;
+		background: #fed84055;
+		position: relative;
+		margin: 10px 0;
+
+		.number {
+			width: 16px;
+			height: 16px;
+			font-size: 12px;
+			position: absolute;
+			top: 0;
+			border: white 1px solid;
+			border-radius: 8px;
+			text-align: center;
+			line-height: 16px;
+			text-shadow: rgb(39, 32, 32) 0 0 3px;
+			background: rgba(85, 34, 23, 0.3);
+		}
+
+		.icon.dead {
+			filter: grayscale(100%);
+			-webkit-filter: grayscale(100%);
+		}
+
+
+		ul.marker {
+			list-style: none;
+			font-size: 9pt;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top: 0;
+		}
+	}
+
+	.role {
+		width: 64px;
+		height: 64px;
+		background-size: 80px;
+		background-position: -9px -14px;
+		border-radius: 32px;
+	}
+
+	.button-area {
+		position: absolute;
+		top: 0;
+		left: 8px;
+		margin: 0;
+		padding: 0;
+		width: 48px;
+		height: 64px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		button {
+			font-size: 9pt;
+			margin: 0;
+			padding: 0.5em 0.6em;
+			min-width: 2em;
+		}
+	}
+}
+
+ol.game-flow {
+	margin: 0 120px;
+	padding: 0;
+	min-height: 65vh;
+	text-align: center;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+
+	> li h4 {
+		margin: 10px 0 5px 0;
+	}
+
+	ol.action {
+		list-style: none;
+		padding: 0;
+		-webkit-tap-highlight-color: transparent;
+
+		> li {
+			position: relative;
+			height: 75px;
+			padding-left: 48px;
+			font-size: 10pt;
+
+			&.current {
+				.role {
+					box-shadow: #fed840 0 0 4px 2px;
+				}
+			}
+
+			h5 {
+				position: absolute;
+				width: 48px;
+				top: 0;
+				left: 0;
+				margin: 0;
+				font-size: 8pt;
+			}
+
+			.content {
+				height: 64px;
+				line-height: 64px;
+			}
+		}
+	}
+
+	.role {
+		width: 48px;
+		height: 48px;
+		background-size: 65px;
+		background-position: -9px -14px;
+		border-radius: 24px;
+	}
+
+	button {
+		font-size: 12pt;
+		padding: 0.5em 0.7em;
+		font-weight: normal;
+	}
+
+	.day-message {
+		font-size: 11pt;
+
+		h3 {
+			margin: 5px 0 5px 0;
+			font-size: 9pt;
+			font-weight: normal;
+
+			&::before {
+				content: ' - ';
+			}
+
+			&::after {
+				content: ' - ';
+			}
+		}
+
+		p {
+			margin: 2px 0;
+		}
+	}
+
+	.button-area button {
+		margin: 7px 0;
+	}
+
+}

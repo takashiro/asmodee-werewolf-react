@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import RoleIcon from './RoleIcon';
-import SkillButton from './SkillButton';
+import RoleIcon from '../RoleIcon';
+import SkillButton from '../SkillButton';
 
-import GameEvent from '../../game/GameEvent';
+import GameEvent from '../../../game/GameEvent';
 
 class GameDailyFlow extends React.Component {
 

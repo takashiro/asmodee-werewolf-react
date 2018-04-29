@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import Role from '../../core/Role';
-import RoleIcon from './RoleIcon';
+import Role from '../../../core/Role';
+import RoleIcon from '../RoleIcon';
 
 class RoleOption extends React.Component {
 

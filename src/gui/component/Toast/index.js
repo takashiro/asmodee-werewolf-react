@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './index.scss';
+
 class Toast extends React.Component {
 
 	constructor(props) {

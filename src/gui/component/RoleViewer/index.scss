@@ -1,0 +1,50 @@
+
+.role-area {
+	text-align: center;
+	position: relative;
+
+	> .name {
+		margin-bottom: 10px;
+	}
+
+	> .role {
+		margin: auto;
+	}
+
+	ul.extra-cards {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+
+		li {
+			display: block;
+			position: absolute;
+			width: 64px;
+			height: 64px;
+
+			&:nth-child(0) {
+				top: 0;
+				left: 0;
+			}
+
+			&:nth-child(1) {
+				top: 0;
+				right: 0;
+			}
+		}
+	}
+
+	&.button-area {
+		input {
+			width: 7em;
+			box-sizing: content-box;
+			padding: 0.5em 0.8em;
+		}
+
+		button {
+			width: 7em;
+		}
+	}
+}

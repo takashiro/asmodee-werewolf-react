@@ -2,21 +2,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Room from './Room';
+import Room from '../Room';
 
-import Role from '../core/Role';
+import Role from '../../core/Role';
 
-import Toast from './component/Toast';
-import PlayerIcon from './component/PlayerIcon';
-import GameDailyFlow from './component/GameDailyFlow';
+import Toast from '../component/Toast';
+import PlayerIcon from '../component/PlayerIcon';
+import GameDailyFlow from '../component/GameDailyFlow';
 
-import BasicRule from '../game/BasicRule';
-import SkillList from '../game/SkillList';
-import PassiveSkill from '../game/PassiveSkill';
-import ProactiveSkill from '../game/ProactiveSkill';
+import BasicRule from '../../game/BasicRule';
+import SkillList from '../../game/SkillList';
+import PassiveSkill from '../../game/PassiveSkill';
+import ProactiveSkill from '../../game/ProactiveSkill';
 
-import {$client, net} from '../net/Client';
-import GameEvent from '../game/GameEvent';
+import {$client, net} from '../../net/Client';
+import GameEvent from '../../game/GameEvent';
+
+import './index.scss';
 
 function markRole(target) {
 	if (!this.currentPhase || this.currentPhase == Role.Unknown) {

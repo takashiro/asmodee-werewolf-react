@@ -1,7 +1,9 @@
 
 import React from 'react';
 
-import Role from '../../core/Role';
+import Role from '../../../core/Role';
+
+import './index.scss';
 
 class RoleIcon extends React.Component {
 
