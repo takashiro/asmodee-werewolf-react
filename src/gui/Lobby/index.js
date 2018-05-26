@@ -43,14 +43,62 @@ function enterRoom() {
 	});
 }
 
-export default function Lobby() {
-	return <div className="lobby">
-		<div className="simple-form lobby">
-			<button type="button" onClick={createRoom}>创建房间</button>
-		</div>
-		<div className="simple-form lobby">
-			<input id="room-number" type="number" placeholder="房间号" />
-			<button type="button" onClick={enterRoom}>加入房间</button>
-		</div>
-	</div>;
+function parseQueryString() {
+	let query_offset = location.href.indexOf('?');
+	if (query_offset <= 0) {
+		return {};
+	}
+
+	let query_string = location.href.substr(query_offset + 1);
+	if (query_string.length <= 0) {
+		return {};
+	}
+
+	let values = {};
+	let params = query_string.split('&');
+	for (let param of params) {
+		if (param.length <= 0) {
+			continue;
+		}
+
+		let equal = param.indexOf('=');
+		if (equal >= 0) {
+			let key = param.substr(0, equal);
+			let value = param.substr(equal + 1);
+			values[key] = value;
+		} else {
+			values[param] = null;
+		}
+	}
+
+	return values;
 }
+
+class Lobby extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
+	componentDidMount() {
+		let param = parseQueryString();
+		if (param.room_id) {
+			document.getElementById('room-number').value = param.room_id;
+			enterRoom();
+		}
+	}
+
+	render() {
+		return <div className="lobby">
+			<div className="simple-form lobby">
+				<button type="button" onClick={createRoom}>创建房间</button>
+			</div>
+			<div className="simple-form lobby">
+				<input id="room-number" type="number" placeholder="房间号" />
+				<button type="button" onClick={enterRoom}>加入房间</button>
+			</div>
+		</div>;
+	}
+}
+
+export default Lobby;
