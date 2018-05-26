@@ -1,5 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let mode = 'production';
 if (process.env.NODE_ENV === 'development') {
@@ -8,9 +8,11 @@ if (process.env.NODE_ENV === 'development') {
 
 module.exports = {
 	mode: mode,
-	entry: './src/index.js',
+	entry: {
+		app: './src/index.js'
+	},
 	output: {
-		filename: 'app.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'static')
 	},
 	resolveLoader: {
@@ -31,7 +33,8 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				exclude: /node_modules/,
-				use: ExtractTextPlugin.extract([
+				use: [
+					MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -47,12 +50,15 @@ module.exports = {
 							sourceMap: mode === 'development',
 						}
 					},
-				]),
+				],
 			}
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('app.css')
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+		})
 	],
 	devtool: mode === 'production' ? undefined : 'source-map',
 };
