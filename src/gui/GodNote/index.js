@@ -267,7 +267,6 @@ class GodNote extends React.Component {
 		}
 
 		return <div className="god-note">
-			<style>@import url(style/god-note.css);</style>
 			<ul className="player-round left">
 				{left_round}
 			</ul>
