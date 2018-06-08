@@ -81,6 +81,10 @@ class Lobby extends React.Component {
 	}
 
 	componentDidMount() {
+		if (!this.props.autoEnter) {
+			return;
+		}
+
 		let param = parseQueryString();
 		if (param.room_id) {
 			document.getElementById('room-number').value = param.room_id;

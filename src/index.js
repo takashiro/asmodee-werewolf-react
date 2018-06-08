@@ -7,6 +7,6 @@ import Lobby from './gui/Lobby';
 import './common.scss';
 
 ReactDOM.render(
-	<Lobby />,
+	<Lobby autoEnter="true" />,
 	document.getElementById('root')
 );
