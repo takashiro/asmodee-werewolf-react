@@ -1,10 +1,10 @@
 
-class PassiveSkill {
+import Skill from './Skill';
+
+class PassiveSkill extends Skill {
 
 	constructor(timing, role = null) {
-		this.timing = timing;
-		this.role = role;
-		this.priority = 0;
+		super(timing, role);
 	}
 
 	triggerable(room, target) {

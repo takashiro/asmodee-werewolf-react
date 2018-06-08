@@ -49,7 +49,7 @@ class Player extends EventEmitter {
 					skill.owner = this;
 				}
 
-				if (this.role === skill.role) {
+				if (skill.belongsTo(this)) {
 					skill.priority = i;
 					this.addSkill(skill);
 				}

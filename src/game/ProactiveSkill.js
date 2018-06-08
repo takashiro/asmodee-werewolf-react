@@ -1,15 +1,15 @@
 
-class ProactiveSkill {
+import Skill from './Skill';
+
+class ProactiveSkill extends Skill {
 
 	constructor(timing, role, name, marker = null) {
-		this.timing = timing;
-		this.role = role;
+		super(timing, role);
 		this.name = name;
 		this.marker = marker;
 		this.clickable = true;
 		this.targetFixed = false;
 		this.targetNum = 1;
-		this.priority = 0;
 	}
 
 	isAvailable(room) {
