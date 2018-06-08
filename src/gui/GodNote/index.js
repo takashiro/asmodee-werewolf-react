@@ -20,16 +20,6 @@ import GameEvent from '../../game/GameEvent';
 
 import './index.scss';
 
-function markRole(target) {
-	if (!this.currentPhase || this.currentPhase == Role.Unknown) {
-		return;
-	}
-
-	target.setState(prev => ({
-		role: prev.role === this.currentPhase ? Role.Unknown : this.currentPhase
-	}));
-}
-
 function useSkill(target) {
 	if (!this.currentSkill) {
 		return;
@@ -45,10 +35,8 @@ class GodNote extends React.Component {
 
 		this.action = null;
 		this.currentSkill = null;
-		this.currentPhase = null;
 
 		this.handleReturn = this.handleReturn.bind(this);
-		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handlePlayerClick = this.handlePlayerClick.bind(this);
 		this.trigger = this.trigger.bind(this);
@@ -144,11 +132,6 @@ class GodNote extends React.Component {
 			<Room config={this.props.config} />,
 			document.getElementById('root')
 		);
-	}
-
-	handlePhaseChange(role) {
-		this.currentPhase = role;
-		this.action = markRole;
 	}
 
 	handleSkill(skill) {
@@ -259,7 +242,6 @@ class GodNote extends React.Component {
 				<GameDailyFlow
 					day={day}
 					room={this}
-					onPhaseChange={this.handlePhaseChange}
 					onSkill={this.handleSkill}
 					onGameEvent={this.trigger}
 				/>

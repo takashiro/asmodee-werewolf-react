@@ -8,7 +8,6 @@ class SkillButton extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 	}
 
@@ -19,16 +18,10 @@ class SkillButton extends React.Component {
 		}
 	}
 
-	handlePhaseChange() {
-		if (this.props.onPhaseChange) {
-			this.props.onPhaseChange(this.props.skill.role);
-		}
-	}
-
 	render() {
 		let skill = this.props.skill;
 		return <div>
-			<h5 onClick={this.handlePhaseChange}>
+			<h5>
 				<RoleIcon role={skill.role} />
 				<span className="name">{skill.role.name}</span>
 			</h5>

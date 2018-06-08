@@ -16,7 +16,6 @@ class GameDailyFlow extends React.Component {
 		};
 
 		this.handleFocus = this.handleFocus.bind(this);
-		this.handlePhaseChange = this.handlePhaseChange.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 		this.handleDawn = this.handleDawn.bind(this);
 		this.handleDusk = this.handleDusk.bind(this);
@@ -29,12 +28,6 @@ class GameDailyFlow extends React.Component {
 			sibling.classList.remove('current');
 		}
 		current.classList.add('current');
-	}
-
-	handlePhaseChange(role) {
-		if (this.props.onPhaseChange) {
-			this.props.onPhaseChange(role);
-		}
 	}
 
 	handleSkill(skill) {
@@ -75,7 +68,6 @@ class GameDailyFlow extends React.Component {
 			<li key={key} onClick={this.handleFocus}>
 				<SkillButton
 					skill={skill}
-					onPhaseChange={this.handlePhaseChange}
 					onClick={this.handleSkill}
 				/>
 			</li>
