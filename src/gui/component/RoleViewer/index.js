@@ -13,6 +13,7 @@ import './index.scss';
 const ERROR_MESSAGE = {
 	ROOM_EXPIRED: '房间不存在，可能已过期。',
 	INVALID_SEAT: '座位号错误，请重新输入。',
+	INVALID_SEATKEY: '请刷新网页缓存，然后重试。',
 	SEAT_TAKEN: '该座位已使用，请重新输入。',
 	ROOM_FULL: '房间人数已满。'
 };
@@ -42,6 +43,9 @@ class RoleViewer extends React.Component {
 				if (session.cards && session.cards instanceof Array) {
 					this.state.cards = session.cards.map(card => Role.fromNum(card));
 				}
+				if (session.seat) {
+					this.state.seat = session.seat;
+				}
 			}
 		}
 
@@ -68,31 +72,49 @@ class RoleViewer extends React.Component {
 			return;
 		}
 
-		this.showMessage('你的身份是...');
-		$client.request(net.FetchRole, {id: this.roomId, seat: this.seat}, result => {
-			if (result.error) {
-				result = ERROR_MESSAGE[result.error] ? ERROR_MESSAGE[result.error] : result.error;
-				this.showMessage(result);
-				return;
-			}
-
-			let role = Role.fromNum(result.role);
-			let cards = [];
-			if (result.cards && result.cards instanceof Array) {
-				cards = result.cards.map(card => Role.fromNum(card));
-			}
-
-			this.setState({
-				role: role,
-				cards: cards
-			});
-
-			let config = this.props.config;
+		let config = this.props.config;
+		let session = config.readSession();
+		let seatKey = session && session.seatKey;
+		if (!seatKey) {
+			seatKey = Math.floor(Math.random() * 0xFFFF) + 1;
 			config.writeSession({
-				role: role.toNum(),
-				cards: cards.map(card => card.toNum())
+				seatKey: seatKey,
 			});
-		});
+		}
+
+		this.showMessage('你的身份是...');
+		$client.request(net.FetchRole, {
+				id: this.roomId,
+				seat: this.seat,
+				key: seatKey,
+			},
+			result => {
+				if (result.error) {
+					result = ERROR_MESSAGE[result.error] ? ERROR_MESSAGE[result.error] : result.error;
+					this.showMessage(result);
+					return;
+				}
+
+				let role = Role.fromNum(result.role);
+				let cards = [];
+				if (result.cards && result.cards instanceof Array) {
+					cards = result.cards.map(card => Role.fromNum(card));
+				}
+
+				this.setState({
+					seat: this.seat,
+					role: role,
+					cards: cards
+				});
+
+				config.writeSession({
+					seat: this.seat,
+					seatKey: seatKey,
+					role: role.toNum(),
+					cards: cards.map(card => card.toNum())
+				});
+			}
+		);
 	}
 
 	handleSeatInput(e) {
@@ -113,12 +135,13 @@ class RoleViewer extends React.Component {
 			</div>;
 		}
 
+		let seat = this.state.seat;
 		let role = this.state.role;
 		let cards = this.state.cards;
 
 		if (cards.length <= 0) {
 			return <div className="role-area">
-				<div className="name">{role.name}</div>
+				<div className="name">{seat}号位 {role.name}</div>
 				<RoleIcon role={role} />
 			</div>;
 		} else {
