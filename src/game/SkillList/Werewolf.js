@@ -12,6 +12,7 @@ class WerewolfAttack extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Night, Role.Werewolf, '狼刀', Attacked);
+		this.singleton = true;
 	}
 
 	effect(room) {
@@ -33,6 +34,7 @@ class WerewolfExpose extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Day, Role.Werewolf, '自爆', SelfExpose);
+		this.singleton = true;
 	}
 
 	isValidTarget(target) {
@@ -50,6 +52,9 @@ class WerewolfExpose extends ProactiveSkill {
 	}
 
 }
+
+WerewolfAttack.singleton = new WerewolfAttack;
+WerewolfExpose.singleton = new WerewolfExpose;
 
 export default [
 	WerewolfAttack,

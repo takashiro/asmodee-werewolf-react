@@ -72,7 +72,10 @@ class Room extends EventEmitter {
 		} else {
 			list = skillSet.get(skill.timing);
 		}
-		list.push(skill);
+
+		if (list.indexOf(skill) === -1) {
+			list.push(skill);
+		}
 	}
 
 	loadSkills() {

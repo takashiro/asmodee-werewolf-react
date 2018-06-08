@@ -41,9 +41,16 @@ class Player extends EventEmitter {
 		for (let i = 0; i < SkillList.length; i++) {
 			let skills = SkillList[i];
 			for (let Skill of skills) {
-				let skill = new Skill;
-				skill.priority = i;
+				let skill = null;
+				if (Skill.singleton) {
+					skill = Skill.singleton;
+				} else {
+					skill = new Skill;
+					skill.owner = this;
+				}
+
 				if (this.role === skill.role) {
+					skill.priority = i;
 					this.addSkill(skill);
 				}
 			}
@@ -51,7 +58,6 @@ class Player extends EventEmitter {
 	}
 
 	addSkill(skill) {
-		skill.owner = this;
 		this.skills.push(skill);
 	}
 
