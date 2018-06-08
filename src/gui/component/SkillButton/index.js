@@ -9,12 +9,17 @@ class SkillButton extends React.Component {
 		super(props);
 
 		this.handleClick = this.handleClick.bind(this);
+		this.state = {
+			confirm: false
+		};
 	}
 
 	handleClick(e) {
 		e.preventDefault();
 		if (this.props.onClick) {
-			this.props.onClick(this.props.skill);
+			let confirm = this.state.confirm;
+			this.setState({ confirm: !confirm });
+			setTimeout(this.props.onClick, 0, this.props.skill, confirm);
 		}
 	}
 
@@ -26,7 +31,7 @@ class SkillButton extends React.Component {
 				<span className="name">{skill.role.name}</span>
 			</h5>
 			<div className="content">
-				{skill.clickable ? <button onClick={this.handleClick}>{skill.name}</button> : skill.name}
+				{skill.clickable ? <button onClick={this.handleClick}>{this.state.confirm ? '确认' : skill.name}</button> : skill.name}
 			</div>
 		</div>;
 	}

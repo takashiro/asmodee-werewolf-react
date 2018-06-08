@@ -30,9 +30,9 @@ class GameDailyFlow extends React.Component {
 		current.classList.add('current');
 	}
 
-	handleSkill(skill) {
+	handleSkill(skill, confirm) {
 		if (this.props.onSkill) {
-			this.props.onSkill(skill);
+			setTimeout(this.props.onSkill, 0, skill, confirm);
 		}
 	}
 
@@ -58,7 +58,7 @@ class GameDailyFlow extends React.Component {
 
 	findSkills(timing) {
 		const room = this.props.room;
-		const skills = room.skills.proactive.get(timing);
+		const skills = room.proactiveSkills.get(timing);
 		if (!skills || skills.length <= 0) {
 			return null;
 		}
@@ -66,10 +66,7 @@ class GameDailyFlow extends React.Component {
 		const available_skills = skills.filter(skill => skill.isAvailable(room));
 		let actions = available_skills.map((skill, key) => (
 			<li key={key} onClick={this.handleFocus}>
-				<SkillButton
-					skill={skill}
-					onClick={this.handleSkill}
-				/>
+				<SkillButton skill={skill} />
 			</li>
 		));
 		return actions;

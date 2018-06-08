@@ -9,9 +9,12 @@ class PlayerIcon extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		let player = props.player;
+
 		this.state = {
-			seat: props.seat,
-			role: props.role,
+			seat: player.seat,
+			role: player.role,
 			cards: [],
 			alive: true,
 			selected: false,
@@ -20,10 +23,7 @@ class PlayerIcon extends React.Component {
 		};
 		this.markers = new Set;
 		this.tags = new Set;
-		this.purified = false;
-		this.alive = true;
-		this.deathDay = 0;
-		this.deathReason = null;
+
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 
@@ -109,7 +109,7 @@ class PlayerIcon extends React.Component {
 		}
 	}
 
-	handleSkill(e) {
+	handleSkill(e, confirm) {
 		e.preventDefault();
 
 		if (this.props.onSkill) {
