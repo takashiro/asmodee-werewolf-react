@@ -7,7 +7,7 @@ import ProactiveSkill from '../ProactiveSkill';
 class MarkRole extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Thief, '', GameEvent.Night);
+		super(GameEvent.Night, Role.Thief, '');
 		this.clickable = false;
 	}
 
@@ -17,23 +17,6 @@ class MarkRole extends ProactiveSkill {
 
 }
 
-class RoleCount extends PassiveSkill {
-
-	constructor() {
-		super(Role.Thief, GameEvent.Start);
-	}
-
-	triggerable(room, target) {
-		return !target;
-	}
-
-	effect(room) {
-		room.playerNum = Math.max(1, room.playerNum - 2);
-	}
-
-}
-
 export default [
 	MarkRole,
-	RoleCount,
 ];

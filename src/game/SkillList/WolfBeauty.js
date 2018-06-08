@@ -12,24 +12,11 @@ const Charmed = new Marker('Charmed', '魅惑');
 class BeautyCharm extends ProactiveSkill {
 
 	constructor() {
-		super(Role.WolfBeauty, '魅惑', GameEvent.Night);
+		super(GameEvent.Night, Role.WolfBeauty, '魅惑', Charmed);
 	}
 
-	effect(room, target) {
-		if (!target) {
-			return;
-		}
-
-		if (target.hasMarker(Charmed)) {
-			target.removeMarker(Charmed);
-			return;
-		}
-
-		const prev = room.players.find(player => player.hasMarker(Charmed));
-		if (prev) {
-			prev.removeMarker(prev);
-		}
-		target.addMarker(Charmed);
+	effect(room) {
+		return !!this.findTarget(room);
 	}
 
 }
@@ -40,7 +27,7 @@ class BeautyCharm extends ProactiveSkill {
 class DieForLove extends PassiveSkill {
 
 	constructor() {
-		super(Role.WolfBeauty, GameEvent.Death);
+		super(GameEvent.Death, Role.WolfBeauty);
 	}
 
 	triggerable(room, target) {

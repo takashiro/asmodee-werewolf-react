@@ -3,14 +3,14 @@ import Role from '../core/Role';
 
 import Marker from './Marker';
 import GameEvent from './GameEvent';
+import ProactiveSkill from './ProactiveSkill';
 import PassiveSkill from './PassiveSkill';
-import MarkerSkill from './MarkerSkill';
 
 // 夜间倒牌结算
 class NightDeath extends PassiveSkill {
 
 	constructor() {
-		super(null, GameEvent.Dawn);
+		super(GameEvent.Dawn);
 	}
 
 	triggerable(room, target) {
@@ -23,14 +23,12 @@ class NightDeath extends PassiveSkill {
 
 }
 
-const Executed = new Marker('Executed', '公投');
-
 // 公投
-class Execution extends MarkerSkill {
+const Executed = new Marker('Executed', '公投');
+class Execution extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Villager, '公投', GameEvent.Day);
-		this.marker = Executed;
+		super(GameEvent.Day, Role.Villager, '公投', Executed);
 	}
 
 }
@@ -39,7 +37,7 @@ class Execution extends MarkerSkill {
 class AfterExecution extends PassiveSkill {
 
 	constructor() {
-		super(null, GameEvent.Dusk);
+		super(GameEvent.Dusk);
 	}
 
 	triggerable(room, target) {
@@ -58,7 +56,7 @@ class AfterExecution extends PassiveSkill {
 class DeathGod extends PassiveSkill {
 
 	constructor() {
-		super(null, GameEvent.Dusk);
+		super(GameEvent.Dusk);
 	}
 
 	triggerable(room, target) {
@@ -79,7 +77,7 @@ class DeathGod extends PassiveSkill {
 class BrandNewDay extends PassiveSkill {
 
 	constructor() {
-		super(null, GameEvent.Dusk);
+		super(GameEvent.Dusk);
 	}
 
 	triggerable(room, target) {

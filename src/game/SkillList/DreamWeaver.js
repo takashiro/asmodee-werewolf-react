@@ -3,17 +3,20 @@ import Role from '../../core/Role';
 
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
-import MarkerSkill from '../MarkerSkill';
+import ProactiveSkill from '../ProactiveSkill';
 import PassiveSkill from '../PassiveSkill';
 
 const NightWalker = new Marker('NightWalker', '梦游');
 
 //摄梦人可以在夜间使一名玩家梦游
-class WeaveDream extends MarkerSkill {
+class WeaveDream extends ProactiveSkill {
 
 	constructor() {
-		super(Role.DreamWeaver, '摄梦', GameEvent.Night);
-		this.marker = NightWalker;
+		super(GameEvent.Night, Role.DreamWeaver, '摄梦', NightWalker);
+	}
+
+	effect(room) {
+		return !!this.findTarget(room);
 	}
 
 }
@@ -22,7 +25,7 @@ class WeaveDream extends MarkerSkill {
 class NightWalkerEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.DreamWeaver, GameEvent.Dawn);
+		super(GameEvent.Dawn, Role.DreamWeaver);
 	}
 
 	triggerable(room, target) {
@@ -44,7 +47,7 @@ class NightWalkerEffect extends PassiveSkill {
 class DreamLink extends PassiveSkill {
 
 	constructor() {
-		super(Role.DreamWeaver, GameEvent.Dawn);
+		super(GameEvent.Dawn, Role.DreamWeaver);
 	}
 
 	triggerable(room, target) {

@@ -11,7 +11,7 @@ const Shot = new Marker('HunterShot', '猎枪');
 class HunterShotStatus extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Hunter, '开枪状态', GameEvent.Night);
+		super(GameEvent.Night, Role.Hunter, '开枪状态');
 		this.clickable = false;
 	}
 
@@ -21,29 +21,21 @@ class HunterShotStatus extends ProactiveSkill {
 class HunterShot extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Hunter, '猎枪', GameEvent.Death);
+		super(GameEvent.Death, Role.Hunter, '猎枪');
 	}
 
-	effect(room, target) {
-		if (target.hasMarker(Shot)) {
-			target.removeMarker(Shot);
-			target.setAlive(true);
-		} else {
-			if (!target || !target.isAlive()) {
-				return;
-			}
+	effect(room) {
+		let target = this.findTarget(room);
+		if (!target) {
+			return false;
+		}
 
-			let prev = room.players.find(player => player.hasMarker(Shot));
-			if (prev) {
-				prev.removeMarker(Shot);
-				prev.setAlive(true);
-				prev.deathDay = 0;
-			}
-
-			target.addMarker(Shot);
+		if (target.isAlive()) {
 			target.setAlive(false);
 			target.deathDay = this.owner && this.owner.deathDay;
 		}
+
+		return true;
 	}
 
 }

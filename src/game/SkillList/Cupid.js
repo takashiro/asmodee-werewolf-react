@@ -13,31 +13,25 @@ const ForLove = new Marker('DieForLove', '殉情');
 class DecideCouple extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Cupid, '情侣', GameEvent.Night);
+		super(GameEvent.Night, Role.Cupid, '情侣', Couple);
 	}
 
 	isAvailable(room) {
 		return room.day == 1;
 	}
 
-	effect(room, target) {
-		if (!target) {
-			return;
+	effect(room) {
+		let targets = this.findTargets(room);
+		if (targets.length != 2) {
+			return false;
 		}
 
-		if (target.hasTag(Couple)) {
-			target.removeTag(Couple);
-			return;
+		for (let target of targets) {
+			target.removeMarker(Couple);
+			target.addTag(Couple);
 		}
 
-		let prev = room.players.filter(target => target.hasTag(Couple));
-		if (prev.length >= 2) {
-			prev.shift();
-			prev.forEach(player => {
-				player.removeTag(Couple);
-			});
-		}
-		target.addTag(Couple);
+		return true;
 	}
 
 }
@@ -46,7 +40,7 @@ class DecideCouple extends ProactiveSkill {
 class DieForLove extends PassiveSkill {
 
 	constructor() {
-		super(Role.Cupid, GameEvent.Death);
+		super(GameEvent.Death, Role.Cupid);
 	}
 
 	triggerable(room, target) {

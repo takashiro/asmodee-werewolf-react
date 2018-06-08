@@ -7,7 +7,7 @@ import ProactiveSkill from '../ProactiveSkill';
 class SeerForecast extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Seer, '查验', GameEvent.Night);
+		super(GameEvent.Night, Role.Seer, '查验');
 		this.clickable = false;
 	}
 

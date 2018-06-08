@@ -9,7 +9,7 @@ import ProactiveSkill from '../ProactiveSkill';
 class FindGod extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Demon, '验神', GameEvent.Night);
+		super(GameEvent.Night, Role.Demon, '验神');
 		this.clickable = false;
 	}
 
@@ -19,7 +19,7 @@ class FindGod extends ProactiveSkill {
 class ImmortalNightmare extends PassiveSkill {
 
 	constructor() {
-		super(Role.Demon, GameEvent.Dawn);
+		super(GameEvent.Dawn, Role.Demon);
 	}
 
 	effect(room, target) {

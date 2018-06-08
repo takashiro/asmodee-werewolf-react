@@ -11,7 +11,7 @@ const Shot = new Marker('WolfShot', '狼枪');
 class WolfShotStatus extends ProactiveSkill {
 
 	constructor() {
-		super(Role.AlphaWolf, '开枪状态', GameEvent.Night);
+		super(GameEvent.Night, Role.AlphaWolf, '开枪状态', Shot);
 		this.clickable = false;
 	}
 
@@ -21,29 +21,18 @@ class WolfShotStatus extends ProactiveSkill {
 class WolfShot extends ProactiveSkill {
 
 	constructor() {
-		super(Role.AlphaWolf, '反扑', GameEvent.Death);
+		super(GameEvent.Death, Role.AlphaWolf, '反扑', Shot);
 	}
 
-	effect(room, target) {
-		if (target.hasMarker(Shot)) {
-			target.removeMarker(Shot);
-			target.setAlive(true);
-		} else {
-			if (!target || !target.isAlive()) {
-				return;
-			}
-
-			let prev = room.players.find(player => player.hasMarker(Shot));
-			if (prev) {
-				prev.removeMarker(Shot);
-				prev.setAlive(true);
-				prev.deathDay = 0;
-			}
-
-			target.addMarker(Shot);
-			target.setAlive(false);
-			target.deathDay = this.owner && this.owner.deathDay;
+	effect(room) {
+		let target = this.findTarget(room);
+		if (!target) {
+			return false;
 		}
+
+		target.setAlive(false);
+		target.deathDay = this.owner && this.owner.deathDay;
+		return true;
 	}
 
 }

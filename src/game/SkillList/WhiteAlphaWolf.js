@@ -4,7 +4,6 @@ import Role from '../../core/Role';
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
-import PassiveSkill from '../PassiveSkill';
 
 const Shot = new Marker('WhiteWolfShot', '狼枪');
 
@@ -12,44 +11,22 @@ const Shot = new Marker('WhiteWolfShot', '狼枪');
 class WolfShot extends ProactiveSkill {
 
 	constructor() {
-		super(Role.WhiteAlphaWolf, '自爆', GameEvent.Day);
+		super(GameEvent.Day, Role.WhiteAlphaWolf, '自爆', Shot);
 	}
 
-	effect(room, target) {
-		if (target.hasMarker(Shot)) {
-			target.removeMarker(Shot);
-		} else if (target.isAlive()) {
-			let prev = room.players.find(player => player.hasMarker(Shot));
-			if (prev) {
-				prev.removeMarker(Shot);
-			}
-			target.addMarker(Shot);
+	effect(room) {
+		let target = this.findTarget(room);
+		if (!target) {
+			return false;
 		}
-	}
 
-}
-
-class ShotEffect extends PassiveSkill {
-
-	constructor() {
-		super(Role.WhiteAlphaWolf, GameEvent.Day);
-	}
-
-	triggerable(room, target) {
-		return target && target.hasMarker(Shot);
-	}
-
-	effect(room, target) {
-		let wolf = room.players.find(player => player.state.role == Role.WhiteAlphaWolf);
-		if (wolf) {
-			wolf.setAlive(false);
-		}
 		target.setAlive(false);
+		this.owner.setAlive(false);
+		return false;
 	}
 
 }
 
 export default [
 	WolfShot,
-	ShotEffect,
 ];

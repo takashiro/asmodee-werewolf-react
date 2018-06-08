@@ -1,9 +1,10 @@
 
 class PassiveSkill {
 
-	constructor(role, timing) {
-		this.role = role;
+	constructor(timing, role = null) {
 		this.timing = timing;
+		this.role = role;
+		this.priority = 0;
 	}
 
 	triggerable(room, target) {

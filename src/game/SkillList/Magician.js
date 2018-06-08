@@ -3,18 +3,22 @@ import Role from '../../core/Role';
 
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
-import MarkerSkill from '../MarkerSkill';
+import ProactiveSkill from '../ProactiveSkill';
 import PassiveSkill from '../PassiveSkill';
 
 const Exchanged = new Marker('Exchanged', '交换');
 
 //魔术师每晚可以交换两名玩家的号码牌
-class ExchangeUser extends MarkerSkill {
+class ExchangeUser extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Magician, '交换', GameEvent.Night);
-		this.marker = Exchanged;
-		this.maxMarkerNum = 2;
+		super(GameEvent.Night, Role.Magician, '交换', Exchanged);
+		this.targetNum = 2;
+	}
+
+	effect(room) {
+		let targets = this.findTargets(room);
+		return targets.length === 2;
 	}
 
 }
@@ -23,7 +27,7 @@ class ExchangeUser extends MarkerSkill {
 class ExchangeEffect extends PassiveSkill {
 
 	constructor() {
-		super(Role.Magician, GameEvent.Night);
+		super(GameEvent.Night, Role.Magician);
 	}
 
 	triggerable(room, target) {

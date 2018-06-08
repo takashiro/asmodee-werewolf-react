@@ -11,39 +11,26 @@ const Dueled = new Marker('Dueled', '决斗');
 class Duel extends ProactiveSkill {
 
 	constructor() {
-		super(Role.Knight, '决斗', GameEvent.Day);
+		super(GameEvent.Day, Role.Knight, '决斗', Dueled);
 	}
 
-	effect(room, target) {
-		if (!target) {
-			return;
+	effect(room) {
+		let target = this.findTarget(room);
+		if (!target || !target.isAlive()) {
+			return false;
 		}
 
-		if (!target.isAlive()) {
-			if (target.hasMarker(Dueled)) {
-				target.removeMarker(Dueled);
-				target.setAlive(true);
-			}
-			return;
+		if (target.role.team === Team.Werewolf) {
+			target.setAlive(false);
+		} else {
+			this.owner.setAlive(false);
 		}
 
-		let prev = room.players.find(player => player.hasMarker(Dueled));
-		if (prev) {
-			prev.removeMarker(Dueled);
-			prev.setAlive(true);
-		}
-
-		let loser = target;
-		if (target.role.team != Team.Werewolf) {
-			loser = room.players.find(player => player.role == Role.Knight);
-		}
-
-		if (loser) {
-			loser.addMarker(Dueled);
-			loser.setAlive(false);
-		}
+		return true;
 	}
 
 }
 
-export default [Duel];
+export default [
+	Duel
+];
