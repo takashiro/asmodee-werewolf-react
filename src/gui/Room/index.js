@@ -70,7 +70,7 @@ class Room extends React.Component {
 
 		let link_input = document.createElement('input');
 		link_input.type = 'text';
-		link_input.value = this.share_url;
+		link_input.value = `\uD83D\uDE49到浏览器中打开${this.share_url}，进入\uD83D\uDC3A狼人杀游戏`;
 		link_input.contentEditable = true;
 		link_input.readonly = false;
 
