@@ -11,7 +11,6 @@ import DreamWeaver from './DreamWeaver';
 import Hunter from './Hunter';
 import AlphaWolf from './AlphaWolf';
 import Demon from './Demon';
-import Villager from './Villager';
 import Knight from './Knight';
 import WhiteAlphaWolf from './WhiteAlphaWolf';
 
@@ -28,7 +27,6 @@ export default [
 	Hunter,
 	AlphaWolf,
 	Demon,
-	Villager,
 	Knight,
 	WhiteAlphaWolf,
 ];
