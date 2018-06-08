@@ -83,7 +83,15 @@ class Room extends EventEmitter {
 		}
 
 		for (let Rule of BasicRule) {
-			this.addSkill(new Rule);
+			let rule = new Rule;
+			rule.priority = 1000;
+			this.addSkill(rule);
+		}
+
+		for (let skillSet of [this.proactiveSkills, this.passiveSkills]) {
+			for (let [timing, skills] of skillSet) {
+				skills.sort((a, b) => a.priority > b.priority);
+			}
 		}
 	}
 

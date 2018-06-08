@@ -38,9 +38,11 @@ class Player extends EventEmitter {
 	}
 
 	loadRoleSkills() {
-		for (let skills of SkillList) {
+		for (let i = 0; i < SkillList.length; i++) {
+			let skills = SkillList[i];
 			for (let Skill of skills) {
 				let skill = new Skill;
+				skill.priority = i;
 				if (this.role === skill.role) {
 					this.addSkill(skill);
 				}
