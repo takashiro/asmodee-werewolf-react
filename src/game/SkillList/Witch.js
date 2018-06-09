@@ -22,14 +22,8 @@ class UseCure extends ProactiveSkill {
 		return target && target.hasMarker(Marker.Attacked);
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (target) {
-			target.setAlive(true);
-			return true;
-		}
-
-		return false;
+	effect(room, target) {
+		target.setAlive(true);
 	}
 
 }

@@ -113,10 +113,14 @@ class Room extends EventEmitter {
 				skill.effect(this);
 			} else if (skill.targetNum == 1) {
 				let target = skill.findTarget(this);
-				skill.effect(this, target);
+				if (target) {
+					skill.effect(this, target);
+				}
 			} else {
 				let targets = skill.findTargets(this);
-				skill.effect(this, targets);
+				if (targets.length === skill.targetNum) {
+					skill.effect(this, targets);
+				}
 			}
 		}
 	}

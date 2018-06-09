@@ -15,8 +15,8 @@ class WeaveDream extends ProactiveSkill {
 		super(GameEvent.Night, Role.DreamWeaver, '摄梦', NightWalker);
 	}
 
-	effect(room) {
-		return !!this.findTarget(room);
+	effect(room, target) {
+		return !!target;
 	}
 
 }

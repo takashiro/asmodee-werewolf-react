@@ -19,12 +19,7 @@ class WerewolfAttack extends ProactiveSkill {
 		return this.role.team === player.role.team;
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (!target || !target.isAlive()) {
-			return false;
-		}
-
+	effect(room, target) {
 		target.setAlive(false);
 		return true;
 	}

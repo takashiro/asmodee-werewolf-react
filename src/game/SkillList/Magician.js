@@ -16,8 +16,7 @@ class ExchangeUser extends ProactiveSkill {
 		this.targetNum = 2;
 	}
 
-	effect(room) {
-		let targets = this.findTargets(room);
+	effect(room, targets) {
 		return targets.length === 2;
 	}
 

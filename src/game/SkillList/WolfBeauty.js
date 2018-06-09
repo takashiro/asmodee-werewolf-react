@@ -15,8 +15,8 @@ class BeautyCharm extends ProactiveSkill {
 		super(GameEvent.Night, Role.WolfBeauty, '魅惑', Charmed);
 	}
 
-	effect(room) {
-		return !!this.findTarget(room);
+	effect(room, target) {
+		return !!target;
 	}
 
 }

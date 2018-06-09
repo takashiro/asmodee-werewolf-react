@@ -16,12 +16,7 @@ class UseArmor extends ProactiveSkill {
 		super(GameEvent.Night, Role.Guard, '守护', Guarded);
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (!target) {
-			return false;
-		}
-
+	effect(room, target) {
 		if (target.hasMarker(Marker.Attacked)) {
 			if (target.hasMarker(Marker.Saved)) {
 				//同守同救倒牌

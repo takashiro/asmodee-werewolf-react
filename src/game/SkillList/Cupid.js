@@ -14,18 +14,14 @@ class DecideCouple extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Night, Role.Cupid, '情侣', Couple);
+		this.targetNum = 2;
 	}
 
 	isAvailable(room) {
 		return room.day == 1;
 	}
 
-	effect(room) {
-		let targets = this.findTargets(room);
-		if (targets.length != 2) {
-			return false;
-		}
-
+	effect(room, targets) {
 		for (let target of targets) {
 			target.removeMarker(Couple);
 			target.addTag(Couple);

@@ -25,12 +25,7 @@ class HunterShot extends ProactiveSkill {
 		this.delayed = false;
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (!target) {
-			return false;
-		}
-
+	effect(room, target) {
 		if (target.isAlive()) {
 			target.setAlive(false);
 			target.deathDay = this.owner && this.owner.deathDay;

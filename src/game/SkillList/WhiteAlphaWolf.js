@@ -14,15 +14,10 @@ class WolfShot extends ProactiveSkill {
 		super(GameEvent.Day, Role.WhiteAlphaWolf, '自爆', Shot);
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (!target) {
-			return false;
-		}
-
+	effect(room, target) {
 		target.setAlive(false);
 		this.owner.setAlive(false);
-		return false;
+		return true;
 	}
 
 }
