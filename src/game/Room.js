@@ -123,6 +123,16 @@ class Room extends EventEmitter {
 		}
 	}
 
+	activateSkill(skill) {
+		this.currentSkill = skill;
+		if (skill.targetFixed) {
+			let targets = this.players.filter(player => skill.isValidTarget(player));
+			for (let target of targets) {
+				skill.select(this, target);
+			}
+		}
+	}
+
 	selectTarget(player) {
 		if (!this.currentSkill) {
 			return;
