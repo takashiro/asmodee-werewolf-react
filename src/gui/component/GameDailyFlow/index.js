@@ -113,7 +113,7 @@ class GameDailyFlow extends React.Component {
 		if (victims && victims.length > 0) {
 			let victim_logs = victims.map(victim => {
 				let reason = victim.deathReason.map(marker => marker.name);
-				return reason.join(',') + ' ' + victim.state.seat;
+				return reason.join(',') + ' ' + victim.seat;
 			});
 			logs.push(...victim_logs);
 		} else {
