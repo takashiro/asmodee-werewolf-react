@@ -15,6 +15,7 @@ class Room extends EventEmitter {
 		super();
 
 		this.players = [];
+		this.currentTarget = null;
 		this.currentSkill = null;
 		this.proactiveSkills = new Map;
 		this.passiveSkills = new Map;
@@ -155,6 +156,15 @@ class Room extends EventEmitter {
 	}
 
 	activateSkill(skill) {
+		if (this.currentSkill) {
+			let prev = this.currentSkill;
+			if (!prev.delayed && this.currentTarget) {
+				let target = this.currentTarget;
+				target.removeMarker(prev.marker);
+				target.emit('selected', false);
+			}
+		}
+
 		this.currentSkill = skill;
 		if (skill.targetFixed) {
 			let targets = this.players.filter(player => skill.isValidTarget(player));
@@ -169,7 +179,28 @@ class Room extends EventEmitter {
 			return;
 		}
 
-		this.currentSkill.select(this, player);
+		let skill = this.currentSkill;
+		if (skill.delayed) {
+			skill.select(this, player);
+		} else {
+			if (this.currentTarget === player) {
+				skill.effect(this, player);
+				this.currentTarget = null;
+				player.emit('selected', false);
+			} else {
+				if (this.currentTarget) {
+					let prev = this.currentTarget;
+					prev.removeMarker(skill.marker);
+					prev.emit('selected', false);
+					this.currentTarget = null;
+				}
+
+				if (skill.select(this, player)) {
+					this.currentTarget = player;
+					player.emit('selected', true);
+				}
+			}
+		}
 	}
 
 }

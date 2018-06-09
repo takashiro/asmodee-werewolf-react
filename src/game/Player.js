@@ -17,7 +17,7 @@ class Player extends EventEmitter {
 
 		this.alive = true;
 		this.deathDay = 0;
-		this.deathReason = 0;
+		this.deathReason = [];
 
 		this.markers = new Set;
 		this.tags = new Set;

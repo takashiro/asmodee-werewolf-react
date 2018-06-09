@@ -56,6 +56,7 @@ class DeathGod extends PassiveSkill {
 			target.deathReason = Array.from(target.markers);
 		}
 		target.clearMarkers();
+		target.emit('selected', false);
 	}
 
 }

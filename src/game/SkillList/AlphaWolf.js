@@ -25,9 +25,14 @@ class WolfShot extends ProactiveSkill {
 		this.delayed = false;
 	}
 
+	isValidTarget(target) {
+		return super.isValidTarget(target) && target != this.owner;
+	}
+
 	effect(room, target) {
 		target.setAlive(false);
 		target.deathDay = this.owner && this.owner.deathDay;
+		target.deathReason = [Shot];
 		return true;
 	}
 

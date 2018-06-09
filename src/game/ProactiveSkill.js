@@ -23,12 +23,12 @@ class ProactiveSkill extends Skill {
 
 	select(room, target) {
 		if (!this.isValidTarget(target)) {
-			return;
+			return false;
 		}
 
 		if (target.hasMarker(this.marker)) {
 			target.removeMarker(this.marker);
-			return;
+			return true;
 		}
 
 		if (this.targetNum == 1) {
@@ -39,11 +39,12 @@ class ProactiveSkill extends Skill {
 		} else if (this.targetNum > 1) {
 			let prev = room.players.filter(target => target.hasMarker(this.marker));
 			if (prev.length >= this.targetNum) {
-				return;
+				return false;
 			}
 		}
 
 		target.addMarker(this.marker);
+		return true;
 	}
 
 	findTarget(room) {
@@ -55,6 +56,7 @@ class ProactiveSkill extends Skill {
 	}
 
 	effect(room, target = null) {
+		return true;
 	}
 }
 
