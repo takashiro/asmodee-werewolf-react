@@ -98,6 +98,22 @@ class Room extends EventEmitter {
 		}
 	}
 
+	useSkill(skill) {
+		if (skill.targetNum <= 0) {
+			skill.effect(this);
+		} else if (skill.targetNum == 1) {
+			let target = skill.findTarget(this);
+			if (target) {
+				skill.effect(this, target);
+			}
+		} else {
+			let targets = skill.findTargets(this);
+			if (targets.length === skill.targetNum) {
+				skill.effect(this, targets);
+			}
+		}
+	}
+
 	invoke(event) {
 		let skills = this.proactiveSkills.get(event);
 		if (!skills || skills.length <= 0) {
@@ -109,19 +125,7 @@ class Room extends EventEmitter {
 				continue;
 			}
 
-			if (skill.targetNum <= 0) {
-				skill.effect(this);
-			} else if (skill.targetNum == 1) {
-				let target = skill.findTarget(this);
-				if (target) {
-					skill.effect(this, target);
-				}
-			} else {
-				let targets = skill.findTargets(this);
-				if (targets.length === skill.targetNum) {
-					skill.effect(this, targets);
-				}
-			}
+			this.useSkill(skill);
 		}
 	}
 

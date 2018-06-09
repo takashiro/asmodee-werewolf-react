@@ -33,9 +33,9 @@ class Execution extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		player.setAlive(false);
-		player.deathDay = room.day;
-		player.deathReason = Array.from(player.markers);
+		target.setAlive(false);
+		target.deathDay = room.day;
+		target.deathReason = [Executed];
 	}
 }
 

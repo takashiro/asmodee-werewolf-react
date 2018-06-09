@@ -2,6 +2,7 @@
 import React from 'react';
 
 import GameEvent from '../../../game/GameEvent';
+import ProactiveSkill from '../../../game/ProactiveSkill';
 
 import RoleIcon from '../RoleIcon';
 
@@ -30,7 +31,10 @@ class PlayerIcon extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
 
-		this.deathSkills = props.skills && props.skills.get(GameEvent.Death);
+		this.deathSkills = player.skills.filter(
+			skill =>
+			skill instanceof ProactiveSkill && skill.timing === GameEvent.Death
+		);
 	}
 
 	handleClick() {
@@ -65,10 +69,11 @@ class PlayerIcon extends React.Component {
 			if (!this.purified && this.deathSkills && this.deathSkills.length > 0) {
 				for (let i = 0; i < this.deathSkills.length; i++) {
 					let skill = this.deathSkills[i];
-					if (skill.role != this.state.role) {
-						continue;
-					}
-					actions.push(<button key={i} value={i} onClick={this.handleSkill}>{skill.name}</button>);
+					actions.push(
+						<button key={i} value={i} onClick={this.handleSkill}>
+							{skill.name}
+						</button>
+					);
 				}
 			}
 		}
