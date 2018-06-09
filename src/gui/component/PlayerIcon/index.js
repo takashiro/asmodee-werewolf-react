@@ -22,6 +22,10 @@ class PlayerIcon extends React.Component {
 			markers: player.markers,
 			tags: player.tags,
 			confirm: false,
+			deathSkill: player.skills.find(
+				skill =>
+				skill instanceof ProactiveSkill && skill.timing === GameEvent.Death
+			),
 		};
 
 		player.on('roleChanged', role => this.setState({role: role}));
@@ -29,14 +33,14 @@ class PlayerIcon extends React.Component {
 		player.on('markerChanged', markers => this.setState({markers: markers}));
 		player.on('tagChanged', tags => this.setState({tags: tags}));
 		player.on('selected', selected => this.setState({confirm: selected}));
+		player.on('skillInvoked', skill => {
+			if (skill === this.state.deathSkill) {
+				this.setState({deathSkill: null});
+			}
+		});
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
-
-		this.deathSkill = player.skills.find(
-			skill =>
-			skill instanceof ProactiveSkill && skill.timing === GameEvent.Death
-		);
 	}
 
 	handleClick() {
@@ -49,7 +53,7 @@ class PlayerIcon extends React.Component {
 	handleSkill(e) {
 		e.preventDefault();
 
-		let skill = this.deathSkill;
+		let skill = this.state.deathSkill;
 		if (!skill) {
 			return;
 		}
@@ -68,8 +72,8 @@ class PlayerIcon extends React.Component {
 
 		if (!this.state.alive) {
 			icon_style += ' dead';
-			if (!player.purified && this.deathSkill) {
-				let skill = this.deathSkill;
+			if (!player.purified && this.state.deathSkill) {
+				let skill = this.state.deathSkill;
 				avatar_button = <button onClick={this.handleSkill}>{skill.name}</button>;
 			}
 		} else if (this.state.confirm) {
