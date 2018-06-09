@@ -33,20 +33,19 @@ class GameDailyFlow extends React.Component {
 		let room = this.props.room;
 		room.currentSkill = null;
 
-		if (this.props.onGameEvent) {
-			this.props.onGameEvent(GameEvent.Night);
-			this.props.onGameEvent(GameEvent.Dawn);
-		}
+		room.invoke(GameEvent.Night);
+		room.trigger(GameEvent.Dawn);
+
 		this.setState({
 			time: GameEvent.Day
 		});
 	}
 
 	handleDusk() {
-		if (this.props.onGameEvent) {
-			this.props.onGameEvent(GameEvent.Day);
-			this.props.onGameEvent(GameEvent.Dusk);
-		}
+		let room = this.props.room;
+		room.invoke(GameEvent.Day);
+		room.trigger(GameEvent.Dusk);
+
 		this.setState({
 			time: null
 		});
@@ -87,7 +86,7 @@ class GameDailyFlow extends React.Component {
 		if (victims.length <= 0) {
 			messages.push('平安夜');
 		} else {
-			let message = '昨晚倒牌 ' + victims.map(victim => victim.state.seat).join(', ');
+			let message = '昨晚倒牌 ' + victims.map(victim => victim.seat).join(', ');
 			messages.push(message);
 		}
 

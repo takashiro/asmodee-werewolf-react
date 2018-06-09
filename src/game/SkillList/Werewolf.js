@@ -39,10 +39,11 @@ class WerewolfExpose extends ProactiveSkill {
 	constructor() {
 		super(GameEvent.Day, Role.Werewolf, '自爆', SelfExpose);
 		this.singleton = true;
+		this.delayed = false;
 	}
 
 	isValidTarget(target) {
-		return super.isValidTarget(target) && target.state.role === Role.Werewolf;
+		return super.isValidTarget(target) && target.role === Role.Werewolf;
 	}
 
 	effect(room) {

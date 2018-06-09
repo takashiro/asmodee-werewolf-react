@@ -98,6 +98,29 @@ class Room extends EventEmitter {
 		}
 	}
 
+	invoke(event) {
+		let skills = this.proactiveSkills.get(event);
+		if (!skills || skills.length <= 0) {
+			return;
+		}
+
+		for (let skill of skills) {
+			if (!skill.delayed) {
+				continue;
+			}
+
+			if (skill.targetNum <= 0) {
+				skill.effect(this);
+			} else if (skill.targetNum == 1) {
+				let target = skill.findTarget(this);
+				skill.effect(this, target);
+			} else {
+				let targets = skill.findTargets(this);
+				skill.effect(this, targets);
+			}
+		}
+	}
+
 	trigger(event, target) {
 		let skills = this.passiveSkills.get(event);
 		if (!skills || skills.length <= 0) {

@@ -54,7 +54,7 @@ class ProactiveSkill extends Skill {
 		return room.players.filter(target => target.hasMarker(this.marker));
 	}
 
-	effect(room) {
+	effect(room, target = null) {
 	}
 }
 

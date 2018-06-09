@@ -29,27 +29,14 @@ class Execution extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Day, Role.Villager, '公投', Executed);
+		this.delayed = false;
 	}
 
-}
-
-// 公投出局玩家倒牌
-class AfterExecution extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Dusk);
-	}
-
-	triggerable(room, target) {
-		return target && target.hasMarker(Marker.Executed);
-	}
-
-	effect(room, player) {
+	effect(room, target) {
 		player.setAlive(false);
 		player.deathDay = room.day;
 		player.deathReason = Array.from(player.markers);
 	}
-
 }
 
 // 标记死亡玩家时间，清除标记
@@ -66,7 +53,7 @@ class DeathGod extends PassiveSkill {
 	effect(room, target) {
 		if (!target.isAlive() && !target.deathDay) {
 			target.deathDay = room.day;
-			target.deathReason = Array.from(target.state.markers);
+			target.deathReason = Array.from(target.markers);
 		}
 		target.clearMarkers();
 	}
@@ -92,7 +79,6 @@ class BrandNewDay extends PassiveSkill {
 
 export default [
 	Execution,
-	AfterExecution,
 	DeathGod,
 	BrandNewDay,
 ];
