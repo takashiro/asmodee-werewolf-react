@@ -26,13 +26,13 @@ class SkillButton extends React.Component {
 
 	render() {
 		let skill = this.props.skill;
-		return <div className="skill-button">
+		return <div className="skill-button" onClick={this.handleClick}>
 			<h5>
 				<RoleIcon role={skill.role} />
 				<span className="name">{skill.role.name}</span>
 			</h5>
 			<div className="content">
-				{this.state.clickable ? <button onClick={this.handleClick}>{skill.name}</button> : skill.name}
+				{this.state.clickable ? <button type="button">{skill.name}</button> : skill.name}
 			</div>
 		</div>;
 	}
