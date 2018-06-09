@@ -106,7 +106,7 @@ class GodNote extends React.Component {
 			<ul className="player-round right">
 				{right_round}
 			</ul>
-			<ol className="game-flow">{gameflow}</ol>
+			{players.length <= 0 ? '加载中……' :  <ol className="game-flow">{gameflow}</ol>}
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
