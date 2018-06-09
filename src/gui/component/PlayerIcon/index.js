@@ -18,11 +18,14 @@ class PlayerIcon extends React.Component {
 			cards: [],
 			alive: true,
 			selected: false,
-			markers: new Set,
-			tags: new Set,
+			markers: player.markers,
+			tags: player.tags,
 		};
-		this.markers = new Set;
-		this.tags = new Set;
+
+		player.on('roleChanged', role => this.setState({role: role}));
+		player.on('aliveChanged', alive => this.setState({alive: alive}));
+		player.on('markerChanged', markers => this.setState({markers: markers}));
+		player.on('tagChanged', tags => this.setState({tags: tags}));
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSkill = this.handleSkill.bind(this);
@@ -30,82 +33,10 @@ class PlayerIcon extends React.Component {
 		this.deathSkills = props.skills && props.skills.get(GameEvent.Death);
 	}
 
-	get cards() {
-		return this.state.cards;
-	}
-
-	get role() {
-		return this.state.role;
-	}
-
-	setAlive(alive) {
-		this.alive = alive;
-		this.setState({alive: alive});
-	}
-
-	isAlive() {
-		return this.alive;
-	}
-
-	addMarker(marker) {
-		this.markers.add(marker);
-		this.setState(prev => {
-			prev.markers.add(marker);
-			return {markers: prev.markers};
-		});
-	}
-
-	removeMarker(marker) {
-		this.markers.delete(marker);
-		this.setState(prev => {
-			prev.markers.delete(marker);
-			return {markers: prev.markers};
-		});
-	}
-
-	hasMarker(marker) {
-		return this.markers.has(marker);
-	}
-
-	toggleMarker(marker) {
-		if (this.hasMarker(marker)) {
-			this.removeMarker(marker);
-		} else {
-			this.addMarker(marker);
-		}
-	}
-
-	clearMarkers() {
-		this.markers.clear();
-		this.setState(prev => {
-			prev.markers.clear();
-			return {markers: prev.markers};
-		});
-	}
-
-	addTag(marker) {
-		this.tags.add(marker);
-		this.setState(prev => {
-			prev.tags.add(marker);
-			return {tags: prev.tags};
-		});
-	}
-
-	removeTag(marker) {
-		this.tags.delete(marker);
-		this.setState(prev => {
-			prev.tags.delete(marker);
-			return {tags: prev.tags};
-		});
-	}
-
-	hasTag(marker) {
-		return this.tags.has(marker);
-	}
-
 	handleClick() {
-		if (this.props.onClick) {
-			this.props.onClick(this);
+		let room = this.props.room;
+		if (room) {
+			room.selectTarget(this.props.player);
 		}
 	}
 
@@ -123,13 +54,8 @@ class PlayerIcon extends React.Component {
 	}
 
 	render() {
-		let markers = [];
-		this.state.tags.forEach(value => {
-			markers.push(value);
-		});
-		this.state.markers.forEach(value => {
-			markers.push(value);
-		});
+		let markers = Array.from(this.state.tags);
+		markers.push(...this.state.markers);
 
 		let icon_style = 'icon';
 		let actions = [];

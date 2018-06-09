@@ -82,7 +82,14 @@ class GodNote extends React.Component {
 	}
 
 	render() {
-		let players = this.room.players.map((player, i) => <PlayerIcon key={i} player={player} />);
+		let players = this.room.players.map(
+			(player, i) =>
+			<PlayerIcon
+				key={i}
+				room={this.room}
+				player={player}
+			/>
+		);
 
 		let half = Math.ceil(players.length / 2);
 		let right_round = players.slice(0, half);

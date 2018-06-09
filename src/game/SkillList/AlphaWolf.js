@@ -22,6 +22,7 @@ class WolfShot extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Death, Role.AlphaWolf, '反扑', Shot);
+		this.delayed = false;
 	}
 
 	effect(room) {

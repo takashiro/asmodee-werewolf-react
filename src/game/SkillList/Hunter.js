@@ -21,7 +21,8 @@ class HunterShotStatus extends ProactiveSkill {
 class HunterShot extends ProactiveSkill {
 
 	constructor() {
-		super(GameEvent.Death, Role.Hunter, '猎枪');
+		super(GameEvent.Death, Role.Hunter, '猎枪', Shot);
+		this.delayed = false;
 	}
 
 	effect(room) {

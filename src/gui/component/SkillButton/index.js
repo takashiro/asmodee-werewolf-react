@@ -16,16 +16,20 @@ class SkillButton extends React.Component {
 
 	handleClick(e) {
 		e.preventDefault();
-		if (this.props.onClick) {
-			let confirm = this.state.confirm;
+
+		let confirm = this.state.confirm;
+		if (!this.props.skill.delayed) {
 			this.setState({ confirm: !confirm });
-			setTimeout(this.props.onClick, 0, this.props.skill, confirm);
 		}
+
+		let room = this.props.room;
+		let skill = this.props.skill;
+		room.currentSkill = skill;
 	}
 
 	render() {
 		let skill = this.props.skill;
-		return <div>
+		return <div className="skill-button">
 			<h5>
 				<RoleIcon role={skill.role} />
 				<span className="name">{skill.role.name}</span>

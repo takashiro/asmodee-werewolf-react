@@ -61,6 +61,47 @@ class Player extends EventEmitter {
 		this.skills.push(skill);
 	}
 
+	addMarker(marker) {
+		if (!this.markers.has(marker)) {
+			this.markers.add(marker);
+			this.emit('markerChanged', this.markers);
+		}
+	}
+
+	hasMarker(marker) {
+		return this.markers.has(marker);
+	}
+
+	removeMarker(marker) {
+		if (this.markers.delete(marker)) {
+			this.emit('markerChanged', this.markers);
+		}
+	}
+
+	clearMarkers() {
+		if (this.markers.size > 0) {
+			this.markers.clear();
+			this.emit('markerChanged', this.markers);
+		}
+	}
+
+	addTag(tag) {
+		if (!this.tags.has(tag)) {
+			this.tags.add(tag);
+			this.emit('tagChanged', this.tags);
+		}
+	}
+
+	hasTag(tag) {
+		return this.tags.has(tag);
+	}
+
+	removeTag(tag) {
+		if (this.tags.delete(tag)) {
+			this.emit('tagChanged', this.tags);
+		}
+	}
+
 }
 
 export default Player;

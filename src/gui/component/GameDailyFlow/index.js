@@ -16,7 +16,6 @@ class GameDailyFlow extends React.Component {
 		};
 
 		this.handleFocus = this.handleFocus.bind(this);
-		this.handleSkill = this.handleSkill.bind(this);
 		this.handleDawn = this.handleDawn.bind(this);
 		this.handleDusk = this.handleDusk.bind(this);
 	}
@@ -30,13 +29,10 @@ class GameDailyFlow extends React.Component {
 		current.classList.add('current');
 	}
 
-	handleSkill(skill, confirm) {
-		if (this.props.onSkill) {
-			setTimeout(this.props.onSkill, 0, skill, confirm);
-		}
-	}
-
 	handleDawn() {
+		let room = this.props.room;
+		room.currentSkill = null;
+
 		if (this.props.onGameEvent) {
 			this.props.onGameEvent(GameEvent.Night);
 			this.props.onGameEvent(GameEvent.Dawn);
@@ -66,7 +62,10 @@ class GameDailyFlow extends React.Component {
 		const available_skills = skills.filter(skill => skill.isAvailable(room));
 		let actions = available_skills.map((skill, key) => (
 			<li key={key} onClick={this.handleFocus}>
-				<SkillButton skill={skill} />
+				<SkillButton
+					room={room}
+					skill={skill}
+				/>
 			</li>
 		));
 		return actions;

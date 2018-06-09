@@ -10,6 +10,7 @@ class ProactiveSkill extends Skill {
 		this.clickable = true;
 		this.targetFixed = false;
 		this.targetNum = 1;
+		this.delayed = true;
 	}
 
 	isAvailable(room) {

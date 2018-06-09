@@ -123,6 +123,14 @@ class Room extends EventEmitter {
 		}
 	}
 
+	selectTarget(player) {
+		if (!this.currentSkill) {
+			return;
+		}
+
+		this.currentSkill.select(this, player);
+	}
+
 }
 
 export default Room;
