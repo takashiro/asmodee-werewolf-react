@@ -122,7 +122,7 @@ class Room extends EventEmitter {
 	}
 
 	invoke(event) {
-		this.currentSkill = null;
+		this.activateSkill(null);
 
 		let skills = this.proactiveSkills.get(event);
 		if (!skills || skills.length <= 0) {
@@ -184,6 +184,7 @@ class Room extends EventEmitter {
 		} else {
 			this.currentSkill = null;
 		}
+		this.currentTarget = null;
 	}
 
 	selectPlayer(player) {
@@ -197,7 +198,7 @@ class Room extends EventEmitter {
 		} else {
 			if (this.currentTarget === player) {
 				if (skill.effect(this, player) && skill.owner) {
-					this.currentSkill = null;
+					this.activateSkill(null);
 					skill.owner.emit('skillInvoked', skill);
 				}
 				this.currentTarget = null;
