@@ -12,14 +12,18 @@ class Duel extends ProactiveSkill {
 
 	constructor() {
 		super(GameEvent.Day, Role.Knight, '决斗', Dueled);
+		this.delayed = false;
 	}
 
 	effect(room, target) {
-		if (target.role.team === Team.Werewolf) {
-			target.setAlive(false);
-		} else {
-			this.owner.setAlive(false);
+		let loser = target;
+		if (target.role.team !== Team.Werewolf) {
+			loser = this.owner;
 		}
+
+		loser.addMarker(Dueled);
+		loser.setAlive(false);
+		loser.deathReason = [Dueled];
 
 		return true;
 	}
