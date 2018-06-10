@@ -10,23 +10,13 @@ class GameDailyFlow extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			daylight: false,
-		};
-
-		this.handleDawn = this.handleDawn.bind(this);
-	}
-
-	handleDawn() {
-		this.setState({daylight: true});
 	}
 
 	render() {
 		return <div>
 			<h4>第 {this.props.day} 天</h4>
-			<NightFlow room={this.props.room} onDawn={this.handleDawn} />
-			{this.state.daylight ? <DayFlow room={this.props.room} /> : null}
+			<NightFlow room={this.props.room} />
+			<DayFlow room={this.props.room} />
 		</div>;
 	}
 

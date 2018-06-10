@@ -14,6 +14,7 @@ import Demon from './Demon';
 import Knight from './Knight';
 import WhiteAlphaWolf from './WhiteAlphaWolf';
 import Crow from './Crow';
+import Rogue from './Rogue';
 
 export default [
 	Thief,
@@ -31,4 +32,5 @@ export default [
 	Knight,
 	WhiteAlphaWolf,
 	Crow,
+	Rogue,
 ];

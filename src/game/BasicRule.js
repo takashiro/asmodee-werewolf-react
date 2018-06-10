@@ -61,6 +61,7 @@ class MorningLight extends PassiveSkill {
 
 	effect(room) {
 		room.atNight = false;
+		room.emit('morning');
 	}
 
 }

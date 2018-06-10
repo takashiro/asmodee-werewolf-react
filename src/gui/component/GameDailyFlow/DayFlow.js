@@ -11,9 +11,14 @@ class DayFlow extends React.Component {
 	constructor(props) {
 		super(props);
 
+		let room = props.room;
+
 		this.state = {
 			interactive: true,
+			invisible: !room.atNight,
 		};
+
+		room.once('morning', () => this.setState({invisible: true}));
 
 		this.handleDusk = this.handleDusk.bind(this);
 	}
@@ -24,13 +29,17 @@ class DayFlow extends React.Component {
 
 		room.invoke(GameEvent.Day);
 		room.trigger(GameEvent.Day);
-		room.trigger(GameEvent.Dusk);
 		this.setState({interactive: false}, () => {
+			room.trigger(GameEvent.Dusk);
 			room.trigger(GameEvent.Evening);
 		});
 	}
 
 	render() {
+		if (!this.state.invisible) {
+			return null;
+		}
+
 		if (this.state.interactive) {
 			return <div className="day">
 				<SkillButtonList room={this.props.room} timing={GameEvent.Day} />
