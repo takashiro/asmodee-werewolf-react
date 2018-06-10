@@ -43,7 +43,7 @@ class NightWalkerEffect extends PassiveSkill {
 
 }
 
-//摄梦者若倒牌，则梦游者在黎明倒牌
+//摄梦者若夜间倒牌，则梦游者在黎明倒牌
 class DreamLink extends PassiveSkill {
 
 	constructor() {
@@ -58,7 +58,6 @@ class DreamLink extends PassiveSkill {
 		let night_walker = room.players.find(player => player.hasMarker(NightWalker));
 		if (night_walker) {
 			night_walker.setAlive(false);
-			night_walker.deathReason = [NightWalker];
 		}
 	}
 

@@ -15,8 +15,8 @@ class WolfShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		target.setAlive(false);
-		this.owner.setAlive(false);
+		room.killPlayer(target);
+		room.killPlayer(this.owner);
 		return true;
 	}
 

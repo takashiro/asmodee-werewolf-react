@@ -48,9 +48,7 @@ class DieForLove extends PassiveSkill {
 		for (let couple of couples) {
 			if (couple.isAlive()) {
 				couple.addMarker(ForLove);
-				couple.setAlive(false);
-				couple.deathDay = target.deathDay;
-				couple.deathReason = [ForLove];
+				room.killPlayer(couple);
 			}
 		}
 	}

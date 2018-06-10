@@ -22,8 +22,7 @@ class Duel extends ProactiveSkill {
 		}
 
 		loser.addMarker(Dueled);
-		loser.setAlive(false);
-		loser.deathReason = [Dueled];
+		room.killPlayer(loser);
 
 		return true;
 	}

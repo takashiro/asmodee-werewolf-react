@@ -30,12 +30,7 @@ class HunterShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		if (target.isAlive()) {
-			target.setAlive(false);
-			target.deathDay = this.owner && this.owner.deathDay;
-			target.deathReason = [Shot];
-		}
-
+		room.killPlayer(target);
 		return true;
 	}
 

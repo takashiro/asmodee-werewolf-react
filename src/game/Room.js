@@ -2,12 +2,11 @@
 import EventEmitter from 'events';
 
 import Role from './Role';
-
+import GameEvent from './GameEvent';
 import Player from './Player';
 import ProactiveSkill from './ProactiveSkill';
 import PassiveSkill from './PassiveSkill';
 import BasicRule from './BasicRule';
-import GameEvent from './GameEvent';
 
 class Room extends EventEmitter {
 
@@ -216,6 +215,16 @@ class Room extends EventEmitter {
 				}
 			}
 		}
+	}
+
+	killPlayer(target) {
+		if (!target.isAlive()) {
+			return false;
+		}
+
+		target.setAlive(false);
+		target.deathDay = this.day;
+		this.trigger(GameEvent.Death, target);
 	}
 
 }

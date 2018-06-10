@@ -30,9 +30,7 @@ class WolfShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		target.setAlive(false);
-		target.deathDay = this.owner && this.owner.deathDay;
-		target.deathReason = [Shot];
+		room.killPlayer(target);
 		return true;
 	}
 

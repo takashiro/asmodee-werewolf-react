@@ -36,8 +36,8 @@ class DieForLove extends PassiveSkill {
 
 	effect(room, target) {
 		const lover = room.players.find(player => player.hasMarker(Charmed));
-		if (lover && lover.isAlive()) {
-			lover.setAlive(false);
+		if (lover) {
+			room.killPlayer(lover);
 		}
 	}
 
