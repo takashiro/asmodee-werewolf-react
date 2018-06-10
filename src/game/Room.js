@@ -185,7 +185,7 @@ class Room extends EventEmitter {
 		}
 	}
 
-	selectTarget(player) {
+	selectPlayer(player) {
 		if (!this.currentSkill) {
 			return;
 		}

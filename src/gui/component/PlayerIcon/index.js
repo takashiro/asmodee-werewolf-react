@@ -46,7 +46,7 @@ class PlayerIcon extends React.Component {
 	handleClick() {
 		let room = this.props.room;
 		if (room) {
-			room.selectTarget(this.props.player);
+			room.selectPlayer(this.props.player);
 		}
 	}
 
