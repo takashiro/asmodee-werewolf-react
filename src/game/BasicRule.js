@@ -33,9 +33,7 @@ class Execution extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		target.setAlive(false);
-		target.deathDay = room.day;
-		target.deathReason = [Executed];
+		room.killPlayer(target);
 	}
 }
 
@@ -53,7 +51,6 @@ class DeathGod extends PassiveSkill {
 	effect(room, target) {
 		if (!target.isAlive() && !target.deathDay) {
 			target.deathDay = room.day;
-			target.deathReason = Array.from(target.markers);
 		}
 	}
 
@@ -63,7 +60,7 @@ class DeathGod extends PassiveSkill {
 class BrandNewDay extends PassiveSkill {
 
 	constructor() {
-		super(GameEvent.Dusk);
+		super(GameEvent.Evening);
 	}
 
 	triggerable(room, target) {
