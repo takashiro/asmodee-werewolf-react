@@ -41,13 +41,8 @@ class WerewolfExpose extends ProactiveSkill {
 		return super.isValidTarget(target) && target.role === Role.Werewolf;
 	}
 
-	effect(room) {
-		let target = this.findTarget(room);
-		if (!target) {
-			return false;
-		}
-
-		target.setAlive(false);
+	effect(room, target) {
+		room.killPlayer(target);
 		return true;
 	}
 
