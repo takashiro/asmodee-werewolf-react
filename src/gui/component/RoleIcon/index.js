@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import Role from '../../../core/Role';
+import Role from '../../../game/Role';
 
 import './index.scss';
 

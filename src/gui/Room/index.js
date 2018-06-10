@@ -2,8 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Team from '../../core/Team';
-import Role from '../../core/Role';
+import Team from '../../game/Team';
+import Role from '../../game/Role';
 
 import Lobby from '../Lobby';
 import GodNote from '../GodNote';

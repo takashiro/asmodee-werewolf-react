@@ -1,6 +1,6 @@
 
-import Role from '../../core/Role';
-import Team from '../../core/Team';
+import Role from '../Role';
+import Team from '../Team';
 
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';

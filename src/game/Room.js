@@ -1,7 +1,7 @@
 
 import EventEmitter from 'events';
 
-import Role from '../core/Role';
+import Role from './Role';
 
 import Player from './Player';
 import ProactiveSkill from './ProactiveSkill';

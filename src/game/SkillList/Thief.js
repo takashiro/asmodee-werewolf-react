@@ -1,5 +1,5 @@
 
-import Role from '../../core/Role';
+import Role from '../Role';
 import GameEvent from '../GameEvent';
 import PassiveSkill from '../PassiveSkill';
 import ProactiveSkill from '../ProactiveSkill';

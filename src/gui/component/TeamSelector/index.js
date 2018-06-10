@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import Team from '../../../core/Team';
-import Role from '../../../core/Role';
+import Team from '../../../game/Team';
+import Role from '../../../game/Role';
 
 import RoleOption from '../RoleOption';
 import RoleNumberInput from '../RoleNumberInput';

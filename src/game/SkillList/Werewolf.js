@@ -1,5 +1,5 @@
 
-import Role from '../../core/Role';
+import Role from '../Role';
 
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';

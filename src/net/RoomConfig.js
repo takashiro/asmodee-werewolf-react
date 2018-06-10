@@ -1,5 +1,5 @@
 
-import Role from '../core/Role';
+import Role from '../game/Role';
 import Session from './Session';
 
 class RoomConfig {
