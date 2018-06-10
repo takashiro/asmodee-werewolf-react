@@ -20,6 +20,7 @@ class Room extends EventEmitter {
 		this.passiveSkills = new Map;
 
 		this.day = 1;
+		this.atNight = true;
 	}
 
 	load(config) {
@@ -223,8 +224,15 @@ class Room extends EventEmitter {
 		}
 
 		target.setAlive(false);
-		target.deathDay = this.day;
-		this.trigger(GameEvent.Death, target);
+		this.trigger(GameEvent.Killed, target);
+
+		if (!target.isAlive()) {
+			target.deathDay = this.day;
+			this.trigger(GameEvent.Death, target);
+			return true;
+		}
+
+		return false;
 	}
 
 }

@@ -30,6 +30,8 @@ export default {
 	// 天黑前
 	Dusk: new GameEvent('Dusk'),
 
+	// 死亡前
+	Killed: new GameEvent('Killed'),
 	// 死亡时
-	Death: new GameEvent('Death')
+	Death: new GameEvent('Death'),
 };

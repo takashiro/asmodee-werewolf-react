@@ -47,8 +47,9 @@ class DieForLove extends PassiveSkill {
 		let couples = room.players.filter(player => player.hasTag(Couple));
 		for (let couple of couples) {
 			if (couple.isAlive()) {
-				couple.addMarker(ForLove);
-				room.killPlayer(couple);
+				if (room.killPlayer(couple)) {
+					couple.addMarker(ForLove);
+				}
 			}
 		}
 	}

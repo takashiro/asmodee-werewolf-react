@@ -19,13 +19,15 @@ class FindGod extends ProactiveSkill {
 class ImmortalNightmare extends PassiveSkill {
 
 	constructor() {
-		super(GameEvent.Dawn, Role.Demon);
+		super(GameEvent.Killed, Role.Demon);
+	}
+
+	triggerable(room, target) {
+		return super.triggerable(room, target) && room.atNight && !target.isAlive();
 	}
 
 	effect(room, target) {
-		if (!target.isAlive()) {
-			target.setAlive(true);
-		}
+		target.setAlive(true);
 	}
 
 }

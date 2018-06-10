@@ -6,7 +6,7 @@ import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
 import PassiveSkill from '../PassiveSkill';
 
-const NightWalker = new Marker('NightWalker', '梦游');
+const NightWalker = new Marker('NightWalker', '摄梦');
 
 //摄梦人可以在夜间使一名玩家梦游
 class WeaveDream extends ProactiveSkill {
@@ -16,26 +16,8 @@ class WeaveDream extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		return !!target;
-	}
-
-}
-
-//梦游者不会倒在夜间，但若连续两晚梦游则倒牌
-class NightWalkerEffect extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Dawn, Role.DreamWeaver);
-	}
-
-	triggerable(room, target) {
-		return target && target.hasMarker(NightWalker);
-	}
-
-	effect(room, target) {
-		if (target.dreamNight != room.day - 1) {
-			target.setAlive(true);
-		} else {
+		if (target.dreamNight === room.day - 1) {
+			target.dreamOverwhelmed = true;
 			target.setAlive(false);
 		}
 		target.dreamNight = room.day;
@@ -43,7 +25,24 @@ class NightWalkerEffect extends PassiveSkill {
 
 }
 
-//摄梦者若夜间倒牌，则梦游者在黎明倒牌
+//梦游者不会倒在夜间
+class NightWalkerEffect extends PassiveSkill {
+
+	constructor() {
+		super(GameEvent.Killed, Role.DreamWeaver);
+	}
+
+	triggerable(room, target) {
+		return room.atNight && target && target.hasMarker(NightWalker) && !target.isAlive() && !target.dreamOverwhelmed;
+	}
+
+	effect(room, target) {
+		target.setAlive(true);
+	}
+
+}
+
+//摄梦者若夜间倒牌，则梦游者在夜间倒牌
 class DreamLink extends PassiveSkill {
 
 	constructor() {
@@ -57,7 +56,8 @@ class DreamLink extends PassiveSkill {
 	effect(room, target) {
 		let night_walker = room.players.find(player => player.hasMarker(NightWalker));
 		if (night_walker) {
-			night_walker.setAlive(false);
+			night_walker.dreamOverwhelmed = true;
+			room.killPlayer(night_walker);
 		}
 	}
 

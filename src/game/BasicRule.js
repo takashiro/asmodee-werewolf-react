@@ -6,6 +6,28 @@ import GameEvent from './GameEvent';
 import ProactiveSkill from './ProactiveSkill';
 import PassiveSkill from './PassiveSkill';
 
+// 一天开始
+class NightFall extends PassiveSkill {
+
+	constructor() {
+		super(GameEvent.Evening);
+	}
+
+	triggerable(room, target) {
+		return !target;
+	}
+
+	effect(room) {
+		for (let player of room.players) {
+			player.clearMarkers();
+			player.emit('selected', false);
+		}
+		room.atNight = true;
+		room.tickDay();
+	}
+
+}
+
 // 夜间倒牌结算
 class NightDeath extends PassiveSkill {
 
@@ -18,7 +40,27 @@ class NightDeath extends PassiveSkill {
 	}
 
 	effect(room, player) {
-		room.trigger(GameEvent.Death, player);
+		room.trigger(GameEvent.Killed, player);
+		if (!player.isAlive()) {
+			room.trigger(GameEvent.Death, player);
+		}
+	}
+
+}
+
+// 天亮
+class MorningLight extends PassiveSkill {
+
+	constructor() {
+		super(GameEvent.Morning);
+	}
+
+	triggerable(room, target) {
+		return !target;
+	}
+
+	effect(room) {
+		room.atNight = false;
 	}
 
 }
@@ -56,30 +98,10 @@ class DeathGod extends PassiveSkill {
 
 }
 
-// 进入下一天
-class BrandNewDay extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Evening);
-	}
-
-	triggerable(room, target) {
-		return !target;
-	}
-
-	effect(room) {
-		for (let player of room.players) {
-			player.clearMarkers();
-			player.emit('selected', false);
-		}
-		room.tickDay();
-	}
-
-}
-
 export default [
+	NightFall,
 	NightDeath,
+	MorningLight,
 	Execution,
 	DeathGod,
-	BrandNewDay,
 ];
