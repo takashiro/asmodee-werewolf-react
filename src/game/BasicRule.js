@@ -79,6 +79,7 @@ class BrandNewDay extends PassiveSkill {
 }
 
 export default [
+	NightDeath,
 	Execution,
 	DeathGod,
 	BrandNewDay,
