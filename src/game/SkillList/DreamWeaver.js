@@ -58,6 +58,7 @@ class DreamLink extends PassiveSkill {
 		let night_walker = room.players.find(player => player.hasMarker(NightWalker));
 		if (night_walker) {
 			night_walker.setAlive(false);
+			night_walker.deathReason = [NightWalker];
 		}
 	}
 
