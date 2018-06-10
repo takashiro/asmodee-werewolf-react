@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Room from '../Room';
 
 import Toast from '../component/Toast';
-import PlayerIcon from '../component/PlayerIcon';
+import PlayerAvatar from '../component/PlayerAvatar';
 import GameDailyFlow from '../component/GameDailyFlow';
 
 import GameRoom from '../../game/Room';
@@ -85,7 +85,7 @@ class GodNote extends React.Component {
 	render() {
 		let players = this.room.players.map(
 			(player, i) =>
-			<PlayerIcon
+			<PlayerAvatar
 				key={i}
 				room={this.room}
 				player={player}

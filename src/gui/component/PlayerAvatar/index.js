@@ -6,7 +6,7 @@ import ProactiveSkill from '../../../game/ProactiveSkill';
 
 import RoleIcon from '../RoleIcon';
 
-class PlayerIcon extends React.Component {
+class PlayerAvatar extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -91,4 +91,4 @@ class PlayerIcon extends React.Component {
 
 }
 
-export default PlayerIcon;
+export default PlayerAvatar;
