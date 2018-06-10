@@ -28,6 +28,8 @@ class NightFlow extends React.Component {
 		this.setState({interactive: false}, () => {
 			room.trigger(GameEvent.Morning);
 		});
+
+		setTimeout(this.props.onDawn, 0);
 	}
 
 	render() {
