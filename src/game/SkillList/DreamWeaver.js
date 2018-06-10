@@ -33,7 +33,11 @@ class NightWalkerEffect extends PassiveSkill {
 	}
 
 	triggerable(room, target) {
-		return room.atNight && target && target.hasMarker(NightWalker) && !target.isAlive() && !target.dreamOverwhelmed;
+		return room.timing === GameEvent.Night
+			&& target
+			&& target.hasMarker(NightWalker)
+			&& !target.isAlive()
+			&& !target.dreamOverwhelmed;
 	}
 
 	effect(room, target) {
@@ -50,7 +54,9 @@ class DreamLink extends PassiveSkill {
 	}
 
 	triggerable(room, target) {
-		return super.triggerable(room, target) && room.atNight && !target.isAlive();
+		return super.triggerable(room, target)
+		&& room.timing === GameEvent.Night
+		&& !target.isAlive();
 	}
 
 	effect(room, target) {

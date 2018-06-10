@@ -22,7 +22,7 @@ class NightFall extends PassiveSkill {
 			player.clearMarkers();
 			player.emit('selected', false);
 		}
-		room.atNight = true;
+		room.timing = GameEvent.Night;
 		room.emit('evening');
 		room.tickDay();
 	}
@@ -44,6 +44,7 @@ class NightDeath extends PassiveSkill {
 		room.trigger(GameEvent.Killed, player);
 		if (!player.isAlive()) {
 			player.deathDay = room.day;
+			player.deathTiming = GameEvent.Night;
 			room.trigger(GameEvent.Death, player);
 		}
 	}
@@ -62,7 +63,7 @@ class MorningLight extends PassiveSkill {
 	}
 
 	effect(room) {
-		room.atNight = false;
+		room.timing = GameEvent.Day;
 		room.emit('morning');
 	}
 

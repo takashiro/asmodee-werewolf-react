@@ -23,7 +23,9 @@ class ImmortalNightmare extends PassiveSkill {
 	}
 
 	triggerable(room, target) {
-		return super.triggerable(room, target) && room.atNight && !target.isAlive();
+		return super.triggerable(room, target)
+			&& room.timing === GameEvent.Night
+			&& !target.isAlive();
 	}
 
 	effect(room, target) {

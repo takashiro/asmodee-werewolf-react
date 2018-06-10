@@ -4,7 +4,7 @@ import React from 'react';
 import GameEvent from '../../../game/GameEvent';
 
 import SkillButtonList from './SkillButtonList';
-import SkillLogList from './SkillLogList';
+import Logger from './Logger';
 
 class DayFlow extends React.Component {
 
@@ -14,8 +14,9 @@ class DayFlow extends React.Component {
 		let room = props.room;
 
 		this.state = {
-			log: null,
-			invisible: !room.atNight,
+			history: null,
+			victims: null,
+			invisible: room.timing === GameEvent.Day,
 		};
 
 		room.once('morning', () => this.setState({invisible: true}));
@@ -30,12 +31,16 @@ class DayFlow extends React.Component {
 		room.invoke(GameEvent.Day);
 		room.trigger(GameEvent.Day);
 
-		let log = <SkillLogList room={this.props.room} timing={GameEvent.Day} />;
+		let logger = new Logger(this.props.room, this.props.day, GameEvent.Day);
+		let history = logger.history;
 
 		room.trigger(GameEvent.Dusk);
 		room.trigger(GameEvent.Evening);
 
-		this.setState({log: log});
+		this.setState({
+			history: history,
+			victims: logger.victims,
+		});
 	}
 
 	render() {
@@ -43,7 +48,7 @@ class DayFlow extends React.Component {
 			return null;
 		}
 
-		if (!this.state.log) {
+		if (!this.state.history) {
 			return <div className="day">
 				<SkillButtonList room={this.props.room} timing={GameEvent.Day} />
 				<div className="button-area">
@@ -52,7 +57,14 @@ class DayFlow extends React.Component {
 			</div>;
 		} else {
 			return <div className="day">
-				{this.state.log}
+				<ol className="history">
+					{this.state.history.map((text, i) => <li key={i}>{text}</li>)}
+				</ol>
+				<div className="dying-message">
+				{this.state.victims && this.state.victims.length > 0
+					? '白天倒牌 ' + this.state.victims.map(victim => victim.seat).join(', ')
+					: null}
+				</div>
 			</div>;
 		}
 	}

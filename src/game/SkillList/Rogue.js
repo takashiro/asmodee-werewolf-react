@@ -16,7 +16,7 @@ class Struggle extends PassiveSkill {
 
 	triggerable(room, target) {
 		return super.triggerable(room, target)
-			&& room.atNight
+			&& room.timing === GameEvent.Night
 			&& !target.isAlive()
 			&& (target.hasMarker(Marker.Poisoned) || target.hasMarker(Marker.Attacked));
 	}

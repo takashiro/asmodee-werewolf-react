@@ -31,23 +31,11 @@ class HunterShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		let atNight = room.atNight;
-		room.atNight = !!this.owner.killedAtNight;
+		let timing = room.timing;
+		room.timing = this.owner.deathTiming;
 		room.killPlayer(target);
-		room.atNight = atNight;
+		room.timing = timing;
 		return true;
-	}
-
-}
-
-class HunterShotTime extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Killed, Role.Hunter);
-	}
-
-	effect(room, target) {
-		target.killedAtNight = room.atNight;
 	}
 
 }
@@ -55,5 +43,4 @@ class HunterShotTime extends PassiveSkill {
 export default [
 	HunterShotStatus,
 	HunterShot,
-	HunterShotTime,
 ];

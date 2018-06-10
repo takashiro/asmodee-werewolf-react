@@ -31,23 +31,11 @@ class WolfShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
-		let atNight = room.atNight;
-		room.atNight = !!this.owner.killedAtNight;
+		let timing = room.timing;
+		room.timing = this.owner.deathTiming;
 		room.killPlayer(target);
-		room.atNight = atNight;
+		room.timing = timing;
 		return true;
-	}
-
-}
-
-class WolfShotTime extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Killed, Role.AlphaWolf);
-	}
-
-	effect(room, target) {
-		target.killedAtNight = room.atNight;
 	}
 
 }
@@ -55,5 +43,4 @@ class WolfShotTime extends PassiveSkill {
 export default [
 	WolfShotStatus,
 	WolfShot,
-	WolfShotTime,
 ];

@@ -4,7 +4,7 @@ import React from 'react';
 import GameEvent from '../../../game/GameEvent';
 
 import SkillButtonList from './SkillButtonList';
-import SkillLogList from './SkillLogList';
+import Logger from './Logger';
 
 class NightFlow extends React.Component {
 
@@ -12,7 +12,7 @@ class NightFlow extends React.Component {
 		super(props);
 
 		this.state = {
-			log: null,
+			history: null,
 			victims: null,
 		};
 
@@ -26,20 +26,20 @@ class NightFlow extends React.Component {
 		room.invoke(GameEvent.Night);
 		room.trigger(GameEvent.Night);
 
-		let log = <SkillLogList room={this.props.room} timing={GameEvent.Night} />;
+		let logger = new Logger(this.props.room, this.props.day, GameEvent.Night);
+		let history = logger.history;
 
 		room.trigger(GameEvent.Dawn);
 		room.trigger(GameEvent.Morning);
 
-		let victims = room.players.filter(player => !player.isAlive() && player.deathDay == this.props.day);
 		this.setState({
-			log: log,
-			victims: victims,
+			history: history,
+			victims: logger.victims,
 		});
 	}
 
 	render() {
-		if (!this.state.log) {
+		if (!this.state.history) {
 			return <div className="night">
 				<SkillButtonList room={this.props.room} timing={GameEvent.Night} />
 				<div className="button-area">
@@ -48,7 +48,9 @@ class NightFlow extends React.Component {
 			</div>;
 		} else {
 			return <div className="night">
-				{this.state.log}
+				<ol className="history">
+					{this.state.history.map((text, i) => <li key={i}>{text}</li>)}
+				</ol>
 				<div className="dying-message">
 				{this.state.victims && this.state.victims.length > 0
 					? '昨晚倒牌 ' + this.state.victims.map(victim => victim.seat).join(', ')
