@@ -46,11 +46,11 @@ class NightWalkerEffect extends PassiveSkill {
 class DreamLink extends PassiveSkill {
 
 	constructor() {
-		super(GameEvent.Dawn, Role.DreamWeaver);
+		super(GameEvent.Death, Role.DreamWeaver);
 	}
 
 	triggerable(room, target) {
-		return super.triggerable(room, target) && !target.isAlive();
+		return super.triggerable(room, target) && room.atNight && !target.isAlive();
 	}
 
 	effect(room, target) {
