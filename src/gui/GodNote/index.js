@@ -23,6 +23,7 @@ class GodNote extends React.Component {
 		this.state = {
 			day: 1
 		};
+		this.gameflows = [];
 
 		// Bind callbacks
 		this.handleReturn = this.handleReturn.bind(this);
@@ -95,10 +96,9 @@ class GodNote extends React.Component {
 		let right_round = players.slice(0, half);
 		let left_round = players.slice(half);
 
-		let gameflow = [];
-		for (let i = 0; i < this.state.day; i++) {
+		for (let i = this.gameflows.length; i < this.state.day; i++) {
 			let day = i + 1;
-			gameflow.push(<li key={day}>
+			this.gameflows.push(<li key={day}>
 				<GameDailyFlow
 					day={day}
 					room={this.room}
@@ -113,7 +113,7 @@ class GodNote extends React.Component {
 			<ul className="player-round right">
 				{right_round}
 			</ul>
-			{players.length <= 0 ? '加载中……' :  <ol className="game-flow">{gameflow}</ol>}
+			{players.length <= 0 ? '加载中……' :  <ol className="game-flow">{this.gameflows}</ol>}
 			<div className="button-area">
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
