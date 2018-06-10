@@ -20,7 +20,7 @@ class NightFlow extends React.Component {
 
 	handleDawn() {
 		let room = this.props.room;
-		room.currentSkill = null;
+		room.activateSkill(null);
 
 		room.invoke(GameEvent.Night);
 		room.trigger(GameEvent.Dawn);

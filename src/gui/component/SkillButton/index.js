@@ -21,7 +21,11 @@ class SkillButton extends React.Component {
 		let room = this.props.room;
 		let skill = this.props.skill;
 
-		room.activateSkill(skill);
+		if (this.state.clickable) {
+			room.activateSkill(skill);
+		} else {
+			room.activateSkill(null);
+		}
 	}
 
 	render() {

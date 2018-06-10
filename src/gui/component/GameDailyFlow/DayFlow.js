@@ -20,7 +20,7 @@ class DayFlow extends React.Component {
 
 	handleDusk() {
 		let room = this.props.room;
-		room.currentSkill = null;
+		room.activateSkill(null);
 
 		room.invoke(GameEvent.Day);
 		room.trigger(GameEvent.Dusk);
