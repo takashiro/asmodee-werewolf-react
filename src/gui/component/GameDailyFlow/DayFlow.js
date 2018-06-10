@@ -23,6 +23,7 @@ class DayFlow extends React.Component {
 		room.activateSkill(null);
 
 		room.invoke(GameEvent.Day);
+		room.trigger(GameEvent.Day);
 		room.trigger(GameEvent.Dusk);
 		this.setState({interactive: false}, () => {
 			room.trigger(GameEvent.Evening);

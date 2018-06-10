@@ -23,6 +23,7 @@ class NightFlow extends React.Component {
 		room.activateSkill(null);
 
 		room.invoke(GameEvent.Night);
+		room.trigger(GameEvent.Night);
 		room.trigger(GameEvent.Dawn);
 		this.setState({interactive: false}, () => {
 			room.trigger(GameEvent.Morning);

@@ -10,7 +10,7 @@ import PassiveSkill from './PassiveSkill';
 class NightDeath extends PassiveSkill {
 
 	constructor() {
-		super(GameEvent.Dawn);
+		super(GameEvent.Night);
 	}
 
 	triggerable(room, target) {
