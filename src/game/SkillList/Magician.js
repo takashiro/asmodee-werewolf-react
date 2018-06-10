@@ -16,48 +16,29 @@ class ExchangeUser extends ProactiveSkill {
 		this.targetNum = 2;
 	}
 
-	effect(room, targets) {
-		return targets.length === 2;
-	}
-
-}
-
-//当晚所有行动都受到影响
-class ExchangeEffect extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Night, Role.Magician);
-	}
-
-	triggerable(room, target) {
-		return !target;
-	}
-
-	effect(room) {
-		let exchanged = room.players.filter(player => player.hasMarker(Exchanged));
+	effect(room, exchanged) {
 		if (exchanged.length != 2) {
-			return;
+			return false;
 		}
 
 		let markers = [[], []];
 		exchanged.forEach((player, i) => {
-			player.markers.forEach(marker => {
-				markers[i].push(marker);
-			});
+			markers[i] = Array.from(player.markers);
 			player.clearMarkers();
 		});
 
-		markers[0].forEach(marker => {
+		for (let marker of markers[0]) {
 			exchanged[1].addMarker(marker);
-		});
-		markers[1].forEach(marker => {
+		}
+		for (let marker of markers[1]) {
 			exchanged[0].addMarker(marker);
-		});
+		}
+
+		return true;
 	}
 
 }
 
 export default [
 	ExchangeUser,
-	ExchangeEffect,
 ];
