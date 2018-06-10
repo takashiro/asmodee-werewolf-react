@@ -15,8 +15,8 @@ class GameDailyFlow extends React.Component {
 	render() {
 		return <div>
 			<h4>第 {this.props.day} 天</h4>
-			<NightFlow room={this.props.room} />
-			<DayFlow room={this.props.room} />
+			<NightFlow room={this.props.room} day={this.props.day} />
+			<DayFlow room={this.props.room} day={this.props.day} />
 		</div>;
 	}
 

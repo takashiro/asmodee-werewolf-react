@@ -12,7 +12,8 @@ class NightFlow extends React.Component {
 		super(props);
 
 		this.state = {
-			interactive: true,
+			log: null,
+			victims: null,
 		};
 
 		this.handleDawn = this.handleDawn.bind(this);
@@ -24,14 +25,21 @@ class NightFlow extends React.Component {
 
 		room.invoke(GameEvent.Night);
 		room.trigger(GameEvent.Night);
-		this.setState({interactive: false}, () => {
-			room.trigger(GameEvent.Dawn);
-			room.trigger(GameEvent.Morning);
+
+		let log = <SkillLogList room={this.props.room} timing={GameEvent.Night} />;
+
+		room.trigger(GameEvent.Dawn);
+		room.trigger(GameEvent.Morning);
+
+		let victims = room.players.filter(player => !player.isAlive() && player.deathDay == this.props.day);
+		this.setState({
+			log: log,
+			victims: victims,
 		});
 	}
 
 	render() {
-		if (this.state.interactive) {
+		if (!this.state.log) {
 			return <div className="night">
 				<SkillButtonList room={this.props.room} timing={GameEvent.Night} />
 				<div className="button-area">
@@ -40,7 +48,12 @@ class NightFlow extends React.Component {
 			</div>;
 		} else {
 			return <div className="night">
-				<SkillLogList room={this.props.room} timing={GameEvent.Night} />
+				{this.state.log}
+				<div className="dying-message">
+				{this.state.victims && this.state.victims.length > 0
+					? '昨晚倒牌 ' + this.state.victims.map(victim => victim.seat).join(', ')
+					: '昨晚平安夜'}
+				</div>
 			</div>;
 		}
 	}

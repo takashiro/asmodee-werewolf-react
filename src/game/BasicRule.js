@@ -23,6 +23,7 @@ class NightFall extends PassiveSkill {
 			player.emit('selected', false);
 		}
 		room.atNight = true;
+		room.emit('evening');
 		room.tickDay();
 	}
 
@@ -36,12 +37,13 @@ class NightDeath extends PassiveSkill {
 	}
 
 	triggerable(room, target) {
-		return target && !target.isAlive();
+		return target && !target.isAlive() && !target.deathDay;
 	}
 
 	effect(room, player) {
 		room.trigger(GameEvent.Killed, player);
 		if (!player.isAlive()) {
+			player.deathDay = room.day;
 			room.trigger(GameEvent.Death, player);
 		}
 	}
@@ -80,29 +82,9 @@ class Execution extends ProactiveSkill {
 	}
 }
 
-// 标记死亡玩家时间
-class DeathGod extends PassiveSkill {
-
-	constructor() {
-		super(GameEvent.Dusk);
-	}
-
-	triggerable(room, target) {
-		return !!target;
-	}
-
-	effect(room, target) {
-		if (!target.isAlive() && !target.deathDay) {
-			target.deathDay = room.day;
-		}
-	}
-
-}
-
 export default [
 	NightFall,
 	NightDeath,
 	MorningLight,
 	Execution,
-	DeathGod,
 ];

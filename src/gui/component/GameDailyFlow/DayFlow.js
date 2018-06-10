@@ -14,7 +14,7 @@ class DayFlow extends React.Component {
 		let room = props.room;
 
 		this.state = {
-			interactive: true,
+			log: null,
 			invisible: !room.atNight,
 		};
 
@@ -29,10 +29,13 @@ class DayFlow extends React.Component {
 
 		room.invoke(GameEvent.Day);
 		room.trigger(GameEvent.Day);
-		this.setState({interactive: false}, () => {
-			room.trigger(GameEvent.Dusk);
-			room.trigger(GameEvent.Evening);
-		});
+
+		let log = <SkillLogList room={this.props.room} timing={GameEvent.Day} />;
+
+		room.trigger(GameEvent.Dusk);
+		room.trigger(GameEvent.Evening);
+
+		this.setState({log: log});
 	}
 
 	render() {
@@ -40,7 +43,7 @@ class DayFlow extends React.Component {
 			return null;
 		}
 
-		if (this.state.interactive) {
+		if (!this.state.log) {
 			return <div className="day">
 				<SkillButtonList room={this.props.room} timing={GameEvent.Day} />
 				<div className="button-area">
@@ -49,7 +52,7 @@ class DayFlow extends React.Component {
 			</div>;
 		} else {
 			return <div className="day">
-				<SkillLogList room={this.props.room} timing={GameEvent.Day} />
+				{this.state.log}
 			</div>;
 		}
 	}
