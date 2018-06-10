@@ -4,6 +4,7 @@ import Role from '../Role';
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
+import PassiveSkill from '../PassiveSkill';
 
 const Shot = new Marker('WolfShot', '狼枪');
 
@@ -30,8 +31,23 @@ class WolfShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
+		let atNight = room.atNight;
+		room.atNight = !!this.owner.killedAtNight;
 		room.killPlayer(target);
+		room.atNight = atNight;
 		return true;
+	}
+
+}
+
+class WolfShotTime extends PassiveSkill {
+
+	constructor() {
+		super(GameEvent.Killed, Role.AlphaWolf);
+	}
+
+	effect(room, target) {
+		target.killedAtNight = room.atNight;
 	}
 
 }
@@ -39,4 +55,5 @@ class WolfShot extends ProactiveSkill {
 export default [
 	WolfShotStatus,
 	WolfShot,
+	WolfShotTime,
 ];

@@ -4,6 +4,7 @@ import Role from '../Role';
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
+import PassiveSkill from '../PassiveSkill';
 
 const Shot = new Marker('HunterShot', '猎枪');
 
@@ -30,8 +31,23 @@ class HunterShot extends ProactiveSkill {
 	}
 
 	effect(room, target) {
+		let atNight = room.atNight;
+		room.atNight = !!this.owner.killedAtNight;
 		room.killPlayer(target);
+		room.atNight = atNight;
 		return true;
+	}
+
+}
+
+class HunterShotTime extends PassiveSkill {
+
+	constructor() {
+		super(GameEvent.Killed, Role.Hunter);
+	}
+
+	effect(room, target) {
+		target.killedAtNight = room.atNight;
 	}
 
 }
@@ -39,4 +55,5 @@ class HunterShot extends ProactiveSkill {
 export default [
 	HunterShotStatus,
 	HunterShot,
+	HunterShotTime,
 ];
