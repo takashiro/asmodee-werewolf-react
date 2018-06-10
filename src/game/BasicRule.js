@@ -39,7 +39,7 @@ class Execution extends ProactiveSkill {
 	}
 }
 
-// 标记死亡玩家时间，清除标记
+// 标记死亡玩家时间
 class DeathGod extends PassiveSkill {
 
 	constructor() {
@@ -55,8 +55,6 @@ class DeathGod extends PassiveSkill {
 			target.deathDay = room.day;
 			target.deathReason = Array.from(target.markers);
 		}
-		target.clearMarkers();
-		target.emit('selected', false);
 	}
 
 }
@@ -73,6 +71,10 @@ class BrandNewDay extends PassiveSkill {
 	}
 
 	effect(room) {
+		for (let player of room.players) {
+			player.clearMarkers();
+			player.emit('selected', false);
+		}
 		room.tickDay();
 	}
 
