@@ -13,7 +13,7 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, 'static')
+		path: path.resolve(__dirname, 'dist/static')
 	},
 	resolveLoader: {
 		modules: [path.resolve(__dirname, 'node_modules')]
