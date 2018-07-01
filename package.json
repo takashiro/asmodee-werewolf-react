@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack -d --watch",
-    "test": "node test/index.js"
+    "test": "webpack"
   },
   "repository": {
     "type": "git",
