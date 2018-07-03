@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Team from '../../game/Team';
-import Role from '../../game/Role';
 
 import Lobby from '../Lobby';
 import GodNote from '../GodNote';
@@ -11,6 +10,8 @@ import GodNote from '../GodNote';
 import RoleIcon from '../component/RoleIcon';
 import RoleViewer from '../component/RoleViewer';
 import Toast from '../component/Toast';
+
+import SHARE_WORDS from './share-words';
 
 import './index.scss';
 
@@ -68,9 +69,11 @@ class Room extends React.Component {
 	copyShareLink(e) {
 		e.preventDefault();
 
+		let word = SHARE_WORDS[Math.floor(Math.random() * SHARE_WORDS.length)];
+
 		let link_input = document.createElement('input');
 		link_input.type = 'text';
-		link_input.value = `\uD83D\uDE49到浏览器中打开${this.share_url}，进入\uD83D\uDC3A狼人杀游戏`;
+		link_input.value = `\uD83D\uDC3A狼人杀 ${this.share_url} ${word}`;
 		link_input.contentEditable = true;
 		link_input.readonly = false;
 
