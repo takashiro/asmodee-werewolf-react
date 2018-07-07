@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const pkg = require('./package.json');
 
 let mode = 'production';
 if (process.env.NODE_ENV === 'development') {
@@ -9,7 +10,8 @@ if (process.env.NODE_ENV === 'development') {
 module.exports = {
 	mode: mode,
 	entry: {
-		app: './src/index.js'
+		app: './src/index.js',
+		vendor: Object.keys(pkg.dependencies),
 	},
 	output: {
 		filename: '[name].js',
@@ -17,6 +19,18 @@ module.exports = {
 	},
 	resolveLoader: {
 		modules: [path.resolve(__dirname, 'node_modules')]
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					enforce: true,
+					chunks: 'all'
+				}
+			}
+		}
 	},
 	module: {
 		rules: [
@@ -57,7 +71,7 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
-			chunkFilename: '[id].css',
+			chunkFilename: '[name].css',
 		})
 	],
 	devtool: mode === 'production' ? undefined : 'source-map',
