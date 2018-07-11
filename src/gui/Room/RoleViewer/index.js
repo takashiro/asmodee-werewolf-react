@@ -4,8 +4,8 @@ import React from 'react';
 import Role from '../../../game/Role';
 import {$client, net} from '../../../net/Client';
 
-import RoleIcon from '../RoleIcon';
-import Toast from '../Toast';
+import RoleIcon from '../../component/RoleIcon';
+import Toast from '../../component/Toast';
 
 import './index.scss';
 

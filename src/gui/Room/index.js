@@ -8,7 +8,7 @@ import Lobby from '../Lobby';
 import GodNote from '../GodNote';
 
 import RoleIcon from '../component/RoleIcon';
-import RoleViewer from '../component/RoleViewer';
+import RoleViewer from './RoleViewer';
 import Toast from '../component/Toast';
 
 import SHARE_WORDS from './share-words';
