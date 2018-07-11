@@ -5,9 +5,8 @@ import Team from '../../game/Team';
 import Role from '../../game/Role';
 
 import Lobby from '../Lobby';
-import TeamSelector from '../component/TeamSelector';
+import TeamSelector from './TeamSelector';
 
-import RoleIcon from '../component/RoleIcon';
 import Toast from '../component/Toast';
 import Room from '../Room';
 

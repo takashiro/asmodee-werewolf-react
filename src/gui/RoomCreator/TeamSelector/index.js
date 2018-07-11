@@ -1,11 +1,10 @@
 
 import React from 'react';
 
-import Team from '../../../game/Team';
 import Role from '../../../game/Role';
 
-import RoleOption from '../RoleOption';
-import RoleNumberInput from '../RoleNumberInput';
+import RoleOption from '../../component/RoleOption';
+import RoleNumberInput from '../../component/RoleNumberInput';
 
 import './index.scss';
 
