@@ -1,7 +1,7 @@
 Werewolves of Miller's Hollow [![Build Status](https://travis-ci.org/takashiro/asmodee-werewolf.svg?branch=master)](https://travis-ci.org/takashiro/asmodee-werewolf)
 ==========
 
-| Example Page |    http://werewolf.takashiro.me       |
+| Example Page |    http://werewolf.takashiro.cn       |
 |--------------|---------------------------------------|
 | Author       |           Kazuichi Takashiro          |
 
