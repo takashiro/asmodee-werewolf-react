@@ -1,9 +1,7 @@
 
 import React from 'react';
 
-import Role from '../../../game/Role';
-
-import RoleIcon from '../RoleIcon';
+import RoleIcon from '../../../component/RoleIcon';
 
 import './index.scss';
 

@@ -3,8 +3,8 @@ import React from 'react';
 
 import Role from '../../../game/Role';
 
-import RoleOption from '../../component/RoleOption';
-import RoleNumberInput from '../../component/RoleNumberInput';
+import RoleOption from './RoleOption';
+import RoleNumberInput from './RoleNumberInput';
 
 import './index.scss';
 
