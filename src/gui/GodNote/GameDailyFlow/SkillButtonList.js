@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import SkillButton from '../SkillButton';
+import SkillButton from './SkillButton';
 
 class SkillButtonList extends React.Component {
 

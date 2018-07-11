@@ -4,7 +4,7 @@ import React from 'react';
 import GameEvent from '../../../game/GameEvent';
 import ProactiveSkill from '../../../game/ProactiveSkill';
 
-import RoleIcon from '../RoleIcon';
+import RoleIcon from '../../component/RoleIcon';
 
 class PlayerAvatar extends React.Component {
 

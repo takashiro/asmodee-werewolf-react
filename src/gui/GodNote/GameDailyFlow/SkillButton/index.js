@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import RoleIcon from '../RoleIcon';
+import RoleIcon from '../../../component/RoleIcon';
 
 class SkillButton extends React.Component {
 

@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import Room from '../Room';
 
 import Toast from '../component/Toast';
-import PlayerAvatar from '../component/PlayerAvatar';
-import GameDailyFlow from '../component/GameDailyFlow';
+import PlayerAvatar from './PlayerAvatar';
+import GameDailyFlow from './GameDailyFlow';
 
 import GameRoom from '../../game/Room';
 
