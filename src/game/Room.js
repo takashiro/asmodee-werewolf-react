@@ -94,7 +94,7 @@ class Room extends EventEmitter {
 
 		for (let skillSet of [this.proactiveSkills, this.passiveSkills]) {
 			for (let [timing, skills] of skillSet) {
-				skills.sort((a, b) => a.priority > b.priority);
+				skills.sort((a, b) => a.priority - b.priority);
 			}
 		}
 	}
