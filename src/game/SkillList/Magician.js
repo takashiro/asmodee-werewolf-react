@@ -4,7 +4,6 @@ import Role from '../Role';
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
-import PassiveSkill from '../PassiveSkill';
 
 const Exchanged = new Marker('Exchanged', '交换');
 

@@ -4,7 +4,6 @@ import Role from '../Role';
 import Marker from '../Marker';
 import GameEvent from '../GameEvent';
 import ProactiveSkill from '../ProactiveSkill';
-import PassiveSkill from '../PassiveSkill';
 
 const Saved = new Marker('Saved', '解药');
 const Poisoned = new Marker('Poisoned', '毒药');
