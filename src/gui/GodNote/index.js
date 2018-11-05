@@ -60,26 +60,23 @@ class GodNote extends React.Component {
 		}
 
 		// Send request to server
-		$client.request(net.FetchRoles, {
-				id: config.id,
-				ownerKey: session.ownerKey
-			}, result => {
-				if (typeof result == 'string') {
-					Toast.makeToast(result);
-					return;
-				}
+		$client.get(net.Roles, {
+			id: config.id,
+			ownerKey: session.ownerKey
+		})
+		.then(result => {
+			session.roles = result;
+			config.writeSession(session);
 
-				if (!(result instanceof Array)) {
-					Toast.makeToast('房间已失效，无法刷新。');
-					return;
-				}
-
-				session.roles = result;
-				config.writeSession(session);
-
-				this.room.load(result);
+			this.room.load(result);
+		})
+		.catch(error => {
+			if (error.code === 404) {
+				Toast.makeToast('房间已失效，无法刷新。');
+			} else {
+				Toast.makeToast(error.message);
 			}
-		);
+		});
 	}
 
 	render() {

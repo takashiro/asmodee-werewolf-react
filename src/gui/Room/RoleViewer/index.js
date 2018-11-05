@@ -9,10 +9,9 @@ import Toast from '../../component/Toast';
 
 import './index.scss';
 
-// Pure new user. Add input and buttons.
 const ERROR_MESSAGE = {
 	ROOM_EXPIRED: '房间不存在，可能已过期。',
-	INVALID_SEAT: '座位号错误，请重新输入。',
+	INVALID_SEAT: '座位不存在，请重新输入。',
 	INVALID_SEATKEY: '请刷新网页缓存，然后重试。',
 	SEAT_TAKEN: '该座位已使用，请重新输入。',
 	ROOM_FULL: '房间人数已满。'
@@ -83,38 +82,43 @@ class RoleViewer extends React.Component {
 		}
 
 		this.showMessage('你的身份是...');
-		$client.request(net.FetchRole, {
-				id: this.roomId,
-				seat: this.seat,
-				key: seatKey,
-			},
-			result => {
-				if (result.error) {
-					result = ERROR_MESSAGE[result.error] ? ERROR_MESSAGE[result.error] : result.error;
-					this.showMessage(result);
-					return;
-				}
-
-				let role = Role.fromNum(result.role);
-				let cards = [];
-				if (result.cards && result.cards instanceof Array) {
-					cards = result.cards.map(card => Role.fromNum(card));
-				}
-
-				this.setState({
-					seat: this.seat,
-					role: role,
-					cards: cards
-				});
-
-				config.writeSession({
-					seat: this.seat,
-					seatKey: seatKey,
-					role: role.toNum(),
-					cards: cards.map(card => card.toNum())
-				});
+		$client.get(net.Role, {
+			id: this.roomId,
+			seat: this.seat,
+			key: seatKey,
+		})
+		.then(result => {
+			let role = Role.fromNum(result.role);
+			let cards = [];
+			if (result.cards && result.cards instanceof Array) {
+				cards = result.cards.map(card => Role.fromNum(card));
 			}
-		);
+
+			this.setState({
+				seat: this.seat,
+				role: role,
+				cards: cards
+			});
+
+			config.writeSession({
+				seat: this.seat,
+				seatKey: seatKey,
+				role: role.toNum(),
+				cards: cards.map(card => card.toNum())
+			});
+		}).catch(error => {
+			if (error.code === 404) {
+				this.showMessage(ERROR_MESSAGE.ROOM_EXPIRED);
+			} else if (error.code === 400 && error.message === 'Invalid seat') {
+				this.showMessage(ERROR_MESSAGE.INVALID_SEAT);
+			} else if (error.code === 403) {
+				this.showMessage(ERROR_MESSAGE.INVALID_SEATKEY);
+			} else if (error.code === 409) {
+				this.showMessage(ERROR_MESSAGE.SEAT_TAKEN);
+			} else {
+				this.showMessage(error.message);
+			}
+		});
 	}
 
 	handleSeatInput(e) {

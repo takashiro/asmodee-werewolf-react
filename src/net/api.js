@@ -1,9 +1,8 @@
 
 const api = {
-	CreateRoom: 'createroom',
-	EnterRoom: 'enterroom',
-	FetchRoles: 'fetchroles',
-	FetchRole: 'fetchrole'
+	Room: 'room',
+	Roles: 'roles',
+	Role: 'role',
 };
 
 export default api;

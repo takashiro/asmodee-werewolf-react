@@ -27,19 +27,23 @@ function enterRoom() {
 		return;
 	}
 
-	$client.request(net.EnterRoom, {id: room_id}, state => {
-		if (state.id <= 0) {
-			Toast.makeToast('房间不存在。');
-			enter_input.value = '';
-			enter_input.focus();
-			return;
-		}
-
+	$client.get(net.Room, {id: room_id})
+	.then(function (state) {
 		let config = new RoomConfig(state);
 		ReactDOM.render(
 			<Room config={config} />,
 			document.getElementById('root')
 		);
+	})
+	.catch(function (error) {
+		if (error.code === 404) {
+			Toast.makeToast('房间不存在。');
+		} else {
+			Toast.makeToast(error.message);
+		}
+
+		enter_input.value = '';
+		enter_input.focus();
 	});
 }
 

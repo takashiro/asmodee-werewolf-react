@@ -108,16 +108,13 @@ export default class RoomCreator extends React.Component {
 		});
 
 		if (roles.length <= 0) {
-			Toast.makeToast('请选择角色。 ');
-			return;
+			return Toast.makeToast('请选择角色。 ');
+		} else if (roles.length > 50) {
+			return Toast.makeToast('最大仅支持50人局，请重新配置角色。');
 		}
 
-		$client.request(net.CreateRoom, {roles: roles}, result => {
-			if (!result.id) {
-				Toast.makeToast('创建房间失败。');
-				return;
-			}
-
+		$client.post(net.Room, {roles: roles})
+		.then(function (result) {
 			let config = new RoomConfig(result);
 			config.writeSession({
 				ownerKey: result.ownerKey
@@ -127,6 +124,9 @@ export default class RoomCreator extends React.Component {
 				<Room config={config} />,
 				document.getElementById('root')
 			);
+		})
+		.catch(function (error) {
+			alert(error.message);
 		});
 	}
 

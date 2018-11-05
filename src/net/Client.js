@@ -1,5 +1,15 @@
 
 import net from './api';
+import querystring from 'querystring';
+
+class ServerException extends Error {
+
+	constructor(code, message) {
+		super(message);
+		this.code = code;
+	}
+
+}
 
 class Client {
 
@@ -7,40 +17,57 @@ class Client {
 		this.serverUrl = url;
 	}
 
-	request(api, data, callback) {
-		let param = data ? JSON.stringify(data) : '';
+	request(method, api, data){
+		let request = new XMLHttpRequest;
 
-		var request = new XMLHttpRequest();
-
-		request.onreadystatechange = function() {
-			if (this.readyState != XMLHttpRequest.DONE) {
-				return;
-			}
-
-			if (this.status == 200) {
-				if (!this.responseText) {
-					alert('服务器异常。');
+		let result = new Promise(function (resolve, reject) {
+			request.onreadystatechange = function () {
+				if (this.readyState != XMLHttpRequest.DONE) {
 					return;
 				}
 
-				let response = null;
-				try {
-					response =JSON.parse(this.responseText);
-				} catch (e) {
-					alert(e);
+				if (this.status == 200) {
+					if (this.responseText) {
+						let response = null;
+						try {
+							response =JSON.parse(this.responseText);
+							resolve(response);
+						} catch (error) {
+							reject(error);
+						}
+					} else {
+						resolve();
+					}
+				} else {
+					reject(new ServerException(this.status, this.responseText));
 				}
+			};
+		});
 
-				if (callback) {
-					callback.call(window, response);
-				}
-			} else if (this.status == 400) {
+		request.open(method, this.serverUrl + api);
+		request.send(data);
 
-			}
-		};
-
-		request.open('POST', this.serverUrl + api);
-		request.send(param);
+		return result;
 	}
+
+	get(api, data = null) {
+		if (data) {
+			api += '?' + querystring.stringify(data);
+		}
+		return this.request('GET', api);
+	}
+
+	post(api, data) {
+		return this.request('POST', api, data ? JSON.stringify(data) : '');
+	}
+
+	delete(api, data = null) {
+		if (data) {
+			api += '?' + querystring.stringify(data);
+		}
+		return this.request('DELETE', api);
+	}
+
 }
 
 let $client = new Client();
