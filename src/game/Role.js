@@ -46,6 +46,13 @@ const List = [
 	new Role('Bombman', '炸弹人', Team.Other),
 	new Role('Gargoyle', '石像鬼', Team.Werewolf),
 	new Role('GraveyardKeeper', '守墓人', Team.Villager),
+	new Role('Tiangou', '天狗', Team.Werewolf),
+	new Role('Luna', '月女', Team.Villager),
+	new Role('WolfGrandma', '狼外婆', Team.Werewolf),
+	new Role('RedHat', '小红帽', Team.Villager),
+	new Role('Doppelganger', '影子', Team.Other),
+	new Role('Revenger', '复仇者', Team.Other),
+	new Role('Hybrid', '混血儿', Team.Other),
 ];
 Role.List = List;
 
