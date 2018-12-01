@@ -1,0 +1,3 @@
+[submodule "src/game"]
+	path = src/game
+	url = https://github.com/takashiro/asmodee-werewolf
