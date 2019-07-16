@@ -48,15 +48,14 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							url: false,
-							minimize: mode === 'production',
-							sourceMap: mode === 'development',
+							sourceMap: mode === 'development'
 						}
 					},
 					{
 						loader: 'sass-loader',
 						options: {
 							url: false,
-							sourceMap: mode === 'development',
+							sourceMap: mode === 'development'
 						}
 					},
 				],
