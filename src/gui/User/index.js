@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Float from './Float';
 import Login from './Login';
+import './index.scss';
 
 export default class User extends Component {
 	constructor(props) {
@@ -18,7 +19,7 @@ export default class User extends Component {
 	}
 
 	render() {
-		return (<div>
+		return (<div className='UserArea'>
 			<Float name={this.state.name}></Float>
 			<Login onUpdateName={this.onUpdateName}></Login>
 		</div>)
