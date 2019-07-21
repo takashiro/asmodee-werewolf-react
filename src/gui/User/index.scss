@@ -1,7 +1,10 @@
 .UserArea {
+	display: inline;
 	button,
 	input {
 		height: 2em;
 		padding: 2pt;
+		margin-bottom: 2pt;
+		display: flex;
 	}
 }
