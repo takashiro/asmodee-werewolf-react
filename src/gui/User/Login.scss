@@ -2,5 +2,17 @@
 	visibility: visible;
 }
 .login {
-	visibility: hidden;
+	display: none
+}
+.loginId {
+	padding: 1pt;
+
+}
+.loginName {
+	padding: 1pt;
+}
+.loginButton {
+	padding: 1pt;
+	width: 5%;
+	height: 2em;
 }

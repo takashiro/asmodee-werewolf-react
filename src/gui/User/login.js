@@ -27,7 +27,7 @@ class Login extends React.Component {
 		$client.post(net.Users, { id, name })
 			.then(() => {
 				this.setState({ status: 'login' });
-				this.props.onUpdatename(name);
+				this.props.onUpdateName(name);
 			}
 			).catch((error) => {
 				alert(error);
@@ -38,9 +38,9 @@ class Login extends React.Component {
 		return (<div className={this.state.status}>
 			<div>
 				<form onSubmit={this.login}>
-					<input type="text" id="id"></input>
-					<input type="text" id="name"></input>
-					<input type="submit"></input>
+					<input className='loginId' type="text" id="id"></input>
+					<input className='loginName' type="text" id="name"></input>
+					<button className='loginButton' type="submit"></button>
 				</form>
 			</div>
 		</div >);

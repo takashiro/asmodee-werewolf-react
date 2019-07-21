@@ -9,9 +9,9 @@ export default class User extends Component {
 		this.state = {
 			name: 'guest'
 		}
-		this.onUpdatename = this.onUpdatename.bind(this);
+		this.onUpdateName = this.onUpdateName.bind(this);
 	}
-	onUpdatename(name) {
+	onUpdateName(name) {
 		this.setState({
 			name: name
 		})
@@ -20,7 +20,7 @@ export default class User extends Component {
 	render() {
 		return (<div>
 			<Float name={this.state.name}></Float>
-			<Login onUpdatename={this.onUpdatename}></Login>
+			<Login onUpdateName={this.onUpdateName}></Login>
 		</div>)
 	}
 }
