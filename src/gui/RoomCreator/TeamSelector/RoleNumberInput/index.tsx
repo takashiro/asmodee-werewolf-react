@@ -1,26 +1,34 @@
 
 import React from 'react';
+import { Role } from '@asmodee/werewolf-core';
 
 import RoleIcon from '../../../component/RoleIcon';
+import RoleLabel from '../../../component/RoleLabel';
 
 import './index.scss';
 
-class RoleNumberInput extends React.Component {
-	constructor(props) {
+interface RoleChange {
+	role: Role;
+	value: number;
+}
+
+interface RoleNumberInputProps extends RoleChange {
+	onChange?: (change: RoleChange) => void;
+}
+
+interface RoleNumberInputState {
+	value: number;
+}
+
+class RoleNumberInput extends React.Component<RoleNumberInputProps, RoleNumberInputState> {
+	constructor(props: RoleNumberInputProps) {
 		super(props);
 		this.state = {
-			value: 0
+			value: typeof props.value == 'number' && props.value > 0 ? props.value : 0,
 		};
-		if (typeof props.value == 'number' && props.value > 0) {
-			this.state.value = props.value;
-		}
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleDecrease = this.handleDecrease.bind(this);
-		this.handleIncrease = this.handleIncrease.bind(this);
 	}
 
-	handleDecrease() {
+	handleDecrease = (): void => {
 		this.setState(prev => {
 			let state = {value: Math.max(0, prev.value - 1)};
 			this.emitChange(state.value);
@@ -28,7 +36,7 @@ class RoleNumberInput extends React.Component {
 		});
 	}
 
-	handleIncrease() {
+	handleIncrease = (): void => {
 		this.setState(prev => {
 			let state = {value: prev.value + 1};
 			this.emitChange(state.value);
@@ -36,12 +44,13 @@ class RoleNumberInput extends React.Component {
 		});
 	}
 
-	handleChange(e) {
-		this.setState({value: e.target.value});
-		this.emitChange(e.target.value);
+	handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		const value = parseInt(e.target.value, 10);
+		this.setState({ value });
+		this.emitChange(value);
 	}
 
-	emitChange(value) {
+	emitChange(value: number): void {
 		if (this.props.onChange) {
 			this.props.onChange({
 				role: this.props.role,
@@ -55,7 +64,7 @@ class RoleNumberInput extends React.Component {
 		return <div className="role-selector number-selector">
 			<div className="icon">
 				<RoleIcon role={role} />
-				<span className="name">{role.name}</span>
+				<RoleLabel role={role} className="name" />
 			</div>
 			<div className="number-input">
 				<div className="decrease" onClick={this.handleDecrease}></div>
