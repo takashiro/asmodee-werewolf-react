@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Team from '../../game/Team';
-import Role from '../../game/Role';
+import {
+	Role,
+	Team,
+ } from '@asmodee/werewolf-core';
 
 import Lobby from '../Lobby';
 import TeamSelector from './TeamSelector';

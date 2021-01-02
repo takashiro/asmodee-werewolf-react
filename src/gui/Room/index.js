@@ -2,10 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Team from '../../game/Team';
+import { Team } from '@asmodee/werewolf-core';
 
 import Lobby from '../Lobby';
-import GodNote from '../GodNote';
+// import GodNote from '../GodNote';
 
 import RoleIcon from '../component/RoleIcon';
 import RoleViewer from './RoleViewer';
@@ -100,6 +100,7 @@ class Room extends React.Component {
 		}
 	}
 
+	/*
 	openGodNote(e) {
 		e.preventDefault();
 		ReactDOM.render(
@@ -107,6 +108,7 @@ class Room extends React.Component {
 			document.getElementById('root')
 		);
 	}
+	*/
 
 	handleReturn(e) {
 		e.preventDefault();
@@ -131,7 +133,7 @@ class Room extends React.Component {
 				<a href={this.share_url} onClick={this.copyShareLink} ref={a => {this.link_anchor = a;}}>{this.share_url}</a>
 			</div>
 			<div className="button-area">
-				{(this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null)}
+				{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
 				<button onClick={this.handleReturn}>返回</button>
 			</div>
 		</div>;

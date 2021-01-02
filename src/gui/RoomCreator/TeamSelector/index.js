@@ -1,7 +1,6 @@
 
 import React from 'react';
-
-import Role from '../../../game/Role';
+import { Role } from '@asmodee/werewolf-core';
 
 import RoleOption from './RoleOption';
 import RoleNumberInput from './RoleNumberInput';

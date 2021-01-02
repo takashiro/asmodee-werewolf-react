@@ -1,7 +1,7 @@
 
 import React from 'react';
+import { Role } from '@asmodee/werewolf-core';
 
-import Role from '../../../game/Role';
 import {$client, net} from '../../../net/Client';
 
 import RoleIcon from '../../component/RoleIcon';
