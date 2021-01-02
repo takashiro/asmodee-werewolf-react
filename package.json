@@ -27,17 +27,18 @@
   "homepage": "https://github.com/takashiro/asmodee-werewolf-react#readme",
   "dependencies": {
     "@asmodee/werewolf-core": "^0.1.4",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-react": "^7.12.10",
-    "babel-loader": "^8.2.2",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "css-loader": "^3.6.0",
     "mini-css-extract-plugin": "^0.4.5",
     "sass": "^1.32.0",
     "sass-loader": "^7.3.1",
+    "ts-loader": "^8.0.13",
+    "typescript": "^4.1.3",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   }

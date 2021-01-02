@@ -32,9 +32,9 @@ module.exports = function config(env, argv) {
 		module: {
 			rules: [
 				{
-					test: /\.js$/,
+					test: /\.tsx?$/,
 					exclude: /node_modules/,
-					use: 'babel-loader',
+					use: 'ts-loader',
 				},
 				{
 					test: /\.scss$/,
