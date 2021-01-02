@@ -5,8 +5,9 @@ import Session from './Session';
 interface RoomProps {
 	id: number;
 	salt: string;
-	roles: Role[];
 	ownerKey?: string;
+	seat?: number;
+	roles?: Role[];
 }
 
 class Room {
@@ -14,16 +15,20 @@ class Room {
 
 	protected salt: string;
 
-	protected roles: Role[];
-
 	protected ownerKey?: string;
+
+	protected seat?: number;
+
+	protected seatKey?: number;
+
+	protected roles?: Role[];
 
 	protected session: Session<RoomProps>;
 
 	constructor(props?: RoomProps) {
 		this.id = 0;
 		this.salt = '';
-		this.roles = [];
+		this.seat = 0;
 		this.session = new Session('room-session');
 
 		if (props) {
@@ -35,12 +40,36 @@ class Room {
 		return this.id;
 	}
 
-	getRoles(): Role[] {
+	getSeat(): number | undefined {
+		return this.seat;
+	}
+
+	setSeat(seat: number): void {
+		this.seat = seat;
+	}
+
+	getSeatKey(): number | undefined {
+		return this.seatKey;
+	}
+
+	setSeatKey(key: number): void {
+		this.seatKey = key;
+	}
+
+	getRoles(): Role[] | undefined {
 		return this.roles;
+	}
+
+	setRoles(roles: Role[]): void {
+		this.roles = roles;
 	}
 
 	getOwnerKey(): string | undefined {
 		return this.ownerKey;
+	}
+
+	setOwnerKey(key: string): void {
+		this.ownerKey = key;
 	}
 
 	restore(): boolean {
@@ -68,8 +97,9 @@ class Room {
 		return {
 			id: this.id,
 			salt: this.salt,
-			roles: this.roles,
 			ownerKey: this.ownerKey,
+			seat: this.seat,
+			roles: this.roles,
 		};
 	}
 }
