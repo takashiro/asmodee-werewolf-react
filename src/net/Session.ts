@@ -1,17 +1,18 @@
-interface SessionItem {
+interface SessionItem<DataType> {
+	data: DataType;
 	expiry: number;
 }
 
-export default class Session {
+export default class Session<DataType> {
 	protected key: string;
 
 	constructor(key: string) {
 		this.key = key;
 	}
 
-	list() {
+	protected readAll(): Record<string, SessionItem<DataType>> {
 		const sessionData = localStorage.getItem(this.key);
-		let sessions: Record<string, SessionItem> = {};
+		let sessions: Record<string, SessionItem<DataType>> = {};
 		if (sessionData) {
 			try {
 				sessions = JSON.parse(sessionData);
@@ -32,15 +33,18 @@ export default class Session {
 		return sessions;
 	}
 
-	read(key: string): SessionItem | undefined {
-		const sessions = this.list();
-		return sessions[key];
+	read(key: string): DataType | undefined {
+		const sessions = this.readAll();
+		const item = sessions[key];
+		return item && item.data;
 	}
 
-	write(key: string, value: SessionItem, expiry?: number): void {
-		const sessions = this.list();
-		value.expiry = expiry || new Date().getTime() + 1000 * 60 * 60;
-		sessions[key] = value;
+	write(key: string, data: DataType, expiry?: number): void {
+		const sessions = this.readAll();
+		sessions[key] = {
+			data,
+			expiry: expiry || new Date().getTime() + 1000 * 60 * 60,
+		};
 		localStorage.setItem(this.key, JSON.stringify(sessions));
 	}
 }
