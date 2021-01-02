@@ -1,4 +1,4 @@
-Werewolves of Miller's Hollow [![Build Status](https://travis-ci.org/takashiro/asmodee-werewolf-react.svg?branch=master)](https://travis-ci.org/takashiro/asmodee-werewolf-react)
+Werewolves of Miller's Hollow ![Node.js CI](https://github.com/takashiro/asmodee-werewolf-react/workflows/Node.js%20CI/badge.svg)
 ==========
 
 | Example Page |    http://werewolf.takashiro.cn       |
@@ -6,7 +6,7 @@ Werewolves of Miller's Hollow [![Build Status](https://travis-ci.org/takashiro/a
 | Author       |           Kazuichi Takashiro          |
 
 
-Lisense
+License
 -------
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
