@@ -1,16 +1,11 @@
 
 import React from 'react';
-import { Role } from '@asmodee/werewolf-core';
 
 import RoleIcon from '../../../component/RoleIcon';
 import RoleLabel from '../../../component/RoleLabel';
+import RoleChange from '../../RoleChange';
 
 import './index.scss';
-
-interface RoleChange {
-	role: Role;
-	value: number;
-}
 
 interface RoleNumberInputProps extends RoleChange {
 	onChange?: (change: RoleChange) => void;
