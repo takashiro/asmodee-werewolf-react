@@ -3,7 +3,7 @@ import React from 'react';
 
 import RoleIcon from '../../../component/RoleIcon';
 import RoleLabel from '../../../component/RoleLabel';
-import RoleChange from '../../RoleChange';
+import RoleChange from '../../RoleSelection';
 
 import './index.scss';
 

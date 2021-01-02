@@ -9,7 +9,7 @@ import {
 import TeamLabel from '../../component/TeamLabel';
 import RoleOption from './RoleOption';
 import RoleNumberInput from './RoleNumberInput';
-import RoleChange from '../RoleChange';
+import RoleChange from '../RoleSelection';
 
 import './index.scss';
 

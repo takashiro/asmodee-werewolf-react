@@ -3,7 +3,7 @@ import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
 import RoleIcon from '../../../component/RoleIcon';
-import RoleChange from '../../RoleChange';
+import RoleChange from '../../RoleSelection';
 import RoleLabel from '../../../component/RoleLabel';
 
 interface RoleOptionProps {

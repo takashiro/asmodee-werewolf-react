@@ -1,8 +1,8 @@
 import { Role } from '@asmodee/werewolf-core';
 
-interface RoleChange {
+interface RoleSelection {
 	role: Role;
 	value: number;
 }
 
-export default RoleChange;
+export default RoleSelection;
