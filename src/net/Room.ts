@@ -31,6 +31,18 @@ class Room {
 		}
 	}
 
+	getId(): number {
+		return this.id;
+	}
+
+	getRoles(): Role[] {
+		return this.roles;
+	}
+
+	getOwnerKey(): string | undefined {
+		return this.ownerKey;
+	}
+
 	restore(): boolean {
 		const item = this.session.read(this.salt);
 		if (!item || item.id !== this.id) {
