@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "debug": "webpack -d --watch",
+    "debug": "webpack --mode=development",
     "test": "webpack"
   },
   "repository": {
@@ -22,9 +22,9 @@
   "author": "Kazuichi Takashiro",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/takashiro/asmodee-werewolf/issues"
+    "url": "https://github.com/takashiro/asmodee-werewolf-react/issues"
   },
-  "homepage": "https://github.com/takashiro/asmodee-werewolf#readme",
+  "homepage": "https://github.com/takashiro/asmodee-werewolf-react#readme",
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
