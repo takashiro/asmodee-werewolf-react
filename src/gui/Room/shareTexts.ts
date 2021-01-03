@@ -1,5 +1,5 @@
 
-const words = [
+const texts: string[] = [
 	'我这次是真的预言家！',
 	'老哥太脏了！',
 	'来啊首刀我啊！',
@@ -15,4 +15,4 @@ const words = [
 	'今天就先出我的查杀',
 ];
 
-export default words;
+export default texts;

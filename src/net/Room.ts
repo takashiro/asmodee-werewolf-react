@@ -72,6 +72,10 @@ class Room {
 		this.ownerKey = key;
 	}
 
+	isOwner(): boolean {
+		return Boolean(this.ownerKey);
+	}
+
 	restore(): boolean {
 		const item = this.session.read(this.salt);
 		if (!item || item.id !== this.id) {
