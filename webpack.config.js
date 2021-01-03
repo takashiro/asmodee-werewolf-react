@@ -1,14 +1,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const pkg = require('./package.json');
 
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
 		mode: mode,
 		entry: {
-			app: './src/index.js',
-			vendor: Object.keys(pkg.dependencies),
+			app: './src/index.tsx',
+			vendor: ['react', 'react-dom'],
 		},
 		output: {
 			filename: '[name].js',
@@ -17,11 +16,18 @@ module.exports = function config(env, argv) {
 		resolveLoader: {
 			modules: [path.resolve(__dirname, 'node_modules')]
 		},
+		resolve: {
+			extensions: [
+				'.ts',
+				'.tsx',
+				'.js',
+			],
+		},
 		optimization: {
 			splitChunks: {
 				cacheGroups: {
 					vendors: {
-						test: /[\\/]node_modules[\\/]/,
+						test: /node_modules/,
 						name: 'vendor',
 						enforce: true,
 						chunks: 'all'

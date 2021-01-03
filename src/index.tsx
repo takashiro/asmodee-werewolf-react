@@ -2,11 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Lobby from './gui/Lobby';
-
-import './common.scss';
+import App from './gui';
 
 ReactDOM.render(
-	<Lobby autoEnter="true" />,
+	<App />,
 	document.getElementById('root')
 );
