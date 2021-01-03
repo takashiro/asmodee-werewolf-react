@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
-		mode: mode,
+		mode,
 		entry: {
 			app: './src/index.tsx',
 			vendor: ['react', 'react-dom'],
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, 'dist/static')
+			path: path.resolve(__dirname, 'dist/static'),
 		},
 		resolveLoader: {
-			modules: [path.resolve(__dirname, 'node_modules')]
+			modules: [path.resolve(__dirname, 'node_modules')],
 		},
 		resolve: {
 			extensions: [
@@ -30,10 +31,10 @@ module.exports = function config(env, argv) {
 						test: /node_modules/,
 						name: 'vendor',
 						enforce: true,
-						chunks: 'all'
-					}
-				}
-			}
+						chunks: 'all',
+					},
+				},
+			},
 		},
 		module: {
 			rules: [
@@ -51,25 +52,25 @@ module.exports = function config(env, argv) {
 							loader: 'css-loader',
 							options: {
 								url: false,
-								sourceMap: mode === 'development'
-							}
+								sourceMap: mode === 'development',
+							},
 						},
 						{
 							loader: 'sass-loader',
 							options: {
 								url: false,
-								sourceMap: mode === 'development'
-							}
+								sourceMap: mode === 'development',
+							},
 						},
 					],
-				}
-			]
+				},
+			],
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
 				filename: '[name].css',
 				chunkFilename: '[name].css',
-			})
+			}),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
 	};

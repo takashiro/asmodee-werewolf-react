@@ -1,4 +1,3 @@
-
 import { Role } from '@asmodee/werewolf-core';
 import Session from './Session';
 

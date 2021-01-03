@@ -35,9 +35,9 @@ export default class Client {
 }
 
 let serverUrl = 'http://localhost:2620/';
-let match = location.href.match(/(^\w+)\:\/\/([^/]+)/i);
+const match = window.location.href.match(/(^\w+):\/\/([^/]+)/i);
 if (match && match[1] && match[2]) {
-	serverUrl = match[1] + '://' + match[2] + '/api/';
+	serverUrl = `${match[1]}://${match[2]}/api/`;
 }
 
 export const client = new Client(serverUrl);
