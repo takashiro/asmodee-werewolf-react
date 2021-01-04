@@ -17,7 +17,7 @@ export default class Session<DataType> {
 			try {
 				sessions = JSON.parse(sessionData);
 			} catch (e) {
-				alert(e.toString());
+				return {};
 			}
 		}
 
