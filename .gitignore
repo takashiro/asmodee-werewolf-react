@@ -1,2 +1,6 @@
-/dist/static/
+/dist/*.html
+/dist/*.js
+/dist/*.css
+/dist/*.LICENSE.txt
+/dist/*.map
 /node_modules/

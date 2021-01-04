@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
@@ -8,11 +9,10 @@ module.exports = function config(env, argv) {
 		mode,
 		entry: {
 			app: './src/index.tsx',
-			vendor: ['react', 'react-dom'],
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, 'dist/static'),
+			path: path.resolve(__dirname, 'dist'),
 		},
 		resolveLoader: {
 			modules: [path.resolve(__dirname, 'node_modules')],
@@ -71,7 +71,14 @@ module.exports = function config(env, argv) {
 				filename: '[name].css',
 				chunkFilename: '[name].css',
 			}),
+			new HtmlWebpackPlugin(),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
+		devServer: {
+			contentBase: path.join(__dirname, 'dist'),
+			compress: true,
+			port: 9526,
+			hot: true,
+		},
 	};
 };
