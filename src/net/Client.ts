@@ -7,7 +7,7 @@ export default class Client {
 
 	get(api: string): Promise<Response> {
 		return window.fetch(
-			this.server + api,
+			`${this.server}/${api}`,
 			{
 				method: 'GET',
 			},
@@ -16,7 +16,7 @@ export default class Client {
 
 	post(api: string, data: unknown): Promise<Response> {
 		return window.fetch(
-			this.server + api,
+			`${this.server}/${api}`,
 			{
 				method: 'POST',
 				body: JSON.stringify(data),
@@ -26,7 +26,7 @@ export default class Client {
 
 	delete(api: string): Promise<Response> {
 		return window.fetch(
-			this.server + api,
+			`${this.server}/${api}`,
 			{
 				method: 'DELETE',
 			},
@@ -34,10 +34,6 @@ export default class Client {
 	}
 }
 
-let serverUrl = 'http://localhost:2620/';
-const match = window.location.href.match(/(^\w+):\/\/([^/]+)/i);
-if (match && match[1] && match[2]) {
-	serverUrl = `${match[1]}://${match[2]}/api/`;
-}
-
+const params = new URLSearchParams(window.location.search);
+const serverUrl = params.get('server') || 'api';
 export const client = new Client(serverUrl);
