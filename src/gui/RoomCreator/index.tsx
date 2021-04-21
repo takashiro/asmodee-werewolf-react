@@ -16,10 +16,19 @@ interface RoomCreatorProps {
 	onPageNavigated?: (page: Page) => void;
 }
 
+const defaultConfig: RoleSelection[] = [
+	{ role: Role.Werewolf, value: 4 },
+	{ role: Role.Villager, value: 4 },
+	{ role: Role.Seer, value: 1 },
+	{ role: Role.Witch, value: 1 },
+	{ role: Role.Hunter, value: 1 },
+	{ role: Role.Idiot, value: 1 },
+];
+
 function readConfig(): RoleSelection[] | undefined {
 	const data = localStorage.getItem('room-config');
 	if (!data) {
-		return;
+		return defaultConfig;
 	}
 
 
@@ -27,12 +36,14 @@ function readConfig(): RoleSelection[] | undefined {
 	try {
 		config = JSON.parse(data);
 	} catch (e) {
-		return;
+		return defaultConfig;
 	}
 
 	if (config instanceof Array) {
 		return config;
 	}
+
+	return defaultConfig;
 }
 
 export default class RoomCreator extends React.Component<RoomCreatorProps> {
