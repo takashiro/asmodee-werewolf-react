@@ -58,7 +58,6 @@ module.exports = function config(env, argv) {
 						{
 							loader: 'sass-loader',
 							options: {
-								url: false,
 								sourceMap: mode === 'development',
 							},
 						},
