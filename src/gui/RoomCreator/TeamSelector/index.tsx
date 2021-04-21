@@ -30,12 +30,12 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 
 	const allRoles = Object.values(Role).filter((role) => Number.isInteger(role)) as number[];
 	const teamRoles = allRoles.filter(role => role != Role.Unknown && role != basic && Teamship.get(role) === team);
-	const basicNum = basic && (config.get(basic) || 0);
+	const basicNum = (basic && config.get(basic)) || 0;
 
 	return (
 		<div className="box">
 			<h3><TeamLabel team={team} /></h3>
-			{basic && basicNum &&
+			{basic &&
 				<RoleNumberInput
 					role={basic}
 					value={basicNum}
