@@ -3,8 +3,8 @@ import React from 'react';
 import Toast from '../component/Toast';
 import Page from '../Page';
 
-import Room from '../../net/Room';
-import { client } from '../../net/Client';
+import Room from '../../model/Room';
+import { client } from '../../model/Client';
 
 import './index.scss';
 

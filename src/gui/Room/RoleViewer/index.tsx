@@ -6,8 +6,8 @@ import {
 	RoomConfig,
 } from '@asmodee/werewolf-core';
 
-import { client } from '../../../net/Client';
-import Room from '../../../net/Room';
+import { client } from '../../../model/Client';
+import Room from '../../../model/Room';
 
 import RoleIcon from '../../component/RoleIcon';
 import RoleLabel from '../../component/RoleLabel';

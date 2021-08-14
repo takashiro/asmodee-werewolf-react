@@ -5,7 +5,7 @@ import Lobby from './Lobby';
 import RoomCreator from './RoomCreator';
 import Room from './Room';
 
-import GameRoom from '../net/Room';
+import GameRoom from '../model/Room';
 
 import './global.scss';
 

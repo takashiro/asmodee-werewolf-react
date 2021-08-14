@@ -10,7 +10,7 @@ import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
 import shareTexts from './shareTexts';
 
-import GameRoom from '../../net/Room';
+import GameRoom from '../../model/Room';
 
 import './index.scss';
 

@@ -7,13 +7,13 @@ import {
 
 import Toast from '../component/Toast';
 import TeamSelector from './TeamSelector';
-import RoomConfig from '../../net/Room';
-import { client } from '../../net/Client';
+import RoomConfig from '../../model/Room';
+import { client } from '../../model/Client';
 import RoleSelection from './RoleSelection';
 import Page from '../Page';
 
 interface RoomCreatorProps {
-	onPageNavigated?: (page: Page) => void;
+	onPageNavigated?: (page: Page, room: RoomConfig) => void;
 }
 
 const defaultConfig: RoleSelection[] = [
@@ -94,10 +94,10 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		localStorage.setItem('room-config', JSON.stringify(config));
 	}
 
-	nagivateTo(page: Page): void {
+	nagivateTo(page: Page, room?: RoomConfig): void {
 		const { onPageNavigated } = this.props;
 		if (onPageNavigated) {
-			setTimeout(onPageNavigated, 0, page);
+			setTimeout(onPageNavigated, 0, page, room);
 		}
 	}
 
@@ -142,7 +142,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 			const config = await res.json();
 			const room = new RoomConfig(config);
 			room.save();
-			this.nagivateTo(Page.Room);
+			this.nagivateTo(Page.Room, room);
 		}
 	}
 
