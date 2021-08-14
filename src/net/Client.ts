@@ -19,6 +19,9 @@ export default class Client {
 			`${this.server}/${api}`,
 			{
 				method: 'POST',
+				headers: {
+					'content-type': 'application/json',
+				},
 				body: JSON.stringify(data),
 			},
 		);
