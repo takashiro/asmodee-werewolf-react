@@ -8,7 +8,7 @@ import { client } from '../../model/Client';
 
 import './index.scss';
 
-async function fetchRoom(): Promise<number | undefined> {
+async function fetchRoom(): Promise<Room | undefined> {
 	const roomInput = document.getElementById('room-number') as HTMLInputElement;
 	const roomId = Number.parseInt(roomInput.value, 10);
 	if (Number.isNaN(roomId)) {
@@ -23,7 +23,7 @@ async function fetchRoom(): Promise<number | undefined> {
 		const config = await res.json();
 		const room = new Room(config);
 		room.save();
-		return room.getId();
+		return room;
 	}
 
 	if (res.status === 404) {
@@ -48,14 +48,14 @@ export default class Lobby extends React.Component<LobbyProps> {
 	}
 
 	enterRoom = async (): Promise<void> => {
-		const roomId = await fetchRoom();
-		if (!roomId) {
+		const room = await fetchRoom();
+		if (!room) {
 			return;
 		}
 
 		const { onPageNagivated } = this.props;
 		if (onPageNagivated) {
-			setTimeout(onPageNagivated, 0, Page.Room);
+			setTimeout(onPageNagivated, 0, Page.Room, room);
 		}
 	}
 
