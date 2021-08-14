@@ -11,10 +11,11 @@ import './global.scss';
 
 interface AppState {
 	page: Page;
-	room?: GameRoom;
 }
 
 export default class App extends React.Component<{}, AppState> {
+	room?: GameRoom;
+
 	constructor(props: {}) {
 		super(props);
 
@@ -24,10 +25,8 @@ export default class App extends React.Component<{}, AppState> {
 	}
 
 	handlePageNavigation = (newPage: Page, room?: GameRoom): void => {
-		this.setState({
-			page: newPage,
-			room,
-		});
+		this.room = room;
+		this.setState({ page: newPage });
 	}
 
 	render(): JSX.Element {
@@ -39,7 +38,7 @@ export default class App extends React.Component<{}, AppState> {
 			return <RoomCreator onPageNavigated={this.handlePageNavigation} />;
 		}
 		if (page === Page.Room) {
-			const { room } = this.state;
+			const { room } = this;
 			if (room) {
 				return <Room room={room} onPageNagivated={this.handlePageNavigation} />;
 			}

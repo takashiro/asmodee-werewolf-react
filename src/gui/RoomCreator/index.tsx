@@ -5,15 +5,17 @@ import {
 	Team,
  } from '@asmodee/werewolf-core';
 
+import Client from '../../model/Client';
+import Room from '../../model/Room';
+
 import Toast from '../component/Toast';
-import TeamSelector from './TeamSelector';
-import RoomConfig from '../../model/Room';
-import { client } from '../../model/Client';
-import RoleSelection from './RoleSelection';
 import Page from '../Page';
 
+import TeamSelector from './TeamSelector';
+import RoleSelection from './RoleSelection';
+
 interface RoomCreatorProps {
-	onPageNavigated?: (page: Page, room: RoomConfig) => void;
+	onPageNavigated?: (page: Page, room: Room) => void;
 }
 
 const defaultConfig: RoleSelection[] = [
@@ -94,7 +96,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		localStorage.setItem('room-config', JSON.stringify(config));
 	}
 
-	nagivateTo(page: Page, room?: RoomConfig): void {
+	nagivateTo(page: Page, room?: Room): void {
 		const { onPageNavigated } = this.props;
 		if (onPageNavigated) {
 			setTimeout(onPageNavigated, 0, page, room);
@@ -137,13 +139,17 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 			return Toast.makeToast('最大仅支持50人局，请重新配置角色。');
 		}
 
-		const res = await client.post('room', { roles });
-		if (res.status === 200) {
-			const config = await res.json();
-			const room = new RoomConfig(config);
-			room.save();
-			this.nagivateTo(Page.Room, room);
+		const client = new Client('api');
+		const room = new Room(client);
+		try {
+			await room.create(roles);
+		} catch (error) {
+			alert(error.message);
+			return;
 		}
+
+		room.save();
+		this.nagivateTo(Page.Room, room);
 	}
 
 	render() {

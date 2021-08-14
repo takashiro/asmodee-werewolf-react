@@ -1,13 +1,8 @@
 
 import React from 'react';
-import {
-	PlayerProfile,
-	Role,
-	RoomConfig,
-} from '@asmodee/werewolf-core';
+import { Role } from '@asmodee/werewolf-core';
 
-import { client } from '../../../model/Client';
-import Room from '../../../model/Room';
+import Player from '../../../model/Player';
 
 import RoleIcon from '../../component/RoleIcon';
 import RoleLabel from '../../component/RoleLabel';
@@ -22,11 +17,10 @@ errorMap.set(403, '请刷新网页缓存，然后重试。');
 errorMap.set(409, '该座位已使用，请重新输入。');
 
 interface RoleViewerProps {
-	room: Room;
+	player: Player;
 }
 
 interface RoleViewerState {
-	visible: boolean;
 	seat?: number;
 	roles?: Role[];
 }
@@ -42,11 +36,10 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		this.seatNumber = React.createRef();
 		this.message = React.createRef();
 
-		const { room } = props;
+		const { player } = props;
 		this.state = {
-			visible: !room.getOwnerKey(),
-			seat: room.getSeat(),
-			roles: room.getRoles(),
+			seat: player.getSeat(),
+			roles: player.getRoles(),
 		};
 	}
 
@@ -77,32 +70,23 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 			return;
 		}
 
-		const { room } = this.props;
-		let seatKey = room.getSeatKey();
-		if (!seatKey) {
-			seatKey = Math.floor(Math.random() * 0xFFFF) + 1;
-			room.setSeatKey(seatKey);
-			room.save();
-		}
-
+		const { player } = this.props;
 		this.showMessage('你的身份是...');
-		const res = await client.get(`room/${room.getId()}/player/${seat}?seatKey=${seatKey}`);
-		if (res.status === 200) {
-			const { roles } = await res.json() as PlayerProfile;
-
-			this.setState({
-				seat,
-				roles,
-			});
-
-			room.setSeat(seat);
-			room.setRoles(roles);
-			room.save();
-		} else {
-			const text = await res.text();
-			const message = errorMap.get(res.status) || `未知错误 (${res.status})：${text}`;
+		try {
+			await player.takeSeat(seat);
+		} catch (error) {
+			const message = errorMap.get(error.code) || `未知错误 (${error.code})：${error.message}`;
 			this.showMessage(message);
+			return;
 		}
+
+		player.save();
+
+		const roles = player.getRoles();
+		this.setState({
+			seat,
+			roles,
+		});
 	}
 
 	renderCards(): JSX.Element {
@@ -147,12 +131,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		}
 	}
 
-	render(): JSX.Element | null {
-		const { visible } = this.state;
-		if (!visible) {
-			return null;
-		}
-
+	render(): JSX.Element {
 		return <div className="box">
 			<h3>你的身份</h3>
 			{this.renderCards()}

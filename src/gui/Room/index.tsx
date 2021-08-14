@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Team } from '@asmodee/werewolf-core';
 
 import Page from '../Page';
 
@@ -92,7 +91,7 @@ class Room extends React.Component<RoomProps> {
 			<div>
 				<div className="inline-message">房间号：{room.getId()}</div>
 				{roles && <RoleTable roles={roles} />}
-				<RoleViewer room={room} />
+				{!room.isOwner() && <RoleViewer player={room.createPlayer()} />}
 				<div className="box share-link-area">
 					<span className="label">邀请链接</span>
 					<a href={shareUrl} onClick={this.handleShareLinkClick} ref={this.linkAnchor}>{shareUrl}</a>

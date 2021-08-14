@@ -5,6 +5,10 @@ export default class Client {
 		this.server = url;
 	}
 
+	derive(context: string): Client {
+		return new Client(`${this.server}/${context}`);
+	}
+
 	get(api: string): Promise<Response> {
 		return window.fetch(
 			`${this.server}/${api}`,
@@ -36,7 +40,3 @@ export default class Client {
 		);
 	}
 }
-
-const params = new URLSearchParams(window.location.search);
-const serverUrl = params.get('server') || 'api';
-export const client = new Client(serverUrl);

@@ -4,7 +4,7 @@ import Toast from '../component/Toast';
 import Page from '../Page';
 
 import Room from '../../model/Room';
-import { client } from '../../model/Client';
+import Client from '../../model/Client';
 
 import './index.scss';
 
@@ -18,21 +18,22 @@ async function fetchRoom(): Promise<Room | undefined> {
 		return;
 	}
 
-	const res = await client.get(`room/${roomId}`);
-	if (res.status === 200) {
-		const config = await res.json();
-		const room = new Room(config);
+	const client = new Client('api');
+	const room = new Room(client);
+	if (!room.restore(roomId)) {
+		try {
+			await room.enter(roomId);
+		} catch (error) {
+			if (error.code === 404) {
+				Toast.makeToast('房间不存在。');
+			} else {
+				Toast.makeToast('未知错误。');
+			}
+			return;
+		}
 		room.save();
-		return room;
 	}
-
-	if (res.status === 404) {
-		Toast.makeToast('房间不存在。');
-	} else {
-		Toast.makeToast('未知错误。');
-	}
-	roomInput.value = '';
-	roomInput.focus();
+	return room;
 }
 
 interface LobbyProps {
