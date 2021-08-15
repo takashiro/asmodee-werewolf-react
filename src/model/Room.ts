@@ -46,7 +46,7 @@ class Room {
 	}
 
 	createPlayer(): Player {
-		const client = this.client.derive(`/room/${this.id}`);
+		const client = this.client.derive(`room/${this.id}`);
 		return new Player(client, this.salt);
 	}
 

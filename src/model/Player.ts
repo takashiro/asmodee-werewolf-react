@@ -94,7 +94,7 @@ export default class Player {
 		const query = new URLSearchParams({
 			key: seatKey,
 		});
-		const res = await this.client.get(`/seat/${seat}?${query.toString()}`);
+		const res = await this.client.get(`seat/${seat}?${query.toString()}`);
 		if (res.status !== 200) {
 			throw new HttpError(res.status, await res.text());
 		}
