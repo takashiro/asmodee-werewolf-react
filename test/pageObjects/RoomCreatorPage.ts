@@ -1,4 +1,5 @@
 import Page from './Page';
+import NumberInput from './NumberInput';
 
 export default class RoomCreatorPage extends Page {
 	async open(): Promise<void> {
@@ -8,5 +9,10 @@ export default class RoomCreatorPage extends Page {
 			await button.click();
 			await this.loaded();
 		}
+	}
+
+	async getWerewolfInput(): Promise<NumberInput> {
+		const selector = await $('.number-selector');
+		return new NumberInput(selector);
 	}
 }

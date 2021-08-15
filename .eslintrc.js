@@ -37,6 +37,7 @@ module.exports = {
 		],
 		'linebreak-style': 'off',
 		'max-len': 'off',
+		'no-await-in-loop': 'off',
 		'no-continue': 'off',
 		'no-plusplus': 'off',
 		'no-restricted-syntax': [
