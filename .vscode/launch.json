@@ -7,9 +7,23 @@
 		{
 			"type": "pwa-chrome",
 			"request": "launch",
-			"name": "Launch Chrome",
+			"name": "Chrome",
 			"url": "http://localhost:9526",
 			"webRoot": "${workspaceFolder}/dist"
+		},
+		{
+			"name": "WebDriverIO",
+			"type": "node",
+			"request": "launch",
+			"args": ["test/wdio.conf.js", "--spec", "${file}"],
+			"cwd": "${workspaceFolder}",
+			"autoAttachChildProcesses": true,
+			"program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
+			"console": "integratedTerminal",
+			"skipFiles": [
+					"${workspaceFolder}/node_modules/**/*.js",
+					"<node_internals>/**/*.js"
+			]
 		}
 	]
 }
