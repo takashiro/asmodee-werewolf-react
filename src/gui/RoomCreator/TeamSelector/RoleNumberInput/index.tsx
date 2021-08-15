@@ -1,73 +1,100 @@
-
 import React from 'react';
+import { Role } from '@asmodee/werewolf-core';
 
 import RoleIcon from '../../../component/RoleIcon';
 import RoleLabel from '../../../component/RoleLabel';
+
 import RoleChange from '../../RoleSelection';
 
 import './index.scss';
 
-interface RoleNumberInputProps extends RoleChange {
+interface RoleNumberInputProps {
+	role: Role;
+	defaultValue: number;
 	onChange?: (change: RoleChange) => void;
 }
 
-interface RoleNumberInputState {
-	value: number;
-}
+function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
+	const {
+		role,
+		defaultValue,
+		onChange,
+	} = props;
 
-class RoleNumberInput extends React.Component<RoleNumberInputProps, RoleNumberInputState> {
-	constructor(props: RoleNumberInputProps) {
-		super(props);
-		this.state = {
-			value: typeof props.value == 'number' && props.value > 0 ? props.value : 0,
-		};
-	}
+	const [value, setValue] = React.useState(defaultValue);
 
-	handleDecrease = (): void => {
-		this.setState(prev => {
-			let state = {value: Math.max(0, prev.value - 1)};
-			this.emitChange(state.value);
-			return state;
+	function emitChange(newValue: number): void {
+		if (!onChange) {
+			return;
+		}
+
+		onChange({
+			role,
+			value: newValue,
 		});
 	}
 
-	handleIncrease = (): void => {
-		this.setState(prev => {
-			let state = {value: prev.value + 1};
-			this.emitChange(state.value);
-			return state;
-		});
+	function handleDecreaseClick(): void {
+		const newValue = Math.max(0, value - 1);
+		setValue(newValue);
+		emitChange(newValue);
 	}
 
-	handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const value = parseInt(e.target.value, 10);
-		this.setState({ value });
-		this.emitChange(value);
-	}
-
-	emitChange(value: number): void {
-		if (this.props.onChange) {
-			this.props.onChange({
-				role: this.props.role,
-				value: value
-			});
+	function handleDecreaseKeyDown(e: React.KeyboardEvent<HTMLButtonElement>): void {
+		if (e.key === 'Enter' || e.key === 'Space') {
+			handleDecreaseClick();
 		}
 	}
 
-	render() {
-		let role = this.props.role;
-		return <div className="role-selector number-selector">
+	function handleIncreaseClick(): void {
+		const newValue = value + 1;
+		setValue(newValue);
+		emitChange(newValue);
+	}
+
+	function handleIncreaseKeyDown(e: React.KeyboardEvent<HTMLButtonElement>): void {
+		if (e.key === 'Enter' || e.key === 'Space') {
+			handleIncreaseClick();
+		}
+	}
+
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+		const newValue = Number.parseInt(e.target.value, 10);
+		setValue(newValue);
+		emitChange(newValue);
+	}
+
+	return (
+		<div className="role-selector number-selector">
 			<div className="icon">
 				<RoleIcon role={role} />
 				<RoleLabel role={role} className="name" />
 			</div>
 			<div className="number-input">
-				<div className="decrease" onClick={this.handleDecrease}></div>
-				<input type="number" value={this.state.value} onChange={this.handleChange} />
-				<div className="increase" onClick={this.handleIncrease}></div>
+				<button
+					type="button"
+					className="decrease"
+					onClick={handleDecreaseClick}
+					onKeyDown={handleDecreaseKeyDown}
+				>
+					ー
+				</button>
+				<input
+					type="number"
+					value={value}
+					onChange={handleChange}
+				/>
+				<button
+					type="button"
+					className="increase"
+					onClick={handleIncreaseClick}
+					onKeyDown={handleIncreaseKeyDown}
+				>
+					＋
+				</button>
 			</div>
-		</div>;
-	}
+		</div>
+	);
 }
 
 export default RoleNumberInput;

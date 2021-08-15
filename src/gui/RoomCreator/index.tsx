@@ -3,7 +3,7 @@ import React from 'react';
 import {
 	Role,
 	Team,
- } from '@asmodee/werewolf-core';
+} from '@asmodee/werewolf-core';
 
 import Client from '../../model/Client';
 import Room from '../../model/Room';
@@ -33,7 +33,6 @@ function readConfig(): RoleSelection[] | undefined {
 		return defaultConfig;
 	}
 
-
 	let config: RoleSelection[] = [];
 	try {
 		config = JSON.parse(data);
@@ -54,53 +53,8 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	constructor(props: RoomCreatorProps) {
 		super(props);
 
-		this.roleConfig = new Map;
+		this.roleConfig = new Map();
 		this.restoreConfig();
-	}
-
-	restoreConfig() {
-		if (!window.localStorage) {
-			return;
-		}
-
-		const config = readConfig();
-		if (!config) {
-			return;
-		}
-
-		for (let item of config) {
-			const { role } = item;
-			if (!role) {
-				continue;
-			}
-
-			const { value } = item;
-			if (value > 0) {
-				this.roleConfig.set(role, value);
-			}
-		}
-	}
-
-	saveConfig() {
-		if (!window.localStorage) {
-			return;
-		}
-
-		let config: RoleSelection[] = [];
-		for (const [key, value] of this.roleConfig) {
-			config.push({
-				role: key,
-				value: value
-			});
-		}
-		localStorage.setItem('room-config', JSON.stringify(config));
-	}
-
-	nagivateTo(page: Page, room?: Room): void {
-		const { onPageNavigated } = this.props;
-		if (onPageNavigated) {
-			setTimeout(onPageNavigated, 0, page, room);
-		}
 	}
 
 	handleChange = (data: RoleSelection): void => {
@@ -122,9 +76,9 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	handleConfirm = async (): Promise<void> => {
 		this.saveConfig();
 
-		let roles: number[] = [];
+		const roles: number[] = [];
 		this.roleConfig.forEach((value, role) => {
-			if (typeof value == 'number') {
+			if (typeof value === 'number') {
 				for (let i = 0; i < value; i++) {
 					roles.push(role);
 				}
@@ -134,9 +88,11 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		});
 
 		if (roles.length <= 0) {
-			return Toast.makeToast('请选择角色。 ');
-		} else if (roles.length > 50) {
-			return Toast.makeToast('最大仅支持50人局，请重新配置角色。');
+			Toast.makeToast('请选择角色。 ');
+			return;
+		} if (roles.length > 50) {
+			Toast.makeToast('最大仅支持50人局，请重新配置角色。');
+			return;
 		}
 
 		const client = new Client('api');
@@ -144,7 +100,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		try {
 			await room.create(roles);
 		} catch (error) {
-			alert(error.message);
+			Toast.makeToast(error.message);
 			return;
 		}
 
@@ -152,29 +108,76 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		this.nagivateTo(Page.Room, room);
 	}
 
-	render() {
-		return <div className="room-creator">
-			<TeamSelector
-				team={Team.Werewolf}
-				basic={Role.Werewolf}
-				config={this.roleConfig}
-				onChange={this.handleChange}
-			/>
-			<TeamSelector
-				team={Team.Villager}
-				basic={Role.Villager}
-				config={this.roleConfig}
-				onChange={this.handleChange}
-			/>
-			<TeamSelector
-				team={Team.Other}
-				config={this.roleConfig}
-				onChange={this.handleChange}
-			/>
-			<div className="button-area">
-				<button type="button" onClick={this.handleReturn}>返回</button>
-				<button type="button" onClick={this.handleConfirm}>创建房间</button>
+	restoreConfig(): void {
+		if (!window.localStorage) {
+			return;
+		}
+
+		const config = readConfig();
+		if (!config) {
+			return;
+		}
+
+		for (const item of config) {
+			const { role } = item;
+			if (!role) {
+				continue;
+			}
+
+			const { value } = item;
+			if (value > 0) {
+				this.roleConfig.set(role, value);
+			}
+		}
+	}
+
+	saveConfig(): void {
+		if (!window.localStorage) {
+			return;
+		}
+
+		const config: RoleSelection[] = [];
+		for (const [key, value] of this.roleConfig) {
+			config.push({
+				role: key,
+				value,
+			});
+		}
+		localStorage.setItem('room-config', JSON.stringify(config));
+	}
+
+	nagivateTo(page: Page, room?: Room): void {
+		const { onPageNavigated } = this.props;
+		if (onPageNavigated) {
+			setTimeout(onPageNavigated, 0, page, room);
+		}
+	}
+
+	render(): JSX.Element {
+		return (
+			<div className="room-creator">
+				<TeamSelector
+					team={Team.Werewolf}
+					basic={Role.Werewolf}
+					config={this.roleConfig}
+					onChange={this.handleChange}
+				/>
+				<TeamSelector
+					team={Team.Villager}
+					basic={Role.Villager}
+					config={this.roleConfig}
+					onChange={this.handleChange}
+				/>
+				<TeamSelector
+					team={Team.Other}
+					config={this.roleConfig}
+					onChange={this.handleChange}
+				/>
+				<div className="button-area">
+					<button type="button" onClick={this.handleReturn}>返回</button>
+					<button type="button" onClick={this.handleConfirm}>创建房间</button>
+				</div>
 			</div>
-		</div>;
+		);
 	}
 }

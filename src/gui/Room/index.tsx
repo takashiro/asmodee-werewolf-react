@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import Page from '../Page';
@@ -9,12 +8,12 @@ import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
 import shareTexts from './shareTexts';
 
-import GameRoom from '../../model/Room';
+import RoomModel from '../../model/Room';
 
 import './index.scss';
 
 interface RoomProps {
-	room: GameRoom;
+	room: RoomModel;
 	onPageNagivated?: (page: Page) => void;
 }
 
@@ -25,6 +24,24 @@ class Room extends React.Component<RoomProps> {
 		const { room } = this.props;
 		const baseUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
 		return `${baseUrl}?id=${room.getId()}`;
+	}
+
+	handleShareLinkClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+		e.preventDefault();
+		const success = this.copyShareLink();
+		if (success) {
+			Toast.makeToast('成功复制该链接。');
+		} else {
+			Toast.makeToast('复制失败。请手动长按该链接，然后分享给好友。');
+		}
+	}
+
+	handleReturn = (e: React.MouseEvent<HTMLButtonElement>): void => {
+		e.preventDefault();
+		const { onPageNagivated } = this.props;
+		if (onPageNagivated) {
+			setTimeout(onPageNagivated, 0, Page.Lobby);
+		}
 	}
 
 	copyShareLink(): boolean {
@@ -65,31 +82,16 @@ class Room extends React.Component<RoomProps> {
 		return success;
 	}
 
-	handleShareLinkClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-		e.preventDefault();
-		const success = this.copyShareLink();
-		if (success) {
-			Toast.makeToast('成功复制该链接。');
-		} else {
-			Toast.makeToast('复制失败。请手动长按该链接，然后分享给好友。');
-		}
-	}
-
-	handleReturn = (e: React.MouseEvent<HTMLButtonElement>): void => {
-		e.preventDefault();
-		const { onPageNagivated } = this.props;
-		if (onPageNagivated) {
-			setTimeout(onPageNagivated, 0, Page.Lobby);
-		}
-	}
-
 	render(): JSX.Element {
 		const { room } = this.props;
 		const roles = room.getRoles();
 		const shareUrl = this.getShareUrl();
 		return (
 			<div>
-				<div className="inline-message">房间号：{room.getId()}</div>
+				<div className="inline-message">
+					房间号：
+					{room.getId()}
+				</div>
 				{roles && <RoleTable roles={roles} />}
 				{!room.isOwner() && <RoleViewer player={room.createPlayer()} />}
 				<div className="box share-link-area">
@@ -98,7 +100,7 @@ class Room extends React.Component<RoomProps> {
 				</div>
 				<div className="button-area">
 					{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
-					<button onClick={this.handleReturn}>返回</button>
+					<button type="button" onClick={this.handleReturn}>返回</button>
 				</div>
 			</div>
 		);

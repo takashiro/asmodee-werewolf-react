@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
@@ -9,12 +8,12 @@ interface RoleIconProps {
 }
 
 function RoleIcon(props: RoleIconProps): JSX.Element {
-	let style: React.CSSProperties = {};
-	let role = props.role;
+	const style: React.CSSProperties = {};
+	const { role } = props;
 	if (role !== Role.Unknown) {
 		style.backgroundImage = `url(style/role/${Role[role]}.jpg)`;
 	}
-	return <div className="role" style={style}></div>;
+	return <div className="role" style={style} />;
 }
 
 export default RoleIcon;

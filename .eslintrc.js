@@ -30,6 +30,7 @@ module.exports = {
 				js: 'never',
 			},
 		],
+		'consistent-return': 'off',
 		indent: [
 			'error',
 			'tab',
@@ -44,16 +45,22 @@ module.exports = {
 		],
 		'no-shadow': 'off',
 		'no-tabs': 'off',
+		'no-use-before-define': 'off',
+		'react/jsx-indent-props': [
+			'error',
+			'tab',
+		],
+		'react/jsx-filename-extension': [
+			'error',
+			{ extensions: ['.tsx'] },
+		],
+		'react/jsx-indent': [
+			'error',
+			'tab',
+		],
+		'react/require-default-props': 'off',
 	},
 	settings: {
-		'import/resolver': {
-			node: {
-				extensions: [
-					'.ts',
-					'.tsx',
-					'.js',
-				],
-			},
-		},
+		'import/resolver': { typescript: {} },
 	},
 };

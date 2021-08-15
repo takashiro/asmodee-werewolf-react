@@ -13,10 +13,10 @@ interface AppState {
 	page: Page;
 }
 
-export default class App extends React.Component<{}, AppState> {
+export default class App extends React.Component<unknown, AppState> {
 	room?: GameRoom;
 
-	constructor(props: {}) {
+	constructor(props: unknown) {
 		super(props);
 
 		this.state = {

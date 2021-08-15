@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
@@ -43,13 +42,6 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		};
 	}
 
-	showMessage(message: string): void {
-		const container = this.message.current;
-		if (container) {
-			container.innerHTML = message;
-		}
-	}
-
 	fetchCard = async (): Promise<void> => {
 		const seatNumber = this.seatNumber.current;
 		if (!seatNumber) {
@@ -89,18 +81,27 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		});
 	}
 
+	showMessage(message: string): void {
+		const container = this.message.current;
+		if (container) {
+			container.innerHTML = message;
+		}
+	}
+
 	renderCards(): JSX.Element {
 		const { roles } = this.state;
 		if (!roles) {
-			return <div className="role-area button-area">
-				<input
-					type="number"
-					placeholder="座位号"
-					ref={this.seatNumber}
-				/>
-				<button type="button" onClick={this.fetchCard}>查看身份</button>
-				<div className="inline-message" ref={this.message}></div>
-			</div>;
+			return (
+				<div className="role-area button-area">
+					<input
+						type="number"
+						placeholder="座位号"
+						ref={this.seatNumber}
+					/>
+					<button type="button" onClick={this.fetchCard}>查看身份</button>
+					<div className="inline-message" ref={this.message} />
+				</div>
+			);
 		}
 
 		const { seat } = this.state;
@@ -108,34 +109,44 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		const cards = roles.splice(1);
 
 		if (!cards || cards.length <= 0) {
-			return <div className="role-area">
-				<div className="name">{seat}号位 <RoleLabel role={role} /></div>
-				<RoleIcon role={role} />
-			</div>;
-		} else {
-			let key = 0;
-			let extraList = cards.map(role => {
-				return <li key={key++}>
+			return (
+				<div className="role-area">
+					<div className="name">
+						{seat}
+						号位
+						{' '}
+						<RoleLabel role={role} />
+					</div>
 					<RoleIcon role={role} />
-					<RoleLabel role={role} className="name" />
-				</li>;
-			});
+				</div>
+			);
+		}
+		let key = 0;
+		const extraList = cards.map((role) => (
+			<li key={key++}>
+				<RoleIcon role={role} />
+				<RoleLabel role={role} className="name" />
+			</li>
+		));
 
-			return <div className="role-area">
+		return (
+			<div className="role-area">
 				<RoleLabel role={role} className="name" />
 				<RoleIcon role={role} />
 				<ul className="role-list extra-cards">
 					{extraList}
 				</ul>
-			</div>;
-		}
+			</div>
+		);
 	}
 
 	render(): JSX.Element {
-		return <div className="box">
-			<h3>你的身份</h3>
-			{this.renderCards()}
-		</div>;
+		return (
+			<div className="box">
+				<h3>你的身份</h3>
+				{this.renderCards()}
+			</div>
+		);
 	}
 }
 

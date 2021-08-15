@@ -14,7 +14,6 @@
 }
 
 .number-input {
-
 	> .decrease,
 	> .increase {
 		display: inline-block;
@@ -22,7 +21,7 @@
 		height: 2em;
 		line-height: 2.2em;
 		text-align: center;
-		border: 0px solid;
+		border: none;
 		padding: 0;
 		background: white;
 		color: black;
@@ -39,13 +38,4 @@
 		text-align: center;
 		margin: 0 10px;
 	}
-
-	> .decrease::before {
-		content: 'ー';
-	}
-
-	> .increase::before {
-		content: '＋';
-	}
-
 }

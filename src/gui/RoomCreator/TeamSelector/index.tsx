@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
 	Role,
@@ -29,25 +28,29 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 	} = props;
 
 	const allRoles = Object.values(Role).filter((role) => Number.isInteger(role)) as number[];
-	const teamRoles = allRoles.filter(role => role != Role.Unknown && role != basic && Teamship.get(role) === team);
+	const teamRoles = allRoles.filter((role) => role !== Role.Unknown && role !== basic && Teamship.get(role) === team);
 	const basicNum = (basic && config.get(basic)) || 0;
 
 	return (
 		<div className="box">
 			<h3><TeamLabel team={team} /></h3>
-			{basic &&
+			{basic && (
 				<RoleNumberInput
 					role={basic}
-					value={basicNum}
+					defaultValue={basicNum}
 					onChange={onChange}
-				/>}
+				/>
+			)}
 			<ul className="role-selector">
-				{teamRoles.map((role) => <RoleOption
-					key={Role[role]}
-					role={role}
-					selected={Boolean(config.get(role))}
-					onChange={onChange}
-				/>)}
+				{teamRoles.map((role) => (
+					<li key={Role[role]}>
+						<RoleOption
+							role={role}
+							defaultSelected={Boolean(config.get(role))}
+							onChange={onChange}
+						/>
+					</li>
+				))}
 			</ul>
 		</div>
 	);

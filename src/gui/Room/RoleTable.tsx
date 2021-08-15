@@ -27,11 +27,13 @@ export default function RoleTable(props: Props): JSX.Element {
 					return null;
 				}
 
-				return <TeamProfile
-					key={key++}
-					team={team}
-					roles={teamRoles}
-				/>;
+				return (
+					<TeamProfile
+						key={key++}
+						team={team}
+						roles={teamRoles}
+					/>
+				);
 			})}
 		</div>
 	);

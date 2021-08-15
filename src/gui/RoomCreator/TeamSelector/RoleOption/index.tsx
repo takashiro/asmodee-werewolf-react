@@ -1,50 +1,55 @@
-
 import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
 import RoleIcon from '../../../component/RoleIcon';
-import RoleChange from '../../RoleSelection';
 import RoleLabel from '../../../component/RoleLabel';
+
+import RoleChange from '../../RoleSelection';
 
 interface RoleOptionProps {
 	role: Role;
-	selected: boolean;
+	defaultSelected: boolean;
 	onChange?: (change: RoleChange) => void;
 }
 
-interface RoleOptionState {
-	selected: boolean;
-}
+function RoleOption(props: RoleOptionProps): JSX.Element {
+	const {
+		role,
+		defaultSelected,
+		onChange,
+	} = props;
 
-class RoleOption extends React.Component<RoleOptionProps, RoleOptionState> {
-	constructor(props: RoleOptionProps) {
-		super(props);
-		this.state = {
-			selected: props.selected,
-		};
+	const [selected, setSelected] = React.useState(defaultSelected);
+
+	function handleClick(): void {
+		setSelected(!selected);
+		if (onChange) {
+			onChange({
+				role,
+				value: !selected ? 1 : 0,
+			});
+		}
 	}
 
-	handleClick = (): void => {
-		this.setState(prev => {
-			let state = { selected: !prev.selected };
-			if (this.props.onChange) {
-				this.props.onChange({
-					role: this.props.role,
-					value: state.selected ? 1 : 0,
-				});
-			}
-			return state;
-		});
+	function handleKeyDown(e: React.KeyboardEvent<HTMLButtonElement>): void {
+		if (e.key === 'Enter' || e.key === 'Space') {
+			handleClick();
+		}
 	}
 
-	render() {
-		let role = this.props.role;
-		let className = this.state.selected ? 'selected' : '';
-		return <li className={className} onClick={this.handleClick}>
+	const className = selected ? 'selected' : '';
+	return (
+		<button
+			className={className}
+			type="button"
+			tabIndex={0}
+			onClick={handleClick}
+			onKeyDown={handleKeyDown}
+		>
 			<RoleIcon role={role} />
 			<RoleLabel role={role} className="name" />
-		</li>;
-	}
+		</button>
+	);
 }
 
 export default RoleOption;

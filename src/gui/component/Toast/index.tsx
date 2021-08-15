@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -9,23 +8,23 @@ interface ToastProps {
 	container?: string;
 }
 
-interface ToastState {
-	visible: boolean;
-}
+class Toast extends React.Component<ToastProps, unknown> {
+	static makeToast(message: string, container = 'overlay'): void {
+		ReactDOM.render(
+			<Toast message={message} />,
+			document.getElementById(container),
+		);
+	}
 
-class Toast extends React.Component<ToastProps, ToastState> {
 	protected toast: React.RefObject<HTMLDivElement>;
 
 	constructor(props: ToastProps) {
 		super(props);
 
 		this.toast = React.createRef();
-		this.state = {
-			visible: false,
-		};
 	}
 
-	componentDidMount() {
+	componentDidMount(): void {
 		setTimeout(() => {
 			const toast = this.toast.current;
 			if (!toast) {
@@ -53,18 +52,12 @@ class Toast extends React.Component<ToastProps, ToastState> {
 		}, 1200);
 	}
 
-	render() {
+	render(): JSX.Element {
+		const { message } = this.props;
 		return (
 			<div className="toast" ref={this.toast}>
-				{this.props.message}
+				{message}
 			</div>
-		);
-	}
-
-	static makeToast(message: string, container = 'overlay'): void {
-		ReactDOM.render(
-			<Toast message={message} />,
-			document.getElementById(container),
 		);
 	}
 }
