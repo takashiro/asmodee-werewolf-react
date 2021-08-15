@@ -3,6 +3,8 @@ import {
 	PlayerProfile,
 } from '@asmodee/werewolf-core';
 
+import createRandomKey from '../util/createRandomKey';
+
 import Client from './Client';
 import HttpError from './HttpError';
 import Session from './Session';
@@ -88,9 +90,9 @@ export default class Player {
 			return;
 		}
 
-		const { seatKey = String(Math.floor(Math.random() * 0xFFFF)) } = this;
+		const { seatKey = createRandomKey(16) } = this;
 		const query = new URLSearchParams({
-			seatKey,
+			key: seatKey,
 		});
 		const res = await this.client.get(`/seat/${seat}?${query.toString()}`);
 		if (res.status !== 200) {

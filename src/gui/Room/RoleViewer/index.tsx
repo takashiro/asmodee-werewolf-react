@@ -36,6 +36,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		this.message = React.createRef();
 
 		const { player } = props;
+		player.restore();
 		this.state = {
 			seat: player.getSeat(),
 			roles: player.getRoles(),
