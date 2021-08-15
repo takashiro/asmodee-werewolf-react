@@ -2,7 +2,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const server = require('@asmodee/werewolf-server').default;
+const api = require('@asmodee/werewolf-server').default;
 
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
@@ -79,14 +79,8 @@ module.exports = function config(env, argv) {
 			compress: true,
 			port: 9526,
 			hot: true,
-			before() {
-				server.listen(9527);
-			},
-			proxy: {
-				'/api': {
-					target: 'http://localhost:9527',
-					pathRewrite: { '^/api': '' },
-				},
+			before(app) {
+				app.use('/api', api);
 			},
 		},
 	};
