@@ -35,7 +35,7 @@ const config = {
 	// will be called from there.
 	//
 	specs: [
-		'./test/specs/**/*.ts',
+		'./test/e2e/**/*.spec.ts',
 	],
 	// Patterns to exclude.
 	exclude: [
