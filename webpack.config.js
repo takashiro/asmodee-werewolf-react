@@ -12,7 +12,7 @@ module.exports = function config(env, argv) {
 			app: './src/index.tsx',
 		},
 		output: {
-			filename: '[name].js',
+			filename: 'static/[name].js',
 			path: path.resolve(__dirname, 'dist'),
 		},
 		resolveLoader: {
@@ -68,8 +68,7 @@ module.exports = function config(env, argv) {
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
-				filename: '[name].css',
-				chunkFilename: '[name].css',
+				filename: 'static/[name].css',
 			}),
 			new HtmlWebpackPlugin(),
 		],
