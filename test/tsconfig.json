@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"target": "ES2019",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"types": [
+			"node",
+			"webdriverio/async",
+			"@wdio/jasmine-framework"
+		]
+	},
+	"include": [
+		"./**/*.ts"
+	]
+}
