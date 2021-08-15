@@ -26,7 +26,8 @@ Introduction
 
 It's a small online app to arrange role cards of the board game Werewolves of Miller's Hollow.
 
-Running Environment
--------------------
-1. Nginx
-2. [Node.js Server](https://github.com/takashiro/asmodee-werewolf-server)
+Get Started
+-----------
+1. Run `npm i` to install dependencies.
+1. Run `npm start` to start webpack development server.
+1. Open `http://localhost:9526` in a browser to start debugging.
