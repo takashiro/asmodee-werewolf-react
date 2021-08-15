@@ -1,3 +1,5 @@
+import { Role } from '@asmodee/werewolf-core';
+
 import NumberInput from '../pageObjects/NumberInput';
 import RoomCreatorPage from '../pageObjects/RoomCreatorPage';
 
@@ -38,5 +40,23 @@ describe('Number Input', () => {
 			await input.increase();
 		}
 		expect(await input.getValue()).toBe(3);
+	});
+});
+
+describe('Normal Roles', () => {
+	it('enables Alpha Wolf', async () => {
+		expect(await page.isRoleSelected(Role.AlphaWolf)).toBe(false);
+		await page.toggleRole(Role.AlphaWolf);
+		expect(await page.isRoleSelected(Role.AlphaWolf)).toBe(true);
+	});
+
+	it('disbles Idiot', async () => {
+		await page.toggleRole(Role.Idiot);
+		expect(await page.isRoleSelected(Role.Idiot)).toBe(false);
+	});
+
+	it('enables Magician', async () => {
+		await page.toggleRole(Role.Magician);
+		expect(await page.isRoleSelected(Role.Magician)).toBe(true);
 	});
 });
