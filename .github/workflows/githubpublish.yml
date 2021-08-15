@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-  publish-npm:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,12 +16,15 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run build
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
       - name: Archive built artifacts
-        run: (cd dist && tar czf asmodee-werewolf-react-${{ github.ref }}.tgz ./*)
+        run: (cd dist && tar czf asmodee-werewolf-react.tgz ./*)
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/asmodee-werewolf-react-${{ github.ref }}.tgz
+          asset_name: asmodee-werewolf-react-$tag.tgz
+          file: dist/asmodee-werewolf-react.tgz
           tag: ${{ github.ref }}
