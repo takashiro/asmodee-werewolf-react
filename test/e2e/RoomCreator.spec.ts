@@ -60,3 +60,13 @@ describe('Normal Roles', () => {
 		expect(await page.isRoleSelected(Role.Magician)).toBe(true);
 	});
 });
+
+describe('Submit', () => {
+	it('creates a new room', async () => {
+		await page.submit();
+	});
+
+	it('sees a new room page', async () => {
+		await browser.saveScreenshot('test/output/room-creator-done.png');
+	});
+});

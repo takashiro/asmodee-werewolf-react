@@ -43,6 +43,11 @@ export default class RoomCreatorPage extends Page {
 		return classNames.includes('selected');
 	}
 
+	async submit(): Promise<void> {
+		const button = await this.$('.button-area button:nth-child(2)');
+		await button.click();
+	}
+
 	protected async getRoleButton(role: Role): Promise<Element | undefined> {
 		const buttons = await this.$$('.role-button');
 		const roleKey = Role[role].toLowerCase();
