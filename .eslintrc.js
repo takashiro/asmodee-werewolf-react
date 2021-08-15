@@ -40,6 +40,7 @@ module.exports = {
 		'no-await-in-loop': 'off',
 		'no-continue': 'off',
 		'no-plusplus': 'off',
+		'no-param-reassign': 'off',
 		'no-restricted-syntax': [
 			'error',
 			'WithStatement',
