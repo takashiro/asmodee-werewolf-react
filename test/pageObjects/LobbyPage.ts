@@ -12,4 +12,14 @@ export default class LobbyPage extends Page {
 		});
 		await this.loaded();
 	}
+
+	async setRoomNumber(num: number | string): Promise<void> {
+		const input = await $('.lobby input[type="number"]');
+		await input.setValue(num);
+	}
+
+	async enterRoom(): Promise<void> {
+		const button = await $('.lobby input[type="number"] + button');
+		await button.click();
+	}
 }
