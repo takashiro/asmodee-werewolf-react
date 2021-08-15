@@ -25,14 +25,8 @@ ul.role-list,
 .role-selector {
 	-webkit-tap-highlight-color: transparent;
 
-	button {
-		background: none;
-		border: none;
-		box-shadow: none;
-		color: white;
-		font-weight: normal;
-		margin: 0;
-		padding: 0;
+	.role-button {
+		outline: none;
 
 		.role {
 			opacity: 0.65;
