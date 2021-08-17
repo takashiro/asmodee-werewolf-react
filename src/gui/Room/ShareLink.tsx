@@ -31,7 +31,7 @@ function copyShareLink(shareLink: string, anchor: HTMLAnchorElement): boolean {
 	linkInput.contentEditable = 'true';
 	linkInput.readOnly = false;
 
-	anchor.innerHTML = '';
+	anchor.textContent = '';
 	anchor.append(linkInput);
 
 	linkInput.focus();
@@ -49,7 +49,7 @@ function copyShareLink(shareLink: string, anchor: HTMLAnchorElement): boolean {
 	const success = document.execCommand('copy');
 
 	linkInput.readOnly = true;
-	anchor.innerHTML = shareLink;
+	anchor.textContent = shareLink;
 
 	return success;
 }
