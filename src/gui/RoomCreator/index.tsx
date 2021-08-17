@@ -15,7 +15,7 @@ import TeamSelector from './TeamSelector';
 import RoleSelection from './RoleSelection';
 
 interface RoomCreatorProps {
-	onPageNavigated?: (page: Page, room: Room) => void;
+	onPageOpen?: (page: Page, room: Room) => void;
 }
 
 const defaultConfig: RoleSelection[] = [
@@ -147,9 +147,9 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	}
 
 	nagivateTo(page: Page, room?: Room): void {
-		const { onPageNavigated } = this.props;
-		if (onPageNavigated) {
-			setTimeout(onPageNavigated, 0, page, room);
+		const { onPageOpen } = this.props;
+		if (onPageOpen) {
+			setTimeout(onPageOpen, 0, page, room);
 		}
 	}
 

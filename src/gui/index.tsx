@@ -1,11 +1,12 @@
 import React from 'react';
 
+import RoomModel from '../model/Room';
+
 import Page from './Page';
 import Lobby from './Lobby';
 import RoomCreator from './RoomCreator';
+import RoomLoader from './RoomLoader';
 import Room from './Room';
-
-import GameRoom from '../model/Room';
 
 import './global.scss';
 
@@ -13,18 +14,21 @@ interface AppState {
 	page: Page;
 }
 
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
 export default class App extends React.Component<unknown, AppState> {
-	room?: GameRoom;
+	room?: RoomModel;
 
 	constructor(props: unknown) {
 		super(props);
 
 		this.state = {
-			page: Page.Lobby,
+			page: !id ? Page.Lobby : Page.Loading,
 		};
 	}
 
-	handlePageNavigation = (newPage: Page, room?: GameRoom): void => {
+	handlePageOpen = (newPage: Page, room?: RoomModel): void => {
 		this.room = room;
 		this.setState({ page: newPage });
 	}
@@ -32,17 +36,27 @@ export default class App extends React.Component<unknown, AppState> {
 	render(): JSX.Element {
 		const { page } = this.state;
 		if (page === Page.Lobby) {
-			return <Lobby onPageNagivated={this.handlePageNavigation} />;
+			return <Lobby onPageOpen={this.handlePageOpen} />;
 		}
 		if (page === Page.RoomCreator) {
-			return <RoomCreator onPageNavigated={this.handlePageNavigation} />;
+			return <RoomCreator onPageOpen={this.handlePageOpen} />;
 		}
 		if (page === Page.Room) {
 			const { room } = this;
 			if (room) {
-				return <Room room={room} onPageNagivated={this.handlePageNavigation} />;
+				return (
+					<Room room={room} />
+				);
 			}
 		}
-		return <div>incorrect page nagivation</div>;
+		if (page === Page.Loading && id) {
+			return (
+				<RoomLoader
+					id={Number.parseInt(id, 10)}
+					onPageOpen={this.handlePageOpen}
+				/>
+			);
+		}
+		return <div>Page Not Found</div>;
 	}
 }

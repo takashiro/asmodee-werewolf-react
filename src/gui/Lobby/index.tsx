@@ -37,14 +37,14 @@ async function fetchRoom(): Promise<Room | undefined> {
 }
 
 interface LobbyProps {
-	onPageNagivated?: (page: Page) => void;
+	onPageOpen?: (page: Page) => void;
 }
 
 export default class Lobby extends React.Component<LobbyProps> {
 	createRoom = (): void => {
-		const { onPageNagivated } = this.props;
-		if (onPageNagivated) {
-			setTimeout(onPageNagivated, 0, Page.RoomCreator);
+		const { onPageOpen } = this.props;
+		if (onPageOpen) {
+			setTimeout(onPageOpen, 0, Page.RoomCreator);
 		}
 	}
 
@@ -54,7 +54,7 @@ export default class Lobby extends React.Component<LobbyProps> {
 			return;
 		}
 
-		const { onPageNagivated } = this.props;
+		const { onPageOpen: onPageNagivated } = this.props;
 		if (onPageNagivated) {
 			setTimeout(onPageNagivated, 0, Page.Room, room);
 		}

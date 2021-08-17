@@ -19,7 +19,10 @@ a {
 	text-decoration: none;
 }
 
-button {
+button,
+a.button {
+	display: inline-block;
+	box-sizing: border-box;
 	background: #e3ad58;
 	color: #130502;
 	font-weight: bold;
@@ -97,6 +100,28 @@ footer {
 	}
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+section.container {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+#root {
+	flex: 1 1 auto;
+}
+
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .inline-message {
 	text-align: center;
 	line-height: 1.5em;
@@ -116,7 +141,8 @@ footer {
 	text-align: center;
 	margin: 20px 15px 5px 15px;
 
-	button {
+	button,
+	a.button {
 		font-size: 15pt;
 		padding: 0.5em 0.8em;
 		min-width: 6em;

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Page from '../Page';
-
 import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
 import ShareLink from './ShareLink';
@@ -12,24 +10,16 @@ import './index.scss';
 
 interface RoomProps {
 	room: RoomModel;
-	onPageNagivated?: (page: Page) => void;
 }
 
 function Room(props: RoomProps): JSX.Element {
 	const {
 		room,
-		onPageNagivated,
 	} = props;
-
-	function handleReturn(e: React.MouseEvent<HTMLButtonElement>): void {
-		if (onPageNagivated) {
-			setTimeout(onPageNagivated, 0, Page.Lobby);
-		}
-	}
 
 	const roles = room.getRoles();
 	return (
-		<div>
+		<div className="room">
 			<div className="inline-message">
 				房间号：
 				{room.getId()}
@@ -42,7 +32,7 @@ function Room(props: RoomProps): JSX.Element {
 			</div>
 			<div className="button-area">
 				{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
-				<button type="button" onClick={handleReturn}>返回</button>
+				<a className="button" href=".">返回</a>
 			</div>
 		</div>
 	);
