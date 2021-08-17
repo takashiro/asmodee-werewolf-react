@@ -81,6 +81,7 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 				</button>
 				<input
 					type="number"
+					inputMode="decimal"
 					value={value}
 					onChange={handleChange}
 				/>

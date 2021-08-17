@@ -67,7 +67,12 @@ export default class Lobby extends React.Component<LobbyProps> {
 					<button type="button" onClick={this.createRoom}>创建房间</button>
 				</div>
 				<div className="simple-form lobby">
-					<input id="room-number" type="number" placeholder="房间号" />
+					<input
+						id="room-number"
+						type="number"
+						inputMode="decimal"
+						placeholder="房间号"
+					/>
 					<button type="button" onClick={this.enterRoom}>加入房间</button>
 				</div>
 			</div>

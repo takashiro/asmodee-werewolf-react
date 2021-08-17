@@ -96,6 +96,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 				<div className="role-area button-area">
 					<input
 						type="number"
+						inputMode="decimal"
 						placeholder="座位号"
 						ref={this.seatNumber}
 					/>
