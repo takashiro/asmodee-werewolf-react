@@ -70,7 +70,9 @@ module.exports = function config(env, argv) {
 			new MiniCssExtractPlugin({
 				filename: 'static/[name].css',
 			}),
-			new HtmlWebpackPlugin(),
+			new HtmlWebpackPlugin({
+				template: 'src/index.html',
+			}),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
 		devServer: {
