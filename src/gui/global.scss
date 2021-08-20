@@ -2,9 +2,10 @@ body {
 	background: #26221d url(../style/bg.jpg) no-repeat;
 	background-size: cover;
 	color: white;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	user-select: none;
+	min-width: 320px;
 }
 
 body,

@@ -1,12 +1,6 @@
 
 ul.role-list,
 .role-selector {
-	> li {
-		list-style: none;
-		display: inline-block;
-		margin: 7px;
-	}
-
 	.role {
 		width: 64px;
 		height: 64px;
@@ -61,9 +55,34 @@ ul.role-list,
 	}
 }
 
-@media screen and (max-width: 375px) {
-	ul.role-list > li,
-	ul.role-selector > li {
-		margin: 3px;
+ul.role-list,
+ul.role-selector {
+	@media screen and (max-width: 780px) {
+		display: grid;
+		gap: 7px;
+		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+
+	@media screen and (max-width: 630px) {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	@media screen and (max-width: 470px) {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	@media screen and (max-width: 370px) {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	li {
+		list-style: none;
+		width: 64px;
+		justify-self: center;
+
+		@media screen and (min-width: 780px) {
+			margin: 7px;
+			display: inline-block;
+		}
 	}
 }
