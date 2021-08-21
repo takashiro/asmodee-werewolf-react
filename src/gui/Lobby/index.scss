@@ -1,22 +1,25 @@
-.simple-form {
-	font-size: 15pt;
+.lobby {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	min-height: 64vh;
 
-	input[type="text"],
-	input[type="number"],
-	button {
-		box-sizing: content-box;
-		padding: 0 0.5em;
-		height: 2.5em;
-		display: block;
-		width: 50%;
-		margin: 40px auto;
+	.simple-form {
 		font-size: 15pt;
-		text-align: center;
-		border-radius: 4px;
-		box-shadow:#160804 2px 2px 6px 0;
-	}
 
-	&.lobby:not(:first-child) {
-		margin-top: 75px;
+		input[type="text"],
+		input[type="number"],
+		button {
+			box-sizing: content-box;
+			padding: 0 0.5em;
+			height: 2.5em;
+			display: block;
+			width: 50%;
+			margin: 30px auto;
+			font-size: 15pt;
+			text-align: center;
+			border-radius: 4px;
+			box-shadow:#160804 2px 2px 6px 0;
+		}
 	}
 }

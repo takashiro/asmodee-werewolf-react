@@ -14,6 +14,8 @@ import Page from '../Page';
 import TeamSelector from './TeamSelector';
 import RoleSelection from './RoleSelection';
 
+import './index.scss';
+
 interface RoomCreatorProps {
 	onPageOpen?: (page: Page, room: Room) => void;
 }
@@ -156,23 +158,25 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	render(): JSX.Element {
 		return (
 			<div className="room-creator">
-				<TeamSelector
-					team={Team.Werewolf}
-					basic={Role.Werewolf}
-					config={this.roleConfig}
-					onChange={this.handleChange}
-				/>
-				<TeamSelector
-					team={Team.Villager}
-					basic={Role.Villager}
-					config={this.roleConfig}
-					onChange={this.handleChange}
-				/>
-				<TeamSelector
-					team={Team.Other}
-					config={this.roleConfig}
-					onChange={this.handleChange}
-				/>
+				<div className="team-area">
+					<TeamSelector
+						team={Team.Werewolf}
+						basic={Role.Werewolf}
+						config={this.roleConfig}
+						onChange={this.handleChange}
+					/>
+					<TeamSelector
+						team={Team.Villager}
+						basic={Role.Villager}
+						config={this.roleConfig}
+						onChange={this.handleChange}
+					/>
+					<TeamSelector
+						team={Team.Other}
+						config={this.roleConfig}
+						onChange={this.handleChange}
+					/>
+				</div>
 				<div className="button-area">
 					<button type="button" onClick={this.handleReturn}>返回</button>
 					<button type="button" onClick={this.handleConfirm}>创建房间</button>

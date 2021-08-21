@@ -63,10 +63,10 @@ export default class Lobby extends React.Component<LobbyProps> {
 	render(): JSX.Element {
 		return (
 			<div className="lobby">
-				<div className="simple-form lobby">
+				<div className="simple-form">
 					<button type="button" onClick={this.createRoom}>创建房间</button>
 				</div>
-				<div className="simple-form lobby">
+				<div className="simple-form">
 					<input
 						id="room-number"
 						type="number"

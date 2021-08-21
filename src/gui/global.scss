@@ -1,4 +1,7 @@
 body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	background: #26221d url(../style/bg.jpg) no-repeat;
 	background-size: cover;
 	color: white;
@@ -36,6 +39,7 @@ input {
 	&[type="text"],
 	&[type="number"] {
 		border: none;
+		border-radius: 4px;
 		-moz-appearance: textfield;
 	}
 
@@ -57,6 +61,7 @@ header {
 
 	img {
 		width: 50%;
+		max-width: 300px;
 	}
 }
 
@@ -99,12 +104,6 @@ footer {
 			margin: 0.3em 0;
 		}
 	}
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 }
 
 section.container {
