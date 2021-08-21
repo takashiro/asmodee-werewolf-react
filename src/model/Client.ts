@@ -1,7 +1,7 @@
 export default class Client {
 	protected server: string;
 
-	constructor(url = '') {
+	constructor(url = 'api') {
 		this.server = url;
 	}
 

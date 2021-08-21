@@ -97,7 +97,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 			return;
 		}
 
-		const client = new Client('api');
+		const client = new Client();
 		const room = new Room(client);
 		try {
 			await room.create(roles);

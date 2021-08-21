@@ -18,7 +18,7 @@ async function fetchRoom(): Promise<Room | undefined> {
 		return;
 	}
 
-	const client = new Client('api');
+	const client = new Client();
 	const room = new Room(client);
 	if (!room.restore(roomId)) {
 		try {
