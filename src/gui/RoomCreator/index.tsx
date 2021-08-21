@@ -7,12 +7,12 @@ import {
 
 import Client from '../../model/Client';
 import Room from '../../model/Room';
+import RoomConfig from '../../model/RoomConfig';
 
 import Toast from '../component/Toast';
 import Page from '../Page';
 
 import TeamSelector from './TeamSelector';
-import RoleSelection from './RoleSelection';
 
 import './index.scss';
 
@@ -20,55 +20,13 @@ interface RoomCreatorProps {
 	onPageOpen?: (page: Page, room: Room) => void;
 }
 
-const defaultConfig: RoleSelection[] = [
-	{ role: Role.Werewolf, value: 4 },
-	{ role: Role.Villager, value: 4 },
-	{ role: Role.Seer, value: 1 },
-	{ role: Role.Witch, value: 1 },
-	{ role: Role.Hunter, value: 1 },
-	{ role: Role.Idiot, value: 1 },
-];
-
-function readConfig(): RoleSelection[] | undefined {
-	const data = localStorage.getItem('room-config');
-	if (!data) {
-		return defaultConfig;
-	}
-
-	let config: RoleSelection[] = [];
-	try {
-		config = JSON.parse(data);
-	} catch (e) {
-		return defaultConfig;
-	}
-
-	if (config instanceof Array) {
-		return config;
-	}
-
-	return defaultConfig;
-}
-
 export default class RoomCreator extends React.Component<RoomCreatorProps> {
-	protected roleConfig: Map<Role, number>;
+	protected config = new RoomConfig();
 
 	constructor(props: RoomCreatorProps) {
 		super(props);
 
-		this.roleConfig = new Map();
-		this.restoreConfig();
-	}
-
-	handleChange = (data: RoleSelection): void => {
-		if (!data.role) {
-			return;
-		}
-
-		if (data.value > 0) {
-			this.roleConfig.set(data.role, data.value);
-		} else {
-			this.roleConfig.delete(data.role);
-		}
+		this.config.restore();
 	}
 
 	handleReturn = (): void => {
@@ -76,18 +34,8 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	}
 
 	handleConfirm = async (): Promise<void> => {
-		this.saveConfig();
-
-		const roles: number[] = [];
-		this.roleConfig.forEach((value, role) => {
-			if (typeof value === 'number') {
-				for (let i = 0; i < value; i++) {
-					roles.push(role);
-				}
-			} else if (value) {
-				roles.push(role);
-			}
-		});
+		this.config.save();
+		const roles = this.config.getRoles();
 
 		if (roles.length <= 0) {
 			Toast.makeToast('请选择角色。 ');
@@ -110,44 +58,6 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		this.nagivateTo(Page.Room, room);
 	}
 
-	restoreConfig(): void {
-		if (!window.localStorage) {
-			return;
-		}
-
-		const config = readConfig();
-		if (!config) {
-			return;
-		}
-
-		for (const item of config) {
-			const { role } = item;
-			if (!role) {
-				continue;
-			}
-
-			const { value } = item;
-			if (value > 0) {
-				this.roleConfig.set(role, value);
-			}
-		}
-	}
-
-	saveConfig(): void {
-		if (!window.localStorage) {
-			return;
-		}
-
-		const config: RoleSelection[] = [];
-		for (const [key, value] of this.roleConfig) {
-			config.push({
-				role: key,
-				value,
-			});
-		}
-		localStorage.setItem('room-config', JSON.stringify(config));
-	}
-
 	nagivateTo(page: Page, room?: Room): void {
 		const { onPageOpen } = this.props;
 		if (onPageOpen) {
@@ -162,19 +72,16 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 					<TeamSelector
 						team={Team.Werewolf}
 						basic={Role.Werewolf}
-						config={this.roleConfig}
-						onChange={this.handleChange}
+						config={this.config}
 					/>
 					<TeamSelector
 						team={Team.Villager}
 						basic={Role.Villager}
-						config={this.roleConfig}
-						onChange={this.handleChange}
+						config={this.config}
 					/>
 					<TeamSelector
 						team={Team.Other}
-						config={this.roleConfig}
-						onChange={this.handleChange}
+						config={this.config}
 					/>
 				</div>
 				<div className="button-area">

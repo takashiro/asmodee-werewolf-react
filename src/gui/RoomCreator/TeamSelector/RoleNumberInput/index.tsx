@@ -4,7 +4,7 @@ import { Role } from '@asmodee/werewolf-core';
 import RoleIcon from '../../../component/RoleIcon';
 import RoleLabel from '../../../component/RoleLabel';
 
-import RoleChange from '../../RoleSelection';
+import RoleChange from '../../../../model/RoleSelection';
 
 import './index.scss';
 
