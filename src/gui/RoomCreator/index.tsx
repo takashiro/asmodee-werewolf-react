@@ -9,7 +9,7 @@ import Client from '../../model/Client';
 import Room from '../../model/Room';
 import RoomConfig from '../../model/RoomConfig';
 
-import Toast from '../component/Toast';
+import * as Toast from '../component/Toast';
 import Page from '../Page';
 
 import TeamSelector from './TeamSelector';

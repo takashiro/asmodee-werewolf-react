@@ -5,7 +5,7 @@ import Player from '../../../model/Player';
 
 import RoleIcon from '../../component/RoleIcon';
 import RoleLabel from '../../component/RoleLabel';
-import Toast from '../../component/Toast';
+import * as Toast from '../../component/Toast';
 
 import './index.scss';
 

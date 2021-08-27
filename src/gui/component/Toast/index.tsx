@@ -1,65 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.scss';
 
 interface ToastProps {
-	message: string;
+	children: React.ReactNode;
 	container?: string;
 }
 
-class Toast extends React.Component<ToastProps, unknown> {
-	static makeToast(message: string, container = 'overlay'): void {
-		ReactDOM.render(
-			<Toast message={message} />,
-			document.getElementById(container),
-		);
-	}
+export default function Toast({
+	children,
+	container = 'overlay',
+}: ToastProps): JSX.Element {
+	const toast = React.useRef<HTMLDivElement>(null);
 
-	protected toast: React.RefObject<HTMLDivElement>;
-
-	constructor(props: ToastProps) {
-		super(props);
-
-		this.toast = React.createRef();
-	}
-
-	componentDidMount(): void {
+	useEffect((): void => {
 		setTimeout(() => {
-			const toast = this.toast.current;
-			if (!toast) {
+			const t = toast.current;
+			if (!t) {
 				return;
 			}
-			toast.classList.add('in');
+			t.classList.add('in');
 		}, 0);
 
 		setTimeout(() => {
-			const toast = this.toast.current;
-			if (!toast) {
+			const t = toast.current;
+			if (!t) {
 				return;
 			}
-			toast.classList.remove('in');
-			toast.classList.add('out');
+			t.classList.remove('in');
+			t.classList.add('out');
 		}, 900);
 
 		setTimeout(() => {
-			const { container = 'overlay' } = this.props;
 			const node = document.getElementById(container);
 			if (!node) {
 				return;
 			}
 			ReactDOM.unmountComponentAtNode(node);
 		}, 1200);
-	}
+	});
 
-	render(): JSX.Element {
-		const { message } = this.props;
-		return (
-			<div className="toast" ref={this.toast}>
-				{message}
-			</div>
-		);
-	}
+	return (
+		<div className="toast" ref={toast}>
+			{children}
+		</div>
+	);
 }
 
-export default Toast;
+export function makeToast(message: React.ReactNode, container = 'overlay'): void {
+	ReactDOM.render(
+		<Toast>{message}</Toast>,
+		document.getElementById(container),
+	);
+}

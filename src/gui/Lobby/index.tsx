@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Toast from '../component/Toast';
+import * as Toast from '../component/Toast';
 import Page from '../Page';
 
 import Room from '../../model/Room';
