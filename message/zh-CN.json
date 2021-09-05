@@ -28,5 +28,195 @@
 		"message": "进入房间",
 		"id": "JztMvO",
 		"defaultMessage": "Enter the Room"
+	},
+	{
+		"message": "未知",
+		"id": "5jeq8P",
+		"defaultMessage": "Unknown"
+	},
+	{
+		"message": "狼人",
+		"id": "dxFRXQ",
+		"defaultMessage": "Werewolf"
+	},
+	{
+		"message": "狼王",
+		"id": "e+r2K4",
+		"defaultMessage": "Alpha Wolf"
+	},
+	{
+		"message": "白狼王",
+		"id": "b5zfvW",
+		"defaultMessage": "White Alpha Wolf"
+	},
+	{
+		"message": "狼美人",
+		"id": "5VtEby",
+		"defaultMessage": "Wolf Beauty"
+	},
+	{
+		"message": "隐狼",
+		"id": "98K5Ax",
+		"defaultMessage": "Secret Wolf"
+	},
+	{
+		"message": "恶灵骑士",
+		"id": "UJHjH5",
+		"defaultMessage": "Demon"
+	},
+	{
+		"message": "村民",
+		"id": "XQ6YDZ",
+		"defaultMessage": "Villager"
+	},
+	{
+		"message": "预言家",
+		"id": "zfuKnh",
+		"defaultMessage": "Seer"
+	},
+	{
+		"message": "驯兽师",
+		"id": "1kte+V",
+		"defaultMessage": "Tamer"
+	},
+	{
+		"message": "女巫",
+		"id": "i8WP0l",
+		"defaultMessage": "Witch"
+	},
+	{
+		"message": "猎人",
+		"id": "LZLA8s",
+		"defaultMessage": "Hunter"
+	},
+	{
+		"message": "守卫",
+		"id": "JORi57",
+		"defaultMessage": "Guard"
+	},
+	{
+		"message": "魔术师",
+		"id": "VlLuud",
+		"defaultMessage": "Magician"
+	},
+	{
+		"message": "白痴",
+		"id": "ztjcDB",
+		"defaultMessage": "Idiot"
+	},
+	{
+		"message": "长老",
+		"id": "Hg2iWj",
+		"defaultMessage": "Elder"
+	},
+	{
+		"message": "骑士",
+		"id": "Oh6d+0",
+		"defaultMessage": "Knight"
+	},
+	{
+		"message": "摄梦人",
+		"id": "vFb5JM",
+		"defaultMessage": "Dream Weaver"
+	},
+	{
+		"message": "老流氓",
+		"id": "SMSj6+",
+		"defaultMessage": "Rogue"
+	},
+	{
+		"message": "乌鸦",
+		"id": "X6tR4p",
+		"defaultMessage": "Crow"
+	},
+	{
+		"message": "丘比特",
+		"id": "bIwsAH",
+		"defaultMessage": "Cupid"
+	},
+	{
+		"message": "野孩子",
+		"id": "J4VQfb",
+		"defaultMessage": "Feral Child"
+	},
+	{
+		"message": "盗贼",
+		"id": "UIujJP",
+		"defaultMessage": "Thief"
+	},
+	{
+		"message": "炸弹人",
+		"id": "1mDOnw",
+		"defaultMessage": "Bombman"
+	},
+	{
+		"message": "石像鬼",
+		"id": "a5DKwM",
+		"defaultMessage": "Gargoyle"
+	},
+	{
+		"message": "守墓人",
+		"id": "SnH3ra",
+		"defaultMessage": "Graveyard Keeper"
+	},
+	{
+		"message": "天狗",
+		"id": "P0AUbl",
+		"defaultMessage": "Tengu"
+	},
+	{
+		"message": "月女",
+		"id": "hARaFV",
+		"defaultMessage": "Luna"
+	},
+	{
+		"message": "狼外婆",
+		"id": "cpVUDR",
+		"defaultMessage": "Wolf Grandma"
+	},
+	{
+		"message": "小红帽",
+		"id": "0Qrres",
+		"defaultMessage": "Red Hat"
+	},
+	{
+		"message": "影子",
+		"id": "jPhuvA",
+		"defaultMessage": "Doppelganger"
+	},
+	{
+		"message": "复仇者",
+		"id": "vVNrKx",
+		"defaultMessage": "Revenger"
+	},
+	{
+		"message": "混血儿",
+		"id": "P9wcwt",
+		"defaultMessage": "Hybrid"
+	},
+	{
+		"message": "血月使徒",
+		"id": "Lu3VVi",
+		"defaultMessage": "Lunar Apostle"
+	},
+	{
+		"message": "猎魔人",
+		"id": "TCsMH3",
+		"defaultMessage": "Mara Hunter"
+	},
+	{
+		"message": "梦魇",
+		"id": "sYO39I",
+		"defaultMessage": "Nightmare"
+	},
+	{
+		"message": "暗恋者",
+		"id": "P1cb+6",
+		"defaultMessage": "Scarlett"
+	},
+	{
+		"message": "奇迹商人",
+		"id": "vf4sNZ",
+		"defaultMessage": "Miracle Merchant"
 	}
 ]

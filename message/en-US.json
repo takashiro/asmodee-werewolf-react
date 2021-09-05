@@ -28,5 +28,195 @@
 		"message": "Enter the Room",
 		"id": "JztMvO",
 		"defaultMessage": "Enter the Room"
+	},
+	{
+		"message": "Unknown",
+		"id": "5jeq8P",
+		"defaultMessage": "Unknown"
+	},
+	{
+		"message": "Werewolf",
+		"id": "dxFRXQ",
+		"defaultMessage": "Werewolf"
+	},
+	{
+		"message": "Alpha Wolf",
+		"id": "e+r2K4",
+		"defaultMessage": "Alpha Wolf"
+	},
+	{
+		"message": "White Alpha Wolf",
+		"id": "b5zfvW",
+		"defaultMessage": "White Alpha Wolf"
+	},
+	{
+		"message": "Wolf Beauty",
+		"id": "5VtEby",
+		"defaultMessage": "Wolf Beauty"
+	},
+	{
+		"message": "Secret Wolf",
+		"id": "98K5Ax",
+		"defaultMessage": "Secret Wolf"
+	},
+	{
+		"message": "Demon",
+		"id": "UJHjH5",
+		"defaultMessage": "Demon"
+	},
+	{
+		"message": "Villager",
+		"id": "XQ6YDZ",
+		"defaultMessage": "Villager"
+	},
+	{
+		"message": "Seer",
+		"id": "zfuKnh",
+		"defaultMessage": "Seer"
+	},
+	{
+		"message": "Tamer",
+		"id": "1kte+V",
+		"defaultMessage": "Tamer"
+	},
+	{
+		"message": "Witch",
+		"id": "i8WP0l",
+		"defaultMessage": "Witch"
+	},
+	{
+		"message": "Hunter",
+		"id": "LZLA8s",
+		"defaultMessage": "Hunter"
+	},
+	{
+		"message": "Guard",
+		"id": "JORi57",
+		"defaultMessage": "Guard"
+	},
+	{
+		"message": "Magician",
+		"id": "VlLuud",
+		"defaultMessage": "Magician"
+	},
+	{
+		"message": "Idiot",
+		"id": "ztjcDB",
+		"defaultMessage": "Idiot"
+	},
+	{
+		"message": "Elder",
+		"id": "Hg2iWj",
+		"defaultMessage": "Elder"
+	},
+	{
+		"message": "Knight",
+		"id": "Oh6d+0",
+		"defaultMessage": "Knight"
+	},
+	{
+		"message": "Dream Weaver",
+		"id": "vFb5JM",
+		"defaultMessage": "Dream Weaver"
+	},
+	{
+		"message": "Rogue",
+		"id": "SMSj6+",
+		"defaultMessage": "Rogue"
+	},
+	{
+		"message": "Crow",
+		"id": "X6tR4p",
+		"defaultMessage": "Crow"
+	},
+	{
+		"message": "Cupid",
+		"id": "bIwsAH",
+		"defaultMessage": "Cupid"
+	},
+	{
+		"message": "Feral Child",
+		"id": "J4VQfb",
+		"defaultMessage": "Feral Child"
+	},
+	{
+		"message": "Thief",
+		"id": "UIujJP",
+		"defaultMessage": "Thief"
+	},
+	{
+		"message": "Bombman",
+		"id": "1mDOnw",
+		"defaultMessage": "Bombman"
+	},
+	{
+		"message": "Gargoyle",
+		"id": "a5DKwM",
+		"defaultMessage": "Gargoyle"
+	},
+	{
+		"message": "Graveyard Keeper",
+		"id": "SnH3ra",
+		"defaultMessage": "Graveyard Keeper"
+	},
+	{
+		"message": "Tengu",
+		"id": "P0AUbl",
+		"defaultMessage": "Tengu"
+	},
+	{
+		"message": "Luna",
+		"id": "hARaFV",
+		"defaultMessage": "Luna"
+	},
+	{
+		"message": "Wolf Grandma",
+		"id": "cpVUDR",
+		"defaultMessage": "Wolf Grandma"
+	},
+	{
+		"message": "Red Hat",
+		"id": "0Qrres",
+		"defaultMessage": "Red Hat"
+	},
+	{
+		"message": "Doppelgänger",
+		"id": "jPhuvA",
+		"defaultMessage": "Doppelganger"
+	},
+	{
+		"message": "Revenger",
+		"id": "vVNrKx",
+		"defaultMessage": "Revenger"
+	},
+	{
+		"message": "Hybrid",
+		"id": "P9wcwt",
+		"defaultMessage": "Hybrid"
+	},
+	{
+		"message": "Lunar Apostle",
+		"id": "Lu3VVi",
+		"defaultMessage": "Lunar Apostle"
+	},
+	{
+		"message": "Mara Hunter",
+		"id": "TCsMH3",
+		"defaultMessage": "Mara Hunter"
+	},
+	{
+		"message": "Nightmare",
+		"id": "sYO39I",
+		"defaultMessage": "Nightmare"
+	},
+	{
+		"message": "Scarlett",
+		"id": "P1cb+6",
+		"defaultMessage": "Scarlett"
+	},
+	{
+		"message": "Miracle Merchant",
+		"id": "vf4sNZ",
+		"defaultMessage": "Miracle Merchant"
 	}
 ]
