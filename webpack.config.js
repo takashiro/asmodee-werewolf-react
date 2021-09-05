@@ -2,8 +2,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const api = require('@asmodee/werewolf-server').default;
+const { transform } = require('@karuta/linguist');
+const { default: api } = require('@asmodee/werewolf-server');
 
+/**
+ * @return {import('webpack').Configuration} Webpack configuration
+ */
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
@@ -42,7 +46,18 @@ module.exports = function config(env, argv) {
 				{
 					test: /\.tsx?$/,
 					exclude: /node_modules/,
-					use: 'ts-loader',
+					use: {
+						loader: 'ts-loader',
+						options: {
+							getCustomTransformers() {
+								return {
+									before: [
+										transform(),
+									],
+								};
+							},
+						},
+					},
 				},
 				{
 					test: /\.scss$/,

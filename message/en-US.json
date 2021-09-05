@@ -1,0 +1,32 @@
+[
+	{
+		"message": "Room Number",
+		"id": "tNDcxP",
+		"defaultMessage": "Room Number"
+	},
+	{
+		"message": "Please input a room number.",
+		"id": "Vg7Sno",
+		"defaultMessage": "Please input a room number."
+	},
+	{
+		"message": "The room does not exist.",
+		"id": "mPaDfU",
+		"defaultMessage": "The room does not exist."
+	},
+	{
+		"message": "Unknown error.",
+		"id": "fLBhy7",
+		"defaultMessage": "Unknown error."
+	},
+	{
+		"message": "Create a New Room",
+		"id": "Kuj9PM",
+		"defaultMessage": "Create a New Room"
+	},
+	{
+		"message": "Enter the Room",
+		"id": "JztMvO",
+		"defaultMessage": "Enter the Room"
+	}
+]

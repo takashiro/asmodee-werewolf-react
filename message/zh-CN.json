@@ -1,0 +1,32 @@
+[
+	{
+		"message": "房间号",
+		"id": "tNDcxP",
+		"defaultMessage": "Room Number"
+	},
+	{
+		"message": "请输入房间号。",
+		"id": "Vg7Sno",
+		"defaultMessage": "Please input a room number."
+	},
+	{
+		"message": "该房间不存在。",
+		"id": "mPaDfU",
+		"defaultMessage": "The room does not exist."
+	},
+	{
+		"message": "未知错误。",
+		"id": "fLBhy7",
+		"defaultMessage": "Unknown error."
+	},
+	{
+		"message": "创建房间",
+		"id": "Kuj9PM",
+		"defaultMessage": "Create a New Room"
+	},
+	{
+		"message": "进入房间",
+		"id": "JztMvO",
+		"defaultMessage": "Enter the Room"
+	}
+]

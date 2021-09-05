@@ -1,3 +1,4 @@
 /dist/*.html
+/dist/message/
 /dist/static/
 /node_modules/

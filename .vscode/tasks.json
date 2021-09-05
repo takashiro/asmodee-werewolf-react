@@ -8,6 +8,26 @@
 			"type": "shell",
 			"command": "npx eslint --fix ${file}",
 			"problemMatcher": []
+		},
+		{
+			"label": "Update Messages (Current File)",
+			"type": "shell",
+			"command": "npx linguist update ${file}"
+		},
+		{
+			"label": "Update Messages (All Files)",
+			"type": "shell",
+			"command": "npx linguist update"
+		},
+		{
+			"label": "Prune Messages",
+			"type": "shell",
+			"command": "npx linguist prune"
+		},
+		{
+			"label": "Release Messages",
+			"type": "shell",
+			"command": "npx linguist release"
 		}
 	]
 }
