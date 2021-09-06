@@ -16,7 +16,7 @@ import HttpError from '../../model/HttpError';
 import './index.scss';
 
 const desc = defineMessages({
-	emptyRoomNumber: { defaultMessage: 'Please input a room number.' } ,
+	emptyRoomNumber: { defaultMessage: 'Please input a room number.' },
 	roomNotExist: { defaultMessage: 'The room does not exist.' },
 	unknownError: { defaultMessage: 'Unknown error.' },
 	roomNumber: { defaultMessage: 'Room Number' },
