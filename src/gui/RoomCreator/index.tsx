@@ -8,6 +8,7 @@ import {
 import Client from '../../model/Client';
 import Room from '../../model/Room';
 import RoomConfig from '../../model/RoomConfig';
+import HttpError from '../../model/HttpError';
 
 import * as Toast from '../component/Toast';
 import Page from '../Page';
@@ -50,7 +51,9 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 		try {
 			await room.create(roles);
 		} catch (error) {
-			Toast.makeToast(error.message);
+			if (error instanceof HttpError) {
+				Toast.makeToast(error.message);
+			}
 			return;
 		}
 

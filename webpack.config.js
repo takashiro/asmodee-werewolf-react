@@ -91,12 +91,12 @@ module.exports = function config(env, argv) {
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
 		devServer: {
-			contentBase: path.join(__dirname, 'dist'),
+			static: path.join(__dirname, 'dist'),
 			compress: true,
 			port: 9526,
 			hot: true,
-			before(app) {
-				app.use('/api', api);
+			onBeforeSetupMiddleware(server) {
+				server.app.use('/api', api);
 			},
 		},
 	};

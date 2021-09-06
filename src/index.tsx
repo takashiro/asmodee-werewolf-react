@@ -7,7 +7,7 @@ import App from './gui';
 async function loadMessage(locale: string): Promise<Record<string, string>> {
 	const res = await window.fetch(`./message/${locale}.json`);
 	if (res.status === 200) {
-		return await res.json();
+		return res.json();
 	}
 
 	return loadMessage('en-US');

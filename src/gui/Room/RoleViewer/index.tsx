@@ -2,6 +2,7 @@ import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
 import Player from '../../../model/Player';
+import HttpError from '../../../model/HttpError';
 
 import RoleIcon from '../../component/RoleIcon';
 import RoleLabel from '../../component/RoleLabel';
@@ -68,8 +69,12 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		try {
 			await player.takeSeat(seat);
 		} catch (error) {
-			const message = errorMap.get(error.code) || `未知错误 (${error.code})：${error.message}`;
-			this.showMessage(message);
+			if (error instanceof HttpError) {
+				const message = errorMap.get(error.code) || `未知错误 (${error.code})：${error.message}`;
+				this.showMessage(message);
+			} else {
+				this.showMessage('未知错误。');
+			}
 			return;
 		}
 

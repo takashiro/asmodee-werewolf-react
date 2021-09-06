@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Client from '../../model/Client';
+import HttpError from '../../model/HttpError';
 import Room from '../../model/Room';
 
 import Page from '../Page';
@@ -27,7 +28,7 @@ export default function RoomLoader(props: LoaderProps): JSX.Element {
 			try {
 				await room.enter(id);
 			} catch (error) {
-				if (error.code === 404) {
+				if (error instanceof HttpError && error.code === 404) {
 					setMessage('房间不存在。');
 				} else {
 					setMessage('未知错误。');

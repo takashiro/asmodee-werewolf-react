@@ -60,6 +60,7 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'react/jsx-no-bind': 'off',
 		'react/require-default-props': 'off',
 	},
 	settings: {
