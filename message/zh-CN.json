@@ -393,5 +393,10 @@
 		"id": "FZpUF1",
 		"defaultMessage": "Opt out the werewolf I saw!",
 		"message": "今天就出我的查杀"
+	},
+	{
+		"id": "gjBiyj",
+		"defaultMessage": "Loading...",
+		"message": "加载中..."
 	}
 ]

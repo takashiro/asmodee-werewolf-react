@@ -1,4 +1,5 @@
 import React from 'react';
+import { defineMessages, useIntl } from 'react-intl';
 
 import Client from '../../model/Client';
 import HttpError from '../../model/HttpError';
@@ -8,12 +9,20 @@ import Page from '../Page';
 
 import './index.scss';
 
+const msg = defineMessages({
+	roomNotExist: { defaultMessage: 'The room does not exist.' },
+	unknownError: { defaultMessage: 'Unknown error.' },
+	exit: { defaultMessage: 'Exit' },
+	loading: { defaultMessage: 'Loading...' },
+});
+
 interface LoaderProps {
 	id: number;
 	onPageOpen?: (page: Page, room: Room) => void;
 }
 
 export default function RoomLoader(props: LoaderProps): JSX.Element {
+	const intl = useIntl();
 	const {
 		id,
 		onPageOpen,
@@ -29,9 +38,9 @@ export default function RoomLoader(props: LoaderProps): JSX.Element {
 				await room.enter(id);
 			} catch (error) {
 				if (error instanceof HttpError && error.code === 404) {
-					setMessage('房间不存在。');
+					setMessage(intl.formatMessage(msg.roomNotExist));
 				} else {
-					setMessage('未知错误。');
+					setMessage(intl.formatMessage(msg.unknownError));
 				}
 				return;
 			}
@@ -57,13 +66,15 @@ export default function RoomLoader(props: LoaderProps): JSX.Element {
 						</div>
 					</div>
 					<div className="button-area">
-						<a className="button" href=".">返回</a>
+						<a className="button" href=".">
+							{intl.formatMessage(msg.exit)}
+						</a>
 					</div>
 				</>
 			) : (
 				<div className="main">
 					<div className="inline-message">
-						加载中...
+						{intl.formatMessage(msg.loading)}
 					</div>
 				</div>
 			)}

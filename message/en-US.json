@@ -393,5 +393,10 @@
 		"id": "FZpUF1",
 		"defaultMessage": "Opt out the werewolf I saw!",
 		"message": "Opt out the werewolf I saw!"
+	},
+	{
+		"id": "gjBiyj",
+		"defaultMessage": "Loading...",
+		"message": "Loading..."
 	}
 ]
