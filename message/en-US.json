@@ -298,5 +298,20 @@
 		"id": "MjhDHp",
 		"defaultMessage": "Your Role",
 		"message": "Your Role"
+	},
+	{
+		"id": "rbjNYR",
+		"defaultMessage": "Room Number: {id}",
+		"message": "Room Number: {id}"
+	},
+	{
+		"id": "iLUQIP",
+		"defaultMessage": "Invite Link",
+		"message": "Invite Link"
+	},
+	{
+		"id": "E2sGaF",
+		"defaultMessage": "Exit",
+		"message": "Exit"
 	}
 ]

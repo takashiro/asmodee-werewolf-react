@@ -298,5 +298,20 @@
 		"id": "MjhDHp",
 		"defaultMessage": "Your Role",
 		"message": "你的身份"
+	},
+	{
+		"id": "rbjNYR",
+		"defaultMessage": "Room Number: {id}",
+		"message": "房间号：{id}"
+	},
+	{
+		"id": "iLUQIP",
+		"defaultMessage": "Invite Link",
+		"message": "邀请链接"
+	},
+	{
+		"id": "E2sGaF",
+		"defaultMessage": "Exit",
+		"message": "返回"
 	}
 ]
