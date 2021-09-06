@@ -218,5 +218,25 @@
 		"message": "Miracle Merchant",
 		"id": "vf4sNZ",
 		"defaultMessage": "Miracle Merchant"
+	},
+	{
+		"id": "fZDLue",
+		"defaultMessage": "Team Unknown",
+		"message": "Unknown"
+	},
+	{
+		"id": "5TAzdN",
+		"defaultMessage": "Team Werewolf",
+		"message": "Team Werewolf"
+	},
+	{
+		"id": "AxTiMH",
+		"defaultMessage": "Team Villager",
+		"message": "Team Villager"
+	},
+	{
+		"id": "UgefTz",
+		"defaultMessage": "Team Other",
+		"message": "Others"
 	}
 ]

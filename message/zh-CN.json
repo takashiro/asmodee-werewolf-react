@@ -218,5 +218,25 @@
 		"message": "奇迹商人",
 		"id": "vf4sNZ",
 		"defaultMessage": "Miracle Merchant"
+	},
+	{
+		"id": "fZDLue",
+		"defaultMessage": "Team Unknown",
+		"message": "未知"
+	},
+	{
+		"id": "5TAzdN",
+		"defaultMessage": "Team Werewolf",
+		"message": "狼人阵营"
+	},
+	{
+		"id": "AxTiMH",
+		"defaultMessage": "Team Villager",
+		"message": "村民阵营"
+	},
+	{
+		"id": "UgefTz",
+		"defaultMessage": "Team Other",
+		"message": "其他角色"
 	}
 ]

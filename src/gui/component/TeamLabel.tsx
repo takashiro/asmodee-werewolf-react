@@ -1,11 +1,12 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Team } from '@asmodee/werewolf-core';
 
-const teamNames: string[] = [
-	'未知',
-	'狼人阵营',
-	'神民阵营',
-	'其他角色',
+const teamNames: React.ReactNode[] = [
+	<FormattedMessage defaultMessage="Team Unknown" />,
+	<FormattedMessage defaultMessage="Team Werewolf" />,
+	<FormattedMessage defaultMessage="Team Villager" />,
+	<FormattedMessage defaultMessage="Team Other" />,
 ];
 
 interface Props {
