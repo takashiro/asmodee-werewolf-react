@@ -313,5 +313,85 @@
 		"id": "E2sGaF",
 		"defaultMessage": "Exit",
 		"message": "Exit"
+	},
+	{
+		"id": "p/F2EY",
+		"defaultMessage": "Werewolves of the Miller's Hollow",
+		"message": "Werewolves of the Miller's Hollow"
+	},
+	{
+		"id": "Dk+KOe",
+		"defaultMessage": "Successfully copied the share link.",
+		"message": "Successfully copied the share link."
+	},
+	{
+		"id": "ghRb2H",
+		"defaultMessage": "Failed to copy the share link. Please do it manually.",
+		"message": "Failed to copy the share link. Please do it manually."
+	},
+	{
+		"id": "6nArsG",
+		"defaultMessage": "I am the real seer this time!",
+		"message": "I am the real seer this time!"
+	},
+	{
+		"id": "KJUHnB",
+		"defaultMessage": "Too dirty, bro!",
+		"message": "Too dirty, bro!"
+	},
+	{
+		"id": "mjAiYM",
+		"defaultMessage": "Come on! Attack me tonight!",
+		"message": "Come on! Attack me tonight!"
+	},
+	{
+		"id": "HwBfOJ",
+		"defaultMessage": "Close your eyes now.",
+		"message": "Close your eyes now."
+	},
+	{
+		"id": "Zodksl",
+		"defaultMessage": "I'll shot you if opted out.",
+		"message": "I'll shot you if opted out."
+	},
+	{
+		"id": "HwL8E8",
+		"defaultMessage": "I'll poison whoever talks like a werewolf.",
+		"message": "I'll poison whoever talks like a werewolf."
+	},
+	{
+		"id": "lVWMT8",
+		"defaultMessage": "Confess your role or get yourself killed.",
+		"message": "Confess your role or get yourself killed."
+	},
+	{
+		"id": "/bYs8j",
+		"defaultMessage": "The weakest werewolves cheat the witch.",
+		"message": "The weakest werewolves cheat the witch."
+	},
+	{
+		"id": "Lj2jt6",
+		"defaultMessage": "Who shall I attack tonight?",
+		"message": "Who shall I attack tonight?"
+	},
+	{
+		"id": "rVEZCc",
+		"defaultMessage": "You can't be the alpha wolf, can you?",
+		"message": "You can't be the alpha wolf, can you?"
+	},
+	{
+		"id": "iqbCxX",
+		"defaultMessage": "You are nothing else but a werewolf.",
+		"message": "You are nothing else but a werewolf."
+	},
+	{
+		"id": "9IaJOh",
+		"defaultMessage": "Make up more! Your lies are almost true!",
+		"message": "Make up more! Your lies are almost true!"
+	},
+	{
+		"id": "FZpUF1",
+		"defaultMessage": "Opt out the werewolf I saw!",
+		"message": "Opt out the werewolf I saw!"
 	}
 ]
