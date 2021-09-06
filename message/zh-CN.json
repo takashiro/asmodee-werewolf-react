@@ -10,7 +10,7 @@
 		"defaultMessage": "Please input a room number."
 	},
 	{
-		"message": "该房间不存在。",
+		"message": "房间不存在。",
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist."
 	},
@@ -238,5 +238,65 @@
 		"id": "UgefTz",
 		"defaultMessage": "Team Other",
 		"message": "其他角色"
+	},
+	{
+		"id": "zy0HW4",
+		"defaultMessage": "The room does not exist or may be expired.",
+		"message": "房间不存在或可能已失效。"
+	},
+	{
+		"id": "HkVuPn",
+		"defaultMessage": "The seat does not exist. Please try another one.",
+		"message": "座位不存在，请重新输入。"
+	},
+	{
+		"id": "7qWUz8",
+		"defaultMessage": "Please clean your browser cache and try again later.",
+		"message": "请清除浏览器缓存后重试。"
+	},
+	{
+		"id": "O8eQ/R",
+		"defaultMessage": "The seat is already taken. Please try another one.",
+		"message": "座位已被占用，请使用其他座位号。"
+	},
+	{
+		"id": "S8TkPq",
+		"defaultMessage": "Unknown error ({code}): {message}.",
+		"message": "未知错误（{code}）：{message}"
+	},
+	{
+		"id": "zIg54F",
+		"defaultMessage": "View Your Role",
+		"message": "查看身份"
+	},
+	{
+		"id": "HogrCa",
+		"defaultMessage": "Seat Number",
+		"message": "座位号"
+	},
+	{
+		"id": "ljL5ZV",
+		"defaultMessage": "Please input a seat number.",
+		"message": "请输入座位号。"
+	},
+	{
+		"id": "aDo6WM",
+		"defaultMessage": "Please input a valid number.",
+		"message": "请输入合法的数字。"
+	},
+	{
+		"id": "gpkJJd",
+		"defaultMessage": "Your role is...",
+		"message": "你的身份是..."
+	},
+	{
+		"id": "kCDXlq",
+		"defaultMessage": "Seat {seat}",
+		"message": "{seat}号位"
+	},
+	{
+		"id": "MjhDHp",
+		"defaultMessage": "Your Role",
+		"message": "你的身份"
 	}
 ]

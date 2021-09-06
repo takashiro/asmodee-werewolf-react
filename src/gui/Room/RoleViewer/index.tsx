@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+	defineMessages,
+	FormattedMessage,
+	injectIntl,
+	IntlShape,
+} from 'react-intl';
 import { Role } from '@asmodee/werewolf-core';
 
 import Player from '../../../model/Player';
@@ -6,35 +12,52 @@ import HttpError from '../../../model/HttpError';
 
 import RoleIcon from '../../component/RoleIcon';
 import RoleLabel from '../../component/RoleLabel';
-import * as Toast from '../../component/Toast';
 
 import './index.scss';
 
-const errorMap = new Map<number, string>();
-errorMap.set(404, '房间不存在，可能已过期。');
-errorMap.set(400, '座位不存在，请重新输入。');
-errorMap.set(403, '请刷新网页缓存，然后重试。');
-errorMap.set(409, '该座位已使用，请重新输入。');
+const errorMap = new Map<number, React.ReactNode>([
+	[404, <FormattedMessage defaultMessage="The room does not exist or may be expired." />],
+	[400, <FormattedMessage defaultMessage="The seat does not exist. Please try another one." />],
+	[403, <FormattedMessage defaultMessage="Please clean your browser cache and try again later." />],
+	[409, <FormattedMessage defaultMessage="The seat is already taken. Please try another one." />],
+]);
+
+function formatError(intl: IntlShape, error: HttpError): React.ReactNode {
+	const message = errorMap.get(error.code);
+	if (message) {
+		return message;
+	}
+
+	const values: Record<string, string> = {
+		code: String(error.code),
+		message: error.message,
+	};
+	return <FormattedMessage defaultMessage="Unknown error ({code}): {message}." values={values} />;
+}
+
+const descriptor = defineMessages({
+	viewYourRole: { defaultMessage: 'View Your Role' },
+	seatNumber: { defaultMessage: 'Seat Number' },
+});
 
 interface RoleViewerProps {
 	player: Player;
+	intl: IntlShape;
 }
 
 interface RoleViewerState {
 	seat?: number;
 	roles?: Role[];
+	message?: React.ReactNode;
 }
 
 class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 	protected seatNumber: React.RefObject<HTMLInputElement>;
 
-	protected message: React.RefObject<HTMLDivElement>;
-
 	constructor(props: RoleViewerProps) {
 		super(props);
 
 		this.seatNumber = React.createRef();
-		this.message = React.createRef();
 
 		const { player } = props;
 		player.restore();
@@ -45,35 +68,35 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 	}
 
 	fetchCard = async (): Promise<void> => {
+		const { intl } = this.props;
 		const seatNumber = this.seatNumber.current;
 		if (!seatNumber) {
 			return;
 		}
 
 		if (!seatNumber.value) {
-			Toast.makeToast('请输入座位号。');
+			this.showMessage(<FormattedMessage defaultMessage="Please input a seat number." />);
 			seatNumber.focus();
 			return;
 		}
 
 		const seat = parseInt(seatNumber.value, 10);
 		if (Number.isNaN(seat) || seat <= 0) {
-			Toast.makeToast('请输入正确的数字。');
+			this.showMessage(<FormattedMessage defaultMessage="Please input a valid number." />);
 			seatNumber.value = '';
 			seatNumber.focus();
 			return;
 		}
 
 		const { player } = this.props;
-		this.showMessage('你的身份是...');
+		this.showMessage(<FormattedMessage defaultMessage="Your role is..." />);
 		try {
 			await player.takeSeat(seat);
 		} catch (error) {
 			if (error instanceof HttpError) {
-				const message = errorMap.get(error.code) || `未知错误 (${error.code})：${error.message}`;
-				this.showMessage(message);
+				this.showMessage(formatError(intl, error));
 			} else {
-				this.showMessage('未知错误。');
+				this.showMessage(<FormattedMessage defaultMessage="Unknown error." />);
 			}
 			return;
 		}
@@ -87,26 +110,29 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		});
 	}
 
-	showMessage(message: string): void {
-		const container = this.message.current;
-		if (container) {
-			container.innerHTML = message;
-		}
+	showMessage(message: React.ReactNode): void {
+		this.setState({ message });
 	}
 
 	renderCards(): JSX.Element {
+		const { intl } = this.props;
 		const { roles } = this.state;
 		if (!roles) {
+			const { message } = this.state;
 			return (
 				<div className="role-area button-area">
 					<input
 						type="number"
 						inputMode="decimal"
-						placeholder="座位号"
+						placeholder={intl.formatMessage(descriptor.seatNumber)}
 						ref={this.seatNumber}
 					/>
-					<button type="button" onClick={this.fetchCard}>查看身份</button>
-					<div className="inline-message" ref={this.message} />
+					<button type="button" onClick={this.fetchCard}>
+						{intl.formatMessage(descriptor.viewYourRole)}
+					</button>
+					<div className="inline-message">
+						{message}
+					</div>
 				</div>
 			);
 		}
@@ -119,8 +145,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 			return (
 				<div className="role-area">
 					<div className="name">
-						{seat}
-						号位
+						<FormattedMessage defaultMessage="Seat {seat}" values={{ seat }} />
 						{' '}
 						<RoleLabel role={role} />
 					</div>
@@ -150,11 +175,11 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 	render(): JSX.Element {
 		return (
 			<div className="box">
-				<h3>你的身份</h3>
+				<h3><FormattedMessage defaultMessage="Your Role" /></h3>
 				{this.renderCards()}
 			</div>
 		);
 	}
 }
 
-export default RoleViewer;
+export default injectIntl(RoleViewer);
