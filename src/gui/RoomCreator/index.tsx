@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+	defineMessages,
+	injectIntl,
+	IntlShape,
+} from 'react-intl';
 
 import {
 	Role,
@@ -10,18 +15,26 @@ import Room from '../../model/Room';
 import RoomConfig from '../../model/RoomConfig';
 import HttpError from '../../model/HttpError';
 
-import * as Toast from '../component/Toast';
+import { makeToast } from '../component/Toast';
 import Page from '../Page';
 
 import TeamSelector from './TeamSelector';
 
 import './index.scss';
 
+const msg = defineMessages({
+	rejectZeroRoles: { defaultMessage: 'Please select some roles.' },
+	rejectTooManyRoles: { defaultMessage: 'You can choose no more than 50 roles. Please unselect some of them.' },
+	exit: { defaultMessage: 'Exit' },
+	createRoom: { defaultMessage: 'Create a New Room' },
+});
+
 interface RoomCreatorProps {
 	onPageOpen?: (page: Page, room: Room) => void;
+	intl: IntlShape;
 }
 
-export default class RoomCreator extends React.Component<RoomCreatorProps> {
+class RoomCreator extends React.Component<RoomCreatorProps> {
 	protected config = new RoomConfig();
 
 	constructor(props: RoomCreatorProps) {
@@ -35,14 +48,16 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	}
 
 	handleConfirm = async (): Promise<void> => {
+		const { intl } = this.props;
+
 		this.config.save();
 		const roles = this.config.getRoles();
 
 		if (roles.length <= 0) {
-			Toast.makeToast('请选择角色。 ');
+			makeToast(intl.formatMessage(msg.rejectZeroRoles));
 			return;
 		} if (roles.length > 50) {
-			Toast.makeToast('最大仅支持50人局，请重新配置角色。');
+			makeToast(intl.formatMessage(msg.rejectTooManyRoles));
 			return;
 		}
 
@@ -52,7 +67,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 			await room.create(roles);
 		} catch (error) {
 			if (error instanceof HttpError) {
-				Toast.makeToast(error.message);
+				makeToast(error.message);
 			}
 			return;
 		}
@@ -69,6 +84,7 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 	}
 
 	render(): JSX.Element {
+		const { intl } = this.props;
 		return (
 			<div className="room-creator">
 				<div className="team-area">
@@ -88,10 +104,16 @@ export default class RoomCreator extends React.Component<RoomCreatorProps> {
 					/>
 				</div>
 				<div className="button-area">
-					<button type="button" onClick={this.handleReturn}>返回</button>
-					<button type="button" onClick={this.handleConfirm}>创建房间</button>
+					<button type="button" onClick={this.handleReturn}>
+						{intl.formatMessage(msg.exit)}
+					</button>
+					<button type="button" onClick={this.handleConfirm}>
+						{intl.formatMessage(msg.createRoom)}
+					</button>
 				</div>
 			</div>
 		);
 	}
 }
+
+export default injectIntl(RoomCreator);

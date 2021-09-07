@@ -398,5 +398,15 @@
 		"id": "gjBiyj",
 		"defaultMessage": "Loading...",
 		"message": "加载中..."
+	},
+	{
+		"id": "PfgvCk",
+		"defaultMessage": "Please select some roles.",
+		"message": "请选择角色。"
+	},
+	{
+		"id": "TwEUdP",
+		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
+		"message": "最多支持50人局，请重新配置角色。"
 	}
 ]
