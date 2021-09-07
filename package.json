@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@asmodee/werewolf-server": "^2.0.3",
-    "@karuta/linguist": "^0.3.0",
+    "@karuta/linguist": "^0.4.0",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
