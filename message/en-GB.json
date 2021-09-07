@@ -1,0 +1,412 @@
+[
+	{
+		"id": "Vg7Sno",
+		"defaultMessage": "Please input a room number.",
+		"message": "Please input a room number."
+	},
+	{
+		"id": "mPaDfU",
+		"defaultMessage": "The room does not exist.",
+		"message": "The room does not exist."
+	},
+	{
+		"id": "fLBhy7",
+		"defaultMessage": "Unknown error.",
+		"message": "Unknown error."
+	},
+	{
+		"id": "tNDcxP",
+		"defaultMessage": "Room Number",
+		"message": "Room Number"
+	},
+	{
+		"id": "Kuj9PM",
+		"defaultMessage": "Create a New Room",
+		"message": "Create a New Room"
+	},
+	{
+		"id": "JztMvO",
+		"defaultMessage": "Enter the Room",
+		"message": "Enter the Room"
+	},
+	{
+		"id": "fZDLue",
+		"defaultMessage": "Team Unknown",
+		"message": "Unknown"
+	},
+	{
+		"id": "5TAzdN",
+		"defaultMessage": "Team Werewolf",
+		"message": "Team Werewolf"
+	},
+	{
+		"id": "AxTiMH",
+		"defaultMessage": "Team Villager",
+		"message": "Team Villager"
+	},
+	{
+		"id": "UgefTz",
+		"defaultMessage": "Team Other",
+		"message": "Other"
+	},
+	{
+		"id": "5jeq8P",
+		"defaultMessage": "Unknown",
+		"message": "Unknown"
+	},
+	{
+		"id": "dxFRXQ",
+		"defaultMessage": "Werewolf",
+		"message": "Werewolf"
+	},
+	{
+		"id": "e+r2K4",
+		"defaultMessage": "Alpha Wolf",
+		"message": "Alpha Wolf"
+	},
+	{
+		"id": "b5zfvW",
+		"defaultMessage": "White Alpha Wolf",
+		"message": "White Alpha Wolf"
+	},
+	{
+		"id": "5VtEby",
+		"defaultMessage": "Wolf Beauty",
+		"message": "Wolf Beauty"
+	},
+	{
+		"id": "98K5Ax",
+		"defaultMessage": "Secret Wolf",
+		"message": "Secret Wolf"
+	},
+	{
+		"id": "UJHjH5",
+		"defaultMessage": "Demon",
+		"message": "Demon"
+	},
+	{
+		"id": "XQ6YDZ",
+		"defaultMessage": "Villager",
+		"message": "Villager"
+	},
+	{
+		"id": "zfuKnh",
+		"defaultMessage": "Seer",
+		"message": "Seer"
+	},
+	{
+		"id": "1kte+V",
+		"defaultMessage": "Tamer",
+		"message": "Tamer"
+	},
+	{
+		"id": "i8WP0l",
+		"defaultMessage": "Witch",
+		"message": "Witch"
+	},
+	{
+		"id": "LZLA8s",
+		"defaultMessage": "Hunter",
+		"message": "Hunter"
+	},
+	{
+		"id": "JORi57",
+		"defaultMessage": "Guard",
+		"message": "Guard"
+	},
+	{
+		"id": "VlLuud",
+		"defaultMessage": "Magician",
+		"message": "Magician"
+	},
+	{
+		"id": "ztjcDB",
+		"defaultMessage": "Idiot",
+		"message": "Idiot"
+	},
+	{
+		"id": "Hg2iWj",
+		"defaultMessage": "Elder",
+		"message": "Elder"
+	},
+	{
+		"id": "Oh6d+0",
+		"defaultMessage": "Knight",
+		"message": "Knight"
+	},
+	{
+		"id": "vFb5JM",
+		"defaultMessage": "Dream Weaver",
+		"message": "Dream Weaver"
+	},
+	{
+		"id": "SMSj6+",
+		"defaultMessage": "Rogue",
+		"message": "Rogue"
+	},
+	{
+		"id": "X6tR4p",
+		"defaultMessage": "Crow",
+		"message": "Crow"
+	},
+	{
+		"id": "bIwsAH",
+		"defaultMessage": "Cupid",
+		"message": "Cupid"
+	},
+	{
+		"id": "J4VQfb",
+		"defaultMessage": "Feral Child",
+		"message": "Feral Child"
+	},
+	{
+		"id": "UIujJP",
+		"defaultMessage": "Thief",
+		"message": "Thief"
+	},
+	{
+		"id": "1mDOnw",
+		"defaultMessage": "Bombman",
+		"message": "Bombman"
+	},
+	{
+		"id": "a5DKwM",
+		"defaultMessage": "Gargoyle",
+		"message": "Gargoyle"
+	},
+	{
+		"id": "SnH3ra",
+		"defaultMessage": "Graveyard Keeper",
+		"message": "Graveyard Keeper"
+	},
+	{
+		"id": "P0AUbl",
+		"defaultMessage": "Tengu",
+		"message": "Tengu"
+	},
+	{
+		"id": "hARaFV",
+		"defaultMessage": "Luna",
+		"message": "Luna"
+	},
+	{
+		"id": "cpVUDR",
+		"defaultMessage": "Wolf Grandma",
+		"message": "Wolf Grandma"
+	},
+	{
+		"id": "0Qrres",
+		"defaultMessage": "Red Hat",
+		"message": "Red Hat"
+	},
+	{
+		"id": "jPhuvA",
+		"defaultMessage": "Doppelganger",
+		"message": "Doppelgänger"
+	},
+	{
+		"id": "vVNrKx",
+		"defaultMessage": "Revenger",
+		"message": "Revenger"
+	},
+	{
+		"id": "P9wcwt",
+		"defaultMessage": "Hybrid",
+		"message": "Hybride"
+	},
+	{
+		"id": "Lu3VVi",
+		"defaultMessage": "Lunar Apostle",
+		"message": "Lunar Apostle"
+	},
+	{
+		"id": "TCsMH3",
+		"defaultMessage": "Mara Hunter",
+		"message": "Mara Hunter"
+	},
+	{
+		"id": "sYO39I",
+		"defaultMessage": "Nightmare",
+		"message": "Nightmare"
+	},
+	{
+		"id": "P1cb+6",
+		"defaultMessage": "Scarlett",
+		"message": "Scarlett"
+	},
+	{
+		"id": "vf4sNZ",
+		"defaultMessage": "Miracle Merchant",
+		"message": "Miracle Merchant"
+	},
+	{
+		"id": "PfgvCk",
+		"defaultMessage": "Please select some roles.",
+		"message": "Please select some roles."
+	},
+	{
+		"id": "TwEUdP",
+		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
+		"message": "You can choose no more than 50 roles. Please unselect some of them."
+	},
+	{
+		"id": "E2sGaF",
+		"defaultMessage": "Exit",
+		"message": "Exit"
+	},
+	{
+		"id": "gjBiyj",
+		"defaultMessage": "Loading...",
+		"message": "Loading..."
+	},
+	{
+		"id": "zy0HW4",
+		"defaultMessage": "The room does not exist or may be expired.",
+		"message": "The room does not exist or may be expired."
+	},
+	{
+		"id": "HkVuPn",
+		"defaultMessage": "The seat does not exist. Please try another one.",
+		"message": "The seat does not exist. Please try another one."
+	},
+	{
+		"id": "7qWUz8",
+		"defaultMessage": "Please clean your browser cache and try again later.",
+		"message": "Please clean your browser cache and try again later."
+	},
+	{
+		"id": "O8eQ/R",
+		"defaultMessage": "The seat is already taken. Please try another one.",
+		"message": "The seat is already taken. Please try another one."
+	},
+	{
+		"id": "S8TkPq",
+		"defaultMessage": "Unknown error ({code}): {message}.",
+		"message": "Unknown error ({code}): {message}"
+	},
+	{
+		"id": "zIg54F",
+		"defaultMessage": "View Your Role",
+		"message": "View Your Role"
+	},
+	{
+		"id": "HogrCa",
+		"defaultMessage": "Seat Number",
+		"message": "Seat Number"
+	},
+	{
+		"id": "ljL5ZV",
+		"defaultMessage": "Please input a seat number.",
+		"message": "Please input a seat number."
+	},
+	{
+		"id": "aDo6WM",
+		"defaultMessage": "Please input a valid number.",
+		"message": "Please input a valid number."
+	},
+	{
+		"id": "gpkJJd",
+		"defaultMessage": "Your role is...",
+		"message": "Your role is..."
+	},
+	{
+		"id": "kCDXlq",
+		"defaultMessage": "Seat {seat}",
+		"message": "Seat {seat}"
+	},
+	{
+		"id": "MjhDHp",
+		"defaultMessage": "Your Role",
+		"message": "Your Role"
+	},
+	{
+		"id": "p/F2EY",
+		"defaultMessage": "Werewolves of the Miller's Hollow",
+		"message": "Werewolves of the Miller's Hollow"
+	},
+	{
+		"id": "Dk+KOe",
+		"defaultMessage": "Successfully copied the share link.",
+		"message": "Successfully copied the share link."
+	},
+	{
+		"id": "ghRb2H",
+		"defaultMessage": "Failed to copy the share link. Please do it manually.",
+		"message": "Failed to copy the share link. Please do it manually."
+	},
+	{
+		"id": "6nArsG",
+		"defaultMessage": "I am the real seer this time!",
+		"message": "I am the real seer this time!"
+	},
+	{
+		"id": "KJUHnB",
+		"defaultMessage": "Too dirty, bro!",
+		"message": "Too dirty, bro!"
+	},
+	{
+		"id": "mjAiYM",
+		"defaultMessage": "Come on! Attack me tonight!",
+		"message": "Come on! Attack me tonight!"
+	},
+	{
+		"id": "HwBfOJ",
+		"defaultMessage": "Close your eyes now.",
+		"message": "Close your eyes now."
+	},
+	{
+		"id": "Zodksl",
+		"defaultMessage": "I'll shot you if opted out.",
+		"message": "I'll shot you if opted out."
+	},
+	{
+		"id": "HwL8E8",
+		"defaultMessage": "I'll poison whoever talks like a werewolf.",
+		"message": "I'll poison whoever talks like a werewolf."
+	},
+	{
+		"id": "lVWMT8",
+		"defaultMessage": "Confess your role or get yourself killed.",
+		"message": "Confess your role or get yourself killed."
+	},
+	{
+		"id": "/bYs8j",
+		"defaultMessage": "The weakest werewolves cheat the witch.",
+		"message": "The weakest werewolves cheat the witch."
+	},
+	{
+		"id": "Lj2jt6",
+		"defaultMessage": "Who shall I attack tonight?",
+		"message": "Who shall I attack tonight?"
+	},
+	{
+		"id": "rVEZCc",
+		"defaultMessage": "You can't be the alpha wolf, can you?",
+		"message": "You can't be the alpha wolf, can you?"
+	},
+	{
+		"id": "iqbCxX",
+		"defaultMessage": "You are nothing else but a werewolf.",
+		"message": "You are nothing else but a werewolf."
+	},
+	{
+		"id": "9IaJOh",
+		"defaultMessage": "Make up more! Your lies are almost true!",
+		"message": "Make up more! Your lies are almost true!"
+	},
+	{
+		"id": "FZpUF1",
+		"defaultMessage": "Opt out the werewolf I saw!",
+		"message": "Opt out the werewolf I saw!"
+	},
+	{
+		"id": "rbjNYR",
+		"defaultMessage": "Room Number: {id}",
+		"message": "Room Number: {id}"
+	},
+	{
+		"id": "iLUQIP",
+		"defaultMessage": "Invite Link",
+		"message": "Invite Link"
+	}
+]
