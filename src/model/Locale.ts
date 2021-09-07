@@ -33,6 +33,21 @@ function matchSupported(language: string): string | undefined {
 }
 
 function predictDefaultLanguage(): string {
+	const params = new URLSearchParams(window.location.search);
+	const lang = params.get('lang');
+	if (lang) {
+		const supported = matchSupported(lang);
+		if (supported) {
+			localStorage.setItem('lang', supported);
+			return supported;
+		}
+	}
+
+	const savedLang = localStorage.getItem('lang');
+	if (savedLang) {
+		return savedLang;
+	}
+
 	const languages = navigator.languages || [navigator.language];
 	for (const language of languages) {
 		const supported = matchSupported(language);

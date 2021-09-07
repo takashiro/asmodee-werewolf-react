@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const http = require('http');
 const express = require('express');
-const api = require('@asmodee/werewolf-server').default;
+const { default: api } = require('@asmodee/werewolf-server');
 
 const app = express();
 app.use(express.static('dist'));
@@ -79,7 +79,6 @@ const config = {
 		'goog:chromeOptions': {
 			args: [
 				'--headless',
-				'--lang=zh-CN',
 			],
 		},
 	}],
