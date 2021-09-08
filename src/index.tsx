@@ -6,6 +6,7 @@ import { locale } from './model/Locale';
 import App from './gui';
 
 (async function main(): Promise<void> {
+	document.documentElement.lang = locale.getLanguage();
 	const messages = await locale.loadMessage();
 	ReactDOM.render(
 		<IntlProvider

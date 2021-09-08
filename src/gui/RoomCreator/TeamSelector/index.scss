@@ -13,6 +13,10 @@ ul.role-list,
 		display: block;
 		text-align: center;
 		margin-top: 5px;
+
+		html:lang(en) & {
+			font-size: 9pt;
+		}
 	}
 }
 
@@ -79,6 +83,7 @@ ul.role-selector {
 		list-style: none;
 		width: 64px;
 		justify-self: center;
+		vertical-align: top;
 
 		@media screen and (min-width: 780px) {
 			margin: 7px;
