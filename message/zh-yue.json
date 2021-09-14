@@ -1,0 +1,412 @@
+[
+	{
+		"id": "Vg7Sno",
+		"defaultMessage": "Please input a room number.",
+		"message": "請輸入房號。"
+	},
+	{
+		"id": "mPaDfU",
+		"defaultMessage": "The room does not exist.",
+		"message": "房間唔存在。"
+	},
+	{
+		"id": "fLBhy7",
+		"defaultMessage": "Unknown error.",
+		"message": "未知錯誤。"
+	},
+	{
+		"id": "tNDcxP",
+		"defaultMessage": "Room Number",
+		"message": "房號"
+	},
+	{
+		"id": "Kuj9PM",
+		"defaultMessage": "Create a New Room",
+		"message": "創建房間"
+	},
+	{
+		"id": "JztMvO",
+		"defaultMessage": "Enter the Room",
+		"message": "進入房間"
+	},
+	{
+		"id": "fZDLue",
+		"defaultMessage": "Team Unknown",
+		"message": "未知"
+	},
+	{
+		"id": "5TAzdN",
+		"defaultMessage": "Team Werewolf",
+		"message": "狼人陣營"
+	},
+	{
+		"id": "AxTiMH",
+		"defaultMessage": "Team Villager",
+		"message": "村民陣營"
+	},
+	{
+		"id": "UgefTz",
+		"defaultMessage": "Team Other",
+		"message": "其他角色"
+	},
+	{
+		"id": "5jeq8P",
+		"defaultMessage": "Unknown",
+		"message": "未知"
+	},
+	{
+		"id": "dxFRXQ",
+		"defaultMessage": "Werewolf",
+		"message": "狼人"
+	},
+	{
+		"id": "e+r2K4",
+		"defaultMessage": "Alpha Wolf",
+		"message": "狼王"
+	},
+	{
+		"id": "b5zfvW",
+		"defaultMessage": "White Alpha Wolf",
+		"message": "白狼王"
+	},
+	{
+		"id": "5VtEby",
+		"defaultMessage": "Wolf Beauty",
+		"message": "狼美人"
+	},
+	{
+		"id": "98K5Ax",
+		"defaultMessage": "Secret Wolf",
+		"message": "隱狼"
+	},
+	{
+		"id": "UJHjH5",
+		"defaultMessage": "Demon",
+		"message": "惡靈騎士"
+	},
+	{
+		"id": "XQ6YDZ",
+		"defaultMessage": "Villager",
+		"message": "村民"
+	},
+	{
+		"id": "zfuKnh",
+		"defaultMessage": "Seer",
+		"message": "預言家"
+	},
+	{
+		"id": "1kte+V",
+		"defaultMessage": "Tamer",
+		"message": "馴獸師"
+	},
+	{
+		"id": "i8WP0l",
+		"defaultMessage": "Witch",
+		"message": "女巫"
+	},
+	{
+		"id": "LZLA8s",
+		"defaultMessage": "Hunter",
+		"message": "獵人"
+	},
+	{
+		"id": "JORi57",
+		"defaultMessage": "Guard",
+		"message": "守衛"
+	},
+	{
+		"id": "VlLuud",
+		"defaultMessage": "Magician",
+		"message": "魔術師"
+	},
+	{
+		"id": "ztjcDB",
+		"defaultMessage": "Idiot",
+		"message": "白癡"
+	},
+	{
+		"id": "Hg2iWj",
+		"defaultMessage": "Elder",
+		"message": "長老"
+	},
+	{
+		"id": "Oh6d+0",
+		"defaultMessage": "Knight",
+		"message": "騎士"
+	},
+	{
+		"id": "vFb5JM",
+		"defaultMessage": "Dream Weaver",
+		"message": "攝夢人"
+	},
+	{
+		"id": "SMSj6+",
+		"defaultMessage": "Rogue",
+		"message": "爛佬"
+	},
+	{
+		"id": "X6tR4p",
+		"defaultMessage": "Crow",
+		"message": "烏鴉"
+	},
+	{
+		"id": "bIwsAH",
+		"defaultMessage": "Cupid",
+		"message": "邱比特"
+	},
+	{
+		"id": "J4VQfb",
+		"defaultMessage": "Feral Child",
+		"message": "野仔"
+	},
+	{
+		"id": "UIujJP",
+		"defaultMessage": "Thief",
+		"message": "賊佬"
+	},
+	{
+		"id": "1mDOnw",
+		"defaultMessage": "Bombman",
+		"message": "炸彈人"
+	},
+	{
+		"id": "a5DKwM",
+		"defaultMessage": "Gargoyle",
+		"message": "石像鬼"
+	},
+	{
+		"id": "SnH3ra",
+		"defaultMessage": "Graveyard Keeper",
+		"message": "守墓人"
+	},
+	{
+		"id": "P0AUbl",
+		"defaultMessage": "Tengu",
+		"message": "天狗"
+	},
+	{
+		"id": "hARaFV",
+		"defaultMessage": "Luna",
+		"message": "月女"
+	},
+	{
+		"id": "cpVUDR",
+		"defaultMessage": "Wolf Grandma",
+		"message": "狼外婆"
+	},
+	{
+		"id": "0Qrres",
+		"defaultMessage": "Red Hat",
+		"message": "小紅帽"
+	},
+	{
+		"id": "jPhuvA",
+		"defaultMessage": "Doppelganger",
+		"message": "影子"
+	},
+	{
+		"id": "vVNrKx",
+		"defaultMessage": "Revenger",
+		"message": "復仇者"
+	},
+	{
+		"id": "P9wcwt",
+		"defaultMessage": "Hybrid",
+		"message": "混血兒"
+	},
+	{
+		"id": "Lu3VVi",
+		"defaultMessage": "Lunar Apostle",
+		"message": "血月使徒"
+	},
+	{
+		"id": "TCsMH3",
+		"defaultMessage": "Mara Hunter",
+		"message": "獵魔人"
+	},
+	{
+		"id": "sYO39I",
+		"defaultMessage": "Nightmare",
+		"message": "夢魘"
+	},
+	{
+		"id": "P1cb+6",
+		"defaultMessage": "Scarlett",
+		"message": "暗戀者"
+	},
+	{
+		"id": "vf4sNZ",
+		"defaultMessage": "Miracle Merchant",
+		"message": "奇跡商人"
+	},
+	{
+		"id": "PfgvCk",
+		"defaultMessage": "Please select some roles.",
+		"message": "請選擇角色。"
+	},
+	{
+		"id": "TwEUdP",
+		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
+		"message": "最多支持50人局，請重新選擇。"
+	},
+	{
+		"id": "E2sGaF",
+		"defaultMessage": "Exit",
+		"message": "返回"
+	},
+	{
+		"id": "gjBiyj",
+		"defaultMessage": "Loading...",
+		"message": "加載中..."
+	},
+	{
+		"id": "zy0HW4",
+		"defaultMessage": "The room does not exist or may be expired.",
+		"message": "房間唔存在，或可能過期咗。"
+	},
+	{
+		"id": "HkVuPn",
+		"defaultMessage": "The seat does not exist. Please try another one.",
+		"message": "座位唔存在，請重試。"
+	},
+	{
+		"id": "7qWUz8",
+		"defaultMessage": "Please clean your browser cache and try again later.",
+		"message": "請清除瀏覽器緩存后重試。"
+	},
+	{
+		"id": "O8eQ/R",
+		"defaultMessage": "The seat is already taken. Please try another one.",
+		"message": "座位已俾人占用，請嘗試其他座位。"
+	},
+	{
+		"id": "S8TkPq",
+		"defaultMessage": "Unknown error ({code}): {message}.",
+		"message": "未知錯誤（{code}）：{message}"
+	},
+	{
+		"id": "zIg54F",
+		"defaultMessage": "View Your Role",
+		"message": "查看角色"
+	},
+	{
+		"id": "HogrCa",
+		"defaultMessage": "Seat Number",
+		"message": "座號"
+	},
+	{
+		"id": "ljL5ZV",
+		"defaultMessage": "Please input a seat number.",
+		"message": "請輸入座號。"
+	},
+	{
+		"id": "aDo6WM",
+		"defaultMessage": "Please input a valid number.",
+		"message": "請輸入合法數字。"
+	},
+	{
+		"id": "gpkJJd",
+		"defaultMessage": "Your role is...",
+		"message": "你嘅角色係..."
+	},
+	{
+		"id": "kCDXlq",
+		"defaultMessage": "Seat {seat}",
+		"message": "{seat}號位"
+	},
+	{
+		"id": "MjhDHp",
+		"defaultMessage": "Your Role",
+		"message": "你嘅角色"
+	},
+	{
+		"id": "p/F2EY",
+		"defaultMessage": "Werewolves of the Miller's Hollow",
+		"message": "狼人殺"
+	},
+	{
+		"id": "Dk+KOe",
+		"defaultMessage": "Successfully copied the share link.",
+		"message": "成功複製邀請連結。"
+	},
+	{
+		"id": "ghRb2H",
+		"defaultMessage": "Failed to copy the share link. Please do it manually.",
+		"message": "複製邀請連結失敗，請手動複製。"
+	},
+	{
+		"id": "6nArsG",
+		"defaultMessage": "I am the real seer this time!",
+		"message": "我今次真係預言家來噶！"
+	},
+	{
+		"id": "KJUHnB",
+		"defaultMessage": "Too dirty, bro!",
+		"message": "好污糟喎，大佬！"
+	},
+	{
+		"id": "mjAiYM",
+		"defaultMessage": "Come on! Attack me tonight!",
+		"message": "來啊，首刀我啊！"
+	},
+	{
+		"id": "HwBfOJ",
+		"defaultMessage": "Close your eyes now.",
+		"message": "天黑請閉眼"
+	},
+	{
+		"id": "Zodksl",
+		"defaultMessage": "I'll shot you if opted out.",
+		"message": "出我我就帶走你"
+	},
+	{
+		"id": "HwL8E8",
+		"defaultMessage": "I'll poison whoever talks like a werewolf.",
+		"message": "邊個發言唔好我就毒死邊個"
+	},
+	{
+		"id": "lVWMT8",
+		"defaultMessage": "Confess your role or get yourself killed.",
+		"message": "拍唔出身份就出你"
+	},
+	{
+		"id": "/bYs8j",
+		"defaultMessage": "The weakest werewolves cheat the witch.",
+		"message": "成日就識得騙解藥！"
+	},
+	{
+		"id": "Lj2jt6",
+		"defaultMessage": "Who shall I attack tonight?",
+		"message": "今晚刀邊個好呢？"
+	},
+	{
+		"id": "rVEZCc",
+		"defaultMessage": "You can't be the alpha wolf, can you?",
+		"message": "你唔會係狼王吧？"
+	},
+	{
+		"id": "iqbCxX",
+		"defaultMessage": "You are nothing else but a werewolf.",
+		"message": "你肯定係狼人來噶！"
+	},
+	{
+		"id": "9IaJOh",
+		"defaultMessage": "Make up more! Your lies are almost true!",
+		"message": "加油！車得好似真話喇！"
+	},
+	{
+		"id": "FZpUF1",
+		"defaultMessage": "Opt out the werewolf I saw!",
+		"message": "今日就先出我嘅查殺"
+	},
+	{
+		"id": "rbjNYR",
+		"defaultMessage": "Room Number: {id}",
+		"message": "房號：{id}"
+	},
+	{
+		"id": "iLUQIP",
+		"defaultMessage": "Invite Link",
+		"message": "邀請連結"
+	}
+]
