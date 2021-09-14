@@ -5,10 +5,10 @@ import {
 	Teamship,
 } from '@asmodee/werewolf-core';
 
-import RoomConfig from '../../../model/RoomConfig';
-import RoleSelection from '../../../model/RoleSelection';
+import RoomConfig from '../../../../model/RoomConfig';
+import RoleSelection from '../../../../model/RoleSelection';
 
-import TeamLabel from '../../component/TeamLabel';
+import TeamLabel from '../../../component/TeamLabel';
 import RoleOption from './RoleOption';
 import RoleNumberInput from './RoleNumberInput';
 

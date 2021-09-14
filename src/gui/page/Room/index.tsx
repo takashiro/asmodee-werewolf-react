@@ -8,7 +8,7 @@ import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
 import ShareLink from './ShareLink';
 
-import RoomModel from '../../model/Room';
+import RoomModel from '../../../model/Room';
 
 import './index.scss';
 

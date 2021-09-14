@@ -3,10 +3,10 @@ import React from 'react';
 import RoomModel from '../model/Room';
 
 import Page from './Page';
-import Lobby from './Lobby';
-import RoomCreator from './RoomCreator';
-import RoomLoader from './RoomLoader';
-import Room from './Room';
+import Lobby from './page/Lobby';
+import RoomCreator from './page/RoomCreator';
+import RoomLoader from './page/RoomLoader';
+import Room from './page/Room';
 
 import './global.scss';
 

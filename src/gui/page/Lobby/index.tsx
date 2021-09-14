@@ -6,12 +6,12 @@ import {
 	IntlShape,
 } from 'react-intl';
 
-import { makeToast } from '../component/Toast';
-import Page from '../Page';
+import { makeToast } from '../../component/Toast';
+import Page from '../../Page';
 
-import Room from '../../model/Room';
-import Client from '../../model/Client';
-import HttpError from '../../model/HttpError';
+import Room from '../../../model/Room';
+import Client from '../../../model/Client';
+import HttpError from '../../../model/HttpError';
 
 import './index.scss';
 

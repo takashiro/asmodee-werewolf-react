@@ -7,11 +7,11 @@ import {
 } from 'react-intl';
 import { Role } from '@asmodee/werewolf-core';
 
-import Player from '../../../model/Player';
-import HttpError from '../../../model/HttpError';
+import Player from '../../../../model/Player';
+import HttpError from '../../../../model/HttpError';
 
-import RoleIcon from '../../component/RoleIcon';
-import RoleLabel from '../../component/RoleLabel';
+import RoleIcon from '../../../component/RoleIcon';
+import RoleLabel from '../../../component/RoleLabel';
 
 import './index.scss';
 
