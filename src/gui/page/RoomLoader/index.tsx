@@ -4,8 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import Client from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
 import Room from '../../../model/Room';
-
-import Page from '../../Page';
+import Page from '../../../model/Page';
 
 import './index.scss';
 

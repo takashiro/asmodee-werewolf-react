@@ -14,9 +14,9 @@ import Client from '../../../model/Client';
 import Room from '../../../model/Room';
 import RoomConfig from '../../../model/RoomConfig';
 import HttpError from '../../../model/HttpError';
+import Page from '../../../model/Page';
 
 import { makeToast } from '../../component/Toast';
-import Page from '../../Page';
 
 import TeamSelector from './TeamSelector';
 

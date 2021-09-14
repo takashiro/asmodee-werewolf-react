@@ -7,8 +7,8 @@ import {
 } from 'react-intl';
 
 import { makeToast } from '../../component/Toast';
-import Page from '../../Page';
 
+import Page from '../../../model/Page';
 import Room from '../../../model/Room';
 import Client from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
