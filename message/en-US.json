@@ -408,5 +408,10 @@
 		"id": "TwEUdP",
 		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
 		"message": "You can choose no more than 50 roles. Please unselect some of them."
+	},
+	{
+		"id": "3KdX2W",
+		"defaultMessage": "Change Language",
+		"message": "Change Language"
 	}
 ]

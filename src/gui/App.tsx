@@ -8,8 +8,6 @@ import RoomCreator from './page/RoomCreator';
 import RoomLoader from './page/RoomLoader';
 import Room from './page/Room';
 
-import './global.scss';
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 let room: RoomModel | undefined;

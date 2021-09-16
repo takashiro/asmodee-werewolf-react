@@ -1,21 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IntlProvider } from 'react-intl';
+import {
+	createIntl,
+	createIntlCache,
+	RawIntlProvider,
+} from 'react-intl';
 
-import { locale } from './model/Locale';
-import App from './gui';
+import Locale from './model/Locale';
+
+import App from './gui/App';
+import LocaleList from './gui/LocaleList';
+
+import './global.scss';
+
+const locale = new Locale();
+const intlCache = createIntlCache();
+
+function handleLanguageSelect(lang: string): void {
+	window.location.search = `lang=${lang}`;
+}
 
 (async function main(): Promise<void> {
 	document.documentElement.lang = locale.getLanguage();
 	const messages = await locale.loadMessage();
+
+	const intl = createIntl({
+		locale: 'en-US',
+		messages,
+	}, intlCache);
+
 	ReactDOM.render(
-		<IntlProvider
-			defaultLocale="en-US"
-			locale={locale.getLanguage()}
-			messages={messages}
-		>
+		<RawIntlProvider value={intl}>
 			<App />
-		</IntlProvider>,
+		</RawIntlProvider>,
 		document.getElementById('root'),
+	);
+
+	ReactDOM.render(
+		<RawIntlProvider value={intl}>
+			<LocaleList
+				languages={Locale.getLanguages()}
+				onSelect={handleLanguageSelect}
+			/>
+		</RawIntlProvider>,
+		document.getElementById('locale-switch'),
 	);
 }());

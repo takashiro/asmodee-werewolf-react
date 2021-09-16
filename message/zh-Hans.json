@@ -408,5 +408,10 @@
 		"id": "TwEUdP",
 		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
 		"message": "最多支持50人局，请重新配置角色。"
+	},
+	{
+		"id": "3KdX2W",
+		"defaultMessage": "Change Language",
+		"message": "切换语言"
 	}
 ]

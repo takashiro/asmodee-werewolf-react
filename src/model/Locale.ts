@@ -1,14 +1,17 @@
-const supportedLanguages = new Set<string>([
+const languageList = [
 	'en-US',
 	'en-GB',
 	'zh-Hans',
 	'zh-Hant',
-]);
+	'yue',
+];
+
+const supportedLanguages = new Set<string>(languageList);
 
 const languageMap = new Map<string, string>([
 	['en', 'en-US'],
-	['zh-HK', 'zh-Hant'],
-	['zh-MO', 'zh-Hant'],
+	['zh-HK', 'yue'],
+	['zh-MO', 'yue'],
 	['zh-TW', 'zh-Hant'],
 	['zh', 'zh-Hans'],
 ]);
@@ -72,6 +75,8 @@ export default class Locale {
 		}
 		return {};
 	}
-}
 
-export const locale = new Locale();
+	static getLanguages(): string[] {
+		return languageList;
+	}
+}

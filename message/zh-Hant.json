@@ -408,5 +408,10 @@
 		"id": "iLUQIP",
 		"defaultMessage": "Invite Link",
 		"message": "邀請連結"
+	},
+	{
+		"id": "3KdX2W",
+		"defaultMessage": "Change Language",
+		"message": "切換語言"
 	}
 ]
