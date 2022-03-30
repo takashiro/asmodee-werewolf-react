@@ -97,7 +97,7 @@ class Room {
 	}
 
 	async create(roles: Role[]): Promise<void> {
-		const res = await this.client.post('/room', {
+		const res = await this.client.post('room', {
 			roles,
 		});
 		if (res.status !== 200) {
