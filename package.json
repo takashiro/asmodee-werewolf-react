@@ -7,9 +7,8 @@
     "start": "webpack serve --mode=development",
     "build": "linguist release && webpack",
     "debug": "webpack --mode=development",
-    "test": "npm run lint && npm run wdio",
-    "lint": "eslint --ext=js,ts,tsx .",
-    "wdio": "wdio run test/wdio.conf.js"
+    "test": "npm run lint && playwright test",
+    "lint": "eslint --ext=js,ts,tsx ."
   },
   "repository": {
     "type": "git",
@@ -37,15 +36,11 @@
   "devDependencies": {
     "@asmodee/werewolf-server": "^2.0.3",
     "@karuta/linguist": "^0.4.0",
+    "@playwright/test": "^1.20.2",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
-    "@wdio/cli": "^7.12.1",
-    "@wdio/devtools-service": "^7.12.1",
-    "@wdio/jasmine-framework": "^7.12.0",
-    "@wdio/local-runner": "^7.12.1",
-    "@wdio/spec-reporter": "^7.10.1",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -60,7 +55,6 @@
     "sass": "^1.39.0",
     "sass-loader": "^12.1.0",
     "ts-loader": "^9.2.5",
-    "ts-node": "^10.2.1",
     "typescript": "^4.4.2",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0",

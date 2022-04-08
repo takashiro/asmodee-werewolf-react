@@ -1,19 +1,17 @@
 import path from 'path';
 import { Role } from '@asmodee/werewolf-core';
 
-import Page from './Page';
+import Page from './common/Page';
 import NumberInput from './NumberInput';
-
-type Element = ReturnType<WebdriverIO.Browser['$']>;
-type ElementArray = ReturnType<WebdriverIO.Browser['$$']>;
+import WebElement from './common/WebElement';
 
 export default class RoomCreatorPage extends Page {
-	async open(): Promise<void> {
-		await super.open();
-		const button = await $('.lobby button');
+	async load(): Promise<void> {
+		await super.load();
+		const button = await this.$('.lobby button');
 		if (button) {
 			await button.click();
-			await this.loaded();
+			await this.page.waitForSelector('.room-creator');
 		}
 	}
 
@@ -27,9 +25,7 @@ export default class RoomCreatorPage extends Page {
 
 	async toggleRole(role: Role): Promise<void> {
 		const button = await this.getRoleButton(role);
-		if (button) {
-			await button.click();
-		}
+		await button.click();
 	}
 
 	async isRoleSelected(role: Role): Promise<boolean> {
@@ -48,17 +44,17 @@ export default class RoomCreatorPage extends Page {
 		await button.click();
 	}
 
-	protected async getRoleButton(role: Role): Promise<Element | undefined> {
+	protected async getRoleButton(role: Role): Promise<WebElement | null> {
 		const buttons = await this.$$('.role-button');
-		const roleKey = Role[role].toLowerCase();
+		const roleKey = Role[role];
 		for (const button of buttons) {
 			const icon = await button.$('.role');
-			const image = await icon.getCSSProperty('background-image');
-			if (!image || !image.value) {
+			const image = await icon.evaluate((e) => window.getComputedStyle(e).backgroundImage);
+			if (!image) {
 				continue;
 			}
 
-			const [, value] = image.value.match(/^url\(['"]?(.*?)['"]?\)$/);
+			const [, value] = image.match(/^url\(['"]?(.*?)['"]?\)$/);
 			const basename = path.basename(value, '.jpg');
 			if (basename === roleKey) {
 				return button;
@@ -67,23 +63,12 @@ export default class RoomCreatorPage extends Page {
 	}
 
 	protected async getNumberInput(boxIndex: number): Promise<NumberInput> {
-		const selector = await this.getBox(boxIndex).$('.number-selector');
-		return new NumberInput(selector);
+		const box = await this.getBox(boxIndex);
+		const selector = await box?.$('.number-selector');
+		return selector && new NumberInput(selector);
 	}
 
-	protected getBox(index: number): Element {
+	protected getBox(index: number): Promise<WebElement | null> {
 		return this.$(`.box:nth-child(${index})`);
-	}
-
-	protected $(selector: string): Element {
-		return this.getRef().$(selector);
-	}
-
-	protected $$(selector: string): ElementArray {
-		return this.getRef().$$(selector);
-	}
-
-	protected getRef(): Element {
-		return $('.room-creator');
 	}
 }

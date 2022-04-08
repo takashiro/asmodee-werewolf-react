@@ -1,5 +1,5 @@
 module.exports = {
 	rules: {
-		'class-methods-use-this': 'off',
+		'react/sort-comp': 'off',
 	},
 };
