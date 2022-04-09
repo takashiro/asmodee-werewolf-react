@@ -245,6 +245,11 @@
 		"message": "你嘅角色"
 	},
 	{
+		"id": "mOFG3K",
+		"defaultMessage": "Start",
+		"message": "開始"
+	},
+	{
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist.",
 		"message": "房間唔存在。"

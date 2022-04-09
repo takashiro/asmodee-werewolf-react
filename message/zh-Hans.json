@@ -245,6 +245,11 @@
 		"message": "你的身份"
 	},
 	{
+		"id": "mOFG3K",
+		"defaultMessage": "Start",
+		"message": "开始"
+	},
+	{
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist.",
 		"message": "房间不存在。"

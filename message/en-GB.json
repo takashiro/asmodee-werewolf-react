@@ -245,6 +245,11 @@
 		"message": "Your Role"
 	},
 	{
+		"id": "mOFG3K",
+		"defaultMessage": "Start",
+		"message": "Start"
+	},
+	{
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist.",
 		"message": "The room does not exist."

@@ -245,6 +245,11 @@
 		"message": "あなたの正体"
 	},
 	{
+		"id": "mOFG3K",
+		"defaultMessage": "Start",
+		"message": "始まる"
+	},
+	{
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist.",
 		"message": "この部屋が見つかりません。"
@@ -352,7 +357,7 @@
 	{
 		"id": "UTcMpt",
 		"defaultMessage": "Start a New Game",
-		"message": "新しいゲームを始まる"
+		"message": "新しいゲームを始める"
 	},
 	{
 		"id": "vf4sNZ",
