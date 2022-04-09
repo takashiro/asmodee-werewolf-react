@@ -45,7 +45,7 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 
 	handleReturn = (): void => {
 		this.nagivateTo(Page.Lobby);
-	}
+	};
 
 	handleConfirm = async (): Promise<void> => {
 		const { intl } = this.props;
@@ -74,7 +74,7 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 
 		room.save();
 		this.nagivateTo(Page.Room, room);
-	}
+	};
 
 	nagivateTo(page: Page, room?: Room): void {
 		const { onPageOpen } = this.props;

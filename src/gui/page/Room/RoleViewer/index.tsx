@@ -108,7 +108,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 			seat,
 			roles,
 		});
-	}
+	};
 
 	showMessage(message: React.ReactNode): void {
 		this.setState({ message });
