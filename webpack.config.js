@@ -95,8 +95,9 @@ module.exports = function config(env, argv) {
 			compress: true,
 			port: 9526,
 			hot: true,
-			onBeforeSetupMiddleware(server) {
+			setupMiddlewares(middlewares, server) {
 				server.app.use('/api', api);
+				return middlewares;
 			},
 		},
 	};
