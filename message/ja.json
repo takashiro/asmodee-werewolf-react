@@ -2,262 +2,262 @@
 	{
 		"id": "/bYs8j",
 		"defaultMessage": "The weakest werewolves cheat the witch.",
-		"message": "The weakest werewolves cheat the witch."
+		"message": "魔女を騙す人狼は最低だ。"
 	},
 	{
 		"id": "0Qrres",
 		"defaultMessage": "Red Hat",
-		"message": "Red Hat"
+		"message": "赤ずきん"
 	},
 	{
 		"id": "1kte+V",
 		"defaultMessage": "Tamer",
-		"message": "Tamer"
+		"message": "テイマー"
 	},
 	{
 		"id": "1mDOnw",
 		"defaultMessage": "Bombman",
-		"message": "Bombman"
+		"message": "自爆テロ"
 	},
 	{
 		"id": "3KdX2W",
 		"defaultMessage": "Change Language",
-		"message": "Change Language"
+		"message": "言語変更"
 	},
 	{
 		"id": "5jeq8P",
 		"defaultMessage": "Unknown",
-		"message": "Unknown"
+		"message": "未知"
 	},
 	{
 		"id": "5TAzdN",
 		"defaultMessage": "Team Werewolf",
-		"message": "Team Werewolf"
+		"message": "人狼チーム"
 	},
 	{
 		"id": "5VtEby",
 		"defaultMessage": "Wolf Beauty",
-		"message": "Wolf Beauty"
+		"message": "美人狼"
 	},
 	{
 		"id": "6nArsG",
 		"defaultMessage": "I am the real seer this time!",
-		"message": "I am the real seer this time!"
+		"message": "私は本物の予言者だ！"
 	},
 	{
 		"id": "7qWUz8",
 		"defaultMessage": "Please clean your browser cache and try again later.",
-		"message": "Please clean your browser cache and try again later."
+		"message": "ブラウザのキャッシュを消去して、もう一度試してみてください。"
 	},
 	{
 		"id": "98K5Ax",
 		"defaultMessage": "Secret Wolf",
-		"message": "Secret Wolf"
+		"message": "狂人"
 	},
 	{
 		"id": "9IaJOh",
 		"defaultMessage": "Make up more! Your lies are almost true!",
-		"message": "Make up more! Your lies are almost true!"
+		"message": "がんばって！みんながまんまと騙されちゃうところだった！"
 	},
 	{
 		"id": "a5DKwM",
 		"defaultMessage": "Gargoyle",
-		"message": "Gargoyle"
+		"message": "ガーゴイル"
 	},
 	{
 		"id": "aDo6WM",
 		"defaultMessage": "Please input a valid number.",
-		"message": "Please input a valid number."
+		"message": "正しい数字をご入力ください。"
 	},
 	{
 		"id": "AxTiMH",
 		"defaultMessage": "Team Villager",
-		"message": "Team Villager"
+		"message": "村人チーム"
 	},
 	{
 		"id": "b5zfvW",
 		"defaultMessage": "White Alpha Wolf",
-		"message": "White Alpha Wolf"
+		"message": "白アルファ"
 	},
 	{
 		"id": "bIwsAH",
 		"defaultMessage": "Cupid",
-		"message": "Cupid"
+		"message": "クピードー"
 	},
 	{
 		"id": "cpVUDR",
 		"defaultMessage": "Wolf Grandma",
-		"message": "Wolf Grandma"
+		"message": "狼お祖母さん"
 	},
 	{
 		"id": "Dk+KOe",
 		"defaultMessage": "Successfully copied the share link.",
-		"message": "Successfully copied the share link."
+		"message": "共有リンクをコピーしました。"
 	},
 	{
 		"id": "dxFRXQ",
 		"defaultMessage": "Werewolf",
-		"message": "Werewolf"
+		"message": "人狼"
 	},
 	{
 		"id": "e+r2K4",
 		"defaultMessage": "Alpha Wolf",
-		"message": "Alpha Wolf"
+		"message": "アルファ"
 	},
 	{
 		"id": "E2sGaF",
 		"defaultMessage": "Exit",
-		"message": "Exit"
+		"message": "出る"
 	},
 	{
 		"id": "fLBhy7",
 		"defaultMessage": "Unknown error.",
-		"message": "Unknown error."
+		"message": "未知のエラーが発生しました。"
 	},
 	{
 		"id": "fZDLue",
 		"defaultMessage": "Team Unknown",
-		"message": "Unknown"
+		"message": "未知チーム"
 	},
 	{
 		"id": "FZpUF1",
 		"defaultMessage": "Opt out the werewolf I saw!",
-		"message": "Opt out the werewolf I saw!"
+		"message": "処刑だ！私に見られたこの人狼を！"
 	},
 	{
 		"id": "ghRb2H",
 		"defaultMessage": "Failed to copy the share link. Please do it manually.",
-		"message": "Failed to copy the share link. Please do it manually."
+		"message": "共有リンクをコピーできません。このリンクを範囲選択してコピーしてください。"
 	},
 	{
 		"id": "gjBiyj",
 		"defaultMessage": "Loading...",
-		"message": "Loading..."
+		"message": "ロード中…"
 	},
 	{
 		"id": "gpkJJd",
 		"defaultMessage": "Your role is...",
-		"message": "Your role is..."
+		"message": "あなたの正体は…"
 	},
 	{
 		"id": "hARaFV",
 		"defaultMessage": "Luna",
-		"message": "Luna"
+		"message": "月の女神"
 	},
 	{
 		"id": "Hg2iWj",
 		"defaultMessage": "Elder",
-		"message": "Elder"
+		"message": "長老"
 	},
 	{
 		"id": "HkVuPn",
 		"defaultMessage": "The seat does not exist. Please try another one.",
-		"message": "The seat does not exist. Please try another one."
+		"message": "座席番号はありません。再確認してご入力ください。"
 	},
 	{
 		"id": "HogrCa",
 		"defaultMessage": "Seat Number",
-		"message": "Seat Number"
+		"message": "座席番号"
 	},
 	{
 		"id": "HwBfOJ",
 		"defaultMessage": "Close your eyes now.",
-		"message": "Close your eyes now."
+		"message": "目を閉じて～始まるよ～"
 	},
 	{
 		"id": "HwL8E8",
 		"defaultMessage": "I'll poison whoever talks like a werewolf.",
-		"message": "I'll poison whoever talks like a werewolf."
+		"message": "怪しいやつを毒殺するよ。"
 	},
 	{
 		"id": "i8WP0l",
 		"defaultMessage": "Witch",
-		"message": "Witch"
+		"message": "魔女"
 	},
 	{
 		"id": "iLUQIP",
 		"defaultMessage": "Invite Link",
-		"message": "Invite Link"
+		"message": "共有リンク"
 	},
 	{
 		"id": "iqbCxX",
 		"defaultMessage": "You are nothing else but a werewolf.",
-		"message": "You are nothing else but a werewolf."
+		"message": "間違いない！あなたは人狼だ！"
 	},
 	{
 		"id": "J4VQfb",
 		"defaultMessage": "Feral Child",
-		"message": "Feral Child"
+		"message": "狼こども"
 	},
 	{
 		"id": "JORi57",
 		"defaultMessage": "Guard",
-		"message": "Guard"
+		"message": "ボディーガード"
 	},
 	{
 		"id": "jPhuvA",
 		"defaultMessage": "Doppelganger",
-		"message": "Doppelgänger"
+		"message": "影"
 	},
 	{
 		"id": "kCDXlq",
 		"defaultMessage": "Seat {seat}",
-		"message": "Seat {seat}"
+		"message": "{seat} 番"
 	},
 	{
 		"id": "KJUHnB",
 		"defaultMessage": "Too dirty, bro!",
-		"message": "Too dirty, bro!"
+		"message": "汚らわしいなあ、てめえ！"
 	},
 	{
 		"id": "Lj2jt6",
 		"defaultMessage": "Who shall I attack tonight?",
-		"message": "Who shall I attack tonight?"
+		"message": "今夜は誰の番でしょう？"
 	},
 	{
 		"id": "ljL5ZV",
 		"defaultMessage": "Please input a seat number.",
-		"message": "Please input a seat number."
+		"message": "座席番号をご入力ください。"
 	},
 	{
 		"id": "Lu3VVi",
 		"defaultMessage": "Lunar Apostle",
-		"message": "Lunar Apostle"
+		"message": "赤月の眷属"
 	},
 	{
 		"id": "lVWMT8",
 		"defaultMessage": "Confess your role or get yourself killed.",
-		"message": "Confess your role or get yourself killed."
+		"message": "正体を言うか、死ぬか。どちらか選べ！"
 	},
 	{
 		"id": "LZLA8s",
 		"defaultMessage": "Hunter",
-		"message": "Hunter"
+		"message": "ハンター"
 	},
 	{
 		"id": "mjAiYM",
 		"defaultMessage": "Come on! Attack me tonight!",
-		"message": "Come on! Attack me tonight!"
+		"message": "さあ！来て！わたしを殺してみろう！"
 	},
 	{
 		"id": "MjhDHp",
 		"defaultMessage": "Your Role",
-		"message": "Your Role"
+		"message": "あなたの正体"
 	},
 	{
 		"id": "mPaDfU",
 		"defaultMessage": "The room does not exist.",
-		"message": "The room does not exist."
+		"message": "この部屋が見つかりません。"
 	},
 	{
 		"id": "O8eQ/R",
 		"defaultMessage": "The seat is already taken. Please try another one.",
-		"message": "The seat is already taken. Please try another one."
+		"message": "この座席はご利用できません。ほかの番号をご利用ください。"
 	},
 	{
 		"id": "Oh6d+0",
 		"defaultMessage": "Knight",
-		"message": "Knight"
+		"message": "騎士"
 	},
 	{
 		"id": "p/F2EY",
@@ -267,151 +267,151 @@
 	{
 		"id": "P0AUbl",
 		"defaultMessage": "Tengu",
-		"message": "Tengu"
+		"message": "天狗"
 	},
 	{
 		"id": "P1cb+6",
 		"defaultMessage": "Scarlett",
-		"message": "Scarlett"
+		"message": "片思い女"
 	},
 	{
 		"id": "P9wcwt",
 		"defaultMessage": "Hybrid",
-		"message": "Hybride"
+		"message": "混血孤児"
 	},
 	{
 		"id": "PfgvCk",
 		"defaultMessage": "Please select some roles.",
-		"message": "Please select some roles."
+		"message": "下記のキャラを選んでください。"
 	},
 	{
 		"id": "rbjNYR",
 		"defaultMessage": "Room Number: {id}",
-		"message": "Room Number: {id}"
+		"message": "部屋番号：{id}"
 	},
 	{
 		"id": "rVEZCc",
 		"defaultMessage": "You can't be the alpha wolf, can you?",
-		"message": "You can't be the alpha wolf, can you?"
+		"message": "あなたはもしかしてアルファ？"
 	},
 	{
 		"id": "S8TkPq",
 		"defaultMessage": "Unknown error ({code}): {message}.",
-		"message": "Unknown error ({code}): {message}"
+		"message": "未知エラー（{code}）：{message}"
 	},
 	{
 		"id": "SMSj6+",
 		"defaultMessage": "Rogue",
-		"message": "Rogue"
+		"message": "ヤクザ"
 	},
 	{
 		"id": "SnH3ra",
 		"defaultMessage": "Graveyard Keeper",
-		"message": "Graveyard Keeper"
+		"message": "墓守"
 	},
 	{
 		"id": "sYO39I",
 		"defaultMessage": "Nightmare",
-		"message": "Nightmare"
+		"message": "ナイトメア"
 	},
 	{
 		"id": "TCsMH3",
 		"defaultMessage": "Mara Hunter",
-		"message": "Mara Hunter"
+		"message": "悪魔狩り"
 	},
 	{
 		"id": "tNDcxP",
 		"defaultMessage": "Room Number",
-		"message": "Room Number"
+		"message": "部屋番号"
 	},
 	{
 		"id": "TwEUdP",
 		"defaultMessage": "You can choose no more than 50 roles. Please unselect some of them.",
-		"message": "You can choose no more than 50 roles. Please unselect some of them."
+		"message": "部屋の上限人数は５０人です。"
 	},
 	{
 		"id": "UgefTz",
 		"defaultMessage": "Team Other",
-		"message": "Other"
+		"message": "その他"
 	},
 	{
 		"id": "UIujJP",
 		"defaultMessage": "Thief",
-		"message": "Thief"
+		"message": "泥棒"
 	},
 	{
 		"id": "UJHjH5",
 		"defaultMessage": "Demon",
-		"message": "Demon"
+		"message": "悪魔"
 	},
 	{
 		"id": "ULkpji",
 		"defaultMessage": "Join a Game",
-		"message": "Join a Game"
+		"message": "友達のゲームに参加する"
 	},
 	{
 		"id": "UTcMpt",
 		"defaultMessage": "Start a New Game",
-		"message": "Start a New Game"
+		"message": "新しいゲームを始まる"
 	},
 	{
 		"id": "vf4sNZ",
 		"defaultMessage": "Miracle Merchant",
-		"message": "Miracle Merchant"
+		"message": "奇跡の商人"
 	},
 	{
 		"id": "vFb5JM",
 		"defaultMessage": "Dream Weaver",
-		"message": "Dream Weaver"
+		"message": "花魁"
 	},
 	{
 		"id": "Vg7Sno",
 		"defaultMessage": "Please input a room number.",
-		"message": "Please input a room number."
+		"message": "部屋番号をご入力ください。"
 	},
 	{
 		"id": "VlLuud",
 		"defaultMessage": "Magician",
-		"message": "Magician"
+		"message": "魔術師"
 	},
 	{
 		"id": "vVNrKx",
 		"defaultMessage": "Revenger",
-		"message": "Revenger"
+		"message": "復讐者"
 	},
 	{
 		"id": "X6tR4p",
 		"defaultMessage": "Crow",
-		"message": "Crow"
+		"message": "カラス"
 	},
 	{
 		"id": "XQ6YDZ",
 		"defaultMessage": "Villager",
-		"message": "Villager"
+		"message": "村人"
 	},
 	{
 		"id": "zfuKnh",
 		"defaultMessage": "Seer",
-		"message": "Seer"
+		"message": "予言者"
 	},
 	{
 		"id": "zIg54F",
 		"defaultMessage": "View Your Role",
-		"message": "View Your Role"
+		"message": "正体を見る"
 	},
 	{
 		"id": "Zodksl",
 		"defaultMessage": "I'll shot you if opted out.",
-		"message": "I'll shot you if opted out."
+		"message": "処刑されたら、あなたを道連れにする。"
 	},
 	{
 		"id": "ztjcDB",
 		"defaultMessage": "Idiot",
-		"message": "Idiot"
+		"message": "愚か者"
 	},
 	{
 		"id": "zy0HW4",
 		"defaultMessage": "The room does not exist or may be expired.",
-		"message": "The room does not exist or may be expired."
+		"message": "この部屋は見つかりません。時間切れの可能性があります。"
 	}
 ]

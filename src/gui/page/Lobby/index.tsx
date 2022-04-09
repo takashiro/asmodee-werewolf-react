@@ -80,7 +80,7 @@ export default function Lobby({
 		<div className="lobby">
 			<div className="simple-form">
 				<button type="button" onClick={createRoom}>
-					<FormattedMessage defaultMessage="Create a New Room" />
+					<FormattedMessage defaultMessage="Start a New Game" />
 				</button>
 			</div>
 			<div className="simple-form">
@@ -91,7 +91,7 @@ export default function Lobby({
 					placeholder={intl.formatMessage(desc.roomNumber)}
 				/>
 				<button type="button" onClick={enterRoom}>
-					<FormattedMessage defaultMessage="Enter the Room" />
+					<FormattedMessage defaultMessage="Join a Game" />
 				</button>
 			</div>
 		</div>

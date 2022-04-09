@@ -10,9 +10,10 @@ const msg = defineMessages({
 const languageNames = new Map<string, string>([
 	['en-US', 'English (United States)'],
 	['en-GB', 'English (United Kingdom)'],
-	['zh-Hans', '中文（简体）'],
-	['zh-Hant', '中文（繁体）'],
-	['yue', '中文（粤语）'],
+	['zh-Hans', '中文（简）'],
+	['zh-Hant', '中文（繁）'],
+	['yue', '中文（粤）'],
+	['ja', '日本語'],
 ]);
 
 interface ListProps {

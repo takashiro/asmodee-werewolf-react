@@ -4,6 +4,7 @@ const languageList = [
 	'zh-Hans',
 	'zh-Hant',
 	'yue',
+	'ja',
 ];
 
 const supportedLanguages = new Set<string>(languageList);

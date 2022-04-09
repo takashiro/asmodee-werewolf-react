@@ -26,7 +26,7 @@ const msg = defineMessages({
 	rejectZeroRoles: { defaultMessage: 'Please select some roles.' },
 	rejectTooManyRoles: { defaultMessage: 'You can choose no more than 50 roles. Please unselect some of them.' },
 	exit: { defaultMessage: 'Exit' },
-	createRoom: { defaultMessage: 'Create a New Room' },
+	createRoom: { defaultMessage: 'Start a New Game' },
 });
 
 interface RoomCreatorProps {
