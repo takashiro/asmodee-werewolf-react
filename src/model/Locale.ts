@@ -1,13 +1,11 @@
-const languageList = [
-	'en-US',
-	'en-GB',
-	'zh-Hans',
-	'zh-Hant',
-	'yue',
-	'ja',
-];
-
-const supportedLanguages = new Set<string>(languageList);
+const languages = new Map<string, string>([
+	['en-US', 'English (United States)'],
+	['en-GB', 'English (United Kingdom)'],
+	['zh-Hans', '中文（简）'],
+	['zh-Hant', '中文（繁）'],
+	['yue', '中文（粤）'],
+	['ja', '日本語'],
+]);
 
 const languageMap = new Map<string, string>([
 	['en', 'en-US'],
@@ -18,7 +16,7 @@ const languageMap = new Map<string, string>([
 ]);
 
 function matchSupported(language: string): string | undefined {
-	if (supportedLanguages.has(language)) {
+	if (languages.has(language)) {
 		return language;
 	}
 
@@ -77,7 +75,7 @@ export default class Locale {
 		return {};
 	}
 
-	static getLanguages(): string[] {
-		return languageList;
+	static getLanguages(): Map<string, string> {
+		return languages;
 	}
 }

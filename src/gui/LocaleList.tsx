@@ -7,17 +7,8 @@ const msg = defineMessages({
 	changeLanguage: { defaultMessage: 'Change Language' },
 });
 
-const languageNames = new Map<string, string>([
-	['en-US', 'English (United States)'],
-	['en-GB', 'English (United Kingdom)'],
-	['zh-Hans', '中文（简）'],
-	['zh-Hant', '中文（繁）'],
-	['yue', '中文（粤）'],
-	['ja', '日本語'],
-]);
-
 interface ListProps {
-	languages: string[];
+	languages: Map<string, string>;
 	onSelect: (language: string) => void;
 }
 
@@ -52,20 +43,21 @@ function Dropdown(props: ListProps): JSX.Element {
 		}
 	}
 
+	const languageList = Array.from(languages.entries());
 	return (
 		<ul
 			role="menu"
 			onClick={handleClick}
 			onKeyDown={handleKeyDown}
 		>
-			{languages.map((lang) => (
+			{languageList.map(([localeId, localeName]) => (
 				<li
 					role="menuitem"
 					tabIndex={0}
-					key={lang}
-					lang={lang}
+					key={localeId}
+					lang={localeId}
 				>
-					{languageNames.get(lang) || lang}
+					{localeName}
 				</li>
 			))}
 		</ul>
