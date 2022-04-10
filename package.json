@@ -1,6 +1,6 @@
 {
   "name": "@asmodee/werewolf-react",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Game Assistant for Werewolves of Miller's Hollow",
   "main": "dist",
   "scripts": {
