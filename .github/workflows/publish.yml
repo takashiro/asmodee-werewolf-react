@@ -46,5 +46,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/asmodee-werewolf-react:latest,${{ secrets.DOCKER_USERNAME }}/asmodee-werewolf-react:${{ github.ref_name }}
