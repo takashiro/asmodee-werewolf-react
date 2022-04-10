@@ -1,7 +1,7 @@
 Werewolves of Miller's Hollow ![Node.js CI](https://github.com/takashiro/asmodee-werewolf-react/workflows/Node.js%20CI/badge.svg)
 ==========
 
-| Example Page |    http://werewolf.takashiro.cn       |
+| Example Page |    https://werewolf.takashiro.cn       |
 |--------------|---------------------------------------|
 | Author       |           Kazuichi Takashiro          |
 
@@ -28,6 +28,7 @@ It's a small online app to arrange role cards of the board game Werewolves of Mi
 
 Get Started
 -----------
+1. Install Node.js 14.x or later versions.
 1. Run `npm i` to install dependencies.
 1. Run `npm start` to start webpack development server.
 1. Open `http://localhost:9526` in a browser to start debugging.
