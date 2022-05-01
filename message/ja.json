@@ -140,6 +140,11 @@
 		"message": "あなたの正体は…"
 	},
 	{
+		"id": "GQ9s5j",
+		"defaultMessage": "increase",
+		"message": "増"
+	},
+	{
 		"id": "hARaFV",
 		"defaultMessage": "Luna",
 		"message": "月の女神"
@@ -288,6 +293,11 @@
 		"id": "PfgvCk",
 		"defaultMessage": "Please select some roles.",
 		"message": "下記のキャラを選んでください。"
+	},
+	{
+		"id": "QYIpqb",
+		"defaultMessage": "decrease",
+		"message": "減"
 	},
 	{
 		"id": "rbjNYR",

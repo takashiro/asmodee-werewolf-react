@@ -1,12 +1,19 @@
 import React from 'react';
+import { defineMessages, useIntl } from 'react-intl';
 import { Role } from '@asmodee/werewolf-core';
 
+import Button from '../../../../component/Button';
 import RoleIcon from '../../../../component/RoleIcon';
 import RoleLabel from '../../../../component/RoleLabel';
 
 import RoleChange from '../../../../../model/RoleSelection';
 
 import './index.scss';
+
+const desc = defineMessages({
+	decrease: { defaultMessage: 'decrease' },
+	increase: { defaultMessage: 'increase' },
+});
 
 interface RoleNumberInputProps {
 	role: Role;
@@ -21,6 +28,7 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 		onChange,
 	} = props;
 
+	const intl = useIntl();
 	const [value, setValue] = React.useState(defaultValue);
 
 	function emitChange(newValue: number): void {
@@ -34,28 +42,16 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 		});
 	}
 
-	function handleDecreaseClick(): void {
+	function handleDecrease(): void {
 		const newValue = Math.max(0, value - 1);
 		setValue(newValue);
 		emitChange(newValue);
 	}
 
-	function handleDecreaseKeyDown(e: React.KeyboardEvent<HTMLButtonElement>): void {
-		if (e.key === 'Enter' || e.key === 'Space') {
-			handleDecreaseClick();
-		}
-	}
-
-	function handleIncreaseClick(): void {
+	function handleIncrease(): void {
 		const newValue = value + 1;
 		setValue(newValue);
 		emitChange(newValue);
-	}
-
-	function handleIncreaseKeyDown(e: React.KeyboardEvent<HTMLButtonElement>): void {
-		if (e.key === 'Enter' || e.key === 'Space') {
-			handleIncreaseClick();
-		}
 	}
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -71,11 +67,11 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 				<RoleLabel role={role} className="name" />
 			</div>
 			<div className="number-input">
-				<button
-					type="button"
+				<Button
+					role="button"
 					className="decrease"
-					onClick={handleDecreaseClick}
-					onKeyDown={handleDecreaseKeyDown}
+					onTrigger={handleDecrease}
+					aria-label={intl.formatMessage(desc.decrease)}
 				/>
 				<input
 					type="number"
@@ -83,11 +79,11 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 					value={value}
 					onChange={handleChange}
 				/>
-				<button
-					type="button"
+				<Button
+					role="button"
 					className="increase"
-					onClick={handleIncreaseClick}
-					onKeyDown={handleIncreaseKeyDown}
+					onTrigger={handleIncrease}
+					aria-label={intl.formatMessage(desc.increase)}
 				/>
 			</div>
 		</div>
