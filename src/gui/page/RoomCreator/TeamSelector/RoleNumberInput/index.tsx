@@ -76,9 +76,7 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 					className="decrease"
 					onClick={handleDecreaseClick}
 					onKeyDown={handleDecreaseKeyDown}
-				>
-					ー
-				</button>
+				/>
 				<input
 					type="number"
 					inputMode="decimal"
@@ -90,9 +88,7 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 					className="increase"
 					onClick={handleIncreaseClick}
 					onKeyDown={handleIncreaseKeyDown}
-				>
-					＋
-				</button>
+				/>
 			</div>
 		</div>
 	);

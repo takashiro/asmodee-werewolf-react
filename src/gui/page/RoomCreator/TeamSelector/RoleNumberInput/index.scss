@@ -16,19 +16,57 @@
 .number-input {
 	> .decrease,
 	> .increase {
+		position: relative;
 		display: inline-block;
 		width: 2em;
 		height: 2em;
-		line-height: 2.2em;
+		line-height: 2em;
 		text-align: center;
 		border: none;
 		padding: 0;
 		background: white;
-		color: black;
-		font-size: 15pt;
 		border-radius: 1em;
 		cursor: pointer;
-		font-family: 'Courier New', Courier, monospace;
+		vertical-align: middle;
+	}
+
+	> .decrease {
+		&::before {
+			position: absolute;
+			display: block;
+			content: '';
+			background: black;
+			width: 50%;
+			height: 2px;
+			border-radius: 1px;
+			top: calc(50% - 1px);
+			left: 25%;
+		}
+	}
+
+	> .increase {
+		&::before,
+		&::after {
+			position: absolute;
+			display: block;
+			content: '';
+			background: black;
+			border-radius: 1px;
+		}
+
+		&::before {
+			width: 50%;
+			height: 2px;
+			top: calc(50% - 1px);
+			left: 25%;
+		}
+
+		&::after {
+			width: 2px;
+			height: 50%;
+			top: 25%;
+			left: calc(50% - 1px);
+		}
 	}
 
 	> input {
