@@ -69,8 +69,8 @@ export default function ShareLink(props: ShareLinkProps): JSX.Element {
 	const intl = useIntl();
 	const { id } = props;
 
-	const baseUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-	const shareLink = `${baseUrl}?id=${id}`;
+	const { origin, pathname } = window.location;
+	const shareLink = `${origin}${pathname}?id=${id}`;
 
 	const a = React.useRef<HTMLAnchorElement>(null);
 
