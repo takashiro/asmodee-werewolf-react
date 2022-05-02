@@ -270,6 +270,11 @@
 		"message": "骑士"
 	},
 	{
+		"id": "OlS1nN",
+		"defaultMessage": "Game Assistant for Werewolves of Miller's Hollow",
+		"message": "狼人杀桌游助手"
+	},
+	{
 		"id": "p/F2EY",
 		"defaultMessage": "Werewolves of the Miller's Hollow",
 		"message": "狼人杀"

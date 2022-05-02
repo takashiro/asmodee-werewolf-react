@@ -270,6 +270,11 @@
 		"defaultMessage": "Knight"
 	},
 	{
+		"id": "OlS1nN",
+		"defaultMessage": "Game Assistant for Werewolves of Miller's Hollow",
+		"message": "Game Assistant for Werewolves of Miller's Hollow"
+	},
+	{
 		"id": "p/F2EY",
 		"defaultMessage": "Werewolves of the Miller's Hollow",
 		"message": "Werewolves of the Miller's Hollow"

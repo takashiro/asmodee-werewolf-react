@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+	defineMessages,
+	useIntl,
+} from 'react-intl';
 
 import RoomModel from '../model/Room';
 import Page from '../model/Page';
@@ -8,17 +12,31 @@ import RoomCreator from './page/RoomCreator';
 import RoomLoader from './page/RoomLoader';
 import Room from './page/Room';
 
+const desc = defineMessages({
+	title: { defaultMessage: 'Game Assistant for Werewolves of Miller\'s Hollow' },
+});
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 let room: RoomModel | undefined;
 
 export default function App(): JSX.Element {
+	const intl = useIntl();
 	const [page, setPage] = React.useState<Page>(!id ? Page.Lobby : Page.Loading);
 
 	function handlePageOpen(newPage: Page, newRoom?: RoomModel): void {
 		room = newRoom;
 		setPage(newPage);
 	}
+
+	React.useEffect(() => {
+		const title = intl.formatMessage(desc.title);
+		document.title = title;
+		const header = document.body.querySelector('header');
+		const h1 = header?.firstElementChild;
+		const img = h1?.firstElementChild;
+		img?.setAttribute('alt', title);
+	});
 
 	if (page === Page.Lobby) {
 		return <Lobby onPageOpen={handlePageOpen} />;
