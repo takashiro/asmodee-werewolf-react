@@ -24,10 +24,14 @@ export default function App(): JSX.Element {
 	const intl = useIntl();
 	const [page, setPage] = React.useState<Page>(!id ? Page.Lobby : Page.Loading);
 
-	function handlePageOpen(newPage: Page, newRoom?: RoomModel): void {
+	const handlePageOpen = React.useCallback((newPage: Page, newRoom?: RoomModel): void => {
 		room = newRoom;
 		setPage(newPage);
-	}
+	}, []);
+
+	const handleRoomExit = React.useCallback((): void => {
+		setPage(Page.Lobby);
+	}, []);
 
 	React.useEffect(() => {
 		const title = intl.formatMessage(desc.title);
@@ -47,7 +51,7 @@ export default function App(): JSX.Element {
 	if (page === Page.Room) {
 		if (room) {
 			return (
-				<Room room={room} />
+				<Room room={room} onExit={handleRoomExit} />
 			);
 		}
 	}

@@ -76,6 +76,15 @@ export default function Lobby({
 		}
 	}
 
+	React.useEffect(() => {
+		const { origin, pathname } = window.location;
+		const lobbyUrl = `${origin}${pathname}`;
+		if (lobbyUrl === window.location.href) {
+			return;
+		}
+		window.history.pushState({}, document.title, lobbyUrl);
+	});
+
 	return (
 		<div className="lobby">
 			<div className="simple-form">

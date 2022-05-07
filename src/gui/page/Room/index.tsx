@@ -11,6 +11,7 @@ import ShareLink from './ShareLink';
 import RoomModel from '../../../model/Room';
 
 import './index.scss';
+import Clickable from '../../component/Clickable';
 
 const msg = defineMessages({
 	roomTitle: { defaultMessage: 'Room Number: {id}' },
@@ -20,11 +21,13 @@ const msg = defineMessages({
 
 interface RoomProps {
 	room: RoomModel;
+	onExit: () => void;
 }
 
 function Room(props: RoomProps): JSX.Element {
 	const {
 		room,
+		onExit,
 	} = props;
 
 	const intl = useIntl();
@@ -58,9 +61,9 @@ function Room(props: RoomProps): JSX.Element {
 			</div>
 			<div className="button-area">
 				{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
-				<a className="button" href=".">
+				<Clickable onTrigger={onExit}>
 					{intl.formatMessage(msg.exitButtonText)}
-				</a>
+				</Clickable>
 			</div>
 		</div>
 	);
