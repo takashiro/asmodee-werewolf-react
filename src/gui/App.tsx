@@ -34,6 +34,7 @@ export default function App({
 			</header>
 			<main>
 				<PageSwitch />
+				<div id="overlay" />
 			</main>
 			<footer>
 				<ContentInfo

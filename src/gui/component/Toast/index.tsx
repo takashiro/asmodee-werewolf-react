@@ -42,7 +42,7 @@ export default function Toast({
 	});
 
 	return (
-		<div className="toast" ref={toast}>
+		<div className="toast" role="alert" ref={toast}>
 			{children}
 		</div>
 	);
