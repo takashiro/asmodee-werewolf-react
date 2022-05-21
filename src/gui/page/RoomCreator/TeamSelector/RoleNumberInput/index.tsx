@@ -2,7 +2,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Role } from '@asmodee/werewolf-core';
 
-import Button from '../../../../component/Button';
+import { Clickable } from '../../../../component/Clickable';
 import RoleIcon from '../../../../component/RoleIcon';
 import RoleLabel from '../../../../component/RoleLabel';
 
@@ -67,7 +67,8 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 				<RoleLabel role={role} className="name" />
 			</div>
 			<div className="number-input">
-				<Button
+				<Clickable
+					component="div"
 					role="button"
 					className="decrease"
 					onTrigger={handleDecrease}
@@ -79,7 +80,8 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 					value={value}
 					onChange={handleChange}
 				/>
-				<Button
+				<Clickable
+					component="div"
 					role="button"
 					className="increase"
 					onTrigger={handleIncrease}

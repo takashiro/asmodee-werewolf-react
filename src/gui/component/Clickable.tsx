@@ -28,7 +28,7 @@ export function Clickable(props: ClickableProps): JSX.Element {
 	}
 
 	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>): void {
-		if (!isKeyModified(e) && (e.key === 'Space' || e.key === 'Enter')) {
+		if (!isKeyModified(e) && (e.key === ' ' || e.key === 'Enter')) {
 			onTrigger(e);
 			e.preventDefault();
 			e.stopPropagation();
