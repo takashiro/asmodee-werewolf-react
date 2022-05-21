@@ -1,7 +1,11 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
+import Dropdown from '../Dropdown';
+import isKeyModified from '../../../util/isKeyModified';
+
 import './index.scss';
+import Clickable from '../Clickable';
 
 const msg = defineMessages({
 	changeLanguage: { defaultMessage: 'Change Language' },
@@ -12,11 +16,12 @@ interface ListProps {
 	onSelect?: (language: string) => void;
 }
 
-function Dropdown(props: ListProps): JSX.Element {
-	const {
-		languages,
-		onSelect,
-	} = props;
+function DropdownList({
+	languages,
+	onSelect,
+}: ListProps): JSX.Element {
+	const ul = React.useRef<HTMLUListElement>(null);
+	const intl = useIntl();
 
 	function select(li: HTMLLIElement): void {
 		const { lang } = li;
@@ -31,8 +36,12 @@ function Dropdown(props: ListProps): JSX.Element {
 	}
 
 	function handleKeyDown(e: React.KeyboardEvent<HTMLUListElement>): void {
+		if (isKeyModified(e)) {
+			return;
+		}
+
 		const li = e.target as HTMLLIElement;
-		if (e.key === 'Space' || e.key === 'Enter') {
+		if ((e.key === 'Space' || e.key === 'Enter')) {
 			select(li);
 		} else if (e.key === 'ArrowUp') {
 			const prev = li.previousElementSibling as HTMLElement;
@@ -43,12 +52,19 @@ function Dropdown(props: ListProps): JSX.Element {
 		}
 	}
 
+	React.useEffect(() => {
+		const first = ul.current?.firstElementChild as HTMLLIElement;
+		first?.focus();
+	});
+
 	const languageList = Array.from(languages.entries());
 	return (
 		<ul
+			ref={ul}
 			role="menu"
 			onClick={handleClick}
 			onKeyDown={handleKeyDown}
+			aria-label={intl.formatMessage(msg.changeLanguage)}
 		>
 			{languageList.map(([localeId, localeName]) => (
 				<li
@@ -75,38 +91,39 @@ export default function LocaleList({
 		setExpanded(!expanded);
 	}
 
-	function handleKeyDown(e: React.KeyboardEvent<HTMLSpanElement>): void {
-		if (e.key === 'Space' || e.key === 'Enter') {
-			setExpanded(!expanded);
-		}
-	}
-
 	function handleSelect(language: string): void {
 		setExpanded(false);
 		onSelect?.(language);
 	}
 
+	function handleExit(): void {
+		setExpanded(false);
+	}
+
 	const label = intl.formatMessage(msg.changeLanguage);
+
+	const renderContent = React.useCallback(() => (
+		<DropdownList
+			languages={languages}
+			onSelect={handleSelect}
+		/>
+	), []);
+
 	return (
-		<div className="locale-list">
-			<div
+		<Dropdown
+			className="locale-list"
+			expanded={expanded}
+			onExit={handleExit}
+			contentRenderer={renderContent}
+		>
+			<Clickable
 				className="locale-icon"
 				role="button"
 				tabIndex={0}
-				onClick={handleClick}
-				onKeyDown={handleKeyDown}
+				onTrigger={handleClick}
 				title={label}
 				aria-label={label}
 			/>
-			{expanded && (
-				<>
-					<div className="curtain" />
-					<Dropdown
-						languages={languages}
-						onSelect={handleSelect}
-					/>
-				</>
-			)}
-		</div>
+		</Dropdown>
 	);
 }
