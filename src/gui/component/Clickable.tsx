@@ -6,9 +6,10 @@ interface ClickableProps extends React.HTMLAttributes<HTMLElement> {
 	onTrigger: (e: React.SyntheticEvent<HTMLElement>) => void;
 	component?: React.ElementType;
 	disabled?: boolean;
+	elementRef?: React.ForwardedRef<HTMLElement>;
 }
 
-export default function Clickable(props: ClickableProps): JSX.Element {
+export function Clickable(props: ClickableProps): JSX.Element {
 	const {
 		component: Component = 'button',
 		tabIndex = 0,
@@ -17,6 +18,7 @@ export default function Clickable(props: ClickableProps): JSX.Element {
 		onKeyDown,
 		disabled,
 		children,
+		elementRef,
 		...otherProps
 	} = props;
 
@@ -28,6 +30,8 @@ export default function Clickable(props: ClickableProps): JSX.Element {
 	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>): void {
 		if (!isKeyModified(e) && (e.key === 'Space' || e.key === 'Enter')) {
 			onTrigger(e);
+			e.preventDefault();
+			e.stopPropagation();
 		}
 		onKeyDown?.(e);
 	}
@@ -39,8 +43,13 @@ export default function Clickable(props: ClickableProps): JSX.Element {
 			onClick={disabled ? undefined : handleClick}
 			onKeyDown={disabled ? undefined : handleKeyDown}
 			aria-disabled={disabled}
+			ref={elementRef}
 		>
 			{children}
 		</Component>
 	);
 }
+
+export default React.forwardRef<HTMLElement, ClickableProps>(
+	(props, ref) => <Clickable {...props} elementRef={ref} />,
+);

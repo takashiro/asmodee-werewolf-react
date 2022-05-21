@@ -2,10 +2,10 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import Dropdown from '../Dropdown';
-import isKeyModified from '../../../util/isKeyModified';
+import Clickable from '../Clickable';
+import ClickableList from '../ClickableList';
 
 import './index.scss';
-import Clickable from '../Clickable';
 
 const msg = defineMessages({
 	changeLanguage: { defaultMessage: 'Change Language' },
@@ -16,11 +16,10 @@ interface ListProps {
 	onSelect?: (language: string) => void;
 }
 
-function DropdownList({
+function OptionList({
 	languages,
 	onSelect,
 }: ListProps): JSX.Element {
-	const ul = React.useRef<HTMLUListElement>(null);
 	const intl = useIntl();
 
 	function select(li: HTMLLIElement): void {
@@ -30,40 +29,16 @@ function DropdownList({
 		}
 	}
 
-	function handleClick(e: React.MouseEvent<HTMLUListElement>): void {
+	function handleTrigger(e: React.SyntheticEvent<HTMLElement>): void {
 		const li = e.target as HTMLLIElement;
 		select(li);
 	}
 
-	function handleKeyDown(e: React.KeyboardEvent<HTMLUListElement>): void {
-		if (isKeyModified(e)) {
-			return;
-		}
-
-		const li = e.target as HTMLLIElement;
-		if ((e.key === 'Space' || e.key === 'Enter')) {
-			select(li);
-		} else if (e.key === 'ArrowUp') {
-			const prev = li.previousElementSibling as HTMLElement;
-			prev?.focus();
-		} else if (e.key === 'ArrowDown') {
-			const next = li.nextElementSibling as HTMLElement;
-			next?.focus();
-		}
-	}
-
-	React.useEffect(() => {
-		const first = ul.current?.firstElementChild as HTMLLIElement;
-		first?.focus();
-	});
-
 	const languageList = Array.from(languages.entries());
 	return (
-		<ul
-			ref={ul}
+		<ClickableList
 			role="menu"
-			onClick={handleClick}
-			onKeyDown={handleKeyDown}
+			onTrigger={handleTrigger}
 			aria-label={intl.formatMessage(msg.changeLanguage)}
 		>
 			{languageList.map(([localeId, localeName]) => (
@@ -76,7 +51,7 @@ function DropdownList({
 					{localeName}
 				</li>
 			))}
-		</ul>
+		</ClickableList>
 	);
 }
 
@@ -86,24 +61,31 @@ export default function LocaleList({
 }: ListProps): JSX.Element {
 	const intl = useIntl();
 	const [expanded, setExpanded] = React.useState(false);
+	const button = React.useRef<HTMLButtonElement>(null);
 
-	function handleClick(): void {
+	function focus(): void {
+		button.current?.focus();
+	}
+
+	function handleToggle(): void {
 		setExpanded(!expanded);
 	}
 
 	function handleSelect(language: string): void {
 		setExpanded(false);
 		onSelect?.(language);
+		focus();
 	}
 
 	function handleExit(): void {
 		setExpanded(false);
+		focus();
 	}
 
 	const label = intl.formatMessage(msg.changeLanguage);
 
 	const renderContent = React.useCallback(() => (
-		<DropdownList
+		<OptionList
 			languages={languages}
 			onSelect={handleSelect}
 		/>
@@ -117,10 +99,9 @@ export default function LocaleList({
 			contentRenderer={renderContent}
 		>
 			<Clickable
+				ref={button}
 				className="locale-icon"
-				role="button"
-				tabIndex={0}
-				onTrigger={handleClick}
+				onTrigger={handleToggle}
 				title={label}
 				aria-label={label}
 			/>

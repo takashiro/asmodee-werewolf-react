@@ -19,13 +19,13 @@ export default function Dropdown({
 	contentRenderer,
 }: DropdownProps): JSX.Element {
 	function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>): void {
-		if (e.key === 'Escape' && !isKeyModified(e)) {
+		if (expanded && e.key === 'Escape' && !isKeyModified(e)) {
 			onExit?.();
 		}
 	}
 
 	async function handleBlur(e: React.FocusEvent<HTMLDivElement>): Promise<void> {
-		if (await isFocusOut(e)) {
+		if (expanded && await isFocusOut(e)) {
 			onExit?.();
 		}
 	}
