@@ -292,7 +292,7 @@
 	{
 		"id": "P9wcwt",
 		"defaultMessage": "Hybrid",
-		"message": "Hybride"
+		"message": "Hybrid"
 	},
 	{
 		"id": "PfgvCk",
@@ -352,7 +352,7 @@
 	{
 		"id": "UgefTz",
 		"defaultMessage": "Team Other",
-		"message": "Other"
+		"message": "Others"
 	},
 	{
 		"id": "UIujJP",
@@ -421,8 +421,8 @@
 	},
 	{
 		"id": "Zodksl",
-		"defaultMessage": "I'll shot you if opted out.",
-		"message": "I'll shot you if opted out."
+		"defaultMessage": "I'll shoot you if opted out.",
+		"message": "I'll shoot you if opted out."
 	},
 	{
 		"id": "ztjcDB",
