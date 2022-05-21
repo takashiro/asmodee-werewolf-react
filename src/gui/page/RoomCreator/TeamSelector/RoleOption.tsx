@@ -1,6 +1,7 @@
 import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
+import Clickable from '../../../component/Clickable';
 import RoleIcon from '../../../component/RoleIcon';
 import RoleLabel from '../../../component/RoleLabel';
 
@@ -21,7 +22,7 @@ function RoleOption(props: RoleOptionProps): JSX.Element {
 
 	const [selected, setSelected] = React.useState(defaultSelected);
 
-	function handleClick(): void {
+	function trigger(): void {
 		setSelected(!selected);
 		if (onChange) {
 			onChange({
@@ -31,27 +32,20 @@ function RoleOption(props: RoleOptionProps): JSX.Element {
 		}
 	}
 
-	function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>): void {
-		if (e.key === 'Enter' || e.key === 'Space') {
-			handleClick();
-		}
-	}
-
 	const classNames = ['role-button'];
 	if (selected) {
 		classNames.push('selected');
 	}
 	return (
-		<div
-			className={classNames.join(' ')}
+		<Clickable
+			component="div"
 			role="button"
-			tabIndex={0}
-			onClick={handleClick}
-			onKeyDown={handleKeyDown}
+			className={classNames.join(' ')}
+			onTrigger={trigger}
 		>
 			<RoleIcon role={role} />
 			<RoleLabel role={role} className="name" />
-		</div>
+		</Clickable>
 	);
 }
 
