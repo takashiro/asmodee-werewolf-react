@@ -6,7 +6,7 @@ import {
 	useIntl,
 } from 'react-intl';
 
-import { makeToast } from '../../component/Toast';
+import { makeToast } from '../../common/Toast';
 
 interface ShareLinkProps {
 	id: number;

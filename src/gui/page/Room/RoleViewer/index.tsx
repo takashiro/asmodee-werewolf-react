@@ -10,8 +10,8 @@ import { Role } from '@asmodee/werewolf-core';
 import Player from '../../../../model/Player';
 import HttpError from '../../../../model/HttpError';
 
-import RoleIcon from '../../../component/RoleIcon';
-import RoleLabel from '../../../component/RoleLabel';
+import RoleIcon from '../../../common/RoleIcon';
+import RoleLabel from '../../../common/RoleLabel';
 
 import './index.scss';
 

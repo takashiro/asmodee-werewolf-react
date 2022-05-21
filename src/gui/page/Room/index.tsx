@@ -11,7 +11,7 @@ import ShareLink from './ShareLink';
 import RoomModel from '../../../model/Room';
 
 import './index.scss';
-import Clickable from '../../component/Clickable';
+import Clickable from '../../common/Clickable';
 
 const msg = defineMessages({
 	roomTitle: { defaultMessage: 'Room Number: {id}' },

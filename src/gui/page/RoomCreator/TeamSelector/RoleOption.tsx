@@ -1,9 +1,9 @@
 import React from 'react';
 import { Role } from '@asmodee/werewolf-core';
 
-import Clickable from '../../../component/Clickable';
-import RoleIcon from '../../../component/RoleIcon';
-import RoleLabel from '../../../component/RoleLabel';
+import Clickable from '../../../common/Clickable';
+import RoleIcon from '../../../common/RoleIcon';
+import RoleLabel from '../../../common/RoleLabel';
 
 import RoleChange from '../../../../model/RoleSelection';
 

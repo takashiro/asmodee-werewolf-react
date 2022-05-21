@@ -1,7 +1,7 @@
 import React from 'react';
 import { languages } from '../../model/Locale';
 
-import LocaleList from '../component/LocaleList';
+import LocaleList from '../common/LocaleList';
 
 interface ContentInfoProps {
 	onLanguageChange?(language: string): void;

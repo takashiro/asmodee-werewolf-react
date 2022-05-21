@@ -6,7 +6,7 @@ import {
 	IntlShape,
 } from 'react-intl';
 
-import { makeToast } from '../../component/Toast';
+import { makeToast } from '../../common/Toast';
 
 import Page from '../../../model/Page';
 import Room from '../../../model/Room';

@@ -4,9 +4,9 @@ import {
 	Team,
 } from '@asmodee/werewolf-core';
 
-import RoleIcon from '../../component/RoleIcon';
-import TeamLabel from '../../component/TeamLabel';
-import RoleLabel from '../../component/RoleLabel';
+import RoleIcon from '../../common/RoleIcon';
+import TeamLabel from '../../common/TeamLabel';
+import RoleLabel from '../../common/RoleLabel';
 
 interface Props {
 	team: Team;
