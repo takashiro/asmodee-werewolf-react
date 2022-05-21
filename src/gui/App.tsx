@@ -27,7 +27,6 @@ export default function App({
 	return (
 		<IntlProvider
 			locale={locale.language}
-			key={locale.language}
 			messages={locale.messages}
 		>
 			<header>
