@@ -60,6 +60,10 @@ export function predictDefaultLanguage(): string {
 	return 'en-US';
 }
 
+export function setPreferredLanguage(language: string): void {
+	localStorage.setItem('lang', language);
+}
+
 export default interface Locale {
 	language: string;
 	messages: Record<string, string>;

@@ -1,6 +1,9 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import Locale, { createLocale } from '../model/Locale';
+import Locale, {
+	createLocale,
+	setPreferredLanguage,
+} from '../model/Locale';
 
 import Banner from './landmark/Banner';
 import ContentInfo from './landmark/ContentInfo';
@@ -18,6 +21,7 @@ export default function App({
 	const updateLocale = React.useCallback(async (language: string) => {
 		const locale = await createLocale(language);
 		setLocale(locale);
+		setPreferredLanguage(language);
 	}, []);
 
 	React.useEffect(() => {
