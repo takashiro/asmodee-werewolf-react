@@ -1,7 +1,7 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import './LocaleList.scss';
+import './index.scss';
 
 const msg = defineMessages({
 	changeLanguage: { defaultMessage: 'Change Language' },
@@ -9,7 +9,7 @@ const msg = defineMessages({
 
 interface ListProps {
 	languages: Map<string, string>;
-	onSelect: (language: string) => void;
+	onSelect?: (language: string) => void;
 }
 
 function Dropdown(props: ListProps): JSX.Element {
@@ -21,7 +21,7 @@ function Dropdown(props: ListProps): JSX.Element {
 	function select(li: HTMLLIElement): void {
 		const { lang } = li;
 		if (lang) {
-			onSelect(lang);
+			onSelect?.(lang);
 		}
 	}
 
@@ -83,7 +83,7 @@ export default function LocaleList({
 
 	function handleSelect(language: string): void {
 		setExpanded(false);
-		onSelect(language);
+		onSelect?.(language);
 	}
 
 	const label = intl.formatMessage(msg.changeLanguage);

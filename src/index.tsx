@@ -6,19 +6,12 @@ import {
 	RawIntlProvider,
 } from 'react-intl';
 
-import Locale from './model/Locale';
-
-import App from './gui/App';
-import LocaleList from './gui/LocaleList';
+import { locale } from './model/Locale';
 
 import './global.scss';
+import App from './gui/App';
 
-const locale = new Locale();
 const intlCache = createIntlCache();
-
-function handleLanguageSelect(lang: string): void {
-	window.location.search = `lang=${lang}`;
-}
 
 (async function main(): Promise<void> {
 	document.documentElement.lang = locale.getLanguage();
@@ -34,15 +27,5 @@ function handleLanguageSelect(lang: string): void {
 			<App />
 		</RawIntlProvider>,
 		document.getElementById('root'),
-	);
-
-	ReactDOM.render(
-		<RawIntlProvider value={intl}>
-			<LocaleList
-				languages={Locale.getLanguages()}
-				onSelect={handleLanguageSelect}
-			/>
-		</RawIntlProvider>,
-		document.getElementById('locale-switch'),
 	);
 }());

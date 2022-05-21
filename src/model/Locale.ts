@@ -79,3 +79,5 @@ export default class Locale {
 		return languages;
 	}
 }
+
+export const locale = new Locale();
