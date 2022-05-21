@@ -1,5 +1,7 @@
 import React from 'react';
 
+import isKeyModified from '../../util/isKeyModified';
+
 interface ClickableProps extends React.HTMLAttributes<HTMLElement> {
 	onTrigger: (e: React.SyntheticEvent<HTMLElement>) => void;
 	component?: React.ElementType;
@@ -24,7 +26,7 @@ export default function Clickable(props: ClickableProps): JSX.Element {
 	}
 
 	function handleKeyDown(e: React.KeyboardEvent<HTMLElement>): void {
-		if (!e.ctrlKey && !e.altKey && !e.metaKey && !e.shiftKey && (e.key === 'Space' || e.key === 'Enter')) {
+		if (!isKeyModified(e) && (e.key === 'Space' || e.key === 'Enter')) {
 			onTrigger(e);
 		}
 		onKeyDown?.(e);
