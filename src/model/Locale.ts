@@ -1,4 +1,4 @@
-const languages = new Map<string, string>([
+export const languages = new Map<string, string>([
 	['en-US', 'English (United States)'],
 	['en-GB', 'English (United Kingdom)'],
 	['zh-Hans', '中文（简）'],
@@ -34,7 +34,7 @@ function matchSupported(language: string): string | undefined {
 	return matchSupported(general);
 }
 
-function predictDefaultLanguage(): string {
+export function predictDefaultLanguage(): string {
 	const params = new URLSearchParams(window.location.search);
 	const lang = params.get('lang');
 	if (lang) {
@@ -60,24 +60,22 @@ function predictDefaultLanguage(): string {
 	return 'en-US';
 }
 
-export default class Locale {
-	protected language = predictDefaultLanguage();
-
-	getLanguage(): string {
-		return this.language;
-	}
-
-	async loadMessage(): Promise<Record<string, string>> {
-		const res = await window.fetch(`./message/${this.language}.json`);
-		if (res.status === 200) {
-			return res.json();
-		}
-		return {};
-	}
-
-	static getLanguages(): Map<string, string> {
-		return languages;
-	}
+export default interface Locale {
+	language: string;
+	messages: Record<string, string>;
 }
 
-export const locale = new Locale();
+export async function createLocale(language: string): Promise<Locale> {
+	const res = await window.fetch(`./message/${language}.json`);
+	if (res.status === 200) {
+		return {
+			language,
+			messages: await res.json(),
+		};
+	}
+
+	return {
+		language,
+		messages: {},
+	};
+}

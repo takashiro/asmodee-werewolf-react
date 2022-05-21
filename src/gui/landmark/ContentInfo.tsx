@@ -1,5 +1,5 @@
 import React from 'react';
-import Locale from '../../model/Locale';
+import { languages } from '../../model/Locale';
 
 import LocaleList from '../component/LocaleList';
 
@@ -22,7 +22,7 @@ export default function ContentInfo({
 				<p>Authored by Kazuichi Takashiro © 2017 - 2022</p>
 			</div>
 			<LocaleList
-				languages={Locale.getLanguages()}
+				languages={languages}
 				onSelect={onLanguageChange}
 			/>
 		</>

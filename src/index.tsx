@@ -1,31 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-	createIntl,
-	createIntlCache,
-	RawIntlProvider,
-} from 'react-intl';
 
-import { locale } from './model/Locale';
-
-import './global.scss';
+import { createLocale, predictDefaultLanguage } from './model/Locale';
 import App from './gui/App';
 
-const intlCache = createIntlCache();
+import './global.scss';
 
 (async function main(): Promise<void> {
-	document.documentElement.lang = locale.getLanguage();
-	const messages = await locale.loadMessage();
-
-	const intl = createIntl({
-		locale: 'en-US',
-		messages,
-	}, intlCache);
+	const defaultLanguage = predictDefaultLanguage();
+	const defaultLocale = await createLocale(defaultLanguage);
 
 	ReactDOM.render(
-		<RawIntlProvider value={intl}>
-			<App />
-		</RawIntlProvider>,
+		<App
+			defaultLocale={defaultLocale}
+		/>,
 		document.getElementById('root'),
 	);
 }());
