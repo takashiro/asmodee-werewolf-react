@@ -9,6 +9,8 @@ import Banner from './landmark/Banner';
 import ContentInfo from './landmark/ContentInfo';
 import PageSwitch from './landmark/PageSwitch';
 
+import './index.scss';
+
 interface AppProps {
 	defaultLocale: Locale;
 }

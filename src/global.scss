@@ -1,14 +1,17 @@
 body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 	background: #26221d url(../style/bg.jpg) no-repeat;
 	background-size: cover;
 	color: white;
 	margin: 0 auto;
 	padding: 0;
 	user-select: none;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
 	min-width: 320px;
+	min-height: 100vh;
 }
 
 body,
@@ -59,62 +62,6 @@ input {
 ul {
 	margin: 0;
 	padding: 0;
-}
-
-header {
-	text-align: center;
-	padding: 20px 0 2px 0;
-
-	img {
-		width: 50%;
-		max-width: 300px;
-	}
-}
-
-main {
-	flex: 1 1 auto;
-}
-
-footer {
-	font-size: 8pt;
-	text-align: right;
-	color: #c3bbb9;
-	padding: 50px 20px 10px 20px;
-	position: relative;
-
-	ul.dev-info {
-		text-transform: uppercase;
-		margin-bottom: 0.5em;
-
-		> li {
-			display: inline-block;
-			padding: 0 1em;
-
-			&:first-child {
-				padding-left: 0;
-			}
-
-			&:last-child {
-				padding-right: 0;
-			}
-
-			&:not(:last-child) {
-				border-right: #c3bbb9 1px solid;
-			}
-
-			a {
-				color: #c3bbb9;
-			}
-		}
-	}
-
-	.copyright {
-		font-size: 7.5pt;
-
-		p {
-			margin: 0.3em 0;
-		}
-	}
 }
 
 #overlay {

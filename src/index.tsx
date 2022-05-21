@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createLocale, predictDefaultLanguage } from './model/Locale';
-import App from './gui/App';
+import App from './gui';
 
 import './global.scss';
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
+import './Banner.scss';
+
 const desc = defineMessages({
 	title: { defaultMessage: 'Game Assistant for Werewolves of Miller\'s Hollow' },
 });

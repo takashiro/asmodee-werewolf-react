@@ -3,6 +3,8 @@ import { languages } from '../../model/Locale';
 
 import LocaleList from '../common/LocaleList';
 
+import './ContentInfo.scss';
+
 interface ContentInfoProps {
 	onLanguageChange?(language: string): void;
 }
