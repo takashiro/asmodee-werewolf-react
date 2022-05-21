@@ -63,6 +63,7 @@ module.exports = {
 		'react/jsx-no-bind': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'react/require-default-props': 'off',
+		semi: 'off',
 	},
 	settings: {
 		'import/resolver': { typescript: {} },

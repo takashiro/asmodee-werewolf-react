@@ -17,8 +17,11 @@ export default function ContentInfo({
 				<li><a href="https://github.com/takashiro/Werewolf/issues/new">Report a Bug</a></li>
 			</ul>
 			<div className="copyright">
-				<p>Werewolves of Miller's Hollow</p>
-				<p>Designed by <a href="http://langrensha.163.com">Netease Game</a></p>
+				<p>Werewolves of Miller&apos;s Hollow</p>
+				<p>
+					Designed by
+					<a href="http://langrensha.163.com">Netease Game</a>
+				</p>
 				<p>Authored by Kazuichi Takashiro © 2017 - 2022</p>
 			</div>
 			<LocaleList
