@@ -37,7 +37,7 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 
 	return (
 		<div className="box">
-			<h3><TeamLabel team={team} /></h3>
+			<h2><TeamLabel team={team} /></h2>
 			{basic && (
 				<RoleNumberInput
 					role={basic}

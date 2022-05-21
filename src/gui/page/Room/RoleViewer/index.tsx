@@ -175,7 +175,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 	render(): JSX.Element {
 		return (
 			<div className="box">
-				<h3><FormattedMessage defaultMessage="Your Role" /></h3>
+				<h2><FormattedMessage defaultMessage="Your Role" /></h2>
 				{this.renderCards()}
 			</div>
 		);

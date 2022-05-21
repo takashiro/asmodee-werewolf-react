@@ -28,7 +28,7 @@ export default function TeamProfile(props: Props): JSX.Element {
 	));
 	return (
 		<div className="box">
-			<h3><TeamLabel team={team} /></h3>
+			<h2><TeamLabel team={team} /></h2>
 			<ul className="role-list">{icons}</ul>
 		</div>
 	);

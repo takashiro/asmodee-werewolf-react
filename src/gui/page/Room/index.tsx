@@ -54,9 +54,9 @@ function Room(props: RoomProps): JSX.Element {
 			{roles && <RoleTable roles={roles} />}
 			{!room.isOwner() && <RoleViewer player={room.createPlayer()} />}
 			<div className="box share-link-area">
-				<span className="label">
+				<h2>
 					{intl.formatMessage(msg.linkTitle)}
-				</span>
+				</h2>
 				<ShareLink id={room.getId()} />
 			</div>
 			<div className="button-area">
