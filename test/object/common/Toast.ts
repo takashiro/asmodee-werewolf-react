@@ -2,10 +2,10 @@ import Component from './Component';
 
 export default class Toast extends Component {
 	async getMessage(): Promise<string> {
-		return this.element.textContent();
+		return this.e.textContent();
 	}
 
 	async dismissed(): Promise<void> {
-		return this.element.waitForElementState('hidden');
+		return this.e.waitFor({ state: 'hidden' });
 	}
 }

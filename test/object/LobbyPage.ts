@@ -1,5 +1,6 @@
+import { Locator } from '@playwright/test';
+
 import Page from './common/Page';
-import WebElement from './common/WebElement';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -10,16 +11,16 @@ export default class LobbyPage extends Page {
 		await this.page.waitForSelector('.lobby');
 	}
 
-	async getRoomNumber(): Promise<WebElement | null> {
-		return this.$('.lobby input[type="number"]');
+	getRoomNumber(): Locator {
+		return this.locator('.lobby input[type="number"]');
 	}
 
 	async enterRoom(): Promise<void> {
-		const button = await this.getEnterButton();
+		const button = this.getEnterButton();
 		await button.click();
 	}
 
-	getEnterButton(): Promise<WebElement | null> {
-		return this.$('.lobby input[type="number"] + button');
+	getEnterButton(): Locator {
+		return this.locator('.lobby input[type="number"] + button');
 	}
 }

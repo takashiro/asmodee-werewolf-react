@@ -11,7 +11,7 @@ test('creates a new room', async ({ page }) => {
 	await creator.submit();
 
 	const room = new RoomPage(page);
-	const a = await room.getShareLink();
+	const a = room.getShareLink();
 	const href = await a.getAttribute('href');
 	const text = await a.textContent();
 	expect(href).toBe(text);

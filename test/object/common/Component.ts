@@ -1,34 +1,22 @@
-import idle from '../../util/idle';
+import { Locator } from '@playwright/test';
 
-import WebElement from './WebElement';
+interface LocatorOptions {
+	has?: Locator;
+	hasText?: string | RegExp;
+}
 
 export default abstract class Component {
-	protected element: WebElement;
+	protected e: Locator;
 
-	constructor(element: WebElement) {
-		this.element = element;
+	constructor(element: Locator) {
+		this.e = element;
 	}
 
-	getHandle(): WebElement {
-		return this.element;
+	getHandle(): Locator {
+		return this.e;
 	}
 
-	$(selector: string): Promise<WebElement | null> {
-		return this.element.$(selector);
-	}
-
-	$$(selector: string): Promise<WebElement[]> {
-		return this.element.$$(selector);
-	}
-
-	async locate(selector: string): Promise<WebElement | null> {
-		for (let i = 0; i < 10; i++) {
-			const e = await this.$(selector);
-			if (e) {
-				return e;
-			}
-			await idle(100);
-		}
-		return null;
+	locator(selector: string, options?: LocatorOptions): Locator {
+		return this.e.locator(selector, options);
 	}
 }

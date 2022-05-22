@@ -14,7 +14,7 @@ test('tries to enter a room without a number', async ({ page }) => {
 	const lobby = new LobbyPage(page);
 	await lobby.load();
 	await lobby.enterRoom();
-	const toast = await lobby.getToast();
+	const toast = lobby.getToast();
 	const message = await toast.getMessage();
 	expect(message).toBe('请输入一个数字。');
 	await toast.dismissed();
@@ -23,10 +23,10 @@ test('tries to enter a room without a number', async ({ page }) => {
 test('tries to enter a non-existing room', async ({ page }) => {
 	const lobby = new LobbyPage(page);
 	await lobby.load();
-	const roomNumber = await lobby.getRoomNumber();
+	const roomNumber = lobby.getRoomNumber();
 	await roomNumber.type('99999');
 	await lobby.enterRoom();
-	const toast = await lobby.getToast();
+	const toast = lobby.getToast();
 	const message = await toast.getMessage();
 	expect(message).toBe('房间不存在。');
 	await toast.dismissed();

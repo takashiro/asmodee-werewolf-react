@@ -1,25 +1,23 @@
 import path from 'path';
+import { ElementHandle, Locator } from '@playwright/test';
 import { Role } from '@asmodee/werewolf-core';
 
 import Page from './common/Page';
 import NumberInput from './NumberInput';
-import WebElement from './common/WebElement';
 
 export default class RoomCreatorPage extends Page {
 	async load(): Promise<void> {
 		await super.load();
-		const button = await this.$('.lobby button');
-		if (button) {
-			await button.click();
-			await this.page.waitForSelector('.room-creator');
-		}
+		const button = this.locator('.lobby button').first();
+		await button.click();
+		await this.page.waitForSelector('.room-creator');
 	}
 
-	getWerewolfInput(): Promise<NumberInput> {
+	getWerewolfInput(): NumberInput {
 		return this.getNumberInput(1);
 	}
 
-	getVillagerInput(): Promise<NumberInput> {
+	getVillagerInput(): NumberInput {
 		return this.getNumberInput(2);
 	}
 
@@ -40,12 +38,12 @@ export default class RoomCreatorPage extends Page {
 	}
 
 	async submit(): Promise<void> {
-		const button = await this.$('.button-area button:nth-child(2)');
+		const button = this.locator('.button-area button:nth-child(2)');
 		await button.click();
 	}
 
-	protected async getRoleButton(role: Role): Promise<WebElement | null> {
-		const buttons = await this.$$('.role-button');
+	protected async getRoleButton(role: Role): Promise<ElementHandle | null> {
+		const buttons = await this.locator('.role-button').elementHandles();
 		const roleKey = Role[role];
 		for (const button of buttons) {
 			const icon = await button.$('.role');
@@ -62,13 +60,13 @@ export default class RoomCreatorPage extends Page {
 		}
 	}
 
-	protected async getNumberInput(boxIndex: number): Promise<NumberInput> {
-		const box = await this.getBox(boxIndex);
-		const selector = await box?.$('.number-selector');
-		return selector && new NumberInput(selector);
+	protected getNumberInput(boxIndex: number): NumberInput {
+		const box = this.getBox(boxIndex);
+		const selector = box.locator('.number-selector');
+		return new NumberInput(selector);
 	}
 
-	protected getBox(index: number): Promise<WebElement | null> {
-		return this.$(`.box:nth-child(${index})`);
+	protected getBox(index: number): Locator {
+		return this.locator(`.box:nth-child(${index})`);
 	}
 }

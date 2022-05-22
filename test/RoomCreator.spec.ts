@@ -18,7 +18,7 @@ test('Create a room', async ({ page }) => {
 	let input: NumberInput;
 
 	await test.step('displays a number input of werewolves', async () => {
-		input = await creator.getWerewolfInput();
+		input = creator.getWerewolfInput();
 		expect(await input.getValue()).toBe(4);
 	});
 

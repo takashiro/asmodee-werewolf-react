@@ -1,5 +1,6 @@
+import { Locator } from '@playwright/test';
+
 import Page from './common/Page';
-import WebElement from './common/WebElement';
 
 export default class RoomPage extends Page {
 	async load(path = '.'): Promise<void> {
@@ -7,8 +8,8 @@ export default class RoomPage extends Page {
 		await this.page.waitForSelector('.room');
 	}
 
-	async getShareLink(): Promise<WebElement> {
-		const area = await this.locator('.room .share-link-area').elementHandle();
-		return area.$('a');
+	getShareLink(): Locator {
+		const area = this.locator('.room .share-link-area');
+		return area.locator('a');
 	}
 }

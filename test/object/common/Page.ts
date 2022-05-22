@@ -4,7 +4,6 @@ import {
 } from '@playwright/test';
 
 import Toast from './Toast';
-import WebElement from './WebElement';
 
 export default abstract class Page {
 	protected readonly page: BrowserPage;
@@ -13,21 +12,13 @@ export default abstract class Page {
 		this.page = page;
 	}
 
-	$(selector: string): Promise<WebElement | null> {
-		return this.page.$(selector);
-	}
-
-	$$(selector: string): Promise<WebElement[]> {
-		return this.page.$$(selector);
-	}
-
 	locator(selector: string): Locator {
 		return this.page.locator(selector);
 	}
 
-	async getToast(): Promise<Toast | null> {
+	getToast(): Toast {
 		const toast = this.locator('#overlay .toast');
-		return new Toast(await toast.elementHandle());
+		return new Toast(toast);
 	}
 
 	async load(url = './?lang=zh-CN'): Promise<void> {
