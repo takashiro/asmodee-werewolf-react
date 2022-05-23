@@ -10,7 +10,7 @@ import { makeToast } from '../../common/Toast';
 
 import Page from '../../../model/Page';
 import Room from '../../../model/Room';
-import Client from '../../../model/Client';
+import { client } from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
 
 import './index.scss';
@@ -32,7 +32,6 @@ async function fetchRoom(intl: IntlShape): Promise<Room | undefined> {
 		return;
 	}
 
-	const client = new Client();
 	const room = new Room(client);
 	if (!room.restore(roomId)) {
 		try {

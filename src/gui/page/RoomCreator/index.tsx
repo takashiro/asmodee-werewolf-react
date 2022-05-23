@@ -10,7 +10,7 @@ import {
 	Team,
 } from '@asmodee/werewolf-core';
 
-import Client from '../../../model/Client';
+import { client } from '../../../model/Client';
 import Room from '../../../model/Room';
 import RoomConfig from '../../../model/RoomConfig';
 import HttpError from '../../../model/HttpError';
@@ -61,7 +61,6 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 			return;
 		}
 
-		const client = new Client();
 		const room = new Room(client);
 		try {
 			await room.create(roles);

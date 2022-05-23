@@ -1,7 +1,7 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import Client from '../../../model/Client';
+import { client } from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
 import Room from '../../../model/Room';
 import Page from '../../../model/Page';
@@ -30,7 +30,6 @@ export default function RoomLoader(props: LoaderProps): JSX.Element {
 	const [message, setMessage] = React.useState('');
 
 	async function enterRoom(): Promise<void> {
-		const client = new Client();
 		const room = new Room(client);
 		if (!room.restore(id)) {
 			try {
