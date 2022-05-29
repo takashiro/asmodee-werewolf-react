@@ -2,10 +2,8 @@ import React from 'react';
 import {
 	defineMessages,
 	FormattedMessage,
-	injectIntl,
-	IntlShape,
+	useIntl,
 } from 'react-intl';
-import { Role } from '@asmodee/werewolf-core';
 
 import Player from '../../../../model/Player';
 import HttpError from '../../../../model/HttpError';
@@ -22,7 +20,7 @@ const errorMap = new Map<number, React.ReactNode>([
 	[409, <FormattedMessage defaultMessage="The seat is already taken. Please try another one." />],
 ]);
 
-function formatError(intl: IntlShape, error: HttpError): React.ReactNode {
+function formatError(error: HttpError): React.ReactNode {
 	const message = errorMap.get(error.code);
 	if (message) {
 		return message;
@@ -42,61 +40,49 @@ const descriptor = defineMessages({
 
 interface RoleViewerProps {
 	player: Player;
-	intl: IntlShape;
 }
 
-interface RoleViewerState {
-	seat?: number;
-	roles?: Role[];
-	message?: React.ReactNode;
-}
+export default function RoleViewer({
+	player,
+}: RoleViewerProps): JSX.Element {
+	const intl = useIntl();
+	const seatNumberRef = React.useRef<HTMLInputElement>(null);
 
-class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
-	protected seatNumber: React.RefObject<HTMLInputElement>;
-
-	constructor(props: RoleViewerProps) {
-		super(props);
-
-		this.seatNumber = React.createRef();
-
-		const { player } = props;
+	const [seat, setSeat] = React.useState(() => {
 		player.restore();
-		this.state = {
-			seat: player.getSeat(),
-			roles: player.getRoles(),
-		};
-	}
+		return player.getSeat();
+	});
+	const [roles, setRoles] = React.useState(player.getRoles());
+	const [message, setMessage] = React.useState<React.ReactNode>();
 
-	fetchCard = async (): Promise<void> => {
-		const { intl } = this.props;
-		const seatNumber = this.seatNumber.current;
+	async function fetchCard(): Promise<void> {
+		const seatNumber = seatNumberRef.current;
 		if (!seatNumber) {
 			return;
 		}
 
 		if (!seatNumber.value) {
-			this.showMessage(<FormattedMessage defaultMessage="Please input a seat number." />);
+			setMessage(<FormattedMessage defaultMessage="Please input a seat number." />);
 			seatNumber.focus();
 			return;
 		}
 
 		const seat = parseInt(seatNumber.value, 10);
 		if (Number.isNaN(seat) || seat <= 0) {
-			this.showMessage(<FormattedMessage defaultMessage="Please input a valid number." />);
+			setMessage(<FormattedMessage defaultMessage="Please input a valid number." />);
 			seatNumber.value = '';
 			seatNumber.focus();
 			return;
 		}
 
-		const { player } = this.props;
-		this.showMessage(<FormattedMessage defaultMessage="Your role is..." />);
+		setMessage(<FormattedMessage defaultMessage="Your role is..." />);
 		try {
 			await player.takeSeat(seat);
 		} catch (error) {
 			if (error instanceof HttpError) {
-				this.showMessage(formatError(intl, error));
+				setMessage(formatError(error));
 			} else {
-				this.showMessage(<FormattedMessage defaultMessage="Unknown error." />);
+				setMessage(<FormattedMessage defaultMessage="Unknown error." />);
 			}
 			return;
 		}
@@ -104,30 +90,21 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		player.save();
 
 		const roles = player.getRoles();
-		this.setState({
-			seat,
-			roles,
-		});
-	};
-
-	showMessage(message: React.ReactNode): void {
-		this.setState({ message });
+		setSeat(seat);
+		setRoles(roles);
 	}
 
-	renderCards(): JSX.Element {
-		const { intl } = this.props;
-		const { roles } = this.state;
+	function renderCards(): JSX.Element {
 		if (!roles) {
-			const { message } = this.state;
 			return (
-				<div className="role-area button-area">
+				<div className="role-viewer button-area">
 					<input
 						type="number"
 						inputMode="decimal"
 						placeholder={intl.formatMessage(descriptor.seatNumber)}
-						ref={this.seatNumber}
+						ref={seatNumberRef}
 					/>
-					<button type="button" onClick={this.fetchCard}>
+					<button type="button" onClick={fetchCard}>
 						{intl.formatMessage(descriptor.viewYourRole)}
 					</button>
 					<div className="inline-message">
@@ -137,13 +114,12 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 			);
 		}
 
-		const { seat } = this.state;
 		const [role] = roles;
 		const cards = roles.splice(1);
 
 		if (!cards || cards.length <= 0) {
 			return (
-				<div className="role-area">
+				<div className="role-viewer">
 					<div className="name">
 						<FormattedMessage defaultMessage="Seat {seat}" values={{ seat }} />
 						{' '}
@@ -162,7 +138,7 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		));
 
 		return (
-			<div className="role-area">
+			<div className="role-viewer">
 				<RoleLabel role={role} className="name" />
 				<RoleIcon role={role} />
 				<ul className="role-list extra-cards">
@@ -172,14 +148,10 @@ class RoleViewer extends React.Component<RoleViewerProps, RoleViewerState> {
 		);
 	}
 
-	render(): JSX.Element {
-		return (
-			<div className="box">
-				<h2><FormattedMessage defaultMessage="Your Role" /></h2>
-				{this.renderCards()}
-			</div>
-		);
-	}
+	return (
+		<div className="box">
+			<h2><FormattedMessage defaultMessage="Your Role" /></h2>
+			{renderCards()}
+		</div>
+	);
 }
-
-export default injectIntl(RoleViewer);
