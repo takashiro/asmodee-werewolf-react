@@ -5,6 +5,7 @@ import { client } from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
 import Room from '../../../model/Room';
 import Page from '../../../model/Page';
+import go from '../../../util/go';
 
 import './index.scss';
 
@@ -17,15 +18,12 @@ const msg = defineMessages({
 
 interface LoaderProps {
 	id: number;
-	onPageOpen?: (page: Page, room: Room) => void;
 }
 
-export default function RoomLoader(props: LoaderProps): JSX.Element {
+export default function RoomLoader({
+	id,
+}: LoaderProps): JSX.Element {
 	const intl = useIntl();
-	const {
-		id,
-		onPageOpen,
-	} = props;
 
 	const [message, setMessage] = React.useState('');
 
@@ -45,9 +43,9 @@ export default function RoomLoader(props: LoaderProps): JSX.Element {
 			room.save();
 		}
 
-		if (onPageOpen) {
-			onPageOpen(Page.Room, room);
-		}
+		setTimeout(() => {
+			go(Page.Room, { id: room.getId() });
+		}, 0);
 	}
 
 	React.useEffect((): void => {

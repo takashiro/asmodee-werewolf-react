@@ -12,6 +12,7 @@ import Page from '../../../model/Page';
 import Room from '../../../model/Room';
 import { client } from '../../../model/Client';
 import HttpError from '../../../model/HttpError';
+import go from '../../../util/go';
 
 import './index.scss';
 
@@ -49,19 +50,11 @@ async function fetchRoom(intl: IntlShape): Promise<Room | undefined> {
 	return room;
 }
 
-interface LobbyProps {
-	onPageOpen?: (page: Page) => void;
-}
-
-export default function Lobby({
-	onPageOpen,
-}: LobbyProps): JSX.Element {
+export default function Lobby(): JSX.Element {
 	const intl = useIntl();
 
 	function createRoom(): void {
-		if (onPageOpen) {
-			setTimeout(onPageOpen, 0, Page.RoomCreator);
-		}
+		go(Page.RoomCreator);
 	}
 
 	async function enterRoom(): Promise<void> {
@@ -70,19 +63,8 @@ export default function Lobby({
 			return;
 		}
 
-		if (onPageOpen) {
-			setTimeout(onPageOpen, 0, Page.Room, room);
-		}
+		go(Page.Room, { id: room.getId() });
 	}
-
-	React.useEffect(() => {
-		const { origin, pathname } = window.location;
-		const lobbyUrl = `${origin}${pathname}`;
-		if (lobbyUrl === window.location.href) {
-			return;
-		}
-		window.history.pushState({}, document.title, lobbyUrl);
-	});
 
 	return (
 		<div className="lobby">

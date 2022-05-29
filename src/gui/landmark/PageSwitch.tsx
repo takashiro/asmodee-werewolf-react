@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { client } from '../../model/Client';
 import RoomModel from '../../model/Room';
 import Page from '../../model/Page';
 
@@ -9,41 +10,37 @@ import RoomLoader from '../page/RoomLoader';
 import Room from '../page/Room';
 
 const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
-let room: RoomModel | undefined;
+const id = Number.parseInt(params.get('id') || '', 10);
 
 export default function PageSwitch(): JSX.Element {
-	const [page, setPage] = React.useState<Page>(!id ? Page.Lobby : Page.Loading);
+	const [page, setPage] = React.useState<Page>(Number.isNaN(id) ? Page.Lobby : Page.Loading);
+	const [roomId, setRoomId] = React.useState(id);
 
-	const handlePageOpen = React.useCallback((newPage: Page, newRoom?: RoomModel): void => {
-		room = newRoom;
-		setPage(newPage);
-	}, []);
+	React.useEffect(() => {
+		function loadPage(e: PopStateEvent): void {
+			const { page, id } = e.state;
+			setPage(page);
+			setRoomId(id);
+		}
 
-	const handleRoomExit = React.useCallback((): void => {
-		setPage(Page.Lobby);
-	}, []);
+		window.addEventListener('popstate', loadPage);
+		return () => window.removeEventListener('popstate', loadPage);
+	});
 
 	if (page === Page.Lobby) {
-		return <Lobby onPageOpen={handlePageOpen} />;
+		return <Lobby />;
 	}
 	if (page === Page.RoomCreator) {
-		return <RoomCreator onPageOpen={handlePageOpen} />;
+		return <RoomCreator />;
 	}
-	if (page === Page.Room) {
-		if (room) {
-			return (
-				<Room room={room} onExit={handleRoomExit} />
-			);
+	if (page === Page.Room && Number.isInteger(roomId)) {
+		const room = new RoomModel(client);
+		if (room.restore(roomId)) {
+			return <Room room={room} />;
 		}
 	}
-	if (page === Page.Loading && id) {
-		return (
-			<RoomLoader
-				id={Number.parseInt(id, 10)}
-				onPageOpen={handlePageOpen}
-			/>
-		);
+	if (page === Page.Loading && roomId) {
+		return <RoomLoader id={roomId} />;
 	}
 	return <div>Page Not Found</div>;
 }

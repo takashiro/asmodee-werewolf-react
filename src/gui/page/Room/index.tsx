@@ -4,14 +4,17 @@ import {
 	useIntl,
 } from 'react-intl';
 
+import Page from '../../../model/Page';
+import RoomModel from '../../../model/Room';
+import go from '../../../util/go';
+
+import Clickable from '../../common/Clickable';
+
 import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
 import ShareLink from './ShareLink';
 
-import RoomModel from '../../../model/Room';
-
 import './index.scss';
-import Clickable from '../../common/Clickable';
 
 const msg = defineMessages({
 	roomTitle: { defaultMessage: 'Room Number: {id}' },
@@ -21,30 +24,18 @@ const msg = defineMessages({
 
 interface RoomProps {
 	room: RoomModel;
-	onExit: () => void;
 }
 
-function Room(props: RoomProps): JSX.Element {
-	const {
-		room,
-		onExit,
-	} = props;
-
+function Room({
+	room,
+}: RoomProps): JSX.Element {
 	const intl = useIntl();
 	const roles = room.getRoles();
 	const title = intl.formatMessage(msg.roomTitle, { id: room.getId() });
 
-	React.useEffect(() => {
-		const { origin, pathname } = window.location;
-		const roomUrl = `${origin}${pathname}?id=${room.getId()}`;
-		if (roomUrl === window.location.href) {
-			return;
-		}
-		const state = {
-			id: room.getId(),
-		};
-		window.history.pushState(state, `${title} - ${document.title}`, roomUrl);
-	});
+	function handleExit(): void {
+		go(Page.Lobby);
+	}
 
 	return (
 		<div className="room">
@@ -61,7 +52,7 @@ function Room(props: RoomProps): JSX.Element {
 			</div>
 			<div className="button-area">
 				{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
-				<Clickable onTrigger={onExit}>
+				<Clickable onTrigger={handleExit}>
 					{intl.formatMessage(msg.exitButtonText)}
 				</Clickable>
 			</div>

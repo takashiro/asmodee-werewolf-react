@@ -15,6 +15,7 @@ import Room from '../../../model/Room';
 import RoomConfig from '../../../model/RoomConfig';
 import HttpError from '../../../model/HttpError';
 import Page from '../../../model/Page';
+import go from '../../../util/go';
 
 import { makeToast } from '../../common/Toast';
 
@@ -30,7 +31,6 @@ const msg = defineMessages({
 });
 
 interface RoomCreatorProps {
-	onPageOpen?: (page: Page, room: Room) => void;
 	intl: IntlShape;
 }
 
@@ -44,7 +44,7 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 	}
 
 	handleReturn = (): void => {
-		this.nagivateTo(Page.Lobby);
+		go(Page.Lobby);
 	};
 
 	handleConfirm = async (): Promise<void> => {
@@ -72,15 +72,8 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 		}
 
 		room.save();
-		this.nagivateTo(Page.Room, room);
+		go(Page.Room, { id: room.getId() });
 	};
-
-	nagivateTo(page: Page, room?: Room): void {
-		const { onPageOpen } = this.props;
-		if (onPageOpen) {
-			setTimeout(onPageOpen, 0, page, room);
-		}
-	}
 
 	render(): JSX.Element {
 		const { intl } = this.props;
