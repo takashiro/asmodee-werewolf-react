@@ -21,7 +21,7 @@ const shareTexts: MessageDescriptor[] = [
 	defineMessage({ defaultMessage: 'Too dirty, bro!' }),
 	defineMessage({ defaultMessage: 'Come on! Attack me tonight!' }),
 	defineMessage({ defaultMessage: 'Close your eyes now.' }),
-	defineMessage({ defaultMessage: 'I\'ll shot you if opted out.' }),
+	defineMessage({ defaultMessage: 'I\'ll shoot you if opted out.' }),
 	defineMessage({ defaultMessage: 'I\'ll poison whoever talks like a werewolf.' }),
 	defineMessage({ defaultMessage: 'Confess your role or get yourself killed.' }),
 	defineMessage({ defaultMessage: 'The weakest werewolves cheat the witch.' }),

@@ -20,6 +20,11 @@
 		"message": "Bombman"
 	},
 	{
+		"id": "1ZA3nL",
+		"defaultMessage": "I'll shoot you if opted out.",
+		"message": "I'll shoot you if opted out."
+	},
+	{
 		"id": "3KdX2W",
 		"defaultMessage": "Change Language",
 		"message": "Change Language"
@@ -418,11 +423,6 @@
 		"id": "zIg54F",
 		"defaultMessage": "View Your Role",
 		"message": "View Your Role"
-	},
-	{
-		"id": "Zodksl",
-		"defaultMessage": "I'll shoot you if opted out.",
-		"message": "I'll shoot you if opted out."
 	},
 	{
 		"id": "ztjcDB",

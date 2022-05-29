@@ -20,6 +20,11 @@
 		"message": "炸彈人"
 	},
 	{
+		"id": "1ZA3nL",
+		"defaultMessage": "I'll shoot you if opted out.",
+		"message": "出我我就帶走你"
+	},
+	{
 		"id": "3KdX2W",
 		"defaultMessage": "Change Language",
 		"message": "切換語言"
@@ -418,11 +423,6 @@
 		"id": "zIg54F",
 		"defaultMessage": "View Your Role",
 		"message": "查看角色"
-	},
-	{
-		"id": "Zodksl",
-		"defaultMessage": "I'll shot you if opted out.",
-		"message": "出我我就帶走你"
 	},
 	{
 		"id": "ztjcDB",
