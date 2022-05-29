@@ -1,8 +1,7 @@
 import React from 'react';
 import {
 	defineMessages,
-	injectIntl,
-	IntlShape,
+	useIntl,
 } from 'react-intl';
 
 import {
@@ -30,28 +29,22 @@ const msg = defineMessages({
 	createRoom: { defaultMessage: 'Start' },
 });
 
-interface RoomCreatorProps {
-	intl: IntlShape;
-}
+export default function RoomCreator(): JSX.Element {
+	const intl = useIntl();
 
-class RoomCreator extends React.Component<RoomCreatorProps> {
-	protected config = new RoomConfig();
+	const config = React.useMemo(() => {
+		const config = new RoomConfig();
+		config.restore();
+		return config;
+	}, []);
 
-	constructor(props: RoomCreatorProps) {
-		super(props);
-
-		this.config.restore();
+	function handleReturn(): void {
+		go(Page.Lobby);
 	}
 
-	handleReturn = (): void => {
-		go(Page.Lobby);
-	};
-
-	handleConfirm = async (): Promise<void> => {
-		const { intl } = this.props;
-
-		this.config.save();
-		const roles = this.config.getRoles();
+	async function handleConfirm(): Promise<void> {
+		config.save();
+		const roles = config.getRoles();
 
 		if (roles.length <= 0) {
 			makeToast(intl.formatMessage(msg.rejectZeroRoles));
@@ -73,39 +66,34 @@ class RoomCreator extends React.Component<RoomCreatorProps> {
 
 		room.save();
 		go(Page.Room, { id: room.getId() });
-	};
-
-	render(): JSX.Element {
-		const { intl } = this.props;
-		return (
-			<div className="room-creator">
-				<div className="team-area">
-					<TeamSelector
-						team={Team.Werewolf}
-						basic={Role.Werewolf}
-						config={this.config}
-					/>
-					<TeamSelector
-						team={Team.Villager}
-						basic={Role.Villager}
-						config={this.config}
-					/>
-					<TeamSelector
-						team={Team.Other}
-						config={this.config}
-					/>
-				</div>
-				<div className="button-area">
-					<button type="button" onClick={this.handleReturn}>
-						{intl.formatMessage(msg.exit)}
-					</button>
-					<button type="button" onClick={this.handleConfirm}>
-						{intl.formatMessage(msg.createRoom)}
-					</button>
-				</div>
-			</div>
-		);
 	}
-}
 
-export default injectIntl(RoomCreator);
+	return (
+		<div className="room-creator">
+			<div className="team-area">
+				<TeamSelector
+					team={Team.Werewolf}
+					basic={Role.Werewolf}
+					config={config}
+				/>
+				<TeamSelector
+					team={Team.Villager}
+					basic={Role.Villager}
+					config={config}
+				/>
+				<TeamSelector
+					team={Team.Other}
+					config={config}
+				/>
+			</div>
+			<div className="button-area">
+				<button type="button" onClick={handleReturn}>
+					{intl.formatMessage(msg.exit)}
+				</button>
+				<button type="button" onClick={handleConfirm}>
+					{intl.formatMessage(msg.createRoom)}
+				</button>
+			</div>
+		</div>
+	);
+}
