@@ -1,6 +1,7 @@
 import { Locator } from '@playwright/test';
 
 import Page from './common/Page';
+import RoleViewer from './RoleViewer';
 
 export default class RoomPage extends Page {
 	async load(path = '.'): Promise<void> {
@@ -9,7 +10,10 @@ export default class RoomPage extends Page {
 	}
 
 	getShareLink(): Locator {
-		const area = this.locator('.room .share-link-area');
-		return area.locator('a');
+		return this.locator('.room .share-link-area a');
+	}
+
+	getRoleViewer(): RoleViewer {
+		return new RoleViewer(this.locator('.room .role-viewer'));
 	}
 }

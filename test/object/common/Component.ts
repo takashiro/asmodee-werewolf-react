@@ -1,4 +1,4 @@
-import { Locator } from '@playwright/test';
+import { Locator, LocatorScreenshotOptions } from '@playwright/test';
 
 interface LocatorOptions {
 	has?: Locator;
@@ -18,5 +18,9 @@ export default abstract class Component {
 
 	locator(selector: string, options?: LocatorOptions): Locator {
 		return this.e.locator(selector, options);
+	}
+
+	screenshot(options: LocatorScreenshotOptions) {
+		return this.e.screenshot(options);
 	}
 }
