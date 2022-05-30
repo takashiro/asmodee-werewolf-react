@@ -54,5 +54,19 @@ test('User 1', async ({ browser }) => {
 		expect(name).toMatch(/^Seat 1/);
 	});
 
+	await test.step('switch a language', async () => {
+		const localeList = room.getLocaleList();
+		const button = localeList.getButton();
+		await button.click();
+		const japanese = localeList.getOption('ja');
+		await japanese.click();
+		await page.screenshot({
+			path: 'test/output/room-seat-1-ja.png',
+			fullPage: true,
+		});
+		const message = room.getInlineMessage();
+		expect(await message.textContent()).toContain('部屋番号');
+	});
+
 	await context.close();
 });

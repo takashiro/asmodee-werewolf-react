@@ -9,6 +9,10 @@ export default class RoomPage extends Page {
 		await this.page.waitForSelector('.room');
 	}
 
+	getInlineMessage() {
+		return this.locator('.inline-message');
+	}
+
 	getShareLink(): Locator {
 		return this.locator('.room .share-link-area a');
 	}

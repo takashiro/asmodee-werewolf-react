@@ -3,6 +3,7 @@ import {
 	Page as BrowserPage,
 } from '@playwright/test';
 
+import LocaleList from './LocaleList';
 import Toast from './Toast';
 
 export default abstract class Page {
@@ -23,5 +24,9 @@ export default abstract class Page {
 
 	async load(url = './?lang=zh-CN'): Promise<void> {
 		await this.page.goto(url);
+	}
+
+	getLocaleList() {
+		return new LocaleList(this.locator('footer .locale-list'));
 	}
 }
