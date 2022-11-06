@@ -52,6 +52,7 @@ const config: PlaywrightTestConfig = {
 					width: 390,
 					height: 844,
 				},
+				screenshot: 'only-on-failure',
 			},
 		},
 
