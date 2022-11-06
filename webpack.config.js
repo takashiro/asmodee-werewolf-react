@@ -28,6 +28,9 @@ module.exports = function config(env, argv) {
 				'.tsx',
 				'.js',
 			],
+			alias: {
+				'@formatjs/icu-messageformat-parser': '@formatjs/icu-messageformat-parser/no-parser',
+			},
 		},
 		optimization: {
 			splitChunks: {
