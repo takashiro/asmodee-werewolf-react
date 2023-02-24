@@ -28,7 +28,7 @@ It's a small online app to arrange role cards of the board game Werewolves of Mi
 
 Get Started
 -----------
-1. Install Node.js 16.x or later versions.
+1. Install Node.js 18.x or later versions.
 1. Run `npm i` to install dependencies.
 1. Run `npm start` to start webpack development server.
 1. Open `http://localhost:9526` in a browser to start debugging.

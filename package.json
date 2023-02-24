@@ -37,6 +37,7 @@
     "@asmodee/werewolf-server": "^2.0.6",
     "@karuta/linguist": "^0.6.0",
     "@playwright/test": "^1.27.1",
+    "@types/node": "^18.14.1",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
