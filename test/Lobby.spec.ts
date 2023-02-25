@@ -28,13 +28,12 @@ test('tries to enter a room without a number', async ({ page }) => {
 	await alert.dismissed();
 });
 
-test.fixme('tries to enter a non-existing room', async ({ page }) => {
+test('tries to enter a non-existing room', async ({ page }) => {
 	const lobby = new LobbyPage(page);
 	await lobby.load();
 
 	const main = new Form(lobby.getMain());
-	const roomNumber = main.getTextBox('房间号');
-	await roomNumber.fill('99999');
+	await main.getSpinButton('房间号').fill('99999');
 	await main.getButton('进入房间').trigger();
 
 	const alert = main.getAlert();

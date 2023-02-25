@@ -1,6 +1,7 @@
 import Landmark from './Landmark';
 import Button from '../widget/Button';
 import TextBox from '../widget/TextBox';
+import SpinButton from '../widget/SpinButton';
 
 export default class Form extends Landmark {
 	getButton(name: string) {
@@ -9,5 +10,9 @@ export default class Form extends Landmark {
 
 	getTextBox(name: string) {
 		return new TextBox(this.getByRole('textbox', { name }));
+	}
+
+	getSpinButton(name: string) {
+		return new SpinButton(this.getByRole('spinbutton', { name }));
 	}
 }

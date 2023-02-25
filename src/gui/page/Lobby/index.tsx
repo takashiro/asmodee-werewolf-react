@@ -79,6 +79,7 @@ export default function Lobby(): JSX.Element {
 					type="number"
 					inputMode="decimal"
 					placeholder={intl.formatMessage(desc.roomNumber)}
+					aria-label={intl.formatMessage(desc.roomNumber)}
 				/>
 				<button type="button" onClick={enterRoom}>
 					<FormattedMessage defaultMessage="Join a Game" />
