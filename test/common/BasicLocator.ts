@@ -18,7 +18,7 @@ export default abstract class BasicLocator {
 		return this.e;
 	}
 
-	protected getByRole(role: Role, options: GetByRoleOptions = {}) {
+	getByRole(role: Role, options: GetByRoleOptions = {}) {
 		if (options.exact === undefined) {
 			options.exact = true;
 		}
@@ -27,5 +27,9 @@ export default abstract class BasicLocator {
 
 	screenshot(options: LocatorScreenshotOptions) {
 		return this.e.screenshot(options);
+	}
+
+	textContent() {
+		return this.e.textContent();
 	}
 }
