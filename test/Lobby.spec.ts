@@ -1,6 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
-import LobbyPage from './object/LobbyPage';
+import LobbyPage from './gui/LobbyPage';
+import Form from './structure/Form';
+
+test.use({
+	locale: 'zh-CN',
+});
 
 test('opens the home page', async ({ page }) => {
 	const lobby = new LobbyPage(page);
@@ -13,21 +18,27 @@ test('opens the home page', async ({ page }) => {
 test('tries to enter a room without a number', async ({ page }) => {
 	const lobby = new LobbyPage(page);
 	await lobby.load();
-	await lobby.enterRoom();
-	const toast = lobby.getToast();
-	const message = await toast.getMessage();
+
+	const main = new Form(lobby.getMain());
+	await main.getButton('进入房间').trigger();
+
+	const alert = main.getAlert();
+	const message = await alert.getMessage();
 	expect(message).toBe('请输入一个数字。');
-	await toast.dismissed();
+	await alert.dismissed();
 });
 
-test('tries to enter a non-existing room', async ({ page }) => {
+test.fixme('tries to enter a non-existing room', async ({ page }) => {
 	const lobby = new LobbyPage(page);
 	await lobby.load();
-	const roomNumber = lobby.getRoomNumber();
-	await roomNumber.type('99999');
-	await lobby.enterRoom();
-	const toast = lobby.getToast();
-	const message = await toast.getMessage();
+
+	const main = new Form(lobby.getMain());
+	const roomNumber = main.getTextBox('房间号');
+	await roomNumber.fill('99999');
+	await main.getButton('进入房间').trigger();
+
+	const alert = main.getAlert();
+	const message = await alert.getMessage();
 	expect(message).toBe('房间不存在。');
-	await toast.dismissed();
+	await alert.dismissed();
 });

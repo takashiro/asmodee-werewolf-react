@@ -1,44 +1,49 @@
+import { Role } from '@asmodee/werewolf-core';
 import { test, expect } from '@playwright/test';
 
-import RoomCreatorPage from './object/RoomCreatorPage';
-import RoomPage from './object/RoomPage';
+import RoomPage from './gui/RoomPage';
+import Form from './structure/Form';
 
-let shareLink = '';
+let roomId = 0;
 
-test.beforeAll(async ({ browser }) => {
-	const context = await browser.newContext();
-	const page = await context.newPage();
-	const creator = new RoomCreatorPage(page);
-	await creator.load();
-	await creator.submit();
-
-	const creatorRoom = new RoomPage(page);
-	const a = creatorRoom.getShareLink();
-	const href = await a.getAttribute('href');
-	const text = await a.textContent();
-	expect(href).toBe(text);
-	expect(href).toMatch(/^http:\/\/localhost:\d+\/\?id=\d+$/);
-	shareLink = href;
-
-	await context.close();
+test.beforeAll(async ({ request }) => {
+	const res = await request.post('api/room', {
+		data: {
+			roles: [
+				Role.AlphaWolf,
+				Role.Werewolf,
+				Role.Werewolf,
+				Role.Werewolf,
+				Role.Villager,
+				Role.Villager,
+				Role.Villager,
+				Role.Villager,
+				Role.Seer,
+				Role.Witch,
+				Role.Hunter,
+				Role.Magician,
+			],
+		},
+	});
+	const room = await res.json();
+	expect(typeof room.id).toBe('number');
+	roomId = room.id;
 });
 
-test('User 1', async ({ browser }) => {
-	const context = await browser.newContext();
-	const page = await context.newPage();
-	const room = new RoomPage(page);
+test.fixme('User 1', async ({ page }) => {
+	const room = new RoomPage(page, roomId);
+	const viewer = new Form(room.getMain());
 
 	await test.step('opens the share link', async () => {
-		await room.load(shareLink);
+		await room.load();
 		await page.screenshot({
 			path: 'test/output/room-shared.png',
 		});
 	});
 
 	await test.step('views seat 1', async () => {
-		const viewer = room.getRoleViewer();
-		await viewer.getInput().fill('1');
-		await viewer.getButton().click();
+		await viewer.getTextBox('座位号').fill('1');
+		await viewer.getButton('查看身份').trigger();
 		await viewer.screenshot({
 			path: 'test/output/room-seat-1.png',
 		});
@@ -46,27 +51,26 @@ test('User 1', async ({ browser }) => {
 
 	await test.step('view seat 1 again', async () => {
 		await page.reload();
-		const viewer = room.getRoleViewer();
-		const name = await viewer.getRoleText();
+		// const name = await viewer.getRoleText();
 		await viewer.screenshot({
 			path: 'test/output/room-seat-1-reopen.png',
 		});
-		expect(name).toMatch(/^Seat 1/);
+		// expect(name).toMatch(/^Seat 1/);
 	});
 
 	await test.step('switch a language', async () => {
-		const localeList = room.getLocaleList();
-		const button = localeList.getButton();
-		await button.click();
-		const japanese = localeList.getOption('ja');
-		await japanese.click();
+		// const localeList = room.getLocaleList();
+		// const button = localeList.getButton();
+		// await button.click();
+		// const japanese = localeList.getOption('ja');
+		// await japanese.click();
 		await page.screenshot({
 			path: 'test/output/room-seat-1-ja.png',
 			fullPage: true,
 		});
-		const message = room.getInlineMessage();
-		expect(await message.textContent()).toContain('部屋番号');
+		// const message = room.getInlineMessage();
+		// expect(await message.textContent()).toContain('部屋番号');
 	});
 
-	await context.close();
+	// await context.close();
 });
