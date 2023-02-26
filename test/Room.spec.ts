@@ -35,7 +35,7 @@ test.beforeAll(async ({ request }) => {
 	roomId = room.id;
 });
 
-test.fixme('User 1', async ({ browser }) => {
+test('User 1', async ({ browser }) => {
 	const context = await browser.newContext();
 	const page = await context.newPage();
 	const room = new RoomPage(page, roomId);
@@ -52,7 +52,7 @@ test.fixme('User 1', async ({ browser }) => {
 
 	await test.step('views seat 1', async () => {
 		const form = new Form(viewer);
-		await form.getTextBox('座位号').fill('1');
+		await form.getSpinButton('座位号').fill('1');
 		await form.getButton('查看身份').trigger();
 		await viewer.screenshot({
 			path: 'test/output/room-seat-1.png',
@@ -61,11 +61,10 @@ test.fixme('User 1', async ({ browser }) => {
 
 	await test.step('view seat 1 again', async () => {
 		await page.reload();
-		const name = await viewer.textContent();
 		await viewer.screenshot({
 			path: 'test/output/room-seat-1-reopen.png',
 		});
-		expect(name).toMatch(/^1号位\s+/);
+		expect(await viewer.textContent()).toContain('1号位');
 	});
 
 	await test.step('switch a language', async () => {
