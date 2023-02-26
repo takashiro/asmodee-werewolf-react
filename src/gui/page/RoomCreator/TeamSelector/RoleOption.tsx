@@ -42,6 +42,7 @@ function RoleOption(props: RoleOptionProps): JSX.Element {
 			role="button"
 			className={classNames.join(' ')}
 			onTrigger={trigger}
+			aria-pressed={selected}
 		>
 			<RoleIcon role={role} />
 			<RoleLabel role={role} className="name" />
