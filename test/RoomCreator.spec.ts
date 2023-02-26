@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 import RoomCreatorPage from './gui/RoomCreatorPage';
 import Form from './structure/Form';
+import List from './structure/List';
 
 test.use({
 	locale: 'zh-CN',
@@ -18,6 +19,7 @@ test('Create a room', async ({ page }) => {
 		});
 	});
 
+	const main = creator.getMain();
 	const form = new Form(creator.getMain());
 	const werewolf = form.getSpinButton('狼人');
 	const decreaseWerewolf = form.getButton('减少狼人');
@@ -74,5 +76,20 @@ test('Create a room', async ({ page }) => {
 			path: 'test/output/room-creator-done.png',
 			fullPage: true,
 		});
+
+		const werewolves = new List(main.getRegion('狼人阵营').getByRole('list'));
+		for (let i = 0; i < 3; i++) {
+			expect(await werewolves.getItemText(i)).toBe('狼人');
+		}
+		expect(await werewolves.getItemText(3)).toBe('狼王');
+
+		const villagers = new List(main.getRegion('村民阵营').getByRole('list'));
+		for (let i = 0; i < 4; i++) {
+			expect(await villagers.getItemText(i)).toBe('村民');
+		}
+		expect(await villagers.getItemText(4)).toBe('预言家');
+		expect(await villagers.getItemText(5)).toBe('女巫');
+		expect(await villagers.getItemText(6)).toBe('猎人');
+		expect(await villagers.getItemText(7)).toBe('魔术师');
 	});
 });
