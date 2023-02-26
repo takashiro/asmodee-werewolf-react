@@ -7,7 +7,7 @@ test.use({
 	locale: 'zh-CN',
 });
 
-test.fixme('Create a room', async ({ page }) => {
+test('Create a room', async ({ page }) => {
 	const creator = new RoomCreatorPage(page);
 	await creator.load();
 
@@ -36,7 +36,7 @@ test.fixme('Create a room', async ({ page }) => {
 		for (let i = 0; i < 10; i++) {
 			await decreaseWerewolf.trigger();
 		}
-		expect(await werewolf.getNumberValue()).toBe(3);
+		expect(await werewolf.getNumberValue()).toBe(0);
 	});
 
 	await test.step('adds 3', async () => {
@@ -66,7 +66,7 @@ test.fixme('Create a room', async ({ page }) => {
 	});
 
 	await test.step('creates a new room', async () => {
-		await form.getButton('创建房间').trigger();
+		await form.getButton('开始').trigger();
 	});
 
 	await test.step('sees a new room page', async () => {
