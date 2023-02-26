@@ -65,6 +65,11 @@
 		"message": "Make up more! Your lies are almost true!"
 	},
 	{
+		"id": "A194zv",
+		"defaultMessage": "decrease {name}",
+		"message": "decrease {name}"
+	},
+	{
 		"message": "Gargoyle",
 		"id": "a5DKwM",
 		"defaultMessage": "Gargoyle"
@@ -88,6 +93,11 @@
 		"message": "Cupid",
 		"id": "bIwsAH",
 		"defaultMessage": "Cupid"
+	},
+	{
+		"id": "CjJv9j",
+		"defaultMessage": "increase {name}",
+		"message": "increase {name}"
 	},
 	{
 		"message": "Wolf Grandma",
@@ -143,11 +153,6 @@
 		"id": "gpkJJd",
 		"defaultMessage": "Your role is...",
 		"message": "Your role is..."
-	},
-	{
-		"id": "GQ9s5j",
-		"defaultMessage": "increase",
-		"message": "increase"
 	},
 	{
 		"message": "Luna",
@@ -303,11 +308,6 @@
 		"id": "PfgvCk",
 		"defaultMessage": "Please select some roles.",
 		"message": "Please select some roles."
-	},
-	{
-		"id": "QYIpqb",
-		"defaultMessage": "decrease",
-		"message": "decrease"
 	},
 	{
 		"id": "rbjNYR",

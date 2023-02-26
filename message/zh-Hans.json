@@ -65,6 +65,11 @@
 		"message": "加油！吹得快像真的了！"
 	},
 	{
+		"id": "A194zv",
+		"defaultMessage": "decrease {name}",
+		"message": "减少{name}"
+	},
+	{
 		"id": "a5DKwM",
 		"defaultMessage": "Gargoyle",
 		"message": "石像鬼"
@@ -88,6 +93,11 @@
 		"id": "bIwsAH",
 		"defaultMessage": "Cupid",
 		"message": "丘比特"
+	},
+	{
+		"id": "CjJv9j",
+		"defaultMessage": "increase {name}",
+		"message": "增加{name}"
 	},
 	{
 		"id": "cpVUDR",
@@ -143,11 +153,6 @@
 		"id": "gpkJJd",
 		"defaultMessage": "Your role is...",
 		"message": "你的身份是..."
-	},
-	{
-		"id": "GQ9s5j",
-		"defaultMessage": "increase",
-		"message": "增加"
 	},
 	{
 		"id": "hARaFV",
@@ -303,11 +308,6 @@
 		"id": "PfgvCk",
 		"defaultMessage": "Please select some roles.",
 		"message": "请选择角色。"
-	},
-	{
-		"id": "QYIpqb",
-		"defaultMessage": "decrease",
-		"message": "减少"
 	},
 	{
 		"id": "rbjNYR",

@@ -4,15 +4,15 @@ import { Role } from '@asmodee/werewolf-core';
 
 import { Clickable } from '../../../../common/Clickable';
 import RoleIcon from '../../../../common/RoleIcon';
-import RoleLabel from '../../../../common/RoleLabel';
+import RoleLabel, { roleNames } from '../../../../common/RoleLabel';
 
 import RoleChange from '../../../../../model/RoleSelection';
 
 import './index.scss';
 
 const desc = defineMessages({
-	decrease: { defaultMessage: 'decrease' },
-	increase: { defaultMessage: 'increase' },
+	decrease: { defaultMessage: 'decrease {name}' },
+	increase: { defaultMessage: 'increase {name}' },
 });
 
 interface RoleNumberInputProps {
@@ -29,40 +29,41 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 	} = props;
 
 	const intl = useIntl();
-	const [value, setValue] = React.useState(defaultValue);
+	const input = React.useRef<HTMLInputElement>(null);
 
-	function emitChange(newValue: number): void {
-		if (!onChange) {
+	const handleChange = React.useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>): void => {
+			const newValue = Number.parseInt(e.target.value, 10);
+			onChange?.({
+				role,
+				value: newValue,
+			});
+		},
+		[role],
+	);
+
+	const handleSpin = React.useCallback((delta: number): void => {
+		const num = input.current;
+		if (!num) {
 			return;
 		}
-
-		onChange({
+		const value = Number.parseInt(num.value, 10);
+		const newValue = Math.max(0, value + delta);
+		num.value = String(newValue);
+		onChange?.({
 			role,
 			value: newValue,
 		});
-	}
+	}, [role]);
 
-	function handleDecrease(): void {
-		const newValue = Math.max(0, value - 1);
-		setValue(newValue);
-		emitChange(newValue);
-	}
+	const handleDecrease = React.useCallback(() => handleSpin(-1), [handleSpin]);
+	const handleIncrease = React.useCallback(() => handleSpin(1), [handleSpin]);
 
-	function handleIncrease(): void {
-		const newValue = value + 1;
-		setValue(newValue);
-		emitChange(newValue);
-	}
-
-	function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-		const newValue = Number.parseInt(e.target.value, 10);
-		setValue(newValue);
-		emitChange(newValue);
-	}
-
+	const labelId = React.useId();
+	const name = intl.formatMessage(roleNames[role]);
 	return (
 		<div className="role-selector number-selector">
-			<div className="icon">
+			<div className="icon" id={labelId}>
 				<RoleIcon role={role} />
 				<RoleLabel role={role} className="name" />
 			</div>
@@ -72,20 +73,22 @@ function RoleNumberInput(props: RoleNumberInputProps): JSX.Element {
 					role="button"
 					className="decrease"
 					onTrigger={handleDecrease}
-					aria-label={intl.formatMessage(desc.decrease)}
+					aria-label={intl.formatMessage(desc.decrease, { name })}
 				/>
 				<input
+					ref={input}
 					type="number"
 					inputMode="decimal"
-					value={value}
+					defaultValue={defaultValue}
 					onChange={handleChange}
+					aria-labelledby={labelId}
 				/>
 				<Clickable
 					component="div"
 					role="button"
 					className="increase"
 					onTrigger={handleIncrease}
-					aria-label={intl.formatMessage(desc.increase)}
+					aria-label={intl.formatMessage(desc.increase, { name })}
 				/>
 			</div>
 		</div>

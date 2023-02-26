@@ -65,6 +65,11 @@
 		"message": "がんばって！みんながまんまと騙されちゃうところだった！"
 	},
 	{
+		"id": "A194zv",
+		"defaultMessage": "decrease {name}",
+		"message": "{name}を減らす"
+	},
+	{
 		"id": "a5DKwM",
 		"defaultMessage": "Gargoyle",
 		"message": "ガーゴイル"
@@ -88,6 +93,11 @@
 		"id": "bIwsAH",
 		"defaultMessage": "Cupid",
 		"message": "クピードー"
+	},
+	{
+		"id": "CjJv9j",
+		"defaultMessage": "increase {name}",
+		"message": "{name}を増やす"
 	},
 	{
 		"id": "cpVUDR",
@@ -143,11 +153,6 @@
 		"id": "gpkJJd",
 		"defaultMessage": "Your role is...",
 		"message": "あなたの正体は…"
-	},
-	{
-		"id": "GQ9s5j",
-		"defaultMessage": "increase",
-		"message": "増"
 	},
 	{
 		"id": "hARaFV",
@@ -303,11 +308,6 @@
 		"id": "PfgvCk",
 		"defaultMessage": "Please select some roles.",
 		"message": "下記のキャラを選んでください。"
-	},
-	{
-		"id": "QYIpqb",
-		"defaultMessage": "decrease",
-		"message": "減"
 	},
 	{
 		"id": "rbjNYR",
