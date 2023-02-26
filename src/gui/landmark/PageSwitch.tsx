@@ -13,7 +13,12 @@ const params = new URLSearchParams(window.location.search);
 const id = Number.parseInt(params.get('id') || '', 10);
 
 export default function PageSwitch(): JSX.Element {
-	const [page, setPage] = React.useState<Page>(Number.isNaN(id) ? Page.Lobby : Page.Loading);
+	const [page, setPage] = React.useState<Page>(() => {
+		if (!Number.isNaN(id)) {
+			return Page.Loading;
+		}
+		return params.get('page') as Page ?? Page.Lobby;
+	});
 	const [roomId, setRoomId] = React.useState(id);
 
 	React.useEffect(() => {
