@@ -19,6 +19,8 @@ export default function TeamProfile(props: Props): JSX.Element {
 		roles,
 	} = props;
 
+	const titleId = React.useId();
+
 	let key = 0;
 	const icons = roles.map((role) => (
 		<li key={key++}>
@@ -27,9 +29,9 @@ export default function TeamProfile(props: Props): JSX.Element {
 		</li>
 	));
 	return (
-		<div className="box">
-			<h2><TeamLabel team={team} /></h2>
+		<section className="box" aria-labelledby={titleId}>
+			<h2 id={titleId}><TeamLabel team={team} /></h2>
 			<ul className="role-list">{icons}</ul>
-		</div>
+		</section>
 	);
 }

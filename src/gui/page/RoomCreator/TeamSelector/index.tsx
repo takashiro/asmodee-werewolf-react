@@ -27,6 +27,7 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 		config,
 	} = props;
 
+	const titleId = React.useId();
 	const allRoles = Object.values(Role).filter((role) => Number.isInteger(role)) as number[];
 	const teamRoles = allRoles.filter((role) => role !== Role.Unknown && role !== basic && Teamship.get(role) === team);
 	const basicNum = (basic && config.getRole(basic)) || 0;
@@ -36,8 +37,8 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 	}
 
 	return (
-		<div className="box">
-			<h2><TeamLabel team={team} /></h2>
+		<section className="box" aria-labelledby={titleId}>
+			<h2 id={titleId}><TeamLabel team={team} /></h2>
 			{basic && (
 				<RoleNumberInput
 					role={basic}
@@ -56,6 +57,6 @@ export default function TeamSelector(props: TeamSelectorProps): JSX.Element {
 					</li>
 				))}
 			</ul>
-		</div>
+		</section>
 	);
 }

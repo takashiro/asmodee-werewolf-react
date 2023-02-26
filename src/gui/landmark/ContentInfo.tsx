@@ -28,7 +28,7 @@ export default function ContentInfo({
 					<span>Designed by </span>
 					<a href="http://langrensha.163.com">Netease Game</a>
 				</p>
-				<p>Authored by Kazuichi Takashiro © 2017 - 2022</p>
+				<p>Authored by Kazuichi Takashiro © 2017 - 2023</p>
 			</div>
 		</>
 	);

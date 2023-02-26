@@ -12,13 +12,12 @@ import Clickable from '../../common/Clickable';
 
 import RoleTable from './RoleTable';
 import RoleViewer from './RoleViewer';
-import ShareLink from './ShareLink';
+import ShareArea from './ShareArea';
 
 import './index.scss';
 
 const msg = defineMessages({
 	roomTitle: { defaultMessage: 'Room Number: {id}' },
-	linkTitle: { defaultMessage: 'Invite Link' },
 	exitButtonText: { defaultMessage: 'Exit' },
 });
 
@@ -44,12 +43,7 @@ function Room({
 			</div>
 			{roles && <RoleTable roles={roles} />}
 			{!room.isOwner() && <RoleViewer player={room.createPlayer()} />}
-			<div className="box share-link-area">
-				<h2>
-					{intl.formatMessage(msg.linkTitle)}
-				</h2>
-				<ShareLink id={room.getId()} />
-			</div>
+			<ShareArea roomId={room.getId()} />
 			<div className="button-area">
 				{/* (this.isOwner() ? <button onClick={this.openGodNote}>上帝助手</button> : null) */}
 				<Clickable onTrigger={handleExit}>
