@@ -1,14 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { transform } = require('@karuta/linguist');
-const { default: api } = require('@asmodee/werewolf-server');
+import path from 'path';
+import url from 'url';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { transform } from '@karuta/linguist';
+import api from '@asmodee/werewolf-server';
+
+const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
 
 /**
  * @return {import('webpack').Configuration} Webpack configuration
  */
-module.exports = function config(env, argv) {
+export default function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
 		mode,
@@ -17,10 +19,10 @@ module.exports = function config(env, argv) {
 		},
 		output: {
 			filename: 'static/[name].js',
-			path: path.resolve(__dirname, 'dist'),
+			path: path.resolve(rootDir, 'dist'),
 		},
 		resolveLoader: {
-			modules: [path.resolve(__dirname, 'node_modules')],
+			modules: [path.resolve(rootDir, 'node_modules')],
 		},
 		resolve: {
 			extensions: [
@@ -94,7 +96,7 @@ module.exports = function config(env, argv) {
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
 		devServer: {
-			static: path.join(__dirname, 'dist'),
+			static: path.join(rootDir, 'dist'),
 			compress: true,
 			port: 9526,
 			hot: true,
@@ -104,4 +106,4 @@ module.exports = function config(env, argv) {
 			},
 		},
 	};
-};
+}

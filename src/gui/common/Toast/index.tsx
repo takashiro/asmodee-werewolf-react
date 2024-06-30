@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { Root, createRoot } from 'react-dom/client';
 
 import './index.scss';
 
 interface ToastProps {
 	children: React.ReactNode;
-	container?: string;
+	root: Root;
 }
 
 export default function Toast({
 	children,
-	container = 'overlay',
+	root,
 }: ToastProps): JSX.Element {
 	const toast = React.useRef<HTMLDivElement>(null);
 
@@ -33,11 +33,7 @@ export default function Toast({
 		}, 900);
 
 		setTimeout(() => {
-			const node = document.getElementById(container);
-			if (!node) {
-				return;
-			}
-			ReactDOM.unmountComponentAtNode(node);
+			root.unmount();
 		}, 1200);
 	});
 
@@ -49,8 +45,6 @@ export default function Toast({
 }
 
 export function makeToast(message: React.ReactNode, container = 'overlay'): void {
-	ReactDOM.render(
-		<Toast>{message}</Toast>,
-		document.getElementById(container),
-	);
+	const root = createRoot(document.getElementById(container)!);
+	root.render(<Toast root={root}>{message}</Toast>);
 }

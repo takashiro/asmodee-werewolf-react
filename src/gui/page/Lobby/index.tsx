@@ -2,7 +2,6 @@ import React from 'react';
 import {
 	useIntl,
 	defineMessages,
-	FormattedMessage,
 	IntlShape,
 } from 'react-intl';
 
@@ -17,6 +16,8 @@ import go from '../../../util/go';
 import './index.scss';
 
 const desc = defineMessages({
+	startNewGame: { defaultMessage: 'Start a New Game' },
+	joinGame: { defaultMessage: 'Join a Game' },
 	emptyRoomNumber: { defaultMessage: 'Please input a room number.' },
 	roomNotExist: { defaultMessage: 'The room does not exist.' },
 	unknownError: { defaultMessage: 'Unknown error.' },
@@ -70,7 +71,7 @@ export default function Lobby(): JSX.Element {
 		<div className="lobby">
 			<div className="simple-form">
 				<button type="button" onClick={createRoom}>
-					<FormattedMessage defaultMessage="Start a New Game" />
+					{intl.formatMessage(desc.startNewGame)}
 				</button>
 			</div>
 			<div className="simple-form">
@@ -82,7 +83,7 @@ export default function Lobby(): JSX.Element {
 					aria-label={intl.formatMessage(desc.roomNumber)}
 				/>
 				<button type="button" onClick={enterRoom}>
-					<FormattedMessage defaultMessage="Join a Game" />
+					{intl.formatMessage(desc.joinGame)}
 				</button>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 /**
  * @type {import('@karuta/linguist').Config}
  */
-module.exports = {
+export default {
 	locales: [
 		'en-US',
 		'en-GB',
