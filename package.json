@@ -37,7 +37,7 @@
   "devDependencies": {
     "@asmodee/werewolf-server": "^3.0.0",
     "@karuta/linguist": "^0.8.0",
-    "@playwright/test": "^1.45.0",
+    "@playwright/test": "^1.56.1",
     "@types/node": "^20.14.9",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
